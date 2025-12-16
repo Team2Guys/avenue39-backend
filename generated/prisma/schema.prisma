@@ -1,0 +1,243 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  CANCELED
+  FAILED
+  SHIPPED
+  COMPLETED
+}
+
+enum PaymentStatus {
+  FREE
+  PENDING
+  PAID
+  CANCELED
+  FAILED
+}
+
+enum InquiryType {
+  EMAIL
+  PHONE
+  WHATSAPP
+  OTHER
+}
+
+enum InquiryStatus {
+  NEW
+  READ
+  RESOLVED
+}
+
+enum Permissions {
+  ADD_PRODUCTS
+  EDIT_PRODUCTS
+  DELETE_PRODUCTS
+  ADD_CATEGORY
+  DELETE_CATEGORY
+  EDIT_CATEGORY
+  CHECK_PROFIT
+  CHECK_REVENUE
+  CHECK_VISITORS
+  VIEW_USERS
+  VIEW_SALES
+  VIEW_ADMINS
+  VIEW_TOTAL_PRODUCTS
+  VIEW_TOTAL_CATEGORIES
+}
+
+enum AddressType {
+  HOME
+  OFFICE
+  OTHER
+}
+
+model Admin {
+  id           String        @id @default(uuid()) @db.Uuid
+  name         String
+  email        String        @unique
+  password     String
+  permissions  Permissions[] @default([])
+  role         Role          @default(ADMIN)
+  lastEditedBy String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model User {
+  id                       String   @id @default(uuid()) @db.Uuid
+  firstName                String
+  lastName                 String
+  email                    String   @unique
+  password                 String
+  role                     Role     @default(USER)
+  isEmailVerified          Boolean  @default(false)
+  defaultShippingAddressId String   @default("")
+  defaultBillingAddressId  String   @default("")
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+
+  addresses Address[] @relation(name: "UserAddresses")
+  orders    Order[]   @relation(name: "UserOrders")
+}
+
+model Address {
+  id          String      @id @default(uuid()) @db.Uuid
+  userId      String      @db.Uuid
+  firstName   String
+  lastName    String
+  email       String
+  phone       String
+  state       String
+  country     String
+  city        String
+  address     String
+  addressType AddressType @default(HOME)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  user User @relation(name: "UserAddresses", fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(uuid()) @db.Uuid
+  email     String   @unique
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id               String        @id @default(uuid()) @db.Uuid
+  name             String        @unique
+  description      String?       @db.Text()
+  shortDescription String?
+  slug             String        @unique
+  metaTitle        String?
+  metaDescription  String?
+  canonicalTag     String?
+  breadcrumb       String?
+  posterImageUrl   String?
+  seoSchema        String?       @db.Text()
+  lastEditedBy     String?
+  status           ContentStatus @default(PUBLISHED)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  products      Product[]     @relation(name: "CategoryProducts")
+  subcategories Subcategory[] @relation(name: "CategorySubcategories")
+}
+
+model Subcategory {
+  id               String        @id @default(uuid()) @db.Uuid
+  categoryId       String        @db.Uuid
+  name             String
+  description      String?       @db.Text()
+  shortDescription String?
+  slug             String
+  metaTitle        String?
+  metaDescription  String?
+  canonicalTag     String?
+  breadcrumb       String?
+  posterImageUrl   String?
+  seoSchema        String?       @db.Text()
+  lastEditedBy     String?
+  status           ContentStatus @default(PUBLISHED)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  category Category  @relation(name: "CategorySubcategories", fields: [categoryId], references: [id], onDelete: Cascade)
+  products Product[] @relation(name: "SubcategoryProducts")
+}
+
+model Product {
+  id               String        @id @default(uuid()) @db.Uuid
+  categoryId       String        @db.Uuid
+  subcategoryId    String        @db.Uuid
+  name             String
+  description      String?       @db.Text()
+  shortDescription String?
+  slug             String
+  metaTitle        String?
+  metaDescription  String?
+  canonicalTag     String?
+  breadcrumb       String?
+  posterImageUrl   String
+  seoSchema        String?       @db.Text()
+  productImages    String[]      @default([])
+  price            Decimal       @default(0)
+  discountPrice    Decimal       @default(0)
+  motorPrice       Decimal       @default(0)
+  stock            Int           @default(0)
+  height           Decimal       @default(0)
+  width            Decimal       @default(0)
+  color            String?
+  pattern          String?
+  composition      String?
+  isMotorized      Boolean       @default(false)
+  additionalInfo   String?       @db.Text()
+  measuringGuide   String?       @db.Text()
+  lastEditedBy     String?
+  status           ContentStatus @default(PUBLISHED)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  category    Category    @relation(name: "CategoryProducts", fields: [categoryId], references: [id], onDelete: Cascade)
+  subcategory Subcategory @relation(name: "SubcategoryProducts", fields: [subcategoryId], references: [id], onDelete: Cascade)
+}
+
+model Order {
+  id            String        @id @default(uuid()) @db.Uuid
+  userId        String        @db.Uuid
+  firstName     String
+  lastName      String
+  email         String
+  phone         String
+  state         String
+  country       String
+  city          String
+  address       String        @db.Text()
+  totalAmount   Decimal       @default(0)
+  shippingCost  Decimal       @default(0)
+  items         Json[]
+  notes         String?       @db.Text()
+  lastEditedBy  String?
+  paymentStatus PaymentStatus @default(PENDING)
+  orderStatus   OrderStatus   @default(PENDING)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  user User @relation(name: "UserOrders", fields: [userId], references: [id], onDelete: Restrict)
+}
+
+model Inquiry {
+  id            String        @id @default(uuid()) @db.Uuid
+  name          String
+  email         String
+  phone         String
+  message       String?       @db.Text()
+  inquiryType   InquiryType   @default(OTHER)
+  inquiryStatus InquiryStatus @default(NEW)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
