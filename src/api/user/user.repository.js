@@ -6,14 +6,15 @@ export const userRepository = {
       prisma.user.findMany({
         select: {
           id: true,
+          defaultBillingAddressId: true,
+          defaultShippingAddressId: true,
           firstName: true,
           lastName: true,
           email: true,
-          role: true,
           isEmailVerified: true,
           addresses: true,
-          defaultBillingAddressId: true,
-          defaultShippingAddressId: true,
+          defaultShippingAddress: true,
+          defaultBillingAddress: true,
           createdAt: true,
           updatedAt: true
         }
@@ -24,14 +25,15 @@ export const userRepository = {
         where: { id },
         select: {
           id: true,
+          defaultBillingAddressId: true,
+          defaultShippingAddressId: true,
           firstName: true,
           lastName: true,
           email: true,
-          role: true,
           isEmailVerified: true,
           addresses: true,
-          defaultBillingAddressId: true,
-          defaultShippingAddressId: true,
+          defaultShippingAddress: true,
+          defaultBillingAddress: true,
           createdAt: true,
           updatedAt: true
         }
@@ -39,21 +41,7 @@ export const userRepository = {
 
     userByEmail: (email) =>
       prisma.user.findUnique({
-        where: { email },
-        select: {
-          id: true,
-          firstName: true,
-          lastName: true,
-          email: true,
-          password: true,
-          role: true,
-          isEmailVerified: true,
-          addresses: true,
-          defaultBillingAddressId: true,
-          defaultShippingAddressId: true,
-          createdAt: true,
-          updatedAt: true
-        }
+        where: { email }
       })
   },
 
@@ -68,7 +56,12 @@ export const userRepository = {
     userById: (id, data) =>
       prisma.user.update({
         where: { id },
-        data
+        data,
+        include: {
+          addresses: true,
+          defaultShippingAddress: true,
+          defaultBillingAddress: true
+        }
       })
   },
 

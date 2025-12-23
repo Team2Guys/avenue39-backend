@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN', 'SUPER_ADMIN');
+CREATE TYPE "AdminRole" AS ENUM ('ADMIN', 'SUPER_ADMIN');
 
 -- CreateEnum
 CREATE TYPE "ContentStatus" AS ENUM ('DRAFT', 'PUBLISHED', 'ARCHIVED');
@@ -28,8 +28,8 @@ CREATE TABLE "Admin" (
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "role" "AdminRole" NOT NULL DEFAULT 'ADMIN',
     "permissions" "Permissions"[] DEFAULT ARRAY[]::"Permissions"[],
-    "role" "Role" NOT NULL DEFAULT 'ADMIN',
     "lastEditedBy" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -40,14 +40,13 @@ CREATE TABLE "Admin" (
 -- CreateTable
 CREATE TABLE "User" (
     "id" UUID NOT NULL,
+    "defaultShippingAddressId" UUID,
+    "defaultBillingAddressId" UUID,
     "firstName" TEXT NOT NULL,
     "lastName" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "role" "Role" NOT NULL DEFAULT 'USER',
     "isEmailVerified" BOOLEAN NOT NULL DEFAULT false,
-    "defaultShippingAddressId" TEXT NOT NULL DEFAULT '',
-    "defaultBillingAddressId" TEXT NOT NULL DEFAULT '',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -62,10 +61,10 @@ CREATE TABLE "Address" (
     "lastName" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
+    "address" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
     "state" TEXT NOT NULL,
     "country" TEXT NOT NULL,
-    "city" TEXT NOT NULL,
-    "address" TEXT NOT NULL,
     "addressType" "AddressType" NOT NULL DEFAULT 'HOME',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -88,17 +87,17 @@ CREATE TABLE "NewsletterSubscriber" (
 CREATE TABLE "Category" (
     "id" UUID NOT NULL,
     "name" TEXT NOT NULL,
-    "description" TEXT,
-    "shortDescription" TEXT,
     "slug" TEXT NOT NULL,
+    "shortDescription" TEXT,
+    "description" TEXT,
     "metaTitle" TEXT,
     "metaDescription" TEXT,
     "canonicalTag" TEXT,
     "breadcrumb" TEXT,
     "posterImageUrl" TEXT,
     "seoSchema" TEXT,
-    "lastEditedBy" TEXT,
     "status" "ContentStatus" NOT NULL DEFAULT 'PUBLISHED',
+    "lastEditedBy" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -110,17 +109,17 @@ CREATE TABLE "Subcategory" (
     "id" UUID NOT NULL,
     "categoryId" UUID NOT NULL,
     "name" TEXT NOT NULL,
-    "description" TEXT,
-    "shortDescription" TEXT,
     "slug" TEXT NOT NULL,
+    "shortDescription" TEXT,
+    "description" TEXT,
     "metaTitle" TEXT,
     "metaDescription" TEXT,
     "canonicalTag" TEXT,
     "breadcrumb" TEXT,
     "posterImageUrl" TEXT,
     "seoSchema" TEXT,
-    "lastEditedBy" TEXT,
     "status" "ContentStatus" NOT NULL DEFAULT 'PUBLISHED',
+    "lastEditedBy" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -132,31 +131,32 @@ CREATE TABLE "Product" (
     "id" UUID NOT NULL,
     "categoryId" UUID NOT NULL,
     "subcategoryId" UUID NOT NULL,
+    "sku" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "description" TEXT,
-    "shortDescription" TEXT,
     "slug" TEXT NOT NULL,
-    "metaTitle" TEXT,
-    "metaDescription" TEXT,
-    "canonicalTag" TEXT,
-    "breadcrumb" TEXT,
+    "shortDescription" TEXT,
+    "description" TEXT,
     "posterImageUrl" TEXT NOT NULL,
-    "seoSchema" TEXT,
     "productImages" TEXT[] DEFAULT ARRAY[]::TEXT[],
     "price" DECIMAL(65,30) NOT NULL DEFAULT 0,
-    "discountPrice" DECIMAL(65,30) NOT NULL DEFAULT 0,
     "motorPrice" DECIMAL(65,30) NOT NULL DEFAULT 0,
-    "stock" INTEGER NOT NULL DEFAULT 0,
-    "height" DECIMAL(65,30) NOT NULL DEFAULT 0,
-    "width" DECIMAL(65,30) NOT NULL DEFAULT 0,
+    "minHeight" DECIMAL(65,30) NOT NULL DEFAULT 0,
+    "maxHeight" DECIMAL(65,30) NOT NULL DEFAULT 1,
+    "minWidth" DECIMAL(65,30) NOT NULL DEFAULT 0,
+    "maxWidth" DECIMAL(65,30) NOT NULL DEFAULT 1,
     "color" TEXT,
     "pattern" TEXT,
     "composition" TEXT,
     "isMotorized" BOOLEAN NOT NULL DEFAULT false,
     "additionalInfo" TEXT,
     "measuringGuide" TEXT,
-    "lastEditedBy" TEXT,
+    "metaTitle" TEXT,
+    "metaDescription" TEXT,
+    "canonicalTag" TEXT,
+    "breadcrumb" TEXT,
+    "seoSchema" TEXT,
     "status" "ContentStatus" NOT NULL DEFAULT 'PUBLISHED',
+    "lastEditedBy" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -171,21 +171,43 @@ CREATE TABLE "Order" (
     "lastName" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
+    "address" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
     "state" TEXT NOT NULL,
     "country" TEXT NOT NULL,
-    "city" TEXT NOT NULL,
-    "address" TEXT NOT NULL,
     "totalAmount" DECIMAL(65,30) NOT NULL DEFAULT 0,
     "shippingCost" DECIMAL(65,30) NOT NULL DEFAULT 0,
-    "items" JSONB[],
     "notes" TEXT,
-    "lastEditedBy" TEXT,
     "paymentStatus" "PaymentStatus" NOT NULL DEFAULT 'PENDING',
     "orderStatus" "OrderStatus" NOT NULL DEFAULT 'PENDING',
+    "lastEditedBy" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "OrderItem" (
+    "id" TEXT NOT NULL,
+    "orderId" UUID NOT NULL,
+    "productId" UUID,
+    "sku" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
+    "categoryUrl" TEXT NOT NULL,
+    "subcategoryUrl" TEXT NOT NULL,
+    "price" DECIMAL(65,30) NOT NULL,
+    "height" DECIMAL(65,30) NOT NULL DEFAULT 0,
+    "width" DECIMAL(65,30) NOT NULL DEFAULT 0,
+    "isMotorized" BOOLEAN NOT NULL DEFAULT false,
+    "motorPrice" DECIMAL(65,30) NOT NULL DEFAULT 0,
+    "color" TEXT,
+    "pattern" TEXT,
+    "composition" TEXT,
+    "posterImageUrl" TEXT,
+
+    CONSTRAINT "OrderItem_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -207,6 +229,12 @@ CREATE TABLE "Inquiry" (
 CREATE UNIQUE INDEX "Admin_email_key" ON "Admin"("email");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "User_defaultShippingAddressId_key" ON "User"("defaultShippingAddressId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_defaultBillingAddressId_key" ON "User"("defaultBillingAddressId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
@@ -217,6 +245,21 @@ CREATE UNIQUE INDEX "Category_name_key" ON "Category"("name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Category_slug_key" ON "Category"("slug");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Subcategory_categoryId_slug_key" ON "Subcategory"("categoryId", "slug");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Product_sku_key" ON "Product"("sku");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Product_subcategoryId_slug_key" ON "Product"("subcategoryId", "slug");
+
+-- AddForeignKey
+ALTER TABLE "User" ADD CONSTRAINT "User_defaultShippingAddressId_fkey" FOREIGN KEY ("defaultShippingAddressId") REFERENCES "Address"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "User" ADD CONSTRAINT "User_defaultBillingAddressId_fkey" FOREIGN KEY ("defaultBillingAddressId") REFERENCES "Address"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Address" ADD CONSTRAINT "Address_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -232,3 +275,9 @@ ALTER TABLE "Product" ADD CONSTRAINT "Product_subcategoryId_fkey" FOREIGN KEY ("
 
 -- AddForeignKey
 ALTER TABLE "Order" ADD CONSTRAINT "Order_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "OrderItem" ADD CONSTRAINT "OrderItem_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "Order"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "OrderItem" ADD CONSTRAINT "OrderItem_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE SET NULL ON UPDATE CASCADE;

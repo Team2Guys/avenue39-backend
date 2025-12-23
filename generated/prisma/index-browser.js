@@ -125,8 +125,8 @@ exports.Prisma.AdminScalarFieldEnum = {
   name: 'name',
   email: 'email',
   password: 'password',
-  permissions: 'permissions',
   role: 'role',
+  permissions: 'permissions',
   lastEditedBy: 'lastEditedBy',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -134,14 +134,13 @@ exports.Prisma.AdminScalarFieldEnum = {
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
+  defaultShippingAddressId: 'defaultShippingAddressId',
+  defaultBillingAddressId: 'defaultBillingAddressId',
   firstName: 'firstName',
   lastName: 'lastName',
   email: 'email',
   password: 'password',
-  role: 'role',
   isEmailVerified: 'isEmailVerified',
-  defaultShippingAddressId: 'defaultShippingAddressId',
-  defaultBillingAddressId: 'defaultBillingAddressId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -153,10 +152,10 @@ exports.Prisma.AddressScalarFieldEnum = {
   lastName: 'lastName',
   email: 'email',
   phone: 'phone',
+  address: 'address',
+  city: 'city',
   state: 'state',
   country: 'country',
-  city: 'city',
-  address: 'address',
   addressType: 'addressType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -173,17 +172,17 @@ exports.Prisma.NewsletterSubscriberScalarFieldEnum = {
 exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  description: 'description',
-  shortDescription: 'shortDescription',
   slug: 'slug',
+  shortDescription: 'shortDescription',
+  description: 'description',
   metaTitle: 'metaTitle',
   metaDescription: 'metaDescription',
   canonicalTag: 'canonicalTag',
   breadcrumb: 'breadcrumb',
   posterImageUrl: 'posterImageUrl',
   seoSchema: 'seoSchema',
-  lastEditedBy: 'lastEditedBy',
   status: 'status',
+  lastEditedBy: 'lastEditedBy',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -192,17 +191,17 @@ exports.Prisma.SubcategoryScalarFieldEnum = {
   id: 'id',
   categoryId: 'categoryId',
   name: 'name',
-  description: 'description',
-  shortDescription: 'shortDescription',
   slug: 'slug',
+  shortDescription: 'shortDescription',
+  description: 'description',
   metaTitle: 'metaTitle',
   metaDescription: 'metaDescription',
   canonicalTag: 'canonicalTag',
   breadcrumb: 'breadcrumb',
   posterImageUrl: 'posterImageUrl',
   seoSchema: 'seoSchema',
-  lastEditedBy: 'lastEditedBy',
   status: 'status',
+  lastEditedBy: 'lastEditedBy',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -211,31 +210,32 @@ exports.Prisma.ProductScalarFieldEnum = {
   id: 'id',
   categoryId: 'categoryId',
   subcategoryId: 'subcategoryId',
+  sku: 'sku',
   name: 'name',
-  description: 'description',
-  shortDescription: 'shortDescription',
   slug: 'slug',
-  metaTitle: 'metaTitle',
-  metaDescription: 'metaDescription',
-  canonicalTag: 'canonicalTag',
-  breadcrumb: 'breadcrumb',
+  shortDescription: 'shortDescription',
+  description: 'description',
   posterImageUrl: 'posterImageUrl',
-  seoSchema: 'seoSchema',
   productImages: 'productImages',
   price: 'price',
-  discountPrice: 'discountPrice',
   motorPrice: 'motorPrice',
-  stock: 'stock',
-  height: 'height',
-  width: 'width',
+  minHeight: 'minHeight',
+  maxHeight: 'maxHeight',
+  minWidth: 'minWidth',
+  maxWidth: 'maxWidth',
   color: 'color',
   pattern: 'pattern',
   composition: 'composition',
   isMotorized: 'isMotorized',
   additionalInfo: 'additionalInfo',
   measuringGuide: 'measuringGuide',
-  lastEditedBy: 'lastEditedBy',
+  metaTitle: 'metaTitle',
+  metaDescription: 'metaDescription',
+  canonicalTag: 'canonicalTag',
+  breadcrumb: 'breadcrumb',
+  seoSchema: 'seoSchema',
   status: 'status',
+  lastEditedBy: 'lastEditedBy',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -247,19 +247,38 @@ exports.Prisma.OrderScalarFieldEnum = {
   lastName: 'lastName',
   email: 'email',
   phone: 'phone',
+  address: 'address',
+  city: 'city',
   state: 'state',
   country: 'country',
-  city: 'city',
-  address: 'address',
   totalAmount: 'totalAmount',
   shippingCost: 'shippingCost',
-  items: 'items',
   notes: 'notes',
-  lastEditedBy: 'lastEditedBy',
   paymentStatus: 'paymentStatus',
   orderStatus: 'orderStatus',
+  lastEditedBy: 'lastEditedBy',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.OrderItemScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  productId: 'productId',
+  sku: 'sku',
+  name: 'name',
+  slug: 'slug',
+  categoryUrl: 'categoryUrl',
+  subcategoryUrl: 'subcategoryUrl',
+  price: 'price',
+  height: 'height',
+  width: 'width',
+  isMotorized: 'isMotorized',
+  motorPrice: 'motorPrice',
+  color: 'color',
+  pattern: 'pattern',
+  composition: 'composition',
+  posterImageUrl: 'posterImageUrl'
 };
 
 exports.Prisma.InquiryScalarFieldEnum = {
@@ -288,8 +307,7 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-exports.Role = exports.$Enums.Role = {
-  USER: 'USER',
+exports.AdminRole = exports.$Enums.AdminRole = {
   ADMIN: 'ADMIN',
   SUPER_ADMIN: 'SUPER_ADMIN'
 };
@@ -362,6 +380,7 @@ exports.Prisma.ModelName = {
   Subcategory: 'Subcategory',
   Product: 'Product',
   Order: 'Order',
+  OrderItem: 'OrderItem',
   Inquiry: 'Inquiry'
 };
 
