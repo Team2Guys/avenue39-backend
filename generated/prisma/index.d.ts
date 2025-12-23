@@ -54,6 +54,11 @@ export type Product = $Result.DefaultSelection<Prisma.$ProductPayload>
  */
 export type Order = $Result.DefaultSelection<Prisma.$OrderPayload>
 /**
+ * Model OrderItem
+ * 
+ */
+export type OrderItem = $Result.DefaultSelection<Prisma.$OrderItemPayload>
+/**
  * Model Inquiry
  * 
  */
@@ -63,13 +68,12 @@ export type Inquiry = $Result.DefaultSelection<Prisma.$InquiryPayload>
  * Enums
  */
 export namespace $Enums {
-  export const Role: {
-  USER: 'USER',
+  export const AdminRole: {
   ADMIN: 'ADMIN',
   SUPER_ADMIN: 'SUPER_ADMIN'
 };
 
-export type Role = (typeof Role)[keyof typeof Role]
+export type AdminRole = (typeof AdminRole)[keyof typeof AdminRole]
 
 
 export const ContentStatus: {
@@ -153,9 +157,9 @@ export type AddressType = (typeof AddressType)[keyof typeof AddressType]
 
 }
 
-export type Role = $Enums.Role
+export type AdminRole = $Enums.AdminRole
 
-export const Role: typeof $Enums.Role
+export const AdminRole: typeof $Enums.AdminRole
 
 export type ContentStatus = $Enums.ContentStatus
 
@@ -381,6 +385,16 @@ export class PrismaClient<
     * ```
     */
   get order(): Prisma.OrderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.orderItem`: Exposes CRUD operations for the **OrderItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more OrderItems
+    * const orderItems = await prisma.orderItem.findMany()
+    * ```
+    */
+  get orderItem(): Prisma.OrderItemDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.inquiry`: Exposes CRUD operations for the **Inquiry** model.
@@ -833,6 +847,7 @@ export namespace Prisma {
     Subcategory: 'Subcategory',
     Product: 'Product',
     Order: 'Order',
+    OrderItem: 'OrderItem',
     Inquiry: 'Inquiry'
   };
 
@@ -849,7 +864,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "admin" | "user" | "address" | "newsletterSubscriber" | "category" | "subcategory" | "product" | "order" | "inquiry"
+      modelProps: "admin" | "user" | "address" | "newsletterSubscriber" | "category" | "subcategory" | "product" | "order" | "orderItem" | "inquiry"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1445,6 +1460,80 @@ export namespace Prisma {
           }
         }
       }
+      OrderItem: {
+        payload: Prisma.$OrderItemPayload<ExtArgs>
+        fields: Prisma.OrderItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.OrderItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.OrderItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderItemPayload>
+          }
+          findFirst: {
+            args: Prisma.OrderItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.OrderItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderItemPayload>
+          }
+          findMany: {
+            args: Prisma.OrderItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderItemPayload>[]
+          }
+          create: {
+            args: Prisma.OrderItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderItemPayload>
+          }
+          createMany: {
+            args: Prisma.OrderItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.OrderItemCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderItemPayload>[]
+          }
+          delete: {
+            args: Prisma.OrderItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderItemPayload>
+          }
+          update: {
+            args: Prisma.OrderItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.OrderItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.OrderItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OrderItemUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderItemPayload>[]
+          }
+          upsert: {
+            args: Prisma.OrderItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OrderItemPayload>
+          }
+          aggregate: {
+            args: Prisma.OrderItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOrderItem>
+          }
+          groupBy: {
+            args: Prisma.OrderItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OrderItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.OrderItemCountArgs<ExtArgs>
+            result: $Utils.Optional<OrderItemCountAggregateOutputType> | number
+          }
+        }
+      }
       Inquiry: {
         payload: Prisma.$InquiryPayload<ExtArgs>
         fields: Prisma.InquiryFieldRefs
@@ -1635,6 +1724,7 @@ export namespace Prisma {
     subcategory?: SubcategoryOmit
     product?: ProductOmit
     order?: OrderOmit
+    orderItem?: OrderItemOmit
     inquiry?: InquiryOmit
   }
 
@@ -1823,6 +1913,68 @@ export namespace Prisma {
 
 
   /**
+   * Count Type ProductCountOutputType
+   */
+
+  export type ProductCountOutputType = {
+    orderItems: number
+  }
+
+  export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    orderItems?: boolean | ProductCountOutputTypeCountOrderItemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ProductCountOutputType without action
+   */
+  export type ProductCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductCountOutputType
+     */
+    select?: ProductCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ProductCountOutputType without action
+   */
+  export type ProductCountOutputTypeCountOrderItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrderItemWhereInput
+  }
+
+
+  /**
+   * Count Type OrderCountOutputType
+   */
+
+  export type OrderCountOutputType = {
+    orderItems: number
+  }
+
+  export type OrderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    orderItems?: boolean | OrderCountOutputTypeCountOrderItemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * OrderCountOutputType without action
+   */
+  export type OrderCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderCountOutputType
+     */
+    select?: OrderCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * OrderCountOutputType without action
+   */
+  export type OrderCountOutputTypeCountOrderItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrderItemWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -1841,7 +1993,7 @@ export namespace Prisma {
     name: string | null
     email: string | null
     password: string | null
-    role: $Enums.Role | null
+    role: $Enums.AdminRole | null
     lastEditedBy: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -1852,7 +2004,7 @@ export namespace Prisma {
     name: string | null
     email: string | null
     password: string | null
-    role: $Enums.Role | null
+    role: $Enums.AdminRole | null
     lastEditedBy: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -1863,8 +2015,8 @@ export namespace Prisma {
     name: number
     email: number
     password: number
-    permissions: number
     role: number
+    permissions: number
     lastEditedBy: number
     createdAt: number
     updatedAt: number
@@ -1899,8 +2051,8 @@ export namespace Prisma {
     name?: true
     email?: true
     password?: true
-    permissions?: true
     role?: true
+    permissions?: true
     lastEditedBy?: true
     createdAt?: true
     updatedAt?: true
@@ -1984,8 +2136,8 @@ export namespace Prisma {
     name: string
     email: string
     password: string
+    role: $Enums.AdminRole
     permissions: $Enums.Permissions[]
-    role: $Enums.Role
     lastEditedBy: string | null
     createdAt: Date
     updatedAt: Date
@@ -2013,8 +2165,8 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     password?: boolean
-    permissions?: boolean
     role?: boolean
+    permissions?: boolean
     lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2025,8 +2177,8 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     password?: boolean
-    permissions?: boolean
     role?: boolean
+    permissions?: boolean
     lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2037,8 +2189,8 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     password?: boolean
-    permissions?: boolean
     role?: boolean
+    permissions?: boolean
     lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2049,14 +2201,14 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     password?: boolean
-    permissions?: boolean
     role?: boolean
+    permissions?: boolean
     lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "permissions" | "role" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["admin"]>
+  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "permissions" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["admin"]>
 
   export type $AdminPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Admin"
@@ -2066,8 +2218,8 @@ export namespace Prisma {
       name: string
       email: string
       password: string
+      role: $Enums.AdminRole
       permissions: $Enums.Permissions[]
-      role: $Enums.Role
       lastEditedBy: string | null
       createdAt: Date
       updatedAt: Date
@@ -2498,8 +2650,8 @@ export namespace Prisma {
     readonly name: FieldRef<"Admin", 'String'>
     readonly email: FieldRef<"Admin", 'String'>
     readonly password: FieldRef<"Admin", 'String'>
+    readonly role: FieldRef<"Admin", 'AdminRole'>
     readonly permissions: FieldRef<"Admin", 'Permissions[]'>
-    readonly role: FieldRef<"Admin", 'Role'>
     readonly lastEditedBy: FieldRef<"Admin", 'String'>
     readonly createdAt: FieldRef<"Admin", 'DateTime'>
     readonly updatedAt: FieldRef<"Admin", 'DateTime'>
@@ -2881,42 +3033,39 @@ export namespace Prisma {
 
   export type UserMinAggregateOutputType = {
     id: string | null
+    defaultShippingAddressId: string | null
+    defaultBillingAddressId: string | null
     firstName: string | null
     lastName: string | null
     email: string | null
     password: string | null
-    role: $Enums.Role | null
     isEmailVerified: boolean | null
-    defaultShippingAddressId: string | null
-    defaultBillingAddressId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: string | null
+    defaultShippingAddressId: string | null
+    defaultBillingAddressId: string | null
     firstName: string | null
     lastName: string | null
     email: string | null
     password: string | null
-    role: $Enums.Role | null
     isEmailVerified: boolean | null
-    defaultShippingAddressId: string | null
-    defaultBillingAddressId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
+    defaultShippingAddressId: number
+    defaultBillingAddressId: number
     firstName: number
     lastName: number
     email: number
     password: number
-    role: number
     isEmailVerified: number
-    defaultShippingAddressId: number
-    defaultBillingAddressId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2925,42 +3074,39 @@ export namespace Prisma {
 
   export type UserMinAggregateInputType = {
     id?: true
+    defaultShippingAddressId?: true
+    defaultBillingAddressId?: true
     firstName?: true
     lastName?: true
     email?: true
     password?: true
-    role?: true
     isEmailVerified?: true
-    defaultShippingAddressId?: true
-    defaultBillingAddressId?: true
     createdAt?: true
     updatedAt?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
+    defaultShippingAddressId?: true
+    defaultBillingAddressId?: true
     firstName?: true
     lastName?: true
     email?: true
     password?: true
-    role?: true
     isEmailVerified?: true
-    defaultShippingAddressId?: true
-    defaultBillingAddressId?: true
     createdAt?: true
     updatedAt?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
+    defaultShippingAddressId?: true
+    defaultBillingAddressId?: true
     firstName?: true
     lastName?: true
     email?: true
     password?: true
-    role?: true
     isEmailVerified?: true
-    defaultShippingAddressId?: true
-    defaultBillingAddressId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3040,14 +3186,13 @@ export namespace Prisma {
 
   export type UserGroupByOutputType = {
     id: string
+    defaultShippingAddressId: string | null
+    defaultBillingAddressId: string | null
     firstName: string
     lastName: string
     email: string
     password: string
-    role: $Enums.Role
     isEmailVerified: boolean
-    defaultShippingAddressId: string
-    defaultBillingAddressId: string
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -3071,88 +3216,99 @@ export namespace Prisma {
 
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    defaultShippingAddressId?: boolean
+    defaultBillingAddressId?: boolean
     firstName?: boolean
     lastName?: boolean
     email?: boolean
     password?: boolean
-    role?: boolean
     isEmailVerified?: boolean
-    defaultShippingAddressId?: boolean
-    defaultBillingAddressId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     addresses?: boolean | User$addressesArgs<ExtArgs>
     orders?: boolean | User$ordersArgs<ExtArgs>
+    defaultShippingAddress?: boolean | User$defaultShippingAddressArgs<ExtArgs>
+    defaultBillingAddress?: boolean | User$defaultBillingAddressArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    defaultShippingAddressId?: boolean
+    defaultBillingAddressId?: boolean
     firstName?: boolean
     lastName?: boolean
     email?: boolean
     password?: boolean
-    role?: boolean
     isEmailVerified?: boolean
-    defaultShippingAddressId?: boolean
-    defaultBillingAddressId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    defaultShippingAddress?: boolean | User$defaultShippingAddressArgs<ExtArgs>
+    defaultBillingAddress?: boolean | User$defaultBillingAddressArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    defaultShippingAddressId?: boolean
+    defaultBillingAddressId?: boolean
     firstName?: boolean
     lastName?: boolean
     email?: boolean
     password?: boolean
-    role?: boolean
     isEmailVerified?: boolean
-    defaultShippingAddressId?: boolean
-    defaultBillingAddressId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    defaultShippingAddress?: boolean | User$defaultShippingAddressArgs<ExtArgs>
+    defaultBillingAddress?: boolean | User$defaultBillingAddressArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
+    defaultShippingAddressId?: boolean
+    defaultBillingAddressId?: boolean
     firstName?: boolean
     lastName?: boolean
     email?: boolean
     password?: boolean
-    role?: boolean
     isEmailVerified?: boolean
-    defaultShippingAddressId?: boolean
-    defaultBillingAddressId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "password" | "role" | "isEmailVerified" | "defaultShippingAddressId" | "defaultBillingAddressId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "defaultShippingAddressId" | "defaultBillingAddressId" | "firstName" | "lastName" | "email" | "password" | "isEmailVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     addresses?: boolean | User$addressesArgs<ExtArgs>
     orders?: boolean | User$ordersArgs<ExtArgs>
+    defaultShippingAddress?: boolean | User$defaultShippingAddressArgs<ExtArgs>
+    defaultBillingAddress?: boolean | User$defaultBillingAddressArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    defaultShippingAddress?: boolean | User$defaultShippingAddressArgs<ExtArgs>
+    defaultBillingAddress?: boolean | User$defaultBillingAddressArgs<ExtArgs>
+  }
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    defaultShippingAddress?: boolean | User$defaultShippingAddressArgs<ExtArgs>
+    defaultBillingAddress?: boolean | User$defaultBillingAddressArgs<ExtArgs>
+  }
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
       addresses: Prisma.$AddressPayload<ExtArgs>[]
       orders: Prisma.$OrderPayload<ExtArgs>[]
+      defaultShippingAddress: Prisma.$AddressPayload<ExtArgs> | null
+      defaultBillingAddress: Prisma.$AddressPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      defaultShippingAddressId: string | null
+      defaultBillingAddressId: string | null
       firstName: string
       lastName: string
       email: string
       password: string
-      role: $Enums.Role
       isEmailVerified: boolean
-      defaultShippingAddressId: string
-      defaultBillingAddressId: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -3551,6 +3707,8 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     addresses<T extends User$addressesArgs<ExtArgs> = {}>(args?: Subset<T, User$addressesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     orders<T extends User$ordersArgs<ExtArgs> = {}>(args?: Subset<T, User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    defaultShippingAddress<T extends User$defaultShippingAddressArgs<ExtArgs> = {}>(args?: Subset<T, User$defaultShippingAddressArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    defaultBillingAddress<T extends User$defaultBillingAddressArgs<ExtArgs> = {}>(args?: Subset<T, User$defaultBillingAddressArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3581,14 +3739,13 @@ export namespace Prisma {
    */
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'String'>
+    readonly defaultShippingAddressId: FieldRef<"User", 'String'>
+    readonly defaultBillingAddressId: FieldRef<"User", 'String'>
     readonly firstName: FieldRef<"User", 'String'>
     readonly lastName: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
-    readonly role: FieldRef<"User", 'Role'>
     readonly isEmailVerified: FieldRef<"User", 'Boolean'>
-    readonly defaultShippingAddressId: FieldRef<"User", 'String'>
-    readonly defaultBillingAddressId: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -3840,6 +3997,10 @@ export namespace Prisma {
      */
     data: UserCreateManyInput | UserCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -3910,6 +4071,10 @@ export namespace Prisma {
      * Limit how many Users to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4027,6 +4192,44 @@ export namespace Prisma {
   }
 
   /**
+   * User.defaultShippingAddress
+   */
+  export type User$defaultShippingAddressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    where?: AddressWhereInput
+  }
+
+  /**
+   * User.defaultBillingAddress
+   */
+  export type User$defaultBillingAddressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    where?: AddressWhereInput
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4062,10 +4265,10 @@ export namespace Prisma {
     lastName: string | null
     email: string | null
     phone: string | null
+    address: string | null
+    city: string | null
     state: string | null
     country: string | null
-    city: string | null
-    address: string | null
     addressType: $Enums.AddressType | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -4078,10 +4281,10 @@ export namespace Prisma {
     lastName: string | null
     email: string | null
     phone: string | null
+    address: string | null
+    city: string | null
     state: string | null
     country: string | null
-    city: string | null
-    address: string | null
     addressType: $Enums.AddressType | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -4094,10 +4297,10 @@ export namespace Prisma {
     lastName: number
     email: number
     phone: number
+    address: number
+    city: number
     state: number
     country: number
-    city: number
-    address: number
     addressType: number
     createdAt: number
     updatedAt: number
@@ -4112,10 +4315,10 @@ export namespace Prisma {
     lastName?: true
     email?: true
     phone?: true
+    address?: true
+    city?: true
     state?: true
     country?: true
-    city?: true
-    address?: true
     addressType?: true
     createdAt?: true
     updatedAt?: true
@@ -4128,10 +4331,10 @@ export namespace Prisma {
     lastName?: true
     email?: true
     phone?: true
+    address?: true
+    city?: true
     state?: true
     country?: true
-    city?: true
-    address?: true
     addressType?: true
     createdAt?: true
     updatedAt?: true
@@ -4144,10 +4347,10 @@ export namespace Prisma {
     lastName?: true
     email?: true
     phone?: true
+    address?: true
+    city?: true
     state?: true
     country?: true
-    city?: true
-    address?: true
     addressType?: true
     createdAt?: true
     updatedAt?: true
@@ -4233,10 +4436,10 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    address: string
+    city: string
     state: string
     country: string
-    city: string
-    address: string
     addressType: $Enums.AddressType
     createdAt: Date
     updatedAt: Date
@@ -4266,14 +4469,16 @@ export namespace Prisma {
     lastName?: boolean
     email?: boolean
     phone?: boolean
+    address?: boolean
+    city?: boolean
     state?: boolean
     country?: boolean
-    city?: boolean
-    address?: boolean
     addressType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    defaultShippingFor?: boolean | Address$defaultShippingForArgs<ExtArgs>
+    defaultBillingFor?: boolean | Address$defaultBillingForArgs<ExtArgs>
   }, ExtArgs["result"]["address"]>
 
   export type AddressSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4283,10 +4488,10 @@ export namespace Prisma {
     lastName?: boolean
     email?: boolean
     phone?: boolean
+    address?: boolean
+    city?: boolean
     state?: boolean
     country?: boolean
-    city?: boolean
-    address?: boolean
     addressType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -4300,10 +4505,10 @@ export namespace Prisma {
     lastName?: boolean
     email?: boolean
     phone?: boolean
+    address?: boolean
+    city?: boolean
     state?: boolean
     country?: boolean
-    city?: boolean
-    address?: boolean
     addressType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -4317,18 +4522,20 @@ export namespace Prisma {
     lastName?: boolean
     email?: boolean
     phone?: boolean
+    address?: boolean
+    city?: boolean
     state?: boolean
     country?: boolean
-    city?: boolean
-    address?: boolean
     addressType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AddressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "firstName" | "lastName" | "email" | "phone" | "state" | "country" | "city" | "address" | "addressType" | "createdAt" | "updatedAt", ExtArgs["result"]["address"]>
+  export type AddressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "firstName" | "lastName" | "email" | "phone" | "address" | "city" | "state" | "country" | "addressType" | "createdAt" | "updatedAt", ExtArgs["result"]["address"]>
   export type AddressInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    defaultShippingFor?: boolean | Address$defaultShippingForArgs<ExtArgs>
+    defaultBillingFor?: boolean | Address$defaultBillingForArgs<ExtArgs>
   }
   export type AddressIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -4341,6 +4548,8 @@ export namespace Prisma {
     name: "Address"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      defaultShippingFor: Prisma.$UserPayload<ExtArgs> | null
+      defaultBillingFor: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4349,10 +4558,10 @@ export namespace Prisma {
       lastName: string
       email: string
       phone: string
+      address: string
+      city: string
       state: string
       country: string
-      city: string
-      address: string
       addressType: $Enums.AddressType
       createdAt: Date
       updatedAt: Date
@@ -4751,6 +4960,8 @@ export namespace Prisma {
   export interface Prisma__AddressClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    defaultShippingFor<T extends Address$defaultShippingForArgs<ExtArgs> = {}>(args?: Subset<T, Address$defaultShippingForArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    defaultBillingFor<T extends Address$defaultBillingForArgs<ExtArgs> = {}>(args?: Subset<T, Address$defaultBillingForArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4786,10 +4997,10 @@ export namespace Prisma {
     readonly lastName: FieldRef<"Address", 'String'>
     readonly email: FieldRef<"Address", 'String'>
     readonly phone: FieldRef<"Address", 'String'>
+    readonly address: FieldRef<"Address", 'String'>
+    readonly city: FieldRef<"Address", 'String'>
     readonly state: FieldRef<"Address", 'String'>
     readonly country: FieldRef<"Address", 'String'>
-    readonly city: FieldRef<"Address", 'String'>
-    readonly address: FieldRef<"Address", 'String'>
     readonly addressType: FieldRef<"Address", 'AddressType'>
     readonly createdAt: FieldRef<"Address", 'DateTime'>
     readonly updatedAt: FieldRef<"Address", 'DateTime'>
@@ -5186,6 +5397,44 @@ export namespace Prisma {
      * Limit how many Addresses to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Address.defaultShippingFor
+   */
+  export type Address$defaultShippingForArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * Address.defaultBillingFor
+   */
+  export type Address$defaultBillingForArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
   }
 
   /**
@@ -6215,17 +6464,17 @@ export namespace Prisma {
   export type CategoryMinAggregateOutputType = {
     id: string | null
     name: string | null
-    description: string | null
-    shortDescription: string | null
     slug: string | null
+    shortDescription: string | null
+    description: string | null
     metaTitle: string | null
     metaDescription: string | null
     canonicalTag: string | null
     breadcrumb: string | null
     posterImageUrl: string | null
     seoSchema: string | null
-    lastEditedBy: string | null
     status: $Enums.ContentStatus | null
+    lastEditedBy: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6233,17 +6482,17 @@ export namespace Prisma {
   export type CategoryMaxAggregateOutputType = {
     id: string | null
     name: string | null
-    description: string | null
-    shortDescription: string | null
     slug: string | null
+    shortDescription: string | null
+    description: string | null
     metaTitle: string | null
     metaDescription: string | null
     canonicalTag: string | null
     breadcrumb: string | null
     posterImageUrl: string | null
     seoSchema: string | null
-    lastEditedBy: string | null
     status: $Enums.ContentStatus | null
+    lastEditedBy: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6251,17 +6500,17 @@ export namespace Prisma {
   export type CategoryCountAggregateOutputType = {
     id: number
     name: number
-    description: number
-    shortDescription: number
     slug: number
+    shortDescription: number
+    description: number
     metaTitle: number
     metaDescription: number
     canonicalTag: number
     breadcrumb: number
     posterImageUrl: number
     seoSchema: number
-    lastEditedBy: number
     status: number
+    lastEditedBy: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -6271,17 +6520,17 @@ export namespace Prisma {
   export type CategoryMinAggregateInputType = {
     id?: true
     name?: true
-    description?: true
-    shortDescription?: true
     slug?: true
+    shortDescription?: true
+    description?: true
     metaTitle?: true
     metaDescription?: true
     canonicalTag?: true
     breadcrumb?: true
     posterImageUrl?: true
     seoSchema?: true
-    lastEditedBy?: true
     status?: true
+    lastEditedBy?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6289,17 +6538,17 @@ export namespace Prisma {
   export type CategoryMaxAggregateInputType = {
     id?: true
     name?: true
-    description?: true
-    shortDescription?: true
     slug?: true
+    shortDescription?: true
+    description?: true
     metaTitle?: true
     metaDescription?: true
     canonicalTag?: true
     breadcrumb?: true
     posterImageUrl?: true
     seoSchema?: true
-    lastEditedBy?: true
     status?: true
+    lastEditedBy?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6307,17 +6556,17 @@ export namespace Prisma {
   export type CategoryCountAggregateInputType = {
     id?: true
     name?: true
-    description?: true
-    shortDescription?: true
     slug?: true
+    shortDescription?: true
+    description?: true
     metaTitle?: true
     metaDescription?: true
     canonicalTag?: true
     breadcrumb?: true
     posterImageUrl?: true
     seoSchema?: true
-    lastEditedBy?: true
     status?: true
+    lastEditedBy?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -6398,17 +6647,17 @@ export namespace Prisma {
   export type CategoryGroupByOutputType = {
     id: string
     name: string
-    description: string | null
-    shortDescription: string | null
     slug: string
+    shortDescription: string | null
+    description: string | null
     metaTitle: string | null
     metaDescription: string | null
     canonicalTag: string | null
     breadcrumb: string | null
     posterImageUrl: string | null
     seoSchema: string | null
-    lastEditedBy: string | null
     status: $Enums.ContentStatus
+    lastEditedBy: string | null
     createdAt: Date
     updatedAt: Date
     _count: CategoryCountAggregateOutputType | null
@@ -6433,17 +6682,17 @@ export namespace Prisma {
   export type CategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    description?: boolean
-    shortDescription?: boolean
     slug?: boolean
+    shortDescription?: boolean
+    description?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalTag?: boolean
     breadcrumb?: boolean
     posterImageUrl?: boolean
     seoSchema?: boolean
-    lastEditedBy?: boolean
     status?: boolean
+    lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     products?: boolean | Category$productsArgs<ExtArgs>
@@ -6454,17 +6703,17 @@ export namespace Prisma {
   export type CategorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    description?: boolean
-    shortDescription?: boolean
     slug?: boolean
+    shortDescription?: boolean
+    description?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalTag?: boolean
     breadcrumb?: boolean
     posterImageUrl?: boolean
     seoSchema?: boolean
-    lastEditedBy?: boolean
     status?: boolean
+    lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["category"]>
@@ -6472,17 +6721,17 @@ export namespace Prisma {
   export type CategorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    description?: boolean
-    shortDescription?: boolean
     slug?: boolean
+    shortDescription?: boolean
+    description?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalTag?: boolean
     breadcrumb?: boolean
     posterImageUrl?: boolean
     seoSchema?: boolean
-    lastEditedBy?: boolean
     status?: boolean
+    lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["category"]>
@@ -6490,22 +6739,22 @@ export namespace Prisma {
   export type CategorySelectScalar = {
     id?: boolean
     name?: boolean
-    description?: boolean
-    shortDescription?: boolean
     slug?: boolean
+    shortDescription?: boolean
+    description?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalTag?: boolean
     breadcrumb?: boolean
     posterImageUrl?: boolean
     seoSchema?: boolean
-    lastEditedBy?: boolean
     status?: boolean
+    lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "shortDescription" | "slug" | "metaTitle" | "metaDescription" | "canonicalTag" | "breadcrumb" | "posterImageUrl" | "seoSchema" | "lastEditedBy" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "shortDescription" | "description" | "metaTitle" | "metaDescription" | "canonicalTag" | "breadcrumb" | "posterImageUrl" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
   export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     products?: boolean | Category$productsArgs<ExtArgs>
     subcategories?: boolean | Category$subcategoriesArgs<ExtArgs>
@@ -6523,17 +6772,17 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
-      description: string | null
-      shortDescription: string | null
       slug: string
+      shortDescription: string | null
+      description: string | null
       metaTitle: string | null
       metaDescription: string | null
       canonicalTag: string | null
       breadcrumb: string | null
       posterImageUrl: string | null
       seoSchema: string | null
-      lastEditedBy: string | null
       status: $Enums.ContentStatus
+      lastEditedBy: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["category"]>
@@ -6963,17 +7212,17 @@ export namespace Prisma {
   interface CategoryFieldRefs {
     readonly id: FieldRef<"Category", 'String'>
     readonly name: FieldRef<"Category", 'String'>
-    readonly description: FieldRef<"Category", 'String'>
-    readonly shortDescription: FieldRef<"Category", 'String'>
     readonly slug: FieldRef<"Category", 'String'>
+    readonly shortDescription: FieldRef<"Category", 'String'>
+    readonly description: FieldRef<"Category", 'String'>
     readonly metaTitle: FieldRef<"Category", 'String'>
     readonly metaDescription: FieldRef<"Category", 'String'>
     readonly canonicalTag: FieldRef<"Category", 'String'>
     readonly breadcrumb: FieldRef<"Category", 'String'>
     readonly posterImageUrl: FieldRef<"Category", 'String'>
     readonly seoSchema: FieldRef<"Category", 'String'>
-    readonly lastEditedBy: FieldRef<"Category", 'String'>
     readonly status: FieldRef<"Category", 'ContentStatus'>
+    readonly lastEditedBy: FieldRef<"Category", 'String'>
     readonly createdAt: FieldRef<"Category", 'DateTime'>
     readonly updatedAt: FieldRef<"Category", 'DateTime'>
   }
@@ -7444,17 +7693,17 @@ export namespace Prisma {
     id: string | null
     categoryId: string | null
     name: string | null
-    description: string | null
-    shortDescription: string | null
     slug: string | null
+    shortDescription: string | null
+    description: string | null
     metaTitle: string | null
     metaDescription: string | null
     canonicalTag: string | null
     breadcrumb: string | null
     posterImageUrl: string | null
     seoSchema: string | null
-    lastEditedBy: string | null
     status: $Enums.ContentStatus | null
+    lastEditedBy: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -7463,17 +7712,17 @@ export namespace Prisma {
     id: string | null
     categoryId: string | null
     name: string | null
-    description: string | null
-    shortDescription: string | null
     slug: string | null
+    shortDescription: string | null
+    description: string | null
     metaTitle: string | null
     metaDescription: string | null
     canonicalTag: string | null
     breadcrumb: string | null
     posterImageUrl: string | null
     seoSchema: string | null
-    lastEditedBy: string | null
     status: $Enums.ContentStatus | null
+    lastEditedBy: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -7482,17 +7731,17 @@ export namespace Prisma {
     id: number
     categoryId: number
     name: number
-    description: number
-    shortDescription: number
     slug: number
+    shortDescription: number
+    description: number
     metaTitle: number
     metaDescription: number
     canonicalTag: number
     breadcrumb: number
     posterImageUrl: number
     seoSchema: number
-    lastEditedBy: number
     status: number
+    lastEditedBy: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -7503,17 +7752,17 @@ export namespace Prisma {
     id?: true
     categoryId?: true
     name?: true
-    description?: true
-    shortDescription?: true
     slug?: true
+    shortDescription?: true
+    description?: true
     metaTitle?: true
     metaDescription?: true
     canonicalTag?: true
     breadcrumb?: true
     posterImageUrl?: true
     seoSchema?: true
-    lastEditedBy?: true
     status?: true
+    lastEditedBy?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -7522,17 +7771,17 @@ export namespace Prisma {
     id?: true
     categoryId?: true
     name?: true
-    description?: true
-    shortDescription?: true
     slug?: true
+    shortDescription?: true
+    description?: true
     metaTitle?: true
     metaDescription?: true
     canonicalTag?: true
     breadcrumb?: true
     posterImageUrl?: true
     seoSchema?: true
-    lastEditedBy?: true
     status?: true
+    lastEditedBy?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -7541,17 +7790,17 @@ export namespace Prisma {
     id?: true
     categoryId?: true
     name?: true
-    description?: true
-    shortDescription?: true
     slug?: true
+    shortDescription?: true
+    description?: true
     metaTitle?: true
     metaDescription?: true
     canonicalTag?: true
     breadcrumb?: true
     posterImageUrl?: true
     seoSchema?: true
-    lastEditedBy?: true
     status?: true
+    lastEditedBy?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -7633,17 +7882,17 @@ export namespace Prisma {
     id: string
     categoryId: string
     name: string
-    description: string | null
-    shortDescription: string | null
     slug: string
+    shortDescription: string | null
+    description: string | null
     metaTitle: string | null
     metaDescription: string | null
     canonicalTag: string | null
     breadcrumb: string | null
     posterImageUrl: string | null
     seoSchema: string | null
-    lastEditedBy: string | null
     status: $Enums.ContentStatus
+    lastEditedBy: string | null
     createdAt: Date
     updatedAt: Date
     _count: SubcategoryCountAggregateOutputType | null
@@ -7669,17 +7918,17 @@ export namespace Prisma {
     id?: boolean
     categoryId?: boolean
     name?: boolean
-    description?: boolean
-    shortDescription?: boolean
     slug?: boolean
+    shortDescription?: boolean
+    description?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalTag?: boolean
     breadcrumb?: boolean
     posterImageUrl?: boolean
     seoSchema?: boolean
-    lastEditedBy?: boolean
     status?: boolean
+    lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
@@ -7691,17 +7940,17 @@ export namespace Prisma {
     id?: boolean
     categoryId?: boolean
     name?: boolean
-    description?: boolean
-    shortDescription?: boolean
     slug?: boolean
+    shortDescription?: boolean
+    description?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalTag?: boolean
     breadcrumb?: boolean
     posterImageUrl?: boolean
     seoSchema?: boolean
-    lastEditedBy?: boolean
     status?: boolean
+    lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
@@ -7711,17 +7960,17 @@ export namespace Prisma {
     id?: boolean
     categoryId?: boolean
     name?: boolean
-    description?: boolean
-    shortDescription?: boolean
     slug?: boolean
+    shortDescription?: boolean
+    description?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalTag?: boolean
     breadcrumb?: boolean
     posterImageUrl?: boolean
     seoSchema?: boolean
-    lastEditedBy?: boolean
     status?: boolean
+    lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
@@ -7731,22 +7980,22 @@ export namespace Prisma {
     id?: boolean
     categoryId?: boolean
     name?: boolean
-    description?: boolean
-    shortDescription?: boolean
     slug?: boolean
+    shortDescription?: boolean
+    description?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalTag?: boolean
     breadcrumb?: boolean
     posterImageUrl?: boolean
     seoSchema?: boolean
-    lastEditedBy?: boolean
     status?: boolean
+    lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type SubcategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "name" | "description" | "shortDescription" | "slug" | "metaTitle" | "metaDescription" | "canonicalTag" | "breadcrumb" | "posterImageUrl" | "seoSchema" | "lastEditedBy" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["subcategory"]>
+  export type SubcategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "name" | "slug" | "shortDescription" | "description" | "metaTitle" | "metaDescription" | "canonicalTag" | "breadcrumb" | "posterImageUrl" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["subcategory"]>
   export type SubcategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     products?: boolean | Subcategory$productsArgs<ExtArgs>
@@ -7769,17 +8018,17 @@ export namespace Prisma {
       id: string
       categoryId: string
       name: string
-      description: string | null
-      shortDescription: string | null
       slug: string
+      shortDescription: string | null
+      description: string | null
       metaTitle: string | null
       metaDescription: string | null
       canonicalTag: string | null
       breadcrumb: string | null
       posterImageUrl: string | null
       seoSchema: string | null
-      lastEditedBy: string | null
       status: $Enums.ContentStatus
+      lastEditedBy: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["subcategory"]>
@@ -8210,17 +8459,17 @@ export namespace Prisma {
     readonly id: FieldRef<"Subcategory", 'String'>
     readonly categoryId: FieldRef<"Subcategory", 'String'>
     readonly name: FieldRef<"Subcategory", 'String'>
-    readonly description: FieldRef<"Subcategory", 'String'>
-    readonly shortDescription: FieldRef<"Subcategory", 'String'>
     readonly slug: FieldRef<"Subcategory", 'String'>
+    readonly shortDescription: FieldRef<"Subcategory", 'String'>
+    readonly description: FieldRef<"Subcategory", 'String'>
     readonly metaTitle: FieldRef<"Subcategory", 'String'>
     readonly metaDescription: FieldRef<"Subcategory", 'String'>
     readonly canonicalTag: FieldRef<"Subcategory", 'String'>
     readonly breadcrumb: FieldRef<"Subcategory", 'String'>
     readonly posterImageUrl: FieldRef<"Subcategory", 'String'>
     readonly seoSchema: FieldRef<"Subcategory", 'String'>
-    readonly lastEditedBy: FieldRef<"Subcategory", 'String'>
     readonly status: FieldRef<"Subcategory", 'ContentStatus'>
+    readonly lastEditedBy: FieldRef<"Subcategory", 'String'>
     readonly createdAt: FieldRef<"Subcategory", 'DateTime'>
     readonly updatedAt: FieldRef<"Subcategory", 'DateTime'>
   }
@@ -8675,50 +8924,51 @@ export namespace Prisma {
 
   export type ProductAvgAggregateOutputType = {
     price: Decimal | null
-    discountPrice: Decimal | null
     motorPrice: Decimal | null
-    stock: number | null
-    height: Decimal | null
-    width: Decimal | null
+    minHeight: Decimal | null
+    maxHeight: Decimal | null
+    minWidth: Decimal | null
+    maxWidth: Decimal | null
   }
 
   export type ProductSumAggregateOutputType = {
     price: Decimal | null
-    discountPrice: Decimal | null
     motorPrice: Decimal | null
-    stock: number | null
-    height: Decimal | null
-    width: Decimal | null
+    minHeight: Decimal | null
+    maxHeight: Decimal | null
+    minWidth: Decimal | null
+    maxWidth: Decimal | null
   }
 
   export type ProductMinAggregateOutputType = {
     id: string | null
     categoryId: string | null
     subcategoryId: string | null
+    sku: string | null
     name: string | null
-    description: string | null
-    shortDescription: string | null
     slug: string | null
-    metaTitle: string | null
-    metaDescription: string | null
-    canonicalTag: string | null
-    breadcrumb: string | null
+    shortDescription: string | null
+    description: string | null
     posterImageUrl: string | null
-    seoSchema: string | null
     price: Decimal | null
-    discountPrice: Decimal | null
     motorPrice: Decimal | null
-    stock: number | null
-    height: Decimal | null
-    width: Decimal | null
+    minHeight: Decimal | null
+    maxHeight: Decimal | null
+    minWidth: Decimal | null
+    maxWidth: Decimal | null
     color: string | null
     pattern: string | null
     composition: string | null
     isMotorized: boolean | null
     additionalInfo: string | null
     measuringGuide: string | null
-    lastEditedBy: string | null
+    metaTitle: string | null
+    metaDescription: string | null
+    canonicalTag: string | null
+    breadcrumb: string | null
+    seoSchema: string | null
     status: $Enums.ContentStatus | null
+    lastEditedBy: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -8727,30 +8977,31 @@ export namespace Prisma {
     id: string | null
     categoryId: string | null
     subcategoryId: string | null
+    sku: string | null
     name: string | null
-    description: string | null
-    shortDescription: string | null
     slug: string | null
-    metaTitle: string | null
-    metaDescription: string | null
-    canonicalTag: string | null
-    breadcrumb: string | null
+    shortDescription: string | null
+    description: string | null
     posterImageUrl: string | null
-    seoSchema: string | null
     price: Decimal | null
-    discountPrice: Decimal | null
     motorPrice: Decimal | null
-    stock: number | null
-    height: Decimal | null
-    width: Decimal | null
+    minHeight: Decimal | null
+    maxHeight: Decimal | null
+    minWidth: Decimal | null
+    maxWidth: Decimal | null
     color: string | null
     pattern: string | null
     composition: string | null
     isMotorized: boolean | null
     additionalInfo: string | null
     measuringGuide: string | null
-    lastEditedBy: string | null
+    metaTitle: string | null
+    metaDescription: string | null
+    canonicalTag: string | null
+    breadcrumb: string | null
+    seoSchema: string | null
     status: $Enums.ContentStatus | null
+    lastEditedBy: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -8759,31 +9010,32 @@ export namespace Prisma {
     id: number
     categoryId: number
     subcategoryId: number
+    sku: number
     name: number
-    description: number
-    shortDescription: number
     slug: number
-    metaTitle: number
-    metaDescription: number
-    canonicalTag: number
-    breadcrumb: number
+    shortDescription: number
+    description: number
     posterImageUrl: number
-    seoSchema: number
     productImages: number
     price: number
-    discountPrice: number
     motorPrice: number
-    stock: number
-    height: number
-    width: number
+    minHeight: number
+    maxHeight: number
+    minWidth: number
+    maxWidth: number
     color: number
     pattern: number
     composition: number
     isMotorized: number
     additionalInfo: number
     measuringGuide: number
-    lastEditedBy: number
+    metaTitle: number
+    metaDescription: number
+    canonicalTag: number
+    breadcrumb: number
+    seoSchema: number
     status: number
+    lastEditedBy: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -8792,50 +9044,51 @@ export namespace Prisma {
 
   export type ProductAvgAggregateInputType = {
     price?: true
-    discountPrice?: true
     motorPrice?: true
-    stock?: true
-    height?: true
-    width?: true
+    minHeight?: true
+    maxHeight?: true
+    minWidth?: true
+    maxWidth?: true
   }
 
   export type ProductSumAggregateInputType = {
     price?: true
-    discountPrice?: true
     motorPrice?: true
-    stock?: true
-    height?: true
-    width?: true
+    minHeight?: true
+    maxHeight?: true
+    minWidth?: true
+    maxWidth?: true
   }
 
   export type ProductMinAggregateInputType = {
     id?: true
     categoryId?: true
     subcategoryId?: true
+    sku?: true
     name?: true
-    description?: true
-    shortDescription?: true
     slug?: true
-    metaTitle?: true
-    metaDescription?: true
-    canonicalTag?: true
-    breadcrumb?: true
+    shortDescription?: true
+    description?: true
     posterImageUrl?: true
-    seoSchema?: true
     price?: true
-    discountPrice?: true
     motorPrice?: true
-    stock?: true
-    height?: true
-    width?: true
+    minHeight?: true
+    maxHeight?: true
+    minWidth?: true
+    maxWidth?: true
     color?: true
     pattern?: true
     composition?: true
     isMotorized?: true
     additionalInfo?: true
     measuringGuide?: true
-    lastEditedBy?: true
+    metaTitle?: true
+    metaDescription?: true
+    canonicalTag?: true
+    breadcrumb?: true
+    seoSchema?: true
     status?: true
+    lastEditedBy?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -8844,30 +9097,31 @@ export namespace Prisma {
     id?: true
     categoryId?: true
     subcategoryId?: true
+    sku?: true
     name?: true
-    description?: true
-    shortDescription?: true
     slug?: true
-    metaTitle?: true
-    metaDescription?: true
-    canonicalTag?: true
-    breadcrumb?: true
+    shortDescription?: true
+    description?: true
     posterImageUrl?: true
-    seoSchema?: true
     price?: true
-    discountPrice?: true
     motorPrice?: true
-    stock?: true
-    height?: true
-    width?: true
+    minHeight?: true
+    maxHeight?: true
+    minWidth?: true
+    maxWidth?: true
     color?: true
     pattern?: true
     composition?: true
     isMotorized?: true
     additionalInfo?: true
     measuringGuide?: true
-    lastEditedBy?: true
+    metaTitle?: true
+    metaDescription?: true
+    canonicalTag?: true
+    breadcrumb?: true
+    seoSchema?: true
     status?: true
+    lastEditedBy?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -8876,31 +9130,32 @@ export namespace Prisma {
     id?: true
     categoryId?: true
     subcategoryId?: true
+    sku?: true
     name?: true
-    description?: true
-    shortDescription?: true
     slug?: true
-    metaTitle?: true
-    metaDescription?: true
-    canonicalTag?: true
-    breadcrumb?: true
+    shortDescription?: true
+    description?: true
     posterImageUrl?: true
-    seoSchema?: true
     productImages?: true
     price?: true
-    discountPrice?: true
     motorPrice?: true
-    stock?: true
-    height?: true
-    width?: true
+    minHeight?: true
+    maxHeight?: true
+    minWidth?: true
+    maxWidth?: true
     color?: true
     pattern?: true
     composition?: true
     isMotorized?: true
     additionalInfo?: true
     measuringGuide?: true
-    lastEditedBy?: true
+    metaTitle?: true
+    metaDescription?: true
+    canonicalTag?: true
+    breadcrumb?: true
+    seoSchema?: true
     status?: true
+    lastEditedBy?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -8996,31 +9251,32 @@ export namespace Prisma {
     id: string
     categoryId: string
     subcategoryId: string
+    sku: string
     name: string
-    description: string | null
-    shortDescription: string | null
     slug: string
-    metaTitle: string | null
-    metaDescription: string | null
-    canonicalTag: string | null
-    breadcrumb: string | null
+    shortDescription: string | null
+    description: string | null
     posterImageUrl: string
-    seoSchema: string | null
     productImages: string[]
     price: Decimal
-    discountPrice: Decimal
     motorPrice: Decimal
-    stock: number
-    height: Decimal
-    width: Decimal
+    minHeight: Decimal
+    maxHeight: Decimal
+    minWidth: Decimal
+    maxWidth: Decimal
     color: string | null
     pattern: string | null
     composition: string | null
     isMotorized: boolean
     additionalInfo: string | null
     measuringGuide: string | null
-    lastEditedBy: string | null
+    metaTitle: string | null
+    metaDescription: string | null
+    canonicalTag: string | null
+    breadcrumb: string | null
+    seoSchema: string | null
     status: $Enums.ContentStatus
+    lastEditedBy: string | null
     createdAt: Date
     updatedAt: Date
     _count: ProductCountAggregateOutputType | null
@@ -9048,66 +9304,70 @@ export namespace Prisma {
     id?: boolean
     categoryId?: boolean
     subcategoryId?: boolean
+    sku?: boolean
     name?: boolean
-    description?: boolean
-    shortDescription?: boolean
     slug?: boolean
-    metaTitle?: boolean
-    metaDescription?: boolean
-    canonicalTag?: boolean
-    breadcrumb?: boolean
+    shortDescription?: boolean
+    description?: boolean
     posterImageUrl?: boolean
-    seoSchema?: boolean
     productImages?: boolean
     price?: boolean
-    discountPrice?: boolean
     motorPrice?: boolean
-    stock?: boolean
-    height?: boolean
-    width?: boolean
+    minHeight?: boolean
+    maxHeight?: boolean
+    minWidth?: boolean
+    maxWidth?: boolean
     color?: boolean
     pattern?: boolean
     composition?: boolean
     isMotorized?: boolean
     additionalInfo?: boolean
     measuringGuide?: boolean
-    lastEditedBy?: boolean
+    metaTitle?: boolean
+    metaDescription?: boolean
+    canonicalTag?: boolean
+    breadcrumb?: boolean
+    seoSchema?: boolean
     status?: boolean
+    lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     subcategory?: boolean | SubcategoryDefaultArgs<ExtArgs>
+    orderItems?: boolean | Product$orderItemsArgs<ExtArgs>
+    _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
   export type ProductSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     categoryId?: boolean
     subcategoryId?: boolean
+    sku?: boolean
     name?: boolean
-    description?: boolean
-    shortDescription?: boolean
     slug?: boolean
-    metaTitle?: boolean
-    metaDescription?: boolean
-    canonicalTag?: boolean
-    breadcrumb?: boolean
+    shortDescription?: boolean
+    description?: boolean
     posterImageUrl?: boolean
-    seoSchema?: boolean
     productImages?: boolean
     price?: boolean
-    discountPrice?: boolean
     motorPrice?: boolean
-    stock?: boolean
-    height?: boolean
-    width?: boolean
+    minHeight?: boolean
+    maxHeight?: boolean
+    minWidth?: boolean
+    maxWidth?: boolean
     color?: boolean
     pattern?: boolean
     composition?: boolean
     isMotorized?: boolean
     additionalInfo?: boolean
     measuringGuide?: boolean
-    lastEditedBy?: boolean
+    metaTitle?: boolean
+    metaDescription?: boolean
+    canonicalTag?: boolean
+    breadcrumb?: boolean
+    seoSchema?: boolean
     status?: boolean
+    lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
@@ -9118,31 +9378,32 @@ export namespace Prisma {
     id?: boolean
     categoryId?: boolean
     subcategoryId?: boolean
+    sku?: boolean
     name?: boolean
-    description?: boolean
-    shortDescription?: boolean
     slug?: boolean
-    metaTitle?: boolean
-    metaDescription?: boolean
-    canonicalTag?: boolean
-    breadcrumb?: boolean
+    shortDescription?: boolean
+    description?: boolean
     posterImageUrl?: boolean
-    seoSchema?: boolean
     productImages?: boolean
     price?: boolean
-    discountPrice?: boolean
     motorPrice?: boolean
-    stock?: boolean
-    height?: boolean
-    width?: boolean
+    minHeight?: boolean
+    maxHeight?: boolean
+    minWidth?: boolean
+    maxWidth?: boolean
     color?: boolean
     pattern?: boolean
     composition?: boolean
     isMotorized?: boolean
     additionalInfo?: boolean
     measuringGuide?: boolean
-    lastEditedBy?: boolean
+    metaTitle?: boolean
+    metaDescription?: boolean
+    canonicalTag?: boolean
+    breadcrumb?: boolean
+    seoSchema?: boolean
     status?: boolean
+    lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
@@ -9153,39 +9414,42 @@ export namespace Prisma {
     id?: boolean
     categoryId?: boolean
     subcategoryId?: boolean
+    sku?: boolean
     name?: boolean
-    description?: boolean
-    shortDescription?: boolean
     slug?: boolean
-    metaTitle?: boolean
-    metaDescription?: boolean
-    canonicalTag?: boolean
-    breadcrumb?: boolean
+    shortDescription?: boolean
+    description?: boolean
     posterImageUrl?: boolean
-    seoSchema?: boolean
     productImages?: boolean
     price?: boolean
-    discountPrice?: boolean
     motorPrice?: boolean
-    stock?: boolean
-    height?: boolean
-    width?: boolean
+    minHeight?: boolean
+    maxHeight?: boolean
+    minWidth?: boolean
+    maxWidth?: boolean
     color?: boolean
     pattern?: boolean
     composition?: boolean
     isMotorized?: boolean
     additionalInfo?: boolean
     measuringGuide?: boolean
-    lastEditedBy?: boolean
+    metaTitle?: boolean
+    metaDescription?: boolean
+    canonicalTag?: boolean
+    breadcrumb?: boolean
+    seoSchema?: boolean
     status?: boolean
+    lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "name" | "description" | "shortDescription" | "slug" | "metaTitle" | "metaDescription" | "canonicalTag" | "breadcrumb" | "posterImageUrl" | "seoSchema" | "productImages" | "price" | "discountPrice" | "motorPrice" | "stock" | "height" | "width" | "color" | "pattern" | "composition" | "isMotorized" | "additionalInfo" | "measuringGuide" | "lastEditedBy" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "sku" | "name" | "slug" | "shortDescription" | "description" | "posterImageUrl" | "productImages" | "price" | "motorPrice" | "minHeight" | "maxHeight" | "minWidth" | "maxWidth" | "color" | "pattern" | "composition" | "isMotorized" | "additionalInfo" | "measuringGuide" | "metaTitle" | "metaDescription" | "canonicalTag" | "breadcrumb" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     subcategory?: boolean | SubcategoryDefaultArgs<ExtArgs>
+    orderItems?: boolean | Product$orderItemsArgs<ExtArgs>
+    _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
@@ -9201,36 +9465,38 @@ export namespace Prisma {
     objects: {
       category: Prisma.$CategoryPayload<ExtArgs>
       subcategory: Prisma.$SubcategoryPayload<ExtArgs>
+      orderItems: Prisma.$OrderItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       categoryId: string
       subcategoryId: string
+      sku: string
       name: string
-      description: string | null
-      shortDescription: string | null
       slug: string
-      metaTitle: string | null
-      metaDescription: string | null
-      canonicalTag: string | null
-      breadcrumb: string | null
+      shortDescription: string | null
+      description: string | null
       posterImageUrl: string
-      seoSchema: string | null
       productImages: string[]
       price: Prisma.Decimal
-      discountPrice: Prisma.Decimal
       motorPrice: Prisma.Decimal
-      stock: number
-      height: Prisma.Decimal
-      width: Prisma.Decimal
+      minHeight: Prisma.Decimal
+      maxHeight: Prisma.Decimal
+      minWidth: Prisma.Decimal
+      maxWidth: Prisma.Decimal
       color: string | null
       pattern: string | null
       composition: string | null
       isMotorized: boolean
       additionalInfo: string | null
       measuringGuide: string | null
-      lastEditedBy: string | null
+      metaTitle: string | null
+      metaDescription: string | null
+      canonicalTag: string | null
+      breadcrumb: string | null
+      seoSchema: string | null
       status: $Enums.ContentStatus
+      lastEditedBy: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["product"]>
@@ -9629,6 +9895,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     subcategory<T extends SubcategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubcategoryDefaultArgs<ExtArgs>>): Prisma__SubcategoryClient<$Result.GetResult<Prisma.$SubcategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    orderItems<T extends Product$orderItemsArgs<ExtArgs> = {}>(args?: Subset<T, Product$orderItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9661,31 +9928,32 @@ export namespace Prisma {
     readonly id: FieldRef<"Product", 'String'>
     readonly categoryId: FieldRef<"Product", 'String'>
     readonly subcategoryId: FieldRef<"Product", 'String'>
+    readonly sku: FieldRef<"Product", 'String'>
     readonly name: FieldRef<"Product", 'String'>
-    readonly description: FieldRef<"Product", 'String'>
-    readonly shortDescription: FieldRef<"Product", 'String'>
     readonly slug: FieldRef<"Product", 'String'>
-    readonly metaTitle: FieldRef<"Product", 'String'>
-    readonly metaDescription: FieldRef<"Product", 'String'>
-    readonly canonicalTag: FieldRef<"Product", 'String'>
-    readonly breadcrumb: FieldRef<"Product", 'String'>
+    readonly shortDescription: FieldRef<"Product", 'String'>
+    readonly description: FieldRef<"Product", 'String'>
     readonly posterImageUrl: FieldRef<"Product", 'String'>
-    readonly seoSchema: FieldRef<"Product", 'String'>
     readonly productImages: FieldRef<"Product", 'String[]'>
     readonly price: FieldRef<"Product", 'Decimal'>
-    readonly discountPrice: FieldRef<"Product", 'Decimal'>
     readonly motorPrice: FieldRef<"Product", 'Decimal'>
-    readonly stock: FieldRef<"Product", 'Int'>
-    readonly height: FieldRef<"Product", 'Decimal'>
-    readonly width: FieldRef<"Product", 'Decimal'>
+    readonly minHeight: FieldRef<"Product", 'Decimal'>
+    readonly maxHeight: FieldRef<"Product", 'Decimal'>
+    readonly minWidth: FieldRef<"Product", 'Decimal'>
+    readonly maxWidth: FieldRef<"Product", 'Decimal'>
     readonly color: FieldRef<"Product", 'String'>
     readonly pattern: FieldRef<"Product", 'String'>
     readonly composition: FieldRef<"Product", 'String'>
     readonly isMotorized: FieldRef<"Product", 'Boolean'>
     readonly additionalInfo: FieldRef<"Product", 'String'>
     readonly measuringGuide: FieldRef<"Product", 'String'>
-    readonly lastEditedBy: FieldRef<"Product", 'String'>
+    readonly metaTitle: FieldRef<"Product", 'String'>
+    readonly metaDescription: FieldRef<"Product", 'String'>
+    readonly canonicalTag: FieldRef<"Product", 'String'>
+    readonly breadcrumb: FieldRef<"Product", 'String'>
+    readonly seoSchema: FieldRef<"Product", 'String'>
     readonly status: FieldRef<"Product", 'ContentStatus'>
+    readonly lastEditedBy: FieldRef<"Product", 'String'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
     readonly updatedAt: FieldRef<"Product", 'DateTime'>
   }
@@ -10084,6 +10352,30 @@ export namespace Prisma {
   }
 
   /**
+   * Product.orderItems
+   */
+  export type Product$orderItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderItem
+     */
+    select?: OrderItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderItem
+     */
+    omit?: OrderItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderItemInclude<ExtArgs> | null
+    where?: OrderItemWhereInput
+    orderBy?: OrderItemOrderByWithRelationInput | OrderItemOrderByWithRelationInput[]
+    cursor?: OrderItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OrderItemScalarFieldEnum | OrderItemScalarFieldEnum[]
+  }
+
+  /**
    * Product without action
    */
   export type ProductDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10131,16 +10423,16 @@ export namespace Prisma {
     lastName: string | null
     email: string | null
     phone: string | null
+    address: string | null
+    city: string | null
     state: string | null
     country: string | null
-    city: string | null
-    address: string | null
     totalAmount: Decimal | null
     shippingCost: Decimal | null
     notes: string | null
-    lastEditedBy: string | null
     paymentStatus: $Enums.PaymentStatus | null
     orderStatus: $Enums.OrderStatus | null
+    lastEditedBy: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -10152,16 +10444,16 @@ export namespace Prisma {
     lastName: string | null
     email: string | null
     phone: string | null
+    address: string | null
+    city: string | null
     state: string | null
     country: string | null
-    city: string | null
-    address: string | null
     totalAmount: Decimal | null
     shippingCost: Decimal | null
     notes: string | null
-    lastEditedBy: string | null
     paymentStatus: $Enums.PaymentStatus | null
     orderStatus: $Enums.OrderStatus | null
+    lastEditedBy: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -10173,17 +10465,16 @@ export namespace Prisma {
     lastName: number
     email: number
     phone: number
+    address: number
+    city: number
     state: number
     country: number
-    city: number
-    address: number
     totalAmount: number
     shippingCost: number
-    items: number
     notes: number
-    lastEditedBy: number
     paymentStatus: number
     orderStatus: number
+    lastEditedBy: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -10207,16 +10498,16 @@ export namespace Prisma {
     lastName?: true
     email?: true
     phone?: true
+    address?: true
+    city?: true
     state?: true
     country?: true
-    city?: true
-    address?: true
     totalAmount?: true
     shippingCost?: true
     notes?: true
-    lastEditedBy?: true
     paymentStatus?: true
     orderStatus?: true
+    lastEditedBy?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -10228,16 +10519,16 @@ export namespace Prisma {
     lastName?: true
     email?: true
     phone?: true
+    address?: true
+    city?: true
     state?: true
     country?: true
-    city?: true
-    address?: true
     totalAmount?: true
     shippingCost?: true
     notes?: true
-    lastEditedBy?: true
     paymentStatus?: true
     orderStatus?: true
+    lastEditedBy?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -10249,17 +10540,16 @@ export namespace Prisma {
     lastName?: true
     email?: true
     phone?: true
+    address?: true
+    city?: true
     state?: true
     country?: true
-    city?: true
-    address?: true
     totalAmount?: true
     shippingCost?: true
-    items?: true
     notes?: true
-    lastEditedBy?: true
     paymentStatus?: true
     orderStatus?: true
+    lastEditedBy?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -10358,17 +10648,16 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    address: string
+    city: string
     state: string
     country: string
-    city: string
-    address: string
     totalAmount: Decimal
     shippingCost: Decimal
-    items: JsonValue[]
     notes: string | null
-    lastEditedBy: string | null
     paymentStatus: $Enums.PaymentStatus
     orderStatus: $Enums.OrderStatus
+    lastEditedBy: string | null
     createdAt: Date
     updatedAt: Date
     _count: OrderCountAggregateOutputType | null
@@ -10399,20 +10688,21 @@ export namespace Prisma {
     lastName?: boolean
     email?: boolean
     phone?: boolean
+    address?: boolean
+    city?: boolean
     state?: boolean
     country?: boolean
-    city?: boolean
-    address?: boolean
     totalAmount?: boolean
     shippingCost?: boolean
-    items?: boolean
     notes?: boolean
-    lastEditedBy?: boolean
     paymentStatus?: boolean
     orderStatus?: boolean
+    lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    orderItems?: boolean | Order$orderItemsArgs<ExtArgs>
+    _count?: boolean | OrderCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10422,17 +10712,16 @@ export namespace Prisma {
     lastName?: boolean
     email?: boolean
     phone?: boolean
+    address?: boolean
+    city?: boolean
     state?: boolean
     country?: boolean
-    city?: boolean
-    address?: boolean
     totalAmount?: boolean
     shippingCost?: boolean
-    items?: boolean
     notes?: boolean
-    lastEditedBy?: boolean
     paymentStatus?: boolean
     orderStatus?: boolean
+    lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -10445,17 +10734,16 @@ export namespace Prisma {
     lastName?: boolean
     email?: boolean
     phone?: boolean
+    address?: boolean
+    city?: boolean
     state?: boolean
     country?: boolean
-    city?: boolean
-    address?: boolean
     totalAmount?: boolean
     shippingCost?: boolean
-    items?: boolean
     notes?: boolean
-    lastEditedBy?: boolean
     paymentStatus?: boolean
     orderStatus?: boolean
+    lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -10468,24 +10756,25 @@ export namespace Prisma {
     lastName?: boolean
     email?: boolean
     phone?: boolean
+    address?: boolean
+    city?: boolean
     state?: boolean
     country?: boolean
-    city?: boolean
-    address?: boolean
     totalAmount?: boolean
     shippingCost?: boolean
-    items?: boolean
     notes?: boolean
-    lastEditedBy?: boolean
     paymentStatus?: boolean
     orderStatus?: boolean
+    lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "firstName" | "lastName" | "email" | "phone" | "state" | "country" | "city" | "address" | "totalAmount" | "shippingCost" | "items" | "notes" | "lastEditedBy" | "paymentStatus" | "orderStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
+  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "firstName" | "lastName" | "email" | "phone" | "address" | "city" | "state" | "country" | "totalAmount" | "shippingCost" | "notes" | "paymentStatus" | "orderStatus" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
   export type OrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    orderItems?: boolean | Order$orderItemsArgs<ExtArgs>
+    _count?: boolean | OrderCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type OrderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -10498,6 +10787,7 @@ export namespace Prisma {
     name: "Order"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      orderItems: Prisma.$OrderItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -10506,17 +10796,16 @@ export namespace Prisma {
       lastName: string
       email: string
       phone: string
+      address: string
+      city: string
       state: string
       country: string
-      city: string
-      address: string
       totalAmount: Prisma.Decimal
       shippingCost: Prisma.Decimal
-      items: Prisma.JsonValue[]
       notes: string | null
-      lastEditedBy: string | null
       paymentStatus: $Enums.PaymentStatus
       orderStatus: $Enums.OrderStatus
+      lastEditedBy: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["order"]>
@@ -10914,6 +11203,7 @@ export namespace Prisma {
   export interface Prisma__OrderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    orderItems<T extends Order$orderItemsArgs<ExtArgs> = {}>(args?: Subset<T, Order$orderItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10949,17 +11239,16 @@ export namespace Prisma {
     readonly lastName: FieldRef<"Order", 'String'>
     readonly email: FieldRef<"Order", 'String'>
     readonly phone: FieldRef<"Order", 'String'>
+    readonly address: FieldRef<"Order", 'String'>
+    readonly city: FieldRef<"Order", 'String'>
     readonly state: FieldRef<"Order", 'String'>
     readonly country: FieldRef<"Order", 'String'>
-    readonly city: FieldRef<"Order", 'String'>
-    readonly address: FieldRef<"Order", 'String'>
     readonly totalAmount: FieldRef<"Order", 'Decimal'>
     readonly shippingCost: FieldRef<"Order", 'Decimal'>
-    readonly items: FieldRef<"Order", 'Json[]'>
     readonly notes: FieldRef<"Order", 'String'>
-    readonly lastEditedBy: FieldRef<"Order", 'String'>
     readonly paymentStatus: FieldRef<"Order", 'PaymentStatus'>
     readonly orderStatus: FieldRef<"Order", 'OrderStatus'>
+    readonly lastEditedBy: FieldRef<"Order", 'String'>
     readonly createdAt: FieldRef<"Order", 'DateTime'>
     readonly updatedAt: FieldRef<"Order", 'DateTime'>
   }
@@ -11358,6 +11647,30 @@ export namespace Prisma {
   }
 
   /**
+   * Order.orderItems
+   */
+  export type Order$orderItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderItem
+     */
+    select?: OrderItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderItem
+     */
+    omit?: OrderItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderItemInclude<ExtArgs> | null
+    where?: OrderItemWhereInput
+    orderBy?: OrderItemOrderByWithRelationInput | OrderItemOrderByWithRelationInput[]
+    cursor?: OrderItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OrderItemScalarFieldEnum | OrderItemScalarFieldEnum[]
+  }
+
+  /**
    * Order without action
    */
   export type OrderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11373,6 +11686,1293 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: OrderInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model OrderItem
+   */
+
+  export type AggregateOrderItem = {
+    _count: OrderItemCountAggregateOutputType | null
+    _avg: OrderItemAvgAggregateOutputType | null
+    _sum: OrderItemSumAggregateOutputType | null
+    _min: OrderItemMinAggregateOutputType | null
+    _max: OrderItemMaxAggregateOutputType | null
+  }
+
+  export type OrderItemAvgAggregateOutputType = {
+    price: Decimal | null
+    height: Decimal | null
+    width: Decimal | null
+    motorPrice: Decimal | null
+  }
+
+  export type OrderItemSumAggregateOutputType = {
+    price: Decimal | null
+    height: Decimal | null
+    width: Decimal | null
+    motorPrice: Decimal | null
+  }
+
+  export type OrderItemMinAggregateOutputType = {
+    id: string | null
+    orderId: string | null
+    productId: string | null
+    sku: string | null
+    name: string | null
+    slug: string | null
+    categoryUrl: string | null
+    subcategoryUrl: string | null
+    price: Decimal | null
+    height: Decimal | null
+    width: Decimal | null
+    isMotorized: boolean | null
+    motorPrice: Decimal | null
+    color: string | null
+    pattern: string | null
+    composition: string | null
+    posterImageUrl: string | null
+  }
+
+  export type OrderItemMaxAggregateOutputType = {
+    id: string | null
+    orderId: string | null
+    productId: string | null
+    sku: string | null
+    name: string | null
+    slug: string | null
+    categoryUrl: string | null
+    subcategoryUrl: string | null
+    price: Decimal | null
+    height: Decimal | null
+    width: Decimal | null
+    isMotorized: boolean | null
+    motorPrice: Decimal | null
+    color: string | null
+    pattern: string | null
+    composition: string | null
+    posterImageUrl: string | null
+  }
+
+  export type OrderItemCountAggregateOutputType = {
+    id: number
+    orderId: number
+    productId: number
+    sku: number
+    name: number
+    slug: number
+    categoryUrl: number
+    subcategoryUrl: number
+    price: number
+    height: number
+    width: number
+    isMotorized: number
+    motorPrice: number
+    color: number
+    pattern: number
+    composition: number
+    posterImageUrl: number
+    _all: number
+  }
+
+
+  export type OrderItemAvgAggregateInputType = {
+    price?: true
+    height?: true
+    width?: true
+    motorPrice?: true
+  }
+
+  export type OrderItemSumAggregateInputType = {
+    price?: true
+    height?: true
+    width?: true
+    motorPrice?: true
+  }
+
+  export type OrderItemMinAggregateInputType = {
+    id?: true
+    orderId?: true
+    productId?: true
+    sku?: true
+    name?: true
+    slug?: true
+    categoryUrl?: true
+    subcategoryUrl?: true
+    price?: true
+    height?: true
+    width?: true
+    isMotorized?: true
+    motorPrice?: true
+    color?: true
+    pattern?: true
+    composition?: true
+    posterImageUrl?: true
+  }
+
+  export type OrderItemMaxAggregateInputType = {
+    id?: true
+    orderId?: true
+    productId?: true
+    sku?: true
+    name?: true
+    slug?: true
+    categoryUrl?: true
+    subcategoryUrl?: true
+    price?: true
+    height?: true
+    width?: true
+    isMotorized?: true
+    motorPrice?: true
+    color?: true
+    pattern?: true
+    composition?: true
+    posterImageUrl?: true
+  }
+
+  export type OrderItemCountAggregateInputType = {
+    id?: true
+    orderId?: true
+    productId?: true
+    sku?: true
+    name?: true
+    slug?: true
+    categoryUrl?: true
+    subcategoryUrl?: true
+    price?: true
+    height?: true
+    width?: true
+    isMotorized?: true
+    motorPrice?: true
+    color?: true
+    pattern?: true
+    composition?: true
+    posterImageUrl?: true
+    _all?: true
+  }
+
+  export type OrderItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OrderItem to aggregate.
+     */
+    where?: OrderItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrderItems to fetch.
+     */
+    orderBy?: OrderItemOrderByWithRelationInput | OrderItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OrderItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrderItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrderItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned OrderItems
+    **/
+    _count?: true | OrderItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: OrderItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: OrderItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OrderItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OrderItemMaxAggregateInputType
+  }
+
+  export type GetOrderItemAggregateType<T extends OrderItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateOrderItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOrderItem[P]>
+      : GetScalarType<T[P], AggregateOrderItem[P]>
+  }
+
+
+
+
+  export type OrderItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrderItemWhereInput
+    orderBy?: OrderItemOrderByWithAggregationInput | OrderItemOrderByWithAggregationInput[]
+    by: OrderItemScalarFieldEnum[] | OrderItemScalarFieldEnum
+    having?: OrderItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OrderItemCountAggregateInputType | true
+    _avg?: OrderItemAvgAggregateInputType
+    _sum?: OrderItemSumAggregateInputType
+    _min?: OrderItemMinAggregateInputType
+    _max?: OrderItemMaxAggregateInputType
+  }
+
+  export type OrderItemGroupByOutputType = {
+    id: string
+    orderId: string
+    productId: string | null
+    sku: string
+    name: string
+    slug: string
+    categoryUrl: string
+    subcategoryUrl: string
+    price: Decimal
+    height: Decimal
+    width: Decimal
+    isMotorized: boolean
+    motorPrice: Decimal
+    color: string | null
+    pattern: string | null
+    composition: string | null
+    posterImageUrl: string | null
+    _count: OrderItemCountAggregateOutputType | null
+    _avg: OrderItemAvgAggregateOutputType | null
+    _sum: OrderItemSumAggregateOutputType | null
+    _min: OrderItemMinAggregateOutputType | null
+    _max: OrderItemMaxAggregateOutputType | null
+  }
+
+  type GetOrderItemGroupByPayload<T extends OrderItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OrderItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OrderItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OrderItemGroupByOutputType[P]>
+            : GetScalarType<T[P], OrderItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OrderItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    orderId?: boolean
+    productId?: boolean
+    sku?: boolean
+    name?: boolean
+    slug?: boolean
+    categoryUrl?: boolean
+    subcategoryUrl?: boolean
+    price?: boolean
+    height?: boolean
+    width?: boolean
+    isMotorized?: boolean
+    motorPrice?: boolean
+    color?: boolean
+    pattern?: boolean
+    composition?: boolean
+    posterImageUrl?: boolean
+    order?: boolean | OrderDefaultArgs<ExtArgs>
+    product?: boolean | OrderItem$productArgs<ExtArgs>
+  }, ExtArgs["result"]["orderItem"]>
+
+  export type OrderItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    orderId?: boolean
+    productId?: boolean
+    sku?: boolean
+    name?: boolean
+    slug?: boolean
+    categoryUrl?: boolean
+    subcategoryUrl?: boolean
+    price?: boolean
+    height?: boolean
+    width?: boolean
+    isMotorized?: boolean
+    motorPrice?: boolean
+    color?: boolean
+    pattern?: boolean
+    composition?: boolean
+    posterImageUrl?: boolean
+    order?: boolean | OrderDefaultArgs<ExtArgs>
+    product?: boolean | OrderItem$productArgs<ExtArgs>
+  }, ExtArgs["result"]["orderItem"]>
+
+  export type OrderItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    orderId?: boolean
+    productId?: boolean
+    sku?: boolean
+    name?: boolean
+    slug?: boolean
+    categoryUrl?: boolean
+    subcategoryUrl?: boolean
+    price?: boolean
+    height?: boolean
+    width?: boolean
+    isMotorized?: boolean
+    motorPrice?: boolean
+    color?: boolean
+    pattern?: boolean
+    composition?: boolean
+    posterImageUrl?: boolean
+    order?: boolean | OrderDefaultArgs<ExtArgs>
+    product?: boolean | OrderItem$productArgs<ExtArgs>
+  }, ExtArgs["result"]["orderItem"]>
+
+  export type OrderItemSelectScalar = {
+    id?: boolean
+    orderId?: boolean
+    productId?: boolean
+    sku?: boolean
+    name?: boolean
+    slug?: boolean
+    categoryUrl?: boolean
+    subcategoryUrl?: boolean
+    price?: boolean
+    height?: boolean
+    width?: boolean
+    isMotorized?: boolean
+    motorPrice?: boolean
+    color?: boolean
+    pattern?: boolean
+    composition?: boolean
+    posterImageUrl?: boolean
+  }
+
+  export type OrderItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orderId" | "productId" | "sku" | "name" | "slug" | "categoryUrl" | "subcategoryUrl" | "price" | "height" | "width" | "isMotorized" | "motorPrice" | "color" | "pattern" | "composition" | "posterImageUrl", ExtArgs["result"]["orderItem"]>
+  export type OrderItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    order?: boolean | OrderDefaultArgs<ExtArgs>
+    product?: boolean | OrderItem$productArgs<ExtArgs>
+  }
+  export type OrderItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    order?: boolean | OrderDefaultArgs<ExtArgs>
+    product?: boolean | OrderItem$productArgs<ExtArgs>
+  }
+  export type OrderItemIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    order?: boolean | OrderDefaultArgs<ExtArgs>
+    product?: boolean | OrderItem$productArgs<ExtArgs>
+  }
+
+  export type $OrderItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "OrderItem"
+    objects: {
+      order: Prisma.$OrderPayload<ExtArgs>
+      product: Prisma.$ProductPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      orderId: string
+      productId: string | null
+      sku: string
+      name: string
+      slug: string
+      categoryUrl: string
+      subcategoryUrl: string
+      price: Prisma.Decimal
+      height: Prisma.Decimal
+      width: Prisma.Decimal
+      isMotorized: boolean
+      motorPrice: Prisma.Decimal
+      color: string | null
+      pattern: string | null
+      composition: string | null
+      posterImageUrl: string | null
+    }, ExtArgs["result"]["orderItem"]>
+    composites: {}
+  }
+
+  type OrderItemGetPayload<S extends boolean | null | undefined | OrderItemDefaultArgs> = $Result.GetResult<Prisma.$OrderItemPayload, S>
+
+  type OrderItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<OrderItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: OrderItemCountAggregateInputType | true
+    }
+
+  export interface OrderItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['OrderItem'], meta: { name: 'OrderItem' } }
+    /**
+     * Find zero or one OrderItem that matches the filter.
+     * @param {OrderItemFindUniqueArgs} args - Arguments to find a OrderItem
+     * @example
+     * // Get one OrderItem
+     * const orderItem = await prisma.orderItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends OrderItemFindUniqueArgs>(args: SelectSubset<T, OrderItemFindUniqueArgs<ExtArgs>>): Prisma__OrderItemClient<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one OrderItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {OrderItemFindUniqueOrThrowArgs} args - Arguments to find a OrderItem
+     * @example
+     * // Get one OrderItem
+     * const orderItem = await prisma.orderItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends OrderItemFindUniqueOrThrowArgs>(args: SelectSubset<T, OrderItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__OrderItemClient<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OrderItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderItemFindFirstArgs} args - Arguments to find a OrderItem
+     * @example
+     * // Get one OrderItem
+     * const orderItem = await prisma.orderItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends OrderItemFindFirstArgs>(args?: SelectSubset<T, OrderItemFindFirstArgs<ExtArgs>>): Prisma__OrderItemClient<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OrderItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderItemFindFirstOrThrowArgs} args - Arguments to find a OrderItem
+     * @example
+     * // Get one OrderItem
+     * const orderItem = await prisma.orderItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends OrderItemFindFirstOrThrowArgs>(args?: SelectSubset<T, OrderItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__OrderItemClient<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more OrderItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all OrderItems
+     * const orderItems = await prisma.orderItem.findMany()
+     * 
+     * // Get first 10 OrderItems
+     * const orderItems = await prisma.orderItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const orderItemWithIdOnly = await prisma.orderItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends OrderItemFindManyArgs>(args?: SelectSubset<T, OrderItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a OrderItem.
+     * @param {OrderItemCreateArgs} args - Arguments to create a OrderItem.
+     * @example
+     * // Create one OrderItem
+     * const OrderItem = await prisma.orderItem.create({
+     *   data: {
+     *     // ... data to create a OrderItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends OrderItemCreateArgs>(args: SelectSubset<T, OrderItemCreateArgs<ExtArgs>>): Prisma__OrderItemClient<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many OrderItems.
+     * @param {OrderItemCreateManyArgs} args - Arguments to create many OrderItems.
+     * @example
+     * // Create many OrderItems
+     * const orderItem = await prisma.orderItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends OrderItemCreateManyArgs>(args?: SelectSubset<T, OrderItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many OrderItems and returns the data saved in the database.
+     * @param {OrderItemCreateManyAndReturnArgs} args - Arguments to create many OrderItems.
+     * @example
+     * // Create many OrderItems
+     * const orderItem = await prisma.orderItem.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many OrderItems and only return the `id`
+     * const orderItemWithIdOnly = await prisma.orderItem.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OrderItemCreateManyAndReturnArgs>(args?: SelectSubset<T, OrderItemCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a OrderItem.
+     * @param {OrderItemDeleteArgs} args - Arguments to delete one OrderItem.
+     * @example
+     * // Delete one OrderItem
+     * const OrderItem = await prisma.orderItem.delete({
+     *   where: {
+     *     // ... filter to delete one OrderItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends OrderItemDeleteArgs>(args: SelectSubset<T, OrderItemDeleteArgs<ExtArgs>>): Prisma__OrderItemClient<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one OrderItem.
+     * @param {OrderItemUpdateArgs} args - Arguments to update one OrderItem.
+     * @example
+     * // Update one OrderItem
+     * const orderItem = await prisma.orderItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends OrderItemUpdateArgs>(args: SelectSubset<T, OrderItemUpdateArgs<ExtArgs>>): Prisma__OrderItemClient<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more OrderItems.
+     * @param {OrderItemDeleteManyArgs} args - Arguments to filter OrderItems to delete.
+     * @example
+     * // Delete a few OrderItems
+     * const { count } = await prisma.orderItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends OrderItemDeleteManyArgs>(args?: SelectSubset<T, OrderItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OrderItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many OrderItems
+     * const orderItem = await prisma.orderItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends OrderItemUpdateManyArgs>(args: SelectSubset<T, OrderItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OrderItems and returns the data updated in the database.
+     * @param {OrderItemUpdateManyAndReturnArgs} args - Arguments to update many OrderItems.
+     * @example
+     * // Update many OrderItems
+     * const orderItem = await prisma.orderItem.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more OrderItems and only return the `id`
+     * const orderItemWithIdOnly = await prisma.orderItem.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OrderItemUpdateManyAndReturnArgs>(args: SelectSubset<T, OrderItemUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one OrderItem.
+     * @param {OrderItemUpsertArgs} args - Arguments to update or create a OrderItem.
+     * @example
+     * // Update or create a OrderItem
+     * const orderItem = await prisma.orderItem.upsert({
+     *   create: {
+     *     // ... data to create a OrderItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the OrderItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends OrderItemUpsertArgs>(args: SelectSubset<T, OrderItemUpsertArgs<ExtArgs>>): Prisma__OrderItemClient<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of OrderItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderItemCountArgs} args - Arguments to filter OrderItems to count.
+     * @example
+     * // Count the number of OrderItems
+     * const count = await prisma.orderItem.count({
+     *   where: {
+     *     // ... the filter for the OrderItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends OrderItemCountArgs>(
+      args?: Subset<T, OrderItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OrderItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a OrderItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OrderItemAggregateArgs>(args: Subset<T, OrderItemAggregateArgs>): Prisma.PrismaPromise<GetOrderItemAggregateType<T>>
+
+    /**
+     * Group by OrderItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OrderItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OrderItemGroupByArgs['orderBy'] }
+        : { orderBy?: OrderItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OrderItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOrderItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the OrderItem model
+   */
+  readonly fields: OrderItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for OrderItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OrderItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    order<T extends OrderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OrderDefaultArgs<ExtArgs>>): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    product<T extends OrderItem$productArgs<ExtArgs> = {}>(args?: Subset<T, OrderItem$productArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the OrderItem model
+   */
+  interface OrderItemFieldRefs {
+    readonly id: FieldRef<"OrderItem", 'String'>
+    readonly orderId: FieldRef<"OrderItem", 'String'>
+    readonly productId: FieldRef<"OrderItem", 'String'>
+    readonly sku: FieldRef<"OrderItem", 'String'>
+    readonly name: FieldRef<"OrderItem", 'String'>
+    readonly slug: FieldRef<"OrderItem", 'String'>
+    readonly categoryUrl: FieldRef<"OrderItem", 'String'>
+    readonly subcategoryUrl: FieldRef<"OrderItem", 'String'>
+    readonly price: FieldRef<"OrderItem", 'Decimal'>
+    readonly height: FieldRef<"OrderItem", 'Decimal'>
+    readonly width: FieldRef<"OrderItem", 'Decimal'>
+    readonly isMotorized: FieldRef<"OrderItem", 'Boolean'>
+    readonly motorPrice: FieldRef<"OrderItem", 'Decimal'>
+    readonly color: FieldRef<"OrderItem", 'String'>
+    readonly pattern: FieldRef<"OrderItem", 'String'>
+    readonly composition: FieldRef<"OrderItem", 'String'>
+    readonly posterImageUrl: FieldRef<"OrderItem", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * OrderItem findUnique
+   */
+  export type OrderItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderItem
+     */
+    select?: OrderItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderItem
+     */
+    omit?: OrderItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderItemInclude<ExtArgs> | null
+    /**
+     * Filter, which OrderItem to fetch.
+     */
+    where: OrderItemWhereUniqueInput
+  }
+
+  /**
+   * OrderItem findUniqueOrThrow
+   */
+  export type OrderItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderItem
+     */
+    select?: OrderItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderItem
+     */
+    omit?: OrderItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderItemInclude<ExtArgs> | null
+    /**
+     * Filter, which OrderItem to fetch.
+     */
+    where: OrderItemWhereUniqueInput
+  }
+
+  /**
+   * OrderItem findFirst
+   */
+  export type OrderItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderItem
+     */
+    select?: OrderItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderItem
+     */
+    omit?: OrderItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderItemInclude<ExtArgs> | null
+    /**
+     * Filter, which OrderItem to fetch.
+     */
+    where?: OrderItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrderItems to fetch.
+     */
+    orderBy?: OrderItemOrderByWithRelationInput | OrderItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OrderItems.
+     */
+    cursor?: OrderItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrderItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrderItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OrderItems.
+     */
+    distinct?: OrderItemScalarFieldEnum | OrderItemScalarFieldEnum[]
+  }
+
+  /**
+   * OrderItem findFirstOrThrow
+   */
+  export type OrderItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderItem
+     */
+    select?: OrderItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderItem
+     */
+    omit?: OrderItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderItemInclude<ExtArgs> | null
+    /**
+     * Filter, which OrderItem to fetch.
+     */
+    where?: OrderItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrderItems to fetch.
+     */
+    orderBy?: OrderItemOrderByWithRelationInput | OrderItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OrderItems.
+     */
+    cursor?: OrderItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrderItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrderItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OrderItems.
+     */
+    distinct?: OrderItemScalarFieldEnum | OrderItemScalarFieldEnum[]
+  }
+
+  /**
+   * OrderItem findMany
+   */
+  export type OrderItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderItem
+     */
+    select?: OrderItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderItem
+     */
+    omit?: OrderItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderItemInclude<ExtArgs> | null
+    /**
+     * Filter, which OrderItems to fetch.
+     */
+    where?: OrderItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OrderItems to fetch.
+     */
+    orderBy?: OrderItemOrderByWithRelationInput | OrderItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing OrderItems.
+     */
+    cursor?: OrderItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OrderItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OrderItems.
+     */
+    skip?: number
+    distinct?: OrderItemScalarFieldEnum | OrderItemScalarFieldEnum[]
+  }
+
+  /**
+   * OrderItem create
+   */
+  export type OrderItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderItem
+     */
+    select?: OrderItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderItem
+     */
+    omit?: OrderItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a OrderItem.
+     */
+    data: XOR<OrderItemCreateInput, OrderItemUncheckedCreateInput>
+  }
+
+  /**
+   * OrderItem createMany
+   */
+  export type OrderItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many OrderItems.
+     */
+    data: OrderItemCreateManyInput | OrderItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * OrderItem createManyAndReturn
+   */
+  export type OrderItemCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderItem
+     */
+    select?: OrderItemSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderItem
+     */
+    omit?: OrderItemOmit<ExtArgs> | null
+    /**
+     * The data used to create many OrderItems.
+     */
+    data: OrderItemCreateManyInput | OrderItemCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderItemIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * OrderItem update
+   */
+  export type OrderItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderItem
+     */
+    select?: OrderItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderItem
+     */
+    omit?: OrderItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a OrderItem.
+     */
+    data: XOR<OrderItemUpdateInput, OrderItemUncheckedUpdateInput>
+    /**
+     * Choose, which OrderItem to update.
+     */
+    where: OrderItemWhereUniqueInput
+  }
+
+  /**
+   * OrderItem updateMany
+   */
+  export type OrderItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OrderItems.
+     */
+    data: XOR<OrderItemUpdateManyMutationInput, OrderItemUncheckedUpdateManyInput>
+    /**
+     * Filter which OrderItems to update
+     */
+    where?: OrderItemWhereInput
+    /**
+     * Limit how many OrderItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OrderItem updateManyAndReturn
+   */
+  export type OrderItemUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderItem
+     */
+    select?: OrderItemSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderItem
+     */
+    omit?: OrderItemOmit<ExtArgs> | null
+    /**
+     * The data used to update OrderItems.
+     */
+    data: XOR<OrderItemUpdateManyMutationInput, OrderItemUncheckedUpdateManyInput>
+    /**
+     * Filter which OrderItems to update
+     */
+    where?: OrderItemWhereInput
+    /**
+     * Limit how many OrderItems to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderItemIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * OrderItem upsert
+   */
+  export type OrderItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderItem
+     */
+    select?: OrderItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderItem
+     */
+    omit?: OrderItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the OrderItem to update in case it exists.
+     */
+    where: OrderItemWhereUniqueInput
+    /**
+     * In case the OrderItem found by the `where` argument doesn't exist, create a new OrderItem with this data.
+     */
+    create: XOR<OrderItemCreateInput, OrderItemUncheckedCreateInput>
+    /**
+     * In case the OrderItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OrderItemUpdateInput, OrderItemUncheckedUpdateInput>
+  }
+
+  /**
+   * OrderItem delete
+   */
+  export type OrderItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderItem
+     */
+    select?: OrderItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderItem
+     */
+    omit?: OrderItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderItemInclude<ExtArgs> | null
+    /**
+     * Filter which OrderItem to delete.
+     */
+    where: OrderItemWhereUniqueInput
+  }
+
+  /**
+   * OrderItem deleteMany
+   */
+  export type OrderItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OrderItems to delete
+     */
+    where?: OrderItemWhereInput
+    /**
+     * Limit how many OrderItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * OrderItem.product
+   */
+  export type OrderItem$productArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Product
+     */
+    select?: ProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Product
+     */
+    omit?: ProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductInclude<ExtArgs> | null
+    where?: ProductWhereInput
+  }
+
+  /**
+   * OrderItem without action
+   */
+  export type OrderItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderItem
+     */
+    select?: OrderItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderItem
+     */
+    omit?: OrderItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderItemInclude<ExtArgs> | null
   }
 
 
@@ -12442,8 +14042,8 @@ export namespace Prisma {
     name: 'name',
     email: 'email',
     password: 'password',
-    permissions: 'permissions',
     role: 'role',
+    permissions: 'permissions',
     lastEditedBy: 'lastEditedBy',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -12454,14 +14054,13 @@ export namespace Prisma {
 
   export const UserScalarFieldEnum: {
     id: 'id',
+    defaultShippingAddressId: 'defaultShippingAddressId',
+    defaultBillingAddressId: 'defaultBillingAddressId',
     firstName: 'firstName',
     lastName: 'lastName',
     email: 'email',
     password: 'password',
-    role: 'role',
     isEmailVerified: 'isEmailVerified',
-    defaultShippingAddressId: 'defaultShippingAddressId',
-    defaultBillingAddressId: 'defaultBillingAddressId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -12476,10 +14075,10 @@ export namespace Prisma {
     lastName: 'lastName',
     email: 'email',
     phone: 'phone',
+    address: 'address',
+    city: 'city',
     state: 'state',
     country: 'country',
-    city: 'city',
-    address: 'address',
     addressType: 'addressType',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -12502,17 +14101,17 @@ export namespace Prisma {
   export const CategoryScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    description: 'description',
-    shortDescription: 'shortDescription',
     slug: 'slug',
+    shortDescription: 'shortDescription',
+    description: 'description',
     metaTitle: 'metaTitle',
     metaDescription: 'metaDescription',
     canonicalTag: 'canonicalTag',
     breadcrumb: 'breadcrumb',
     posterImageUrl: 'posterImageUrl',
     seoSchema: 'seoSchema',
-    lastEditedBy: 'lastEditedBy',
     status: 'status',
+    lastEditedBy: 'lastEditedBy',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -12524,17 +14123,17 @@ export namespace Prisma {
     id: 'id',
     categoryId: 'categoryId',
     name: 'name',
-    description: 'description',
-    shortDescription: 'shortDescription',
     slug: 'slug',
+    shortDescription: 'shortDescription',
+    description: 'description',
     metaTitle: 'metaTitle',
     metaDescription: 'metaDescription',
     canonicalTag: 'canonicalTag',
     breadcrumb: 'breadcrumb',
     posterImageUrl: 'posterImageUrl',
     seoSchema: 'seoSchema',
-    lastEditedBy: 'lastEditedBy',
     status: 'status',
+    lastEditedBy: 'lastEditedBy',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -12546,31 +14145,32 @@ export namespace Prisma {
     id: 'id',
     categoryId: 'categoryId',
     subcategoryId: 'subcategoryId',
+    sku: 'sku',
     name: 'name',
-    description: 'description',
-    shortDescription: 'shortDescription',
     slug: 'slug',
-    metaTitle: 'metaTitle',
-    metaDescription: 'metaDescription',
-    canonicalTag: 'canonicalTag',
-    breadcrumb: 'breadcrumb',
+    shortDescription: 'shortDescription',
+    description: 'description',
     posterImageUrl: 'posterImageUrl',
-    seoSchema: 'seoSchema',
     productImages: 'productImages',
     price: 'price',
-    discountPrice: 'discountPrice',
     motorPrice: 'motorPrice',
-    stock: 'stock',
-    height: 'height',
-    width: 'width',
+    minHeight: 'minHeight',
+    maxHeight: 'maxHeight',
+    minWidth: 'minWidth',
+    maxWidth: 'maxWidth',
     color: 'color',
     pattern: 'pattern',
     composition: 'composition',
     isMotorized: 'isMotorized',
     additionalInfo: 'additionalInfo',
     measuringGuide: 'measuringGuide',
-    lastEditedBy: 'lastEditedBy',
+    metaTitle: 'metaTitle',
+    metaDescription: 'metaDescription',
+    canonicalTag: 'canonicalTag',
+    breadcrumb: 'breadcrumb',
+    seoSchema: 'seoSchema',
     status: 'status',
+    lastEditedBy: 'lastEditedBy',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -12585,22 +14185,44 @@ export namespace Prisma {
     lastName: 'lastName',
     email: 'email',
     phone: 'phone',
+    address: 'address',
+    city: 'city',
     state: 'state',
     country: 'country',
-    city: 'city',
-    address: 'address',
     totalAmount: 'totalAmount',
     shippingCost: 'shippingCost',
-    items: 'items',
     notes: 'notes',
-    lastEditedBy: 'lastEditedBy',
     paymentStatus: 'paymentStatus',
     orderStatus: 'orderStatus',
+    lastEditedBy: 'lastEditedBy',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
   export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+  export const OrderItemScalarFieldEnum: {
+    id: 'id',
+    orderId: 'orderId',
+    productId: 'productId',
+    sku: 'sku',
+    name: 'name',
+    slug: 'slug',
+    categoryUrl: 'categoryUrl',
+    subcategoryUrl: 'subcategoryUrl',
+    price: 'price',
+    height: 'height',
+    width: 'width',
+    isMotorized: 'isMotorized',
+    motorPrice: 'motorPrice',
+    color: 'color',
+    pattern: 'pattern',
+    composition: 'composition',
+    posterImageUrl: 'posterImageUrl'
+  };
+
+  export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
 
 
   export const InquiryScalarFieldEnum: {
@@ -12662,6 +14284,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'AdminRole'
+   */
+  export type EnumAdminRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdminRole'>
+    
+
+
+  /**
+   * Reference to a field of type 'AdminRole[]'
+   */
+  export type ListEnumAdminRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdminRole[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Permissions[]'
    */
   export type ListEnumPermissionsFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Permissions[]'>
@@ -12672,20 +14308,6 @@ export namespace Prisma {
    * Reference to a field of type 'Permissions'
    */
   export type EnumPermissionsFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Permissions'>
-    
-
-
-  /**
-   * Reference to a field of type 'Role'
-   */
-  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
-    
-
-
-  /**
-   * Reference to a field of type 'Role[]'
-   */
-  export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
     
 
 
@@ -12753,34 +14375,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Json[]'
-   */
-  export type ListJsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Json'
-   */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-  /**
    * Reference to a field of type 'PaymentStatus'
    */
   export type EnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus'>
@@ -12837,16 +14431,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Float'
+   * Reference to a field of type 'Int'
    */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 
   /**
-   * Reference to a field of type 'Float[]'
+   * Reference to a field of type 'Int[]'
    */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
   /**
    * Deep Input Types
@@ -12861,8 +14455,8 @@ export namespace Prisma {
     name?: StringFilter<"Admin"> | string
     email?: StringFilter<"Admin"> | string
     password?: StringFilter<"Admin"> | string
+    role?: EnumAdminRoleFilter<"Admin"> | $Enums.AdminRole
     permissions?: EnumPermissionsNullableListFilter<"Admin">
-    role?: EnumRoleFilter<"Admin"> | $Enums.Role
     lastEditedBy?: StringNullableFilter<"Admin"> | string | null
     createdAt?: DateTimeFilter<"Admin"> | Date | string
     updatedAt?: DateTimeFilter<"Admin"> | Date | string
@@ -12873,8 +14467,8 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     password?: SortOrder
-    permissions?: SortOrder
     role?: SortOrder
+    permissions?: SortOrder
     lastEditedBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12888,8 +14482,8 @@ export namespace Prisma {
     NOT?: AdminWhereInput | AdminWhereInput[]
     name?: StringFilter<"Admin"> | string
     password?: StringFilter<"Admin"> | string
+    role?: EnumAdminRoleFilter<"Admin"> | $Enums.AdminRole
     permissions?: EnumPermissionsNullableListFilter<"Admin">
-    role?: EnumRoleFilter<"Admin"> | $Enums.Role
     lastEditedBy?: StringNullableFilter<"Admin"> | string | null
     createdAt?: DateTimeFilter<"Admin"> | Date | string
     updatedAt?: DateTimeFilter<"Admin"> | Date | string
@@ -12900,8 +14494,8 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     password?: SortOrder
-    permissions?: SortOrder
     role?: SortOrder
+    permissions?: SortOrder
     lastEditedBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12918,8 +14512,8 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Admin"> | string
     email?: StringWithAggregatesFilter<"Admin"> | string
     password?: StringWithAggregatesFilter<"Admin"> | string
+    role?: EnumAdminRoleWithAggregatesFilter<"Admin"> | $Enums.AdminRole
     permissions?: EnumPermissionsNullableListFilter<"Admin">
-    role?: EnumRoleWithAggregatesFilter<"Admin"> | $Enums.Role
     lastEditedBy?: StringNullableWithAggregatesFilter<"Admin"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Admin"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Admin"> | Date | string
@@ -12930,38 +14524,42 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     id?: UuidFilter<"User"> | string
+    defaultShippingAddressId?: UuidNullableFilter<"User"> | string | null
+    defaultBillingAddressId?: UuidNullableFilter<"User"> | string | null
     firstName?: StringFilter<"User"> | string
     lastName?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
-    role?: EnumRoleFilter<"User"> | $Enums.Role
     isEmailVerified?: BoolFilter<"User"> | boolean
-    defaultShippingAddressId?: StringFilter<"User"> | string
-    defaultBillingAddressId?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     addresses?: AddressListRelationFilter
     orders?: OrderListRelationFilter
+    defaultShippingAddress?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
+    defaultBillingAddress?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
+    defaultShippingAddressId?: SortOrderInput | SortOrder
+    defaultBillingAddressId?: SortOrderInput | SortOrder
     firstName?: SortOrder
     lastName?: SortOrder
     email?: SortOrder
     password?: SortOrder
-    role?: SortOrder
     isEmailVerified?: SortOrder
-    defaultShippingAddressId?: SortOrder
-    defaultBillingAddressId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     addresses?: AddressOrderByRelationAggregateInput
     orders?: OrderOrderByRelationAggregateInput
+    defaultShippingAddress?: AddressOrderByWithRelationInput
+    defaultBillingAddress?: AddressOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    defaultShippingAddressId?: string
+    defaultBillingAddressId?: string
     email?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
@@ -12969,26 +14567,24 @@ export namespace Prisma {
     firstName?: StringFilter<"User"> | string
     lastName?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
-    role?: EnumRoleFilter<"User"> | $Enums.Role
     isEmailVerified?: BoolFilter<"User"> | boolean
-    defaultShippingAddressId?: StringFilter<"User"> | string
-    defaultBillingAddressId?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     addresses?: AddressListRelationFilter
     orders?: OrderListRelationFilter
-  }, "id" | "email">
+    defaultShippingAddress?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
+    defaultBillingAddress?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
+  }, "id" | "defaultShippingAddressId" | "defaultBillingAddressId" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
+    defaultShippingAddressId?: SortOrderInput | SortOrder
+    defaultBillingAddressId?: SortOrderInput | SortOrder
     firstName?: SortOrder
     lastName?: SortOrder
     email?: SortOrder
     password?: SortOrder
-    role?: SortOrder
     isEmailVerified?: SortOrder
-    defaultShippingAddressId?: SortOrder
-    defaultBillingAddressId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -13001,14 +14597,13 @@ export namespace Prisma {
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"User"> | string
+    defaultShippingAddressId?: UuidNullableWithAggregatesFilter<"User"> | string | null
+    defaultBillingAddressId?: UuidNullableWithAggregatesFilter<"User"> | string | null
     firstName?: StringWithAggregatesFilter<"User"> | string
     lastName?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
-    role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
     isEmailVerified?: BoolWithAggregatesFilter<"User"> | boolean
-    defaultShippingAddressId?: StringWithAggregatesFilter<"User"> | string
-    defaultBillingAddressId?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -13023,14 +14618,16 @@ export namespace Prisma {
     lastName?: StringFilter<"Address"> | string
     email?: StringFilter<"Address"> | string
     phone?: StringFilter<"Address"> | string
+    address?: StringFilter<"Address"> | string
+    city?: StringFilter<"Address"> | string
     state?: StringFilter<"Address"> | string
     country?: StringFilter<"Address"> | string
-    city?: StringFilter<"Address"> | string
-    address?: StringFilter<"Address"> | string
     addressType?: EnumAddressTypeFilter<"Address"> | $Enums.AddressType
     createdAt?: DateTimeFilter<"Address"> | Date | string
     updatedAt?: DateTimeFilter<"Address"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    defaultShippingFor?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    defaultBillingFor?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type AddressOrderByWithRelationInput = {
@@ -13040,14 +14637,16 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    address?: SortOrder
+    city?: SortOrder
     state?: SortOrder
     country?: SortOrder
-    city?: SortOrder
-    address?: SortOrder
     addressType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
+    defaultShippingFor?: UserOrderByWithRelationInput
+    defaultBillingFor?: UserOrderByWithRelationInput
   }
 
   export type AddressWhereUniqueInput = Prisma.AtLeast<{
@@ -13060,14 +14659,16 @@ export namespace Prisma {
     lastName?: StringFilter<"Address"> | string
     email?: StringFilter<"Address"> | string
     phone?: StringFilter<"Address"> | string
+    address?: StringFilter<"Address"> | string
+    city?: StringFilter<"Address"> | string
     state?: StringFilter<"Address"> | string
     country?: StringFilter<"Address"> | string
-    city?: StringFilter<"Address"> | string
-    address?: StringFilter<"Address"> | string
     addressType?: EnumAddressTypeFilter<"Address"> | $Enums.AddressType
     createdAt?: DateTimeFilter<"Address"> | Date | string
     updatedAt?: DateTimeFilter<"Address"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    defaultShippingFor?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    defaultBillingFor?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type AddressOrderByWithAggregationInput = {
@@ -13077,10 +14678,10 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    address?: SortOrder
+    city?: SortOrder
     state?: SortOrder
     country?: SortOrder
-    city?: SortOrder
-    address?: SortOrder
     addressType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13099,10 +14700,10 @@ export namespace Prisma {
     lastName?: StringWithAggregatesFilter<"Address"> | string
     email?: StringWithAggregatesFilter<"Address"> | string
     phone?: StringWithAggregatesFilter<"Address"> | string
+    address?: StringWithAggregatesFilter<"Address"> | string
+    city?: StringWithAggregatesFilter<"Address"> | string
     state?: StringWithAggregatesFilter<"Address"> | string
     country?: StringWithAggregatesFilter<"Address"> | string
-    city?: StringWithAggregatesFilter<"Address"> | string
-    address?: StringWithAggregatesFilter<"Address"> | string
     addressType?: EnumAddressTypeWithAggregatesFilter<"Address"> | $Enums.AddressType
     createdAt?: DateTimeWithAggregatesFilter<"Address"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Address"> | Date | string
@@ -13166,17 +14767,17 @@ export namespace Prisma {
     NOT?: CategoryWhereInput | CategoryWhereInput[]
     id?: UuidFilter<"Category"> | string
     name?: StringFilter<"Category"> | string
-    description?: StringNullableFilter<"Category"> | string | null
-    shortDescription?: StringNullableFilter<"Category"> | string | null
     slug?: StringFilter<"Category"> | string
+    shortDescription?: StringNullableFilter<"Category"> | string | null
+    description?: StringNullableFilter<"Category"> | string | null
     metaTitle?: StringNullableFilter<"Category"> | string | null
     metaDescription?: StringNullableFilter<"Category"> | string | null
     canonicalTag?: StringNullableFilter<"Category"> | string | null
     breadcrumb?: StringNullableFilter<"Category"> | string | null
     posterImageUrl?: StringNullableFilter<"Category"> | string | null
     seoSchema?: StringNullableFilter<"Category"> | string | null
-    lastEditedBy?: StringNullableFilter<"Category"> | string | null
     status?: EnumContentStatusFilter<"Category"> | $Enums.ContentStatus
+    lastEditedBy?: StringNullableFilter<"Category"> | string | null
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
     products?: ProductListRelationFilter
@@ -13186,17 +14787,17 @@ export namespace Prisma {
   export type CategoryOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    description?: SortOrderInput | SortOrder
-    shortDescription?: SortOrderInput | SortOrder
     slug?: SortOrder
+    shortDescription?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     metaTitle?: SortOrderInput | SortOrder
     metaDescription?: SortOrderInput | SortOrder
     canonicalTag?: SortOrderInput | SortOrder
     breadcrumb?: SortOrderInput | SortOrder
     posterImageUrl?: SortOrderInput | SortOrder
     seoSchema?: SortOrderInput | SortOrder
-    lastEditedBy?: SortOrderInput | SortOrder
     status?: SortOrder
+    lastEditedBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     products?: ProductOrderByRelationAggregateInput
@@ -13210,16 +14811,16 @@ export namespace Prisma {
     AND?: CategoryWhereInput | CategoryWhereInput[]
     OR?: CategoryWhereInput[]
     NOT?: CategoryWhereInput | CategoryWhereInput[]
-    description?: StringNullableFilter<"Category"> | string | null
     shortDescription?: StringNullableFilter<"Category"> | string | null
+    description?: StringNullableFilter<"Category"> | string | null
     metaTitle?: StringNullableFilter<"Category"> | string | null
     metaDescription?: StringNullableFilter<"Category"> | string | null
     canonicalTag?: StringNullableFilter<"Category"> | string | null
     breadcrumb?: StringNullableFilter<"Category"> | string | null
     posterImageUrl?: StringNullableFilter<"Category"> | string | null
     seoSchema?: StringNullableFilter<"Category"> | string | null
-    lastEditedBy?: StringNullableFilter<"Category"> | string | null
     status?: EnumContentStatusFilter<"Category"> | $Enums.ContentStatus
+    lastEditedBy?: StringNullableFilter<"Category"> | string | null
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
     products?: ProductListRelationFilter
@@ -13229,17 +14830,17 @@ export namespace Prisma {
   export type CategoryOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    description?: SortOrderInput | SortOrder
-    shortDescription?: SortOrderInput | SortOrder
     slug?: SortOrder
+    shortDescription?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     metaTitle?: SortOrderInput | SortOrder
     metaDescription?: SortOrderInput | SortOrder
     canonicalTag?: SortOrderInput | SortOrder
     breadcrumb?: SortOrderInput | SortOrder
     posterImageUrl?: SortOrderInput | SortOrder
     seoSchema?: SortOrderInput | SortOrder
-    lastEditedBy?: SortOrderInput | SortOrder
     status?: SortOrder
+    lastEditedBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: CategoryCountOrderByAggregateInput
@@ -13253,17 +14854,17 @@ export namespace Prisma {
     NOT?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"Category"> | string
     name?: StringWithAggregatesFilter<"Category"> | string
-    description?: StringNullableWithAggregatesFilter<"Category"> | string | null
-    shortDescription?: StringNullableWithAggregatesFilter<"Category"> | string | null
     slug?: StringWithAggregatesFilter<"Category"> | string
+    shortDescription?: StringNullableWithAggregatesFilter<"Category"> | string | null
+    description?: StringNullableWithAggregatesFilter<"Category"> | string | null
     metaTitle?: StringNullableWithAggregatesFilter<"Category"> | string | null
     metaDescription?: StringNullableWithAggregatesFilter<"Category"> | string | null
     canonicalTag?: StringNullableWithAggregatesFilter<"Category"> | string | null
     breadcrumb?: StringNullableWithAggregatesFilter<"Category"> | string | null
     posterImageUrl?: StringNullableWithAggregatesFilter<"Category"> | string | null
     seoSchema?: StringNullableWithAggregatesFilter<"Category"> | string | null
-    lastEditedBy?: StringNullableWithAggregatesFilter<"Category"> | string | null
     status?: EnumContentStatusWithAggregatesFilter<"Category"> | $Enums.ContentStatus
+    lastEditedBy?: StringNullableWithAggregatesFilter<"Category"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
   }
@@ -13275,17 +14876,17 @@ export namespace Prisma {
     id?: UuidFilter<"Subcategory"> | string
     categoryId?: UuidFilter<"Subcategory"> | string
     name?: StringFilter<"Subcategory"> | string
-    description?: StringNullableFilter<"Subcategory"> | string | null
-    shortDescription?: StringNullableFilter<"Subcategory"> | string | null
     slug?: StringFilter<"Subcategory"> | string
+    shortDescription?: StringNullableFilter<"Subcategory"> | string | null
+    description?: StringNullableFilter<"Subcategory"> | string | null
     metaTitle?: StringNullableFilter<"Subcategory"> | string | null
     metaDescription?: StringNullableFilter<"Subcategory"> | string | null
     canonicalTag?: StringNullableFilter<"Subcategory"> | string | null
     breadcrumb?: StringNullableFilter<"Subcategory"> | string | null
     posterImageUrl?: StringNullableFilter<"Subcategory"> | string | null
     seoSchema?: StringNullableFilter<"Subcategory"> | string | null
-    lastEditedBy?: StringNullableFilter<"Subcategory"> | string | null
     status?: EnumContentStatusFilter<"Subcategory"> | $Enums.ContentStatus
+    lastEditedBy?: StringNullableFilter<"Subcategory"> | string | null
     createdAt?: DateTimeFilter<"Subcategory"> | Date | string
     updatedAt?: DateTimeFilter<"Subcategory"> | Date | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
@@ -13296,17 +14897,17 @@ export namespace Prisma {
     id?: SortOrder
     categoryId?: SortOrder
     name?: SortOrder
-    description?: SortOrderInput | SortOrder
-    shortDescription?: SortOrderInput | SortOrder
     slug?: SortOrder
+    shortDescription?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     metaTitle?: SortOrderInput | SortOrder
     metaDescription?: SortOrderInput | SortOrder
     canonicalTag?: SortOrderInput | SortOrder
     breadcrumb?: SortOrderInput | SortOrder
     posterImageUrl?: SortOrderInput | SortOrder
     seoSchema?: SortOrderInput | SortOrder
-    lastEditedBy?: SortOrderInput | SortOrder
     status?: SortOrder
+    lastEditedBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     category?: CategoryOrderByWithRelationInput
@@ -13315,43 +14916,44 @@ export namespace Prisma {
 
   export type SubcategoryWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    categoryId_slug?: SubcategoryCategoryIdSlugCompoundUniqueInput
     AND?: SubcategoryWhereInput | SubcategoryWhereInput[]
     OR?: SubcategoryWhereInput[]
     NOT?: SubcategoryWhereInput | SubcategoryWhereInput[]
     categoryId?: UuidFilter<"Subcategory"> | string
     name?: StringFilter<"Subcategory"> | string
-    description?: StringNullableFilter<"Subcategory"> | string | null
-    shortDescription?: StringNullableFilter<"Subcategory"> | string | null
     slug?: StringFilter<"Subcategory"> | string
+    shortDescription?: StringNullableFilter<"Subcategory"> | string | null
+    description?: StringNullableFilter<"Subcategory"> | string | null
     metaTitle?: StringNullableFilter<"Subcategory"> | string | null
     metaDescription?: StringNullableFilter<"Subcategory"> | string | null
     canonicalTag?: StringNullableFilter<"Subcategory"> | string | null
     breadcrumb?: StringNullableFilter<"Subcategory"> | string | null
     posterImageUrl?: StringNullableFilter<"Subcategory"> | string | null
     seoSchema?: StringNullableFilter<"Subcategory"> | string | null
-    lastEditedBy?: StringNullableFilter<"Subcategory"> | string | null
     status?: EnumContentStatusFilter<"Subcategory"> | $Enums.ContentStatus
+    lastEditedBy?: StringNullableFilter<"Subcategory"> | string | null
     createdAt?: DateTimeFilter<"Subcategory"> | Date | string
     updatedAt?: DateTimeFilter<"Subcategory"> | Date | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
     products?: ProductListRelationFilter
-  }, "id">
+  }, "id" | "categoryId_slug">
 
   export type SubcategoryOrderByWithAggregationInput = {
     id?: SortOrder
     categoryId?: SortOrder
     name?: SortOrder
-    description?: SortOrderInput | SortOrder
-    shortDescription?: SortOrderInput | SortOrder
     slug?: SortOrder
+    shortDescription?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     metaTitle?: SortOrderInput | SortOrder
     metaDescription?: SortOrderInput | SortOrder
     canonicalTag?: SortOrderInput | SortOrder
     breadcrumb?: SortOrderInput | SortOrder
     posterImageUrl?: SortOrderInput | SortOrder
     seoSchema?: SortOrderInput | SortOrder
-    lastEditedBy?: SortOrderInput | SortOrder
     status?: SortOrder
+    lastEditedBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: SubcategoryCountOrderByAggregateInput
@@ -13366,17 +14968,17 @@ export namespace Prisma {
     id?: UuidWithAggregatesFilter<"Subcategory"> | string
     categoryId?: UuidWithAggregatesFilter<"Subcategory"> | string
     name?: StringWithAggregatesFilter<"Subcategory"> | string
-    description?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
-    shortDescription?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
     slug?: StringWithAggregatesFilter<"Subcategory"> | string
+    shortDescription?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
+    description?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
     metaTitle?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
     metaDescription?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
     canonicalTag?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
     breadcrumb?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
     posterImageUrl?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
     seoSchema?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
-    lastEditedBy?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
     status?: EnumContentStatusWithAggregatesFilter<"Subcategory"> | $Enums.ContentStatus
+    lastEditedBy?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Subcategory"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Subcategory"> | Date | string
   }
@@ -13388,139 +14990,147 @@ export namespace Prisma {
     id?: UuidFilter<"Product"> | string
     categoryId?: UuidFilter<"Product"> | string
     subcategoryId?: UuidFilter<"Product"> | string
+    sku?: StringFilter<"Product"> | string
     name?: StringFilter<"Product"> | string
-    description?: StringNullableFilter<"Product"> | string | null
-    shortDescription?: StringNullableFilter<"Product"> | string | null
     slug?: StringFilter<"Product"> | string
-    metaTitle?: StringNullableFilter<"Product"> | string | null
-    metaDescription?: StringNullableFilter<"Product"> | string | null
-    canonicalTag?: StringNullableFilter<"Product"> | string | null
-    breadcrumb?: StringNullableFilter<"Product"> | string | null
+    shortDescription?: StringNullableFilter<"Product"> | string | null
+    description?: StringNullableFilter<"Product"> | string | null
     posterImageUrl?: StringFilter<"Product"> | string
-    seoSchema?: StringNullableFilter<"Product"> | string | null
     productImages?: StringNullableListFilter<"Product">
     price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    stock?: IntFilter<"Product"> | number
-    height?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    width?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    minHeight?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    maxHeight?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    minWidth?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    maxWidth?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     color?: StringNullableFilter<"Product"> | string | null
     pattern?: StringNullableFilter<"Product"> | string | null
     composition?: StringNullableFilter<"Product"> | string | null
     isMotorized?: BoolFilter<"Product"> | boolean
     additionalInfo?: StringNullableFilter<"Product"> | string | null
     measuringGuide?: StringNullableFilter<"Product"> | string | null
-    lastEditedBy?: StringNullableFilter<"Product"> | string | null
+    metaTitle?: StringNullableFilter<"Product"> | string | null
+    metaDescription?: StringNullableFilter<"Product"> | string | null
+    canonicalTag?: StringNullableFilter<"Product"> | string | null
+    breadcrumb?: StringNullableFilter<"Product"> | string | null
+    seoSchema?: StringNullableFilter<"Product"> | string | null
     status?: EnumContentStatusFilter<"Product"> | $Enums.ContentStatus
+    lastEditedBy?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
     subcategory?: XOR<SubcategoryScalarRelationFilter, SubcategoryWhereInput>
+    orderItems?: OrderItemListRelationFilter
   }
 
   export type ProductOrderByWithRelationInput = {
     id?: SortOrder
     categoryId?: SortOrder
     subcategoryId?: SortOrder
+    sku?: SortOrder
     name?: SortOrder
-    description?: SortOrderInput | SortOrder
-    shortDescription?: SortOrderInput | SortOrder
     slug?: SortOrder
-    metaTitle?: SortOrderInput | SortOrder
-    metaDescription?: SortOrderInput | SortOrder
-    canonicalTag?: SortOrderInput | SortOrder
-    breadcrumb?: SortOrderInput | SortOrder
+    shortDescription?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     posterImageUrl?: SortOrder
-    seoSchema?: SortOrderInput | SortOrder
     productImages?: SortOrder
     price?: SortOrder
-    discountPrice?: SortOrder
     motorPrice?: SortOrder
-    stock?: SortOrder
-    height?: SortOrder
-    width?: SortOrder
+    minHeight?: SortOrder
+    maxHeight?: SortOrder
+    minWidth?: SortOrder
+    maxWidth?: SortOrder
     color?: SortOrderInput | SortOrder
     pattern?: SortOrderInput | SortOrder
     composition?: SortOrderInput | SortOrder
     isMotorized?: SortOrder
     additionalInfo?: SortOrderInput | SortOrder
     measuringGuide?: SortOrderInput | SortOrder
-    lastEditedBy?: SortOrderInput | SortOrder
+    metaTitle?: SortOrderInput | SortOrder
+    metaDescription?: SortOrderInput | SortOrder
+    canonicalTag?: SortOrderInput | SortOrder
+    breadcrumb?: SortOrderInput | SortOrder
+    seoSchema?: SortOrderInput | SortOrder
     status?: SortOrder
+    lastEditedBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     category?: CategoryOrderByWithRelationInput
     subcategory?: SubcategoryOrderByWithRelationInput
+    orderItems?: OrderItemOrderByRelationAggregateInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    sku?: string
+    subcategoryId_slug?: ProductSubcategoryIdSlugCompoundUniqueInput
     AND?: ProductWhereInput | ProductWhereInput[]
     OR?: ProductWhereInput[]
     NOT?: ProductWhereInput | ProductWhereInput[]
     categoryId?: UuidFilter<"Product"> | string
     subcategoryId?: UuidFilter<"Product"> | string
     name?: StringFilter<"Product"> | string
-    description?: StringNullableFilter<"Product"> | string | null
-    shortDescription?: StringNullableFilter<"Product"> | string | null
     slug?: StringFilter<"Product"> | string
-    metaTitle?: StringNullableFilter<"Product"> | string | null
-    metaDescription?: StringNullableFilter<"Product"> | string | null
-    canonicalTag?: StringNullableFilter<"Product"> | string | null
-    breadcrumb?: StringNullableFilter<"Product"> | string | null
+    shortDescription?: StringNullableFilter<"Product"> | string | null
+    description?: StringNullableFilter<"Product"> | string | null
     posterImageUrl?: StringFilter<"Product"> | string
-    seoSchema?: StringNullableFilter<"Product"> | string | null
     productImages?: StringNullableListFilter<"Product">
     price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    stock?: IntFilter<"Product"> | number
-    height?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    width?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    minHeight?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    maxHeight?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    minWidth?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    maxWidth?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     color?: StringNullableFilter<"Product"> | string | null
     pattern?: StringNullableFilter<"Product"> | string | null
     composition?: StringNullableFilter<"Product"> | string | null
     isMotorized?: BoolFilter<"Product"> | boolean
     additionalInfo?: StringNullableFilter<"Product"> | string | null
     measuringGuide?: StringNullableFilter<"Product"> | string | null
-    lastEditedBy?: StringNullableFilter<"Product"> | string | null
+    metaTitle?: StringNullableFilter<"Product"> | string | null
+    metaDescription?: StringNullableFilter<"Product"> | string | null
+    canonicalTag?: StringNullableFilter<"Product"> | string | null
+    breadcrumb?: StringNullableFilter<"Product"> | string | null
+    seoSchema?: StringNullableFilter<"Product"> | string | null
     status?: EnumContentStatusFilter<"Product"> | $Enums.ContentStatus
+    lastEditedBy?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
     subcategory?: XOR<SubcategoryScalarRelationFilter, SubcategoryWhereInput>
-  }, "id">
+    orderItems?: OrderItemListRelationFilter
+  }, "id" | "sku" | "subcategoryId_slug">
 
   export type ProductOrderByWithAggregationInput = {
     id?: SortOrder
     categoryId?: SortOrder
     subcategoryId?: SortOrder
+    sku?: SortOrder
     name?: SortOrder
-    description?: SortOrderInput | SortOrder
-    shortDescription?: SortOrderInput | SortOrder
     slug?: SortOrder
-    metaTitle?: SortOrderInput | SortOrder
-    metaDescription?: SortOrderInput | SortOrder
-    canonicalTag?: SortOrderInput | SortOrder
-    breadcrumb?: SortOrderInput | SortOrder
+    shortDescription?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     posterImageUrl?: SortOrder
-    seoSchema?: SortOrderInput | SortOrder
     productImages?: SortOrder
     price?: SortOrder
-    discountPrice?: SortOrder
     motorPrice?: SortOrder
-    stock?: SortOrder
-    height?: SortOrder
-    width?: SortOrder
+    minHeight?: SortOrder
+    maxHeight?: SortOrder
+    minWidth?: SortOrder
+    maxWidth?: SortOrder
     color?: SortOrderInput | SortOrder
     pattern?: SortOrderInput | SortOrder
     composition?: SortOrderInput | SortOrder
     isMotorized?: SortOrder
     additionalInfo?: SortOrderInput | SortOrder
     measuringGuide?: SortOrderInput | SortOrder
-    lastEditedBy?: SortOrderInput | SortOrder
+    metaTitle?: SortOrderInput | SortOrder
+    metaDescription?: SortOrderInput | SortOrder
+    canonicalTag?: SortOrderInput | SortOrder
+    breadcrumb?: SortOrderInput | SortOrder
+    seoSchema?: SortOrderInput | SortOrder
     status?: SortOrder
+    lastEditedBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ProductCountOrderByAggregateInput
@@ -13537,31 +15147,32 @@ export namespace Prisma {
     id?: UuidWithAggregatesFilter<"Product"> | string
     categoryId?: UuidWithAggregatesFilter<"Product"> | string
     subcategoryId?: UuidWithAggregatesFilter<"Product"> | string
+    sku?: StringWithAggregatesFilter<"Product"> | string
     name?: StringWithAggregatesFilter<"Product"> | string
-    description?: StringNullableWithAggregatesFilter<"Product"> | string | null
-    shortDescription?: StringNullableWithAggregatesFilter<"Product"> | string | null
     slug?: StringWithAggregatesFilter<"Product"> | string
-    metaTitle?: StringNullableWithAggregatesFilter<"Product"> | string | null
-    metaDescription?: StringNullableWithAggregatesFilter<"Product"> | string | null
-    canonicalTag?: StringNullableWithAggregatesFilter<"Product"> | string | null
-    breadcrumb?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    shortDescription?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    description?: StringNullableWithAggregatesFilter<"Product"> | string | null
     posterImageUrl?: StringWithAggregatesFilter<"Product"> | string
-    seoSchema?: StringNullableWithAggregatesFilter<"Product"> | string | null
     productImages?: StringNullableListFilter<"Product">
     price?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    stock?: IntWithAggregatesFilter<"Product"> | number
-    height?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    width?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    minHeight?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    maxHeight?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    minWidth?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    maxWidth?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
     color?: StringNullableWithAggregatesFilter<"Product"> | string | null
     pattern?: StringNullableWithAggregatesFilter<"Product"> | string | null
     composition?: StringNullableWithAggregatesFilter<"Product"> | string | null
     isMotorized?: BoolWithAggregatesFilter<"Product"> | boolean
     additionalInfo?: StringNullableWithAggregatesFilter<"Product"> | string | null
     measuringGuide?: StringNullableWithAggregatesFilter<"Product"> | string | null
-    lastEditedBy?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    metaTitle?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    metaDescription?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    canonicalTag?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    breadcrumb?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    seoSchema?: StringNullableWithAggregatesFilter<"Product"> | string | null
     status?: EnumContentStatusWithAggregatesFilter<"Product"> | $Enums.ContentStatus
+    lastEditedBy?: StringNullableWithAggregatesFilter<"Product"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
   }
@@ -13576,20 +15187,20 @@ export namespace Prisma {
     lastName?: StringFilter<"Order"> | string
     email?: StringFilter<"Order"> | string
     phone?: StringFilter<"Order"> | string
+    address?: StringFilter<"Order"> | string
+    city?: StringFilter<"Order"> | string
     state?: StringFilter<"Order"> | string
     country?: StringFilter<"Order"> | string
-    city?: StringFilter<"Order"> | string
-    address?: StringFilter<"Order"> | string
     totalAmount?: DecimalFilter<"Order"> | Decimal | DecimalJsLike | number | string
     shippingCost?: DecimalFilter<"Order"> | Decimal | DecimalJsLike | number | string
-    items?: JsonNullableListFilter<"Order">
     notes?: StringNullableFilter<"Order"> | string | null
-    lastEditedBy?: StringNullableFilter<"Order"> | string | null
     paymentStatus?: EnumPaymentStatusFilter<"Order"> | $Enums.PaymentStatus
     orderStatus?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
+    lastEditedBy?: StringNullableFilter<"Order"> | string | null
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    orderItems?: OrderItemListRelationFilter
   }
 
   export type OrderOrderByWithRelationInput = {
@@ -13599,20 +15210,20 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    address?: SortOrder
+    city?: SortOrder
     state?: SortOrder
     country?: SortOrder
-    city?: SortOrder
-    address?: SortOrder
     totalAmount?: SortOrder
     shippingCost?: SortOrder
-    items?: SortOrder
     notes?: SortOrderInput | SortOrder
-    lastEditedBy?: SortOrderInput | SortOrder
     paymentStatus?: SortOrder
     orderStatus?: SortOrder
+    lastEditedBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
+    orderItems?: OrderItemOrderByRelationAggregateInput
   }
 
   export type OrderWhereUniqueInput = Prisma.AtLeast<{
@@ -13625,20 +15236,20 @@ export namespace Prisma {
     lastName?: StringFilter<"Order"> | string
     email?: StringFilter<"Order"> | string
     phone?: StringFilter<"Order"> | string
+    address?: StringFilter<"Order"> | string
+    city?: StringFilter<"Order"> | string
     state?: StringFilter<"Order"> | string
     country?: StringFilter<"Order"> | string
-    city?: StringFilter<"Order"> | string
-    address?: StringFilter<"Order"> | string
     totalAmount?: DecimalFilter<"Order"> | Decimal | DecimalJsLike | number | string
     shippingCost?: DecimalFilter<"Order"> | Decimal | DecimalJsLike | number | string
-    items?: JsonNullableListFilter<"Order">
     notes?: StringNullableFilter<"Order"> | string | null
-    lastEditedBy?: StringNullableFilter<"Order"> | string | null
     paymentStatus?: EnumPaymentStatusFilter<"Order"> | $Enums.PaymentStatus
     orderStatus?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
+    lastEditedBy?: StringNullableFilter<"Order"> | string | null
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    orderItems?: OrderItemListRelationFilter
   }, "id">
 
   export type OrderOrderByWithAggregationInput = {
@@ -13648,17 +15259,16 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    address?: SortOrder
+    city?: SortOrder
     state?: SortOrder
     country?: SortOrder
-    city?: SortOrder
-    address?: SortOrder
     totalAmount?: SortOrder
     shippingCost?: SortOrder
-    items?: SortOrder
     notes?: SortOrderInput | SortOrder
-    lastEditedBy?: SortOrderInput | SortOrder
     paymentStatus?: SortOrder
     orderStatus?: SortOrder
+    lastEditedBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: OrderCountOrderByAggregateInput
@@ -13678,19 +15288,138 @@ export namespace Prisma {
     lastName?: StringWithAggregatesFilter<"Order"> | string
     email?: StringWithAggregatesFilter<"Order"> | string
     phone?: StringWithAggregatesFilter<"Order"> | string
+    address?: StringWithAggregatesFilter<"Order"> | string
+    city?: StringWithAggregatesFilter<"Order"> | string
     state?: StringWithAggregatesFilter<"Order"> | string
     country?: StringWithAggregatesFilter<"Order"> | string
-    city?: StringWithAggregatesFilter<"Order"> | string
-    address?: StringWithAggregatesFilter<"Order"> | string
     totalAmount?: DecimalWithAggregatesFilter<"Order"> | Decimal | DecimalJsLike | number | string
     shippingCost?: DecimalWithAggregatesFilter<"Order"> | Decimal | DecimalJsLike | number | string
-    items?: JsonNullableListFilter<"Order">
     notes?: StringNullableWithAggregatesFilter<"Order"> | string | null
-    lastEditedBy?: StringNullableWithAggregatesFilter<"Order"> | string | null
     paymentStatus?: EnumPaymentStatusWithAggregatesFilter<"Order"> | $Enums.PaymentStatus
     orderStatus?: EnumOrderStatusWithAggregatesFilter<"Order"> | $Enums.OrderStatus
+    lastEditedBy?: StringNullableWithAggregatesFilter<"Order"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
+  }
+
+  export type OrderItemWhereInput = {
+    AND?: OrderItemWhereInput | OrderItemWhereInput[]
+    OR?: OrderItemWhereInput[]
+    NOT?: OrderItemWhereInput | OrderItemWhereInput[]
+    id?: StringFilter<"OrderItem"> | string
+    orderId?: UuidFilter<"OrderItem"> | string
+    productId?: UuidNullableFilter<"OrderItem"> | string | null
+    sku?: StringFilter<"OrderItem"> | string
+    name?: StringFilter<"OrderItem"> | string
+    slug?: StringFilter<"OrderItem"> | string
+    categoryUrl?: StringFilter<"OrderItem"> | string
+    subcategoryUrl?: StringFilter<"OrderItem"> | string
+    price?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    height?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    width?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    isMotorized?: BoolFilter<"OrderItem"> | boolean
+    motorPrice?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    color?: StringNullableFilter<"OrderItem"> | string | null
+    pattern?: StringNullableFilter<"OrderItem"> | string | null
+    composition?: StringNullableFilter<"OrderItem"> | string | null
+    posterImageUrl?: StringNullableFilter<"OrderItem"> | string | null
+    order?: XOR<OrderScalarRelationFilter, OrderWhereInput>
+    product?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
+  }
+
+  export type OrderItemOrderByWithRelationInput = {
+    id?: SortOrder
+    orderId?: SortOrder
+    productId?: SortOrderInput | SortOrder
+    sku?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    categoryUrl?: SortOrder
+    subcategoryUrl?: SortOrder
+    price?: SortOrder
+    height?: SortOrder
+    width?: SortOrder
+    isMotorized?: SortOrder
+    motorPrice?: SortOrder
+    color?: SortOrderInput | SortOrder
+    pattern?: SortOrderInput | SortOrder
+    composition?: SortOrderInput | SortOrder
+    posterImageUrl?: SortOrderInput | SortOrder
+    order?: OrderOrderByWithRelationInput
+    product?: ProductOrderByWithRelationInput
+  }
+
+  export type OrderItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: OrderItemWhereInput | OrderItemWhereInput[]
+    OR?: OrderItemWhereInput[]
+    NOT?: OrderItemWhereInput | OrderItemWhereInput[]
+    orderId?: UuidFilter<"OrderItem"> | string
+    productId?: UuidNullableFilter<"OrderItem"> | string | null
+    sku?: StringFilter<"OrderItem"> | string
+    name?: StringFilter<"OrderItem"> | string
+    slug?: StringFilter<"OrderItem"> | string
+    categoryUrl?: StringFilter<"OrderItem"> | string
+    subcategoryUrl?: StringFilter<"OrderItem"> | string
+    price?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    height?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    width?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    isMotorized?: BoolFilter<"OrderItem"> | boolean
+    motorPrice?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    color?: StringNullableFilter<"OrderItem"> | string | null
+    pattern?: StringNullableFilter<"OrderItem"> | string | null
+    composition?: StringNullableFilter<"OrderItem"> | string | null
+    posterImageUrl?: StringNullableFilter<"OrderItem"> | string | null
+    order?: XOR<OrderScalarRelationFilter, OrderWhereInput>
+    product?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
+  }, "id">
+
+  export type OrderItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    orderId?: SortOrder
+    productId?: SortOrderInput | SortOrder
+    sku?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    categoryUrl?: SortOrder
+    subcategoryUrl?: SortOrder
+    price?: SortOrder
+    height?: SortOrder
+    width?: SortOrder
+    isMotorized?: SortOrder
+    motorPrice?: SortOrder
+    color?: SortOrderInput | SortOrder
+    pattern?: SortOrderInput | SortOrder
+    composition?: SortOrderInput | SortOrder
+    posterImageUrl?: SortOrderInput | SortOrder
+    _count?: OrderItemCountOrderByAggregateInput
+    _avg?: OrderItemAvgOrderByAggregateInput
+    _max?: OrderItemMaxOrderByAggregateInput
+    _min?: OrderItemMinOrderByAggregateInput
+    _sum?: OrderItemSumOrderByAggregateInput
+  }
+
+  export type OrderItemScalarWhereWithAggregatesInput = {
+    AND?: OrderItemScalarWhereWithAggregatesInput | OrderItemScalarWhereWithAggregatesInput[]
+    OR?: OrderItemScalarWhereWithAggregatesInput[]
+    NOT?: OrderItemScalarWhereWithAggregatesInput | OrderItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"OrderItem"> | string
+    orderId?: UuidWithAggregatesFilter<"OrderItem"> | string
+    productId?: UuidNullableWithAggregatesFilter<"OrderItem"> | string | null
+    sku?: StringWithAggregatesFilter<"OrderItem"> | string
+    name?: StringWithAggregatesFilter<"OrderItem"> | string
+    slug?: StringWithAggregatesFilter<"OrderItem"> | string
+    categoryUrl?: StringWithAggregatesFilter<"OrderItem"> | string
+    subcategoryUrl?: StringWithAggregatesFilter<"OrderItem"> | string
+    price?: DecimalWithAggregatesFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    height?: DecimalWithAggregatesFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    width?: DecimalWithAggregatesFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    isMotorized?: BoolWithAggregatesFilter<"OrderItem"> | boolean
+    motorPrice?: DecimalWithAggregatesFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    color?: StringNullableWithAggregatesFilter<"OrderItem"> | string | null
+    pattern?: StringNullableWithAggregatesFilter<"OrderItem"> | string | null
+    composition?: StringNullableWithAggregatesFilter<"OrderItem"> | string | null
+    posterImageUrl?: StringNullableWithAggregatesFilter<"OrderItem"> | string | null
   }
 
   export type InquiryWhereInput = {
@@ -13770,8 +15499,8 @@ export namespace Prisma {
     name: string
     email: string
     password: string
+    role?: $Enums.AdminRole
     permissions?: AdminCreatepermissionsInput | $Enums.Permissions[]
-    role?: $Enums.Role
     lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13782,8 +15511,8 @@ export namespace Prisma {
     name: string
     email: string
     password: string
+    role?: $Enums.AdminRole
     permissions?: AdminCreatepermissionsInput | $Enums.Permissions[]
-    role?: $Enums.Role
     lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13794,8 +15523,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     permissions?: AdminUpdatepermissionsInput | $Enums.Permissions[]
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13806,8 +15535,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     permissions?: AdminUpdatepermissionsInput | $Enums.Permissions[]
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13818,8 +15547,8 @@ export namespace Prisma {
     name: string
     email: string
     password: string
+    role?: $Enums.AdminRole
     permissions?: AdminCreatepermissionsInput | $Enums.Permissions[]
-    role?: $Enums.Role
     lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13830,8 +15559,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     permissions?: AdminUpdatepermissionsInput | $Enums.Permissions[]
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13842,8 +15571,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    role?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
     permissions?: AdminUpdatepermissionsInput | $Enums.Permissions[]
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13855,26 +15584,24 @@ export namespace Prisma {
     lastName: string
     email: string
     password: string
-    role?: $Enums.Role
     isEmailVerified?: boolean
-    defaultShippingAddressId?: string
-    defaultBillingAddressId?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     addresses?: AddressCreateNestedManyWithoutUserInput
     orders?: OrderCreateNestedManyWithoutUserInput
+    defaultShippingAddress?: AddressCreateNestedOneWithoutDefaultShippingForInput
+    defaultBillingAddress?: AddressCreateNestedOneWithoutDefaultBillingForInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: string
+    defaultShippingAddressId?: string | null
+    defaultBillingAddressId?: string | null
     firstName: string
     lastName: string
     email: string
     password: string
-    role?: $Enums.Role
     isEmailVerified?: boolean
-    defaultShippingAddressId?: string
-    defaultBillingAddressId?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
@@ -13887,26 +15614,24 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
-    defaultShippingAddressId?: StringFieldUpdateOperationsInput | string
-    defaultBillingAddressId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUpdateManyWithoutUserNestedInput
     orders?: OrderUpdateManyWithoutUserNestedInput
+    defaultShippingAddress?: AddressUpdateOneWithoutDefaultShippingForNestedInput
+    defaultBillingAddress?: AddressUpdateOneWithoutDefaultBillingForNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    defaultShippingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultBillingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
-    defaultShippingAddressId?: StringFieldUpdateOperationsInput | string
-    defaultBillingAddressId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
@@ -13915,14 +15640,13 @@ export namespace Prisma {
 
   export type UserCreateManyInput = {
     id?: string
+    defaultShippingAddressId?: string | null
+    defaultBillingAddressId?: string | null
     firstName: string
     lastName: string
     email: string
     password: string
-    role?: $Enums.Role
     isEmailVerified?: boolean
-    defaultShippingAddressId?: string
-    defaultBillingAddressId?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13933,24 +15657,20 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
-    defaultShippingAddressId?: StringFieldUpdateOperationsInput | string
-    defaultBillingAddressId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    defaultShippingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultBillingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
-    defaultShippingAddressId?: StringFieldUpdateOperationsInput | string
-    defaultBillingAddressId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13961,14 +15681,16 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    address: string
+    city: string
     state: string
     country: string
-    city: string
-    address: string
     addressType?: $Enums.AddressType
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutAddressesInput
+    defaultShippingFor?: UserCreateNestedOneWithoutDefaultShippingAddressInput
+    defaultBillingFor?: UserCreateNestedOneWithoutDefaultBillingAddressInput
   }
 
   export type AddressUncheckedCreateInput = {
@@ -13978,13 +15700,15 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    address: string
+    city: string
     state: string
     country: string
-    city: string
-    address: string
     addressType?: $Enums.AddressType
     createdAt?: Date | string
     updatedAt?: Date | string
+    defaultShippingFor?: UserUncheckedCreateNestedOneWithoutDefaultShippingAddressInput
+    defaultBillingFor?: UserUncheckedCreateNestedOneWithoutDefaultBillingAddressInput
   }
 
   export type AddressUpdateInput = {
@@ -13993,14 +15717,16 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
     addressType?: EnumAddressTypeFieldUpdateOperationsInput | $Enums.AddressType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutAddressesNestedInput
+    defaultShippingFor?: UserUpdateOneWithoutDefaultShippingAddressNestedInput
+    defaultBillingFor?: UserUpdateOneWithoutDefaultBillingAddressNestedInput
   }
 
   export type AddressUncheckedUpdateInput = {
@@ -14010,13 +15736,15 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
     addressType?: EnumAddressTypeFieldUpdateOperationsInput | $Enums.AddressType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    defaultShippingFor?: UserUncheckedUpdateOneWithoutDefaultShippingAddressNestedInput
+    defaultBillingFor?: UserUncheckedUpdateOneWithoutDefaultBillingAddressNestedInput
   }
 
   export type AddressCreateManyInput = {
@@ -14026,10 +15754,10 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    address: string
+    city: string
     state: string
     country: string
-    city: string
-    address: string
     addressType?: $Enums.AddressType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14041,10 +15769,10 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
     addressType?: EnumAddressTypeFieldUpdateOperationsInput | $Enums.AddressType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14057,10 +15785,10 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
     addressType?: EnumAddressTypeFieldUpdateOperationsInput | $Enums.AddressType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14125,17 +15853,17 @@ export namespace Prisma {
   export type CategoryCreateInput = {
     id?: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
+    shortDescription?: string | null
+    description?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
     posterImageUrl?: string | null
     seoSchema?: string | null
-    lastEditedBy?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductCreateNestedManyWithoutCategoryInput
@@ -14145,17 +15873,17 @@ export namespace Prisma {
   export type CategoryUncheckedCreateInput = {
     id?: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
+    shortDescription?: string | null
+    description?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
     posterImageUrl?: string | null
     seoSchema?: string | null
-    lastEditedBy?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductUncheckedCreateNestedManyWithoutCategoryInput
@@ -14165,17 +15893,17 @@ export namespace Prisma {
   export type CategoryUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUpdateManyWithoutCategoryNestedInput
@@ -14185,17 +15913,17 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUncheckedUpdateManyWithoutCategoryNestedInput
@@ -14205,17 +15933,17 @@ export namespace Prisma {
   export type CategoryCreateManyInput = {
     id?: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
+    shortDescription?: string | null
+    description?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
     posterImageUrl?: string | null
     seoSchema?: string | null
-    lastEditedBy?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -14223,17 +15951,17 @@ export namespace Prisma {
   export type CategoryUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14241,17 +15969,17 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14259,17 +15987,17 @@ export namespace Prisma {
   export type SubcategoryCreateInput = {
     id?: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
+    shortDescription?: string | null
+    description?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
     posterImageUrl?: string | null
     seoSchema?: string | null
-    lastEditedBy?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     category: CategoryCreateNestedOneWithoutSubcategoriesInput
@@ -14280,17 +16008,17 @@ export namespace Prisma {
     id?: string
     categoryId: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
+    shortDescription?: string | null
+    description?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
     posterImageUrl?: string | null
     seoSchema?: string | null
-    lastEditedBy?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductUncheckedCreateNestedManyWithoutSubcategoryInput
@@ -14299,17 +16027,17 @@ export namespace Prisma {
   export type SubcategoryUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutSubcategoriesNestedInput
@@ -14320,17 +16048,17 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUncheckedUpdateManyWithoutSubcategoryNestedInput
@@ -14340,17 +16068,17 @@ export namespace Prisma {
     id?: string
     categoryId: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
+    shortDescription?: string | null
+    description?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
     posterImageUrl?: string | null
     seoSchema?: string | null
-    lastEditedBy?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -14358,17 +16086,17 @@ export namespace Prisma {
   export type SubcategoryUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14377,213 +16105,223 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProductCreateInput = {
     id?: string
+    sku: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
-    metaTitle?: string | null
-    metaDescription?: string | null
-    canonicalTag?: string | null
-    breadcrumb?: string | null
+    shortDescription?: string | null
+    description?: string | null
     posterImageUrl: string
-    seoSchema?: string | null
     productImages?: ProductCreateproductImagesInput | string[]
     price?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
-    stock?: number
-    height?: Decimal | DecimalJsLike | number | string
-    width?: Decimal | DecimalJsLike | number | string
+    minHeight?: Decimal | DecimalJsLike | number | string
+    maxHeight?: Decimal | DecimalJsLike | number | string
+    minWidth?: Decimal | DecimalJsLike | number | string
+    maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
     composition?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
-    lastEditedBy?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    canonicalTag?: string | null
+    breadcrumb?: string | null
+    seoSchema?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     category: CategoryCreateNestedOneWithoutProductsInput
     subcategory: SubcategoryCreateNestedOneWithoutProductsInput
+    orderItems?: OrderItemCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateInput = {
     id?: string
     categoryId: string
     subcategoryId: string
+    sku: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
-    metaTitle?: string | null
-    metaDescription?: string | null
-    canonicalTag?: string | null
-    breadcrumb?: string | null
+    shortDescription?: string | null
+    description?: string | null
     posterImageUrl: string
-    seoSchema?: string | null
     productImages?: ProductCreateproductImagesInput | string[]
     price?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
-    stock?: number
-    height?: Decimal | DecimalJsLike | number | string
-    width?: Decimal | DecimalJsLike | number | string
+    minHeight?: Decimal | DecimalJsLike | number | string
+    maxHeight?: Decimal | DecimalJsLike | number | string
+    minWidth?: Decimal | DecimalJsLike | number | string
+    maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
     composition?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
-    lastEditedBy?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    canonicalTag?: string | null
+    breadcrumb?: string | null
+    seoSchema?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
-    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
-    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     productImages?: ProductUpdateproductImagesInput | string[]
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    stock?: IntFieldUpdateOperationsInput | number
-    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
     subcategory?: SubcategoryUpdateOneRequiredWithoutProductsNestedInput
+    orderItems?: OrderItemUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
     subcategoryId?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
-    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
-    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     productImages?: ProductUpdateproductImagesInput | string[]
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    stock?: IntFieldUpdateOperationsInput | number
-    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductCreateManyInput = {
     id?: string
     categoryId: string
     subcategoryId: string
+    sku: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
-    metaTitle?: string | null
-    metaDescription?: string | null
-    canonicalTag?: string | null
-    breadcrumb?: string | null
+    shortDescription?: string | null
+    description?: string | null
     posterImageUrl: string
-    seoSchema?: string | null
     productImages?: ProductCreateproductImagesInput | string[]
     price?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
-    stock?: number
-    height?: Decimal | DecimalJsLike | number | string
-    width?: Decimal | DecimalJsLike | number | string
+    minHeight?: Decimal | DecimalJsLike | number | string
+    maxHeight?: Decimal | DecimalJsLike | number | string
+    minWidth?: Decimal | DecimalJsLike | number | string
+    maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
     composition?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
-    lastEditedBy?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    canonicalTag?: string | null
+    breadcrumb?: string | null
+    seoSchema?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type ProductUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
-    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
-    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     productImages?: ProductUpdateproductImagesInput | string[]
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    stock?: IntFieldUpdateOperationsInput | number
-    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14592,31 +16330,32 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
     subcategoryId?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
-    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
-    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     productImages?: ProductUpdateproductImagesInput | string[]
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    stock?: IntFieldUpdateOperationsInput | number
-    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14627,20 +16366,20 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    address: string
+    city: string
     state: string
     country: string
-    city: string
-    address: string
     totalAmount?: Decimal | DecimalJsLike | number | string
     shippingCost?: Decimal | DecimalJsLike | number | string
-    items?: OrderCreateitemsInput | InputJsonValue[]
     notes?: string | null
-    lastEditedBy?: string | null
     paymentStatus?: $Enums.PaymentStatus
     orderStatus?: $Enums.OrderStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutOrdersInput
+    orderItems?: OrderItemCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateInput = {
@@ -14650,19 +16389,19 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    address: string
+    city: string
     state: string
     country: string
-    city: string
-    address: string
     totalAmount?: Decimal | DecimalJsLike | number | string
     shippingCost?: Decimal | DecimalJsLike | number | string
-    items?: OrderCreateitemsInput | InputJsonValue[]
     notes?: string | null
-    lastEditedBy?: string | null
     paymentStatus?: $Enums.PaymentStatus
     orderStatus?: $Enums.OrderStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    orderItems?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUpdateInput = {
@@ -14671,20 +16410,20 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     shippingCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    items?: OrderUpdateitemsInput | InputJsonValue[]
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutOrdersNestedInput
+    orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateInput = {
@@ -14694,19 +16433,19 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     shippingCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    items?: OrderUpdateitemsInput | InputJsonValue[]
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orderItems?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderCreateManyInput = {
@@ -14716,17 +16455,16 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    address: string
+    city: string
     state: string
     country: string
-    city: string
-    address: string
     totalAmount?: Decimal | DecimalJsLike | number | string
     shippingCost?: Decimal | DecimalJsLike | number | string
-    items?: OrderCreateitemsInput | InputJsonValue[]
     notes?: string | null
-    lastEditedBy?: string | null
     paymentStatus?: $Enums.PaymentStatus
     orderStatus?: $Enums.OrderStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -14737,17 +16475,16 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     shippingCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    items?: OrderUpdateitemsInput | InputJsonValue[]
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14759,19 +16496,156 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     shippingCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    items?: OrderUpdateitemsInput | InputJsonValue[]
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderItemCreateInput = {
+    id?: string
+    sku: string
+    name: string
+    slug: string
+    categoryUrl: string
+    subcategoryUrl: string
+    price: Decimal | DecimalJsLike | number | string
+    height?: Decimal | DecimalJsLike | number | string
+    width?: Decimal | DecimalJsLike | number | string
+    isMotorized?: boolean
+    motorPrice?: Decimal | DecimalJsLike | number | string
+    color?: string | null
+    pattern?: string | null
+    composition?: string | null
+    posterImageUrl?: string | null
+    order: OrderCreateNestedOneWithoutOrderItemsInput
+    product?: ProductCreateNestedOneWithoutOrderItemsInput
+  }
+
+  export type OrderItemUncheckedCreateInput = {
+    id?: string
+    orderId: string
+    productId?: string | null
+    sku: string
+    name: string
+    slug: string
+    categoryUrl: string
+    subcategoryUrl: string
+    price: Decimal | DecimalJsLike | number | string
+    height?: Decimal | DecimalJsLike | number | string
+    width?: Decimal | DecimalJsLike | number | string
+    isMotorized?: boolean
+    motorPrice?: Decimal | DecimalJsLike | number | string
+    color?: string | null
+    pattern?: string | null
+    composition?: string | null
+    posterImageUrl?: string | null
+  }
+
+  export type OrderItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    categoryUrl?: StringFieldUpdateOperationsInput | string
+    subcategoryUrl?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isMotorized?: BoolFieldUpdateOperationsInput | boolean
+    motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    pattern?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: OrderUpdateOneRequiredWithoutOrderItemsNestedInput
+    product?: ProductUpdateOneWithoutOrderItemsNestedInput
+  }
+
+  export type OrderItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    orderId?: StringFieldUpdateOperationsInput | string
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    categoryUrl?: StringFieldUpdateOperationsInput | string
+    subcategoryUrl?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isMotorized?: BoolFieldUpdateOperationsInput | boolean
+    motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    pattern?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type OrderItemCreateManyInput = {
+    id?: string
+    orderId: string
+    productId?: string | null
+    sku: string
+    name: string
+    slug: string
+    categoryUrl: string
+    subcategoryUrl: string
+    price: Decimal | DecimalJsLike | number | string
+    height?: Decimal | DecimalJsLike | number | string
+    width?: Decimal | DecimalJsLike | number | string
+    isMotorized?: boolean
+    motorPrice?: Decimal | DecimalJsLike | number | string
+    color?: string | null
+    pattern?: string | null
+    composition?: string | null
+    posterImageUrl?: string | null
+  }
+
+  export type OrderItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    categoryUrl?: StringFieldUpdateOperationsInput | string
+    subcategoryUrl?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isMotorized?: BoolFieldUpdateOperationsInput | boolean
+    motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    pattern?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type OrderItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    orderId?: StringFieldUpdateOperationsInput | string
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    categoryUrl?: StringFieldUpdateOperationsInput | string
+    subcategoryUrl?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isMotorized?: BoolFieldUpdateOperationsInput | boolean
+    motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    pattern?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type InquiryCreateInput = {
@@ -14885,19 +16759,19 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type EnumAdminRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.AdminRole | EnumAdminRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.AdminRole[] | ListEnumAdminRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AdminRole[] | ListEnumAdminRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumAdminRoleFilter<$PrismaModel> | $Enums.AdminRole
+  }
+
   export type EnumPermissionsNullableListFilter<$PrismaModel = never> = {
     equals?: $Enums.Permissions[] | ListEnumPermissionsFieldRefInput<$PrismaModel> | null
     has?: $Enums.Permissions | EnumPermissionsFieldRefInput<$PrismaModel> | null
     hasEvery?: $Enums.Permissions[] | ListEnumPermissionsFieldRefInput<$PrismaModel>
     hasSome?: $Enums.Permissions[] | ListEnumPermissionsFieldRefInput<$PrismaModel>
     isEmpty?: boolean
-  }
-
-  export type EnumRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -14936,8 +16810,8 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     password?: SortOrder
-    permissions?: SortOrder
     role?: SortOrder
+    permissions?: SortOrder
     lastEditedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14998,14 +16872,14 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type EnumRoleWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+  export type EnumAdminRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AdminRole | EnumAdminRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.AdminRole[] | ListEnumAdminRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AdminRole[] | ListEnumAdminRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumAdminRoleWithAggregatesFilter<$PrismaModel> | $Enums.AdminRole
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumRoleFilter<$PrismaModel>
-    _max?: NestedEnumRoleFilter<$PrismaModel>
+    _min?: NestedEnumAdminRoleFilter<$PrismaModel>
+    _max?: NestedEnumAdminRoleFilter<$PrismaModel>
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -15040,6 +16914,18 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type UuidNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidNullableFilter<$PrismaModel> | string | null
+  }
+
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -15057,6 +16943,11 @@ export namespace Prisma {
     none?: OrderWhereInput
   }
 
+  export type AddressNullableScalarRelationFilter = {
+    is?: AddressWhereInput | null
+    isNot?: AddressWhereInput | null
+  }
+
   export type AddressOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -15067,44 +16958,56 @@ export namespace Prisma {
 
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
+    defaultShippingAddressId?: SortOrder
+    defaultBillingAddressId?: SortOrder
     firstName?: SortOrder
     lastName?: SortOrder
     email?: SortOrder
     password?: SortOrder
-    role?: SortOrder
     isEmailVerified?: SortOrder
-    defaultShippingAddressId?: SortOrder
-    defaultBillingAddressId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
+    defaultShippingAddressId?: SortOrder
+    defaultBillingAddressId?: SortOrder
     firstName?: SortOrder
     lastName?: SortOrder
     email?: SortOrder
     password?: SortOrder
-    role?: SortOrder
     isEmailVerified?: SortOrder
-    defaultShippingAddressId?: SortOrder
-    defaultBillingAddressId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
+    defaultShippingAddressId?: SortOrder
+    defaultBillingAddressId?: SortOrder
     firstName?: SortOrder
     lastName?: SortOrder
     email?: SortOrder
     password?: SortOrder
-    role?: SortOrder
     isEmailVerified?: SortOrder
-    defaultShippingAddressId?: SortOrder
-    defaultBillingAddressId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type UuidNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -15127,6 +17030,11 @@ export namespace Prisma {
     isNot?: UserWhereInput
   }
 
+  export type UserNullableScalarRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
   export type AddressCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -15134,10 +17042,10 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    address?: SortOrder
+    city?: SortOrder
     state?: SortOrder
     country?: SortOrder
-    city?: SortOrder
-    address?: SortOrder
     addressType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -15150,10 +17058,10 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    address?: SortOrder
+    city?: SortOrder
     state?: SortOrder
     country?: SortOrder
-    city?: SortOrder
-    address?: SortOrder
     addressType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -15166,10 +17074,10 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    address?: SortOrder
+    city?: SortOrder
     state?: SortOrder
     country?: SortOrder
-    city?: SortOrder
-    address?: SortOrder
     addressType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -15239,17 +17147,17 @@ export namespace Prisma {
   export type CategoryCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    description?: SortOrder
-    shortDescription?: SortOrder
     slug?: SortOrder
+    shortDescription?: SortOrder
+    description?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     canonicalTag?: SortOrder
     breadcrumb?: SortOrder
     posterImageUrl?: SortOrder
     seoSchema?: SortOrder
-    lastEditedBy?: SortOrder
     status?: SortOrder
+    lastEditedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15257,17 +17165,17 @@ export namespace Prisma {
   export type CategoryMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    description?: SortOrder
-    shortDescription?: SortOrder
     slug?: SortOrder
+    shortDescription?: SortOrder
+    description?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     canonicalTag?: SortOrder
     breadcrumb?: SortOrder
     posterImageUrl?: SortOrder
     seoSchema?: SortOrder
-    lastEditedBy?: SortOrder
     status?: SortOrder
+    lastEditedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15275,17 +17183,17 @@ export namespace Prisma {
   export type CategoryMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    description?: SortOrder
-    shortDescription?: SortOrder
     slug?: SortOrder
+    shortDescription?: SortOrder
+    description?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     canonicalTag?: SortOrder
     breadcrumb?: SortOrder
     posterImageUrl?: SortOrder
     seoSchema?: SortOrder
-    lastEditedBy?: SortOrder
     status?: SortOrder
+    lastEditedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15305,21 +17213,26 @@ export namespace Prisma {
     isNot?: CategoryWhereInput
   }
 
+  export type SubcategoryCategoryIdSlugCompoundUniqueInput = {
+    categoryId: string
+    slug: string
+  }
+
   export type SubcategoryCountOrderByAggregateInput = {
     id?: SortOrder
     categoryId?: SortOrder
     name?: SortOrder
-    description?: SortOrder
-    shortDescription?: SortOrder
     slug?: SortOrder
+    shortDescription?: SortOrder
+    description?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     canonicalTag?: SortOrder
     breadcrumb?: SortOrder
     posterImageUrl?: SortOrder
     seoSchema?: SortOrder
-    lastEditedBy?: SortOrder
     status?: SortOrder
+    lastEditedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15328,17 +17241,17 @@ export namespace Prisma {
     id?: SortOrder
     categoryId?: SortOrder
     name?: SortOrder
-    description?: SortOrder
-    shortDescription?: SortOrder
     slug?: SortOrder
+    shortDescription?: SortOrder
+    description?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     canonicalTag?: SortOrder
     breadcrumb?: SortOrder
     posterImageUrl?: SortOrder
     seoSchema?: SortOrder
-    lastEditedBy?: SortOrder
     status?: SortOrder
+    lastEditedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15347,17 +17260,17 @@ export namespace Prisma {
     id?: SortOrder
     categoryId?: SortOrder
     name?: SortOrder
-    description?: SortOrder
-    shortDescription?: SortOrder
     slug?: SortOrder
+    shortDescription?: SortOrder
+    description?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     canonicalTag?: SortOrder
     breadcrumb?: SortOrder
     posterImageUrl?: SortOrder
     seoSchema?: SortOrder
-    lastEditedBy?: SortOrder
     status?: SortOrder
+    lastEditedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15381,92 +17294,98 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type SubcategoryScalarRelationFilter = {
     is?: SubcategoryWhereInput
     isNot?: SubcategoryWhereInput
+  }
+
+  export type OrderItemListRelationFilter = {
+    every?: OrderItemWhereInput
+    some?: OrderItemWhereInput
+    none?: OrderItemWhereInput
+  }
+
+  export type OrderItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProductSubcategoryIdSlugCompoundUniqueInput = {
+    subcategoryId: string
+    slug: string
   }
 
   export type ProductCountOrderByAggregateInput = {
     id?: SortOrder
     categoryId?: SortOrder
     subcategoryId?: SortOrder
+    sku?: SortOrder
     name?: SortOrder
-    description?: SortOrder
-    shortDescription?: SortOrder
     slug?: SortOrder
-    metaTitle?: SortOrder
-    metaDescription?: SortOrder
-    canonicalTag?: SortOrder
-    breadcrumb?: SortOrder
+    shortDescription?: SortOrder
+    description?: SortOrder
     posterImageUrl?: SortOrder
-    seoSchema?: SortOrder
     productImages?: SortOrder
     price?: SortOrder
-    discountPrice?: SortOrder
     motorPrice?: SortOrder
-    stock?: SortOrder
-    height?: SortOrder
-    width?: SortOrder
+    minHeight?: SortOrder
+    maxHeight?: SortOrder
+    minWidth?: SortOrder
+    maxWidth?: SortOrder
     color?: SortOrder
     pattern?: SortOrder
     composition?: SortOrder
     isMotorized?: SortOrder
     additionalInfo?: SortOrder
     measuringGuide?: SortOrder
-    lastEditedBy?: SortOrder
+    metaTitle?: SortOrder
+    metaDescription?: SortOrder
+    canonicalTag?: SortOrder
+    breadcrumb?: SortOrder
+    seoSchema?: SortOrder
     status?: SortOrder
+    lastEditedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type ProductAvgOrderByAggregateInput = {
     price?: SortOrder
-    discountPrice?: SortOrder
     motorPrice?: SortOrder
-    stock?: SortOrder
-    height?: SortOrder
-    width?: SortOrder
+    minHeight?: SortOrder
+    maxHeight?: SortOrder
+    minWidth?: SortOrder
+    maxWidth?: SortOrder
   }
 
   export type ProductMaxOrderByAggregateInput = {
     id?: SortOrder
     categoryId?: SortOrder
     subcategoryId?: SortOrder
+    sku?: SortOrder
     name?: SortOrder
-    description?: SortOrder
-    shortDescription?: SortOrder
     slug?: SortOrder
-    metaTitle?: SortOrder
-    metaDescription?: SortOrder
-    canonicalTag?: SortOrder
-    breadcrumb?: SortOrder
+    shortDescription?: SortOrder
+    description?: SortOrder
     posterImageUrl?: SortOrder
-    seoSchema?: SortOrder
     price?: SortOrder
-    discountPrice?: SortOrder
     motorPrice?: SortOrder
-    stock?: SortOrder
-    height?: SortOrder
-    width?: SortOrder
+    minHeight?: SortOrder
+    maxHeight?: SortOrder
+    minWidth?: SortOrder
+    maxWidth?: SortOrder
     color?: SortOrder
     pattern?: SortOrder
     composition?: SortOrder
     isMotorized?: SortOrder
     additionalInfo?: SortOrder
     measuringGuide?: SortOrder
-    lastEditedBy?: SortOrder
+    metaTitle?: SortOrder
+    metaDescription?: SortOrder
+    canonicalTag?: SortOrder
+    breadcrumb?: SortOrder
+    seoSchema?: SortOrder
     status?: SortOrder
+    lastEditedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15475,41 +17394,42 @@ export namespace Prisma {
     id?: SortOrder
     categoryId?: SortOrder
     subcategoryId?: SortOrder
+    sku?: SortOrder
     name?: SortOrder
-    description?: SortOrder
-    shortDescription?: SortOrder
     slug?: SortOrder
-    metaTitle?: SortOrder
-    metaDescription?: SortOrder
-    canonicalTag?: SortOrder
-    breadcrumb?: SortOrder
+    shortDescription?: SortOrder
+    description?: SortOrder
     posterImageUrl?: SortOrder
-    seoSchema?: SortOrder
     price?: SortOrder
-    discountPrice?: SortOrder
     motorPrice?: SortOrder
-    stock?: SortOrder
-    height?: SortOrder
-    width?: SortOrder
+    minHeight?: SortOrder
+    maxHeight?: SortOrder
+    minWidth?: SortOrder
+    maxWidth?: SortOrder
     color?: SortOrder
     pattern?: SortOrder
     composition?: SortOrder
     isMotorized?: SortOrder
     additionalInfo?: SortOrder
     measuringGuide?: SortOrder
-    lastEditedBy?: SortOrder
+    metaTitle?: SortOrder
+    metaDescription?: SortOrder
+    canonicalTag?: SortOrder
+    breadcrumb?: SortOrder
+    seoSchema?: SortOrder
     status?: SortOrder
+    lastEditedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type ProductSumOrderByAggregateInput = {
     price?: SortOrder
-    discountPrice?: SortOrder
     motorPrice?: SortOrder
-    stock?: SortOrder
-    height?: SortOrder
-    width?: SortOrder
+    minHeight?: SortOrder
+    maxHeight?: SortOrder
+    minWidth?: SortOrder
+    maxWidth?: SortOrder
   }
 
   export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -15526,36 +17446,6 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-  export type JsonNullableListFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonNullableListFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableListFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableListFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableListFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonNullableListFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue[] | ListJsonFieldRefInput<$PrismaModel> | null
-    has?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    hasEvery?: InputJsonValue[] | ListJsonFieldRefInput<$PrismaModel>
-    hasSome?: InputJsonValue[] | ListJsonFieldRefInput<$PrismaModel>
-    isEmpty?: boolean
   }
 
   export type EnumPaymentStatusFilter<$PrismaModel = never> = {
@@ -15579,17 +17469,16 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    address?: SortOrder
+    city?: SortOrder
     state?: SortOrder
     country?: SortOrder
-    city?: SortOrder
-    address?: SortOrder
     totalAmount?: SortOrder
     shippingCost?: SortOrder
-    items?: SortOrder
     notes?: SortOrder
-    lastEditedBy?: SortOrder
     paymentStatus?: SortOrder
     orderStatus?: SortOrder
+    lastEditedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15606,16 +17495,16 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    address?: SortOrder
+    city?: SortOrder
     state?: SortOrder
     country?: SortOrder
-    city?: SortOrder
-    address?: SortOrder
     totalAmount?: SortOrder
     shippingCost?: SortOrder
     notes?: SortOrder
-    lastEditedBy?: SortOrder
     paymentStatus?: SortOrder
     orderStatus?: SortOrder
+    lastEditedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15627,16 +17516,16 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    address?: SortOrder
+    city?: SortOrder
     state?: SortOrder
     country?: SortOrder
-    city?: SortOrder
-    address?: SortOrder
     totalAmount?: SortOrder
     shippingCost?: SortOrder
     notes?: SortOrder
-    lastEditedBy?: SortOrder
     paymentStatus?: SortOrder
     orderStatus?: SortOrder
+    lastEditedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15664,6 +17553,90 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumOrderStatusFilter<$PrismaModel>
     _max?: NestedEnumOrderStatusFilter<$PrismaModel>
+  }
+
+  export type OrderScalarRelationFilter = {
+    is?: OrderWhereInput
+    isNot?: OrderWhereInput
+  }
+
+  export type ProductNullableScalarRelationFilter = {
+    is?: ProductWhereInput | null
+    isNot?: ProductWhereInput | null
+  }
+
+  export type OrderItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    orderId?: SortOrder
+    productId?: SortOrder
+    sku?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    categoryUrl?: SortOrder
+    subcategoryUrl?: SortOrder
+    price?: SortOrder
+    height?: SortOrder
+    width?: SortOrder
+    isMotorized?: SortOrder
+    motorPrice?: SortOrder
+    color?: SortOrder
+    pattern?: SortOrder
+    composition?: SortOrder
+    posterImageUrl?: SortOrder
+  }
+
+  export type OrderItemAvgOrderByAggregateInput = {
+    price?: SortOrder
+    height?: SortOrder
+    width?: SortOrder
+    motorPrice?: SortOrder
+  }
+
+  export type OrderItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    orderId?: SortOrder
+    productId?: SortOrder
+    sku?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    categoryUrl?: SortOrder
+    subcategoryUrl?: SortOrder
+    price?: SortOrder
+    height?: SortOrder
+    width?: SortOrder
+    isMotorized?: SortOrder
+    motorPrice?: SortOrder
+    color?: SortOrder
+    pattern?: SortOrder
+    composition?: SortOrder
+    posterImageUrl?: SortOrder
+  }
+
+  export type OrderItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    orderId?: SortOrder
+    productId?: SortOrder
+    sku?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    categoryUrl?: SortOrder
+    subcategoryUrl?: SortOrder
+    price?: SortOrder
+    height?: SortOrder
+    width?: SortOrder
+    isMotorized?: SortOrder
+    motorPrice?: SortOrder
+    color?: SortOrder
+    pattern?: SortOrder
+    composition?: SortOrder
+    posterImageUrl?: SortOrder
+  }
+
+  export type OrderItemSumOrderByAggregateInput = {
+    price?: SortOrder
+    height?: SortOrder
+    width?: SortOrder
+    motorPrice?: SortOrder
   }
 
   export type EnumInquiryTypeFilter<$PrismaModel = never> = {
@@ -15744,13 +17717,13 @@ export namespace Prisma {
     set?: string
   }
 
+  export type EnumAdminRoleFieldUpdateOperationsInput = {
+    set?: $Enums.AdminRole
+  }
+
   export type AdminUpdatepermissionsInput = {
     set?: $Enums.Permissions[]
     push?: $Enums.Permissions | $Enums.Permissions[]
-  }
-
-  export type EnumRoleFieldUpdateOperationsInput = {
-    set?: $Enums.Role
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -15773,6 +17746,18 @@ export namespace Prisma {
     connectOrCreate?: OrderCreateOrConnectWithoutUserInput | OrderCreateOrConnectWithoutUserInput[]
     createMany?: OrderCreateManyUserInputEnvelope
     connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  }
+
+  export type AddressCreateNestedOneWithoutDefaultShippingForInput = {
+    create?: XOR<AddressCreateWithoutDefaultShippingForInput, AddressUncheckedCreateWithoutDefaultShippingForInput>
+    connectOrCreate?: AddressCreateOrConnectWithoutDefaultShippingForInput
+    connect?: AddressWhereUniqueInput
+  }
+
+  export type AddressCreateNestedOneWithoutDefaultBillingForInput = {
+    create?: XOR<AddressCreateWithoutDefaultBillingForInput, AddressUncheckedCreateWithoutDefaultBillingForInput>
+    connectOrCreate?: AddressCreateOrConnectWithoutDefaultBillingForInput
+    connect?: AddressWhereUniqueInput
   }
 
   export type AddressUncheckedCreateNestedManyWithoutUserInput = {
@@ -15821,6 +17806,26 @@ export namespace Prisma {
     deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
   }
 
+  export type AddressUpdateOneWithoutDefaultShippingForNestedInput = {
+    create?: XOR<AddressCreateWithoutDefaultShippingForInput, AddressUncheckedCreateWithoutDefaultShippingForInput>
+    connectOrCreate?: AddressCreateOrConnectWithoutDefaultShippingForInput
+    upsert?: AddressUpsertWithoutDefaultShippingForInput
+    disconnect?: AddressWhereInput | boolean
+    delete?: AddressWhereInput | boolean
+    connect?: AddressWhereUniqueInput
+    update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutDefaultShippingForInput, AddressUpdateWithoutDefaultShippingForInput>, AddressUncheckedUpdateWithoutDefaultShippingForInput>
+  }
+
+  export type AddressUpdateOneWithoutDefaultBillingForNestedInput = {
+    create?: XOR<AddressCreateWithoutDefaultBillingForInput, AddressUncheckedCreateWithoutDefaultBillingForInput>
+    connectOrCreate?: AddressCreateOrConnectWithoutDefaultBillingForInput
+    upsert?: AddressUpsertWithoutDefaultBillingForInput
+    disconnect?: AddressWhereInput | boolean
+    delete?: AddressWhereInput | boolean
+    connect?: AddressWhereUniqueInput
+    update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutDefaultBillingForInput, AddressUpdateWithoutDefaultBillingForInput>, AddressUncheckedUpdateWithoutDefaultBillingForInput>
+  }
+
   export type AddressUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput> | AddressCreateWithoutUserInput[] | AddressUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AddressCreateOrConnectWithoutUserInput | AddressCreateOrConnectWithoutUserInput[]
@@ -15855,6 +17860,30 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type UserCreateNestedOneWithoutDefaultShippingAddressInput = {
+    create?: XOR<UserCreateWithoutDefaultShippingAddressInput, UserUncheckedCreateWithoutDefaultShippingAddressInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDefaultShippingAddressInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutDefaultBillingAddressInput = {
+    create?: XOR<UserCreateWithoutDefaultBillingAddressInput, UserUncheckedCreateWithoutDefaultBillingAddressInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDefaultBillingAddressInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUncheckedCreateNestedOneWithoutDefaultShippingAddressInput = {
+    create?: XOR<UserCreateWithoutDefaultShippingAddressInput, UserUncheckedCreateWithoutDefaultShippingAddressInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDefaultShippingAddressInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUncheckedCreateNestedOneWithoutDefaultBillingAddressInput = {
+    create?: XOR<UserCreateWithoutDefaultBillingAddressInput, UserUncheckedCreateWithoutDefaultBillingAddressInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDefaultBillingAddressInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type EnumAddressTypeFieldUpdateOperationsInput = {
     set?: $Enums.AddressType
   }
@@ -15865,6 +17894,46 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutAddressesInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAddressesInput, UserUpdateWithoutAddressesInput>, UserUncheckedUpdateWithoutAddressesInput>
+  }
+
+  export type UserUpdateOneWithoutDefaultShippingAddressNestedInput = {
+    create?: XOR<UserCreateWithoutDefaultShippingAddressInput, UserUncheckedCreateWithoutDefaultShippingAddressInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDefaultShippingAddressInput
+    upsert?: UserUpsertWithoutDefaultShippingAddressInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDefaultShippingAddressInput, UserUpdateWithoutDefaultShippingAddressInput>, UserUncheckedUpdateWithoutDefaultShippingAddressInput>
+  }
+
+  export type UserUpdateOneWithoutDefaultBillingAddressNestedInput = {
+    create?: XOR<UserCreateWithoutDefaultBillingAddressInput, UserUncheckedCreateWithoutDefaultBillingAddressInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDefaultBillingAddressInput
+    upsert?: UserUpsertWithoutDefaultBillingAddressInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDefaultBillingAddressInput, UserUpdateWithoutDefaultBillingAddressInput>, UserUncheckedUpdateWithoutDefaultBillingAddressInput>
+  }
+
+  export type UserUncheckedUpdateOneWithoutDefaultShippingAddressNestedInput = {
+    create?: XOR<UserCreateWithoutDefaultShippingAddressInput, UserUncheckedCreateWithoutDefaultShippingAddressInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDefaultShippingAddressInput
+    upsert?: UserUpsertWithoutDefaultShippingAddressInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDefaultShippingAddressInput, UserUpdateWithoutDefaultShippingAddressInput>, UserUncheckedUpdateWithoutDefaultShippingAddressInput>
+  }
+
+  export type UserUncheckedUpdateOneWithoutDefaultBillingAddressNestedInput = {
+    create?: XOR<UserCreateWithoutDefaultBillingAddressInput, UserUncheckedCreateWithoutDefaultBillingAddressInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDefaultBillingAddressInput
+    upsert?: UserUpsertWithoutDefaultBillingAddressInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDefaultBillingAddressInput, UserUpdateWithoutDefaultBillingAddressInput>, UserUncheckedUpdateWithoutDefaultBillingAddressInput>
   }
 
   export type ProductCreateNestedManyWithoutCategoryInput = {
@@ -16027,6 +18096,20 @@ export namespace Prisma {
     connect?: SubcategoryWhereUniqueInput
   }
 
+  export type OrderItemCreateNestedManyWithoutProductInput = {
+    create?: XOR<OrderItemCreateWithoutProductInput, OrderItemUncheckedCreateWithoutProductInput> | OrderItemCreateWithoutProductInput[] | OrderItemUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: OrderItemCreateOrConnectWithoutProductInput | OrderItemCreateOrConnectWithoutProductInput[]
+    createMany?: OrderItemCreateManyProductInputEnvelope
+    connect?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+  }
+
+  export type OrderItemUncheckedCreateNestedManyWithoutProductInput = {
+    create?: XOR<OrderItemCreateWithoutProductInput, OrderItemUncheckedCreateWithoutProductInput> | OrderItemCreateWithoutProductInput[] | OrderItemUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: OrderItemCreateOrConnectWithoutProductInput | OrderItemCreateOrConnectWithoutProductInput[]
+    createMany?: OrderItemCreateManyProductInputEnvelope
+    connect?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+  }
+
   export type ProductUpdateproductImagesInput = {
     set?: string[]
     push?: string | string[]
@@ -16038,14 +18121,6 @@ export namespace Prisma {
     decrement?: Decimal | DecimalJsLike | number | string
     multiply?: Decimal | DecimalJsLike | number | string
     divide?: Decimal | DecimalJsLike | number | string
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type CategoryUpdateOneRequiredWithoutProductsNestedInput = {
@@ -16064,8 +18139,32 @@ export namespace Prisma {
     update?: XOR<XOR<SubcategoryUpdateToOneWithWhereWithoutProductsInput, SubcategoryUpdateWithoutProductsInput>, SubcategoryUncheckedUpdateWithoutProductsInput>
   }
 
-  export type OrderCreateitemsInput = {
-    set: InputJsonValue[]
+  export type OrderItemUpdateManyWithoutProductNestedInput = {
+    create?: XOR<OrderItemCreateWithoutProductInput, OrderItemUncheckedCreateWithoutProductInput> | OrderItemCreateWithoutProductInput[] | OrderItemUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: OrderItemCreateOrConnectWithoutProductInput | OrderItemCreateOrConnectWithoutProductInput[]
+    upsert?: OrderItemUpsertWithWhereUniqueWithoutProductInput | OrderItemUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: OrderItemCreateManyProductInputEnvelope
+    set?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+    disconnect?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+    delete?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+    connect?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+    update?: OrderItemUpdateWithWhereUniqueWithoutProductInput | OrderItemUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: OrderItemUpdateManyWithWhereWithoutProductInput | OrderItemUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: OrderItemScalarWhereInput | OrderItemScalarWhereInput[]
+  }
+
+  export type OrderItemUncheckedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<OrderItemCreateWithoutProductInput, OrderItemUncheckedCreateWithoutProductInput> | OrderItemCreateWithoutProductInput[] | OrderItemUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: OrderItemCreateOrConnectWithoutProductInput | OrderItemCreateOrConnectWithoutProductInput[]
+    upsert?: OrderItemUpsertWithWhereUniqueWithoutProductInput | OrderItemUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: OrderItemCreateManyProductInputEnvelope
+    set?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+    disconnect?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+    delete?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+    connect?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+    update?: OrderItemUpdateWithWhereUniqueWithoutProductInput | OrderItemUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: OrderItemUpdateManyWithWhereWithoutProductInput | OrderItemUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: OrderItemScalarWhereInput | OrderItemScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutOrdersInput = {
@@ -16074,9 +18173,18 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type OrderUpdateitemsInput = {
-    set?: InputJsonValue[]
-    push?: InputJsonValue | InputJsonValue[]
+  export type OrderItemCreateNestedManyWithoutOrderInput = {
+    create?: XOR<OrderItemCreateWithoutOrderInput, OrderItemUncheckedCreateWithoutOrderInput> | OrderItemCreateWithoutOrderInput[] | OrderItemUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: OrderItemCreateOrConnectWithoutOrderInput | OrderItemCreateOrConnectWithoutOrderInput[]
+    createMany?: OrderItemCreateManyOrderInputEnvelope
+    connect?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+  }
+
+  export type OrderItemUncheckedCreateNestedManyWithoutOrderInput = {
+    create?: XOR<OrderItemCreateWithoutOrderInput, OrderItemUncheckedCreateWithoutOrderInput> | OrderItemCreateWithoutOrderInput[] | OrderItemUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: OrderItemCreateOrConnectWithoutOrderInput | OrderItemCreateOrConnectWithoutOrderInput[]
+    createMany?: OrderItemCreateManyOrderInputEnvelope
+    connect?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
   }
 
   export type EnumPaymentStatusFieldUpdateOperationsInput = {
@@ -16093,6 +18201,64 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutOrdersInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOrdersInput, UserUpdateWithoutOrdersInput>, UserUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type OrderItemUpdateManyWithoutOrderNestedInput = {
+    create?: XOR<OrderItemCreateWithoutOrderInput, OrderItemUncheckedCreateWithoutOrderInput> | OrderItemCreateWithoutOrderInput[] | OrderItemUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: OrderItemCreateOrConnectWithoutOrderInput | OrderItemCreateOrConnectWithoutOrderInput[]
+    upsert?: OrderItemUpsertWithWhereUniqueWithoutOrderInput | OrderItemUpsertWithWhereUniqueWithoutOrderInput[]
+    createMany?: OrderItemCreateManyOrderInputEnvelope
+    set?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+    disconnect?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+    delete?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+    connect?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+    update?: OrderItemUpdateWithWhereUniqueWithoutOrderInput | OrderItemUpdateWithWhereUniqueWithoutOrderInput[]
+    updateMany?: OrderItemUpdateManyWithWhereWithoutOrderInput | OrderItemUpdateManyWithWhereWithoutOrderInput[]
+    deleteMany?: OrderItemScalarWhereInput | OrderItemScalarWhereInput[]
+  }
+
+  export type OrderItemUncheckedUpdateManyWithoutOrderNestedInput = {
+    create?: XOR<OrderItemCreateWithoutOrderInput, OrderItemUncheckedCreateWithoutOrderInput> | OrderItemCreateWithoutOrderInput[] | OrderItemUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: OrderItemCreateOrConnectWithoutOrderInput | OrderItemCreateOrConnectWithoutOrderInput[]
+    upsert?: OrderItemUpsertWithWhereUniqueWithoutOrderInput | OrderItemUpsertWithWhereUniqueWithoutOrderInput[]
+    createMany?: OrderItemCreateManyOrderInputEnvelope
+    set?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+    disconnect?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+    delete?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+    connect?: OrderItemWhereUniqueInput | OrderItemWhereUniqueInput[]
+    update?: OrderItemUpdateWithWhereUniqueWithoutOrderInput | OrderItemUpdateWithWhereUniqueWithoutOrderInput[]
+    updateMany?: OrderItemUpdateManyWithWhereWithoutOrderInput | OrderItemUpdateManyWithWhereWithoutOrderInput[]
+    deleteMany?: OrderItemScalarWhereInput | OrderItemScalarWhereInput[]
+  }
+
+  export type OrderCreateNestedOneWithoutOrderItemsInput = {
+    create?: XOR<OrderCreateWithoutOrderItemsInput, OrderUncheckedCreateWithoutOrderItemsInput>
+    connectOrCreate?: OrderCreateOrConnectWithoutOrderItemsInput
+    connect?: OrderWhereUniqueInput
+  }
+
+  export type ProductCreateNestedOneWithoutOrderItemsInput = {
+    create?: XOR<ProductCreateWithoutOrderItemsInput, ProductUncheckedCreateWithoutOrderItemsInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutOrderItemsInput
+    connect?: ProductWhereUniqueInput
+  }
+
+  export type OrderUpdateOneRequiredWithoutOrderItemsNestedInput = {
+    create?: XOR<OrderCreateWithoutOrderItemsInput, OrderUncheckedCreateWithoutOrderItemsInput>
+    connectOrCreate?: OrderCreateOrConnectWithoutOrderItemsInput
+    upsert?: OrderUpsertWithoutOrderItemsInput
+    connect?: OrderWhereUniqueInput
+    update?: XOR<XOR<OrderUpdateToOneWithWhereWithoutOrderItemsInput, OrderUpdateWithoutOrderItemsInput>, OrderUncheckedUpdateWithoutOrderItemsInput>
+  }
+
+  export type ProductUpdateOneWithoutOrderItemsNestedInput = {
+    create?: XOR<ProductCreateWithoutOrderItemsInput, ProductUncheckedCreateWithoutOrderItemsInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutOrderItemsInput
+    upsert?: ProductUpsertWithoutOrderItemsInput
+    disconnect?: ProductWhereInput | boolean
+    delete?: ProductWhereInput | boolean
+    connect?: ProductWhereUniqueInput
+    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutOrderItemsInput, ProductUpdateWithoutOrderItemsInput>, ProductUncheckedUpdateWithoutOrderItemsInput>
   }
 
   export type EnumInquiryTypeFieldUpdateOperationsInput = {
@@ -16128,11 +18294,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedEnumRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  export type NestedEnumAdminRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.AdminRole | EnumAdminRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.AdminRole[] | ListEnumAdminRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AdminRole[] | ListEnumAdminRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumAdminRoleFilter<$PrismaModel> | $Enums.AdminRole
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -16202,14 +18368,14 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedEnumRoleWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
-    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+  export type NestedEnumAdminRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AdminRole | EnumAdminRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.AdminRole[] | ListEnumAdminRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AdminRole[] | ListEnumAdminRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumAdminRoleWithAggregatesFilter<$PrismaModel> | $Enums.AdminRole
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumRoleFilter<$PrismaModel>
-    _max?: NestedEnumRoleFilter<$PrismaModel>
+    _min?: NestedEnumAdminRoleFilter<$PrismaModel>
+    _max?: NestedEnumAdminRoleFilter<$PrismaModel>
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -16254,9 +18420,34 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedUuidNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedUuidNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -16326,33 +18517,6 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
-  }
-
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedEnumPaymentStatusFilter<$PrismaModel = never> = {
@@ -16429,13 +18593,15 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    address: string
+    city: string
     state: string
     country: string
-    city: string
-    address: string
     addressType?: $Enums.AddressType
     createdAt?: Date | string
     updatedAt?: Date | string
+    defaultShippingFor?: UserCreateNestedOneWithoutDefaultShippingAddressInput
+    defaultBillingFor?: UserCreateNestedOneWithoutDefaultBillingAddressInput
   }
 
   export type AddressUncheckedCreateWithoutUserInput = {
@@ -16444,13 +18610,15 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    address: string
+    city: string
     state: string
     country: string
-    city: string
-    address: string
     addressType?: $Enums.AddressType
     createdAt?: Date | string
     updatedAt?: Date | string
+    defaultShippingFor?: UserUncheckedCreateNestedOneWithoutDefaultShippingAddressInput
+    defaultBillingFor?: UserUncheckedCreateNestedOneWithoutDefaultBillingAddressInput
   }
 
   export type AddressCreateOrConnectWithoutUserInput = {
@@ -16469,19 +18637,19 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    address: string
+    city: string
     state: string
     country: string
-    city: string
-    address: string
     totalAmount?: Decimal | DecimalJsLike | number | string
     shippingCost?: Decimal | DecimalJsLike | number | string
-    items?: OrderCreateitemsInput | InputJsonValue[]
     notes?: string | null
-    lastEditedBy?: string | null
     paymentStatus?: $Enums.PaymentStatus
     orderStatus?: $Enums.OrderStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    orderItems?: OrderItemCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutUserInput = {
@@ -16490,19 +18658,19 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    address: string
+    city: string
     state: string
     country: string
-    city: string
-    address: string
     totalAmount?: Decimal | DecimalJsLike | number | string
     shippingCost?: Decimal | DecimalJsLike | number | string
-    items?: OrderCreateitemsInput | InputJsonValue[]
     notes?: string | null
-    lastEditedBy?: string | null
     paymentStatus?: $Enums.PaymentStatus
     orderStatus?: $Enums.OrderStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    orderItems?: OrderItemUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutUserInput = {
@@ -16513,6 +18681,84 @@ export namespace Prisma {
   export type OrderCreateManyUserInputEnvelope = {
     data: OrderCreateManyUserInput | OrderCreateManyUserInput[]
     skipDuplicates?: boolean
+  }
+
+  export type AddressCreateWithoutDefaultShippingForInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    address: string
+    city: string
+    state: string
+    country: string
+    addressType?: $Enums.AddressType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutAddressesInput
+    defaultBillingFor?: UserCreateNestedOneWithoutDefaultBillingAddressInput
+  }
+
+  export type AddressUncheckedCreateWithoutDefaultShippingForInput = {
+    id?: string
+    userId: string
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    address: string
+    city: string
+    state: string
+    country: string
+    addressType?: $Enums.AddressType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    defaultBillingFor?: UserUncheckedCreateNestedOneWithoutDefaultBillingAddressInput
+  }
+
+  export type AddressCreateOrConnectWithoutDefaultShippingForInput = {
+    where: AddressWhereUniqueInput
+    create: XOR<AddressCreateWithoutDefaultShippingForInput, AddressUncheckedCreateWithoutDefaultShippingForInput>
+  }
+
+  export type AddressCreateWithoutDefaultBillingForInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    address: string
+    city: string
+    state: string
+    country: string
+    addressType?: $Enums.AddressType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutAddressesInput
+    defaultShippingFor?: UserCreateNestedOneWithoutDefaultShippingAddressInput
+  }
+
+  export type AddressUncheckedCreateWithoutDefaultBillingForInput = {
+    id?: string
+    userId: string
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    address: string
+    city: string
+    state: string
+    country: string
+    addressType?: $Enums.AddressType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    defaultShippingFor?: UserUncheckedCreateNestedOneWithoutDefaultShippingAddressInput
+  }
+
+  export type AddressCreateOrConnectWithoutDefaultBillingForInput = {
+    where: AddressWhereUniqueInput
+    create: XOR<AddressCreateWithoutDefaultBillingForInput, AddressUncheckedCreateWithoutDefaultBillingForInput>
   }
 
   export type AddressUpsertWithWhereUniqueWithoutUserInput = {
@@ -16541,10 +18787,10 @@ export namespace Prisma {
     lastName?: StringFilter<"Address"> | string
     email?: StringFilter<"Address"> | string
     phone?: StringFilter<"Address"> | string
+    address?: StringFilter<"Address"> | string
+    city?: StringFilter<"Address"> | string
     state?: StringFilter<"Address"> | string
     country?: StringFilter<"Address"> | string
-    city?: StringFilter<"Address"> | string
-    address?: StringFilter<"Address"> | string
     addressType?: EnumAddressTypeFilter<"Address"> | $Enums.AddressType
     createdAt?: DateTimeFilter<"Address"> | Date | string
     updatedAt?: DateTimeFilter<"Address"> | Date | string
@@ -16576,19 +18822,108 @@ export namespace Prisma {
     lastName?: StringFilter<"Order"> | string
     email?: StringFilter<"Order"> | string
     phone?: StringFilter<"Order"> | string
+    address?: StringFilter<"Order"> | string
+    city?: StringFilter<"Order"> | string
     state?: StringFilter<"Order"> | string
     country?: StringFilter<"Order"> | string
-    city?: StringFilter<"Order"> | string
-    address?: StringFilter<"Order"> | string
     totalAmount?: DecimalFilter<"Order"> | Decimal | DecimalJsLike | number | string
     shippingCost?: DecimalFilter<"Order"> | Decimal | DecimalJsLike | number | string
-    items?: JsonNullableListFilter<"Order">
     notes?: StringNullableFilter<"Order"> | string | null
-    lastEditedBy?: StringNullableFilter<"Order"> | string | null
     paymentStatus?: EnumPaymentStatusFilter<"Order"> | $Enums.PaymentStatus
     orderStatus?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
+    lastEditedBy?: StringNullableFilter<"Order"> | string | null
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
+  }
+
+  export type AddressUpsertWithoutDefaultShippingForInput = {
+    update: XOR<AddressUpdateWithoutDefaultShippingForInput, AddressUncheckedUpdateWithoutDefaultShippingForInput>
+    create: XOR<AddressCreateWithoutDefaultShippingForInput, AddressUncheckedCreateWithoutDefaultShippingForInput>
+    where?: AddressWhereInput
+  }
+
+  export type AddressUpdateToOneWithWhereWithoutDefaultShippingForInput = {
+    where?: AddressWhereInput
+    data: XOR<AddressUpdateWithoutDefaultShippingForInput, AddressUncheckedUpdateWithoutDefaultShippingForInput>
+  }
+
+  export type AddressUpdateWithoutDefaultShippingForInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    addressType?: EnumAddressTypeFieldUpdateOperationsInput | $Enums.AddressType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutAddressesNestedInput
+    defaultBillingFor?: UserUpdateOneWithoutDefaultBillingAddressNestedInput
+  }
+
+  export type AddressUncheckedUpdateWithoutDefaultShippingForInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    addressType?: EnumAddressTypeFieldUpdateOperationsInput | $Enums.AddressType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    defaultBillingFor?: UserUncheckedUpdateOneWithoutDefaultBillingAddressNestedInput
+  }
+
+  export type AddressUpsertWithoutDefaultBillingForInput = {
+    update: XOR<AddressUpdateWithoutDefaultBillingForInput, AddressUncheckedUpdateWithoutDefaultBillingForInput>
+    create: XOR<AddressCreateWithoutDefaultBillingForInput, AddressUncheckedCreateWithoutDefaultBillingForInput>
+    where?: AddressWhereInput
+  }
+
+  export type AddressUpdateToOneWithWhereWithoutDefaultBillingForInput = {
+    where?: AddressWhereInput
+    data: XOR<AddressUpdateWithoutDefaultBillingForInput, AddressUncheckedUpdateWithoutDefaultBillingForInput>
+  }
+
+  export type AddressUpdateWithoutDefaultBillingForInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    addressType?: EnumAddressTypeFieldUpdateOperationsInput | $Enums.AddressType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutAddressesNestedInput
+    defaultShippingFor?: UserUpdateOneWithoutDefaultShippingAddressNestedInput
+  }
+
+  export type AddressUncheckedUpdateWithoutDefaultBillingForInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    addressType?: EnumAddressTypeFieldUpdateOperationsInput | $Enums.AddressType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    defaultShippingFor?: UserUncheckedUpdateOneWithoutDefaultShippingAddressNestedInput
   }
 
   export type UserCreateWithoutAddressesInput = {
@@ -16597,25 +18932,23 @@ export namespace Prisma {
     lastName: string
     email: string
     password: string
-    role?: $Enums.Role
     isEmailVerified?: boolean
-    defaultShippingAddressId?: string
-    defaultBillingAddressId?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     orders?: OrderCreateNestedManyWithoutUserInput
+    defaultShippingAddress?: AddressCreateNestedOneWithoutDefaultShippingForInput
+    defaultBillingAddress?: AddressCreateNestedOneWithoutDefaultBillingForInput
   }
 
   export type UserUncheckedCreateWithoutAddressesInput = {
     id?: string
+    defaultShippingAddressId?: string | null
+    defaultBillingAddressId?: string | null
     firstName: string
     lastName: string
     email: string
     password: string
-    role?: $Enums.Role
     isEmailVerified?: boolean
-    defaultShippingAddressId?: string
-    defaultBillingAddressId?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
@@ -16624,6 +18957,72 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutAddressesInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutAddressesInput, UserUncheckedCreateWithoutAddressesInput>
+  }
+
+  export type UserCreateWithoutDefaultShippingAddressInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    email: string
+    password: string
+    isEmailVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addresses?: AddressCreateNestedManyWithoutUserInput
+    orders?: OrderCreateNestedManyWithoutUserInput
+    defaultBillingAddress?: AddressCreateNestedOneWithoutDefaultBillingForInput
+  }
+
+  export type UserUncheckedCreateWithoutDefaultShippingAddressInput = {
+    id?: string
+    defaultBillingAddressId?: string | null
+    firstName: string
+    lastName: string
+    email: string
+    password: string
+    isEmailVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutDefaultShippingAddressInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutDefaultShippingAddressInput, UserUncheckedCreateWithoutDefaultShippingAddressInput>
+  }
+
+  export type UserCreateWithoutDefaultBillingAddressInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    email: string
+    password: string
+    isEmailVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addresses?: AddressCreateNestedManyWithoutUserInput
+    orders?: OrderCreateNestedManyWithoutUserInput
+    defaultShippingAddress?: AddressCreateNestedOneWithoutDefaultShippingForInput
+  }
+
+  export type UserUncheckedCreateWithoutDefaultBillingAddressInput = {
+    id?: string
+    defaultShippingAddressId?: string | null
+    firstName: string
+    lastName: string
+    email: string
+    password: string
+    isEmailVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutDefaultBillingAddressInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutDefaultBillingAddressInput, UserUncheckedCreateWithoutDefaultBillingAddressInput>
   }
 
   export type UserUpsertWithoutAddressesInput = {
@@ -16643,92 +19042,172 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
-    defaultShippingAddressId?: StringFieldUpdateOperationsInput | string
-    defaultBillingAddressId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUpdateManyWithoutUserNestedInput
+    defaultShippingAddress?: AddressUpdateOneWithoutDefaultShippingForNestedInput
+    defaultBillingAddress?: AddressUpdateOneWithoutDefaultBillingForNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAddressesInput = {
     id?: StringFieldUpdateOperationsInput | string
+    defaultShippingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultBillingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
-    defaultShippingAddressId?: StringFieldUpdateOperationsInput | string
-    defaultBillingAddressId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type UserUpsertWithoutDefaultShippingAddressInput = {
+    update: XOR<UserUpdateWithoutDefaultShippingAddressInput, UserUncheckedUpdateWithoutDefaultShippingAddressInput>
+    create: XOR<UserCreateWithoutDefaultShippingAddressInput, UserUncheckedCreateWithoutDefaultShippingAddressInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutDefaultShippingAddressInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutDefaultShippingAddressInput, UserUncheckedUpdateWithoutDefaultShippingAddressInput>
+  }
+
+  export type UserUpdateWithoutDefaultShippingAddressInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addresses?: AddressUpdateManyWithoutUserNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
+    defaultBillingAddress?: AddressUpdateOneWithoutDefaultBillingForNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutDefaultShippingAddressInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    defaultBillingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUpsertWithoutDefaultBillingAddressInput = {
+    update: XOR<UserUpdateWithoutDefaultBillingAddressInput, UserUncheckedUpdateWithoutDefaultBillingAddressInput>
+    create: XOR<UserCreateWithoutDefaultBillingAddressInput, UserUncheckedCreateWithoutDefaultBillingAddressInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutDefaultBillingAddressInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutDefaultBillingAddressInput, UserUncheckedUpdateWithoutDefaultBillingAddressInput>
+  }
+
+  export type UserUpdateWithoutDefaultBillingAddressInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addresses?: AddressUpdateManyWithoutUserNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
+    defaultShippingAddress?: AddressUpdateOneWithoutDefaultShippingForNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutDefaultBillingAddressInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    defaultShippingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type ProductCreateWithoutCategoryInput = {
     id?: string
+    sku: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
-    metaTitle?: string | null
-    metaDescription?: string | null
-    canonicalTag?: string | null
-    breadcrumb?: string | null
+    shortDescription?: string | null
+    description?: string | null
     posterImageUrl: string
-    seoSchema?: string | null
     productImages?: ProductCreateproductImagesInput | string[]
     price?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
-    stock?: number
-    height?: Decimal | DecimalJsLike | number | string
-    width?: Decimal | DecimalJsLike | number | string
+    minHeight?: Decimal | DecimalJsLike | number | string
+    maxHeight?: Decimal | DecimalJsLike | number | string
+    minWidth?: Decimal | DecimalJsLike | number | string
+    maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
     composition?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
-    lastEditedBy?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    canonicalTag?: string | null
+    breadcrumb?: string | null
+    seoSchema?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     subcategory: SubcategoryCreateNestedOneWithoutProductsInput
+    orderItems?: OrderItemCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutCategoryInput = {
     id?: string
     subcategoryId: string
+    sku: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
-    metaTitle?: string | null
-    metaDescription?: string | null
-    canonicalTag?: string | null
-    breadcrumb?: string | null
+    shortDescription?: string | null
+    description?: string | null
     posterImageUrl: string
-    seoSchema?: string | null
     productImages?: ProductCreateproductImagesInput | string[]
     price?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
-    stock?: number
-    height?: Decimal | DecimalJsLike | number | string
-    width?: Decimal | DecimalJsLike | number | string
+    minHeight?: Decimal | DecimalJsLike | number | string
+    maxHeight?: Decimal | DecimalJsLike | number | string
+    minWidth?: Decimal | DecimalJsLike | number | string
+    maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
     composition?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
-    lastEditedBy?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    canonicalTag?: string | null
+    breadcrumb?: string | null
+    seoSchema?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutCategoryInput = {
@@ -16744,17 +19223,17 @@ export namespace Prisma {
   export type SubcategoryCreateWithoutCategoryInput = {
     id?: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
+    shortDescription?: string | null
+    description?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
     posterImageUrl?: string | null
     seoSchema?: string | null
-    lastEditedBy?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductCreateNestedManyWithoutSubcategoryInput
@@ -16763,17 +19242,17 @@ export namespace Prisma {
   export type SubcategoryUncheckedCreateWithoutCategoryInput = {
     id?: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
+    shortDescription?: string | null
+    description?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
     posterImageUrl?: string | null
     seoSchema?: string | null
-    lastEditedBy?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductUncheckedCreateNestedManyWithoutSubcategoryInput
@@ -16812,31 +19291,32 @@ export namespace Prisma {
     id?: UuidFilter<"Product"> | string
     categoryId?: UuidFilter<"Product"> | string
     subcategoryId?: UuidFilter<"Product"> | string
+    sku?: StringFilter<"Product"> | string
     name?: StringFilter<"Product"> | string
-    description?: StringNullableFilter<"Product"> | string | null
-    shortDescription?: StringNullableFilter<"Product"> | string | null
     slug?: StringFilter<"Product"> | string
-    metaTitle?: StringNullableFilter<"Product"> | string | null
-    metaDescription?: StringNullableFilter<"Product"> | string | null
-    canonicalTag?: StringNullableFilter<"Product"> | string | null
-    breadcrumb?: StringNullableFilter<"Product"> | string | null
+    shortDescription?: StringNullableFilter<"Product"> | string | null
+    description?: StringNullableFilter<"Product"> | string | null
     posterImageUrl?: StringFilter<"Product"> | string
-    seoSchema?: StringNullableFilter<"Product"> | string | null
     productImages?: StringNullableListFilter<"Product">
     price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    stock?: IntFilter<"Product"> | number
-    height?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    width?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    minHeight?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    maxHeight?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    minWidth?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    maxWidth?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     color?: StringNullableFilter<"Product"> | string | null
     pattern?: StringNullableFilter<"Product"> | string | null
     composition?: StringNullableFilter<"Product"> | string | null
     isMotorized?: BoolFilter<"Product"> | boolean
     additionalInfo?: StringNullableFilter<"Product"> | string | null
     measuringGuide?: StringNullableFilter<"Product"> | string | null
-    lastEditedBy?: StringNullableFilter<"Product"> | string | null
+    metaTitle?: StringNullableFilter<"Product"> | string | null
+    metaDescription?: StringNullableFilter<"Product"> | string | null
+    canonicalTag?: StringNullableFilter<"Product"> | string | null
+    breadcrumb?: StringNullableFilter<"Product"> | string | null
+    seoSchema?: StringNullableFilter<"Product"> | string | null
     status?: EnumContentStatusFilter<"Product"> | $Enums.ContentStatus
+    lastEditedBy?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
   }
@@ -16864,17 +19344,17 @@ export namespace Prisma {
     id?: UuidFilter<"Subcategory"> | string
     categoryId?: UuidFilter<"Subcategory"> | string
     name?: StringFilter<"Subcategory"> | string
-    description?: StringNullableFilter<"Subcategory"> | string | null
-    shortDescription?: StringNullableFilter<"Subcategory"> | string | null
     slug?: StringFilter<"Subcategory"> | string
+    shortDescription?: StringNullableFilter<"Subcategory"> | string | null
+    description?: StringNullableFilter<"Subcategory"> | string | null
     metaTitle?: StringNullableFilter<"Subcategory"> | string | null
     metaDescription?: StringNullableFilter<"Subcategory"> | string | null
     canonicalTag?: StringNullableFilter<"Subcategory"> | string | null
     breadcrumb?: StringNullableFilter<"Subcategory"> | string | null
     posterImageUrl?: StringNullableFilter<"Subcategory"> | string | null
     seoSchema?: StringNullableFilter<"Subcategory"> | string | null
-    lastEditedBy?: StringNullableFilter<"Subcategory"> | string | null
     status?: EnumContentStatusFilter<"Subcategory"> | $Enums.ContentStatus
+    lastEditedBy?: StringNullableFilter<"Subcategory"> | string | null
     createdAt?: DateTimeFilter<"Subcategory"> | Date | string
     updatedAt?: DateTimeFilter<"Subcategory"> | Date | string
   }
@@ -16882,17 +19362,17 @@ export namespace Prisma {
   export type CategoryCreateWithoutSubcategoriesInput = {
     id?: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
+    shortDescription?: string | null
+    description?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
     posterImageUrl?: string | null
     seoSchema?: string | null
-    lastEditedBy?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductCreateNestedManyWithoutCategoryInput
@@ -16901,17 +19381,17 @@ export namespace Prisma {
   export type CategoryUncheckedCreateWithoutSubcategoriesInput = {
     id?: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
+    shortDescription?: string | null
+    description?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
     posterImageUrl?: string | null
     seoSchema?: string | null
-    lastEditedBy?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductUncheckedCreateNestedManyWithoutCategoryInput
@@ -16924,66 +19404,70 @@ export namespace Prisma {
 
   export type ProductCreateWithoutSubcategoryInput = {
     id?: string
+    sku: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
-    metaTitle?: string | null
-    metaDescription?: string | null
-    canonicalTag?: string | null
-    breadcrumb?: string | null
+    shortDescription?: string | null
+    description?: string | null
     posterImageUrl: string
-    seoSchema?: string | null
     productImages?: ProductCreateproductImagesInput | string[]
     price?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
-    stock?: number
-    height?: Decimal | DecimalJsLike | number | string
-    width?: Decimal | DecimalJsLike | number | string
+    minHeight?: Decimal | DecimalJsLike | number | string
+    maxHeight?: Decimal | DecimalJsLike | number | string
+    minWidth?: Decimal | DecimalJsLike | number | string
+    maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
     composition?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
-    lastEditedBy?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    canonicalTag?: string | null
+    breadcrumb?: string | null
+    seoSchema?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     category: CategoryCreateNestedOneWithoutProductsInput
+    orderItems?: OrderItemCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutSubcategoryInput = {
     id?: string
     categoryId: string
+    sku: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
-    metaTitle?: string | null
-    metaDescription?: string | null
-    canonicalTag?: string | null
-    breadcrumb?: string | null
+    shortDescription?: string | null
+    description?: string | null
     posterImageUrl: string
-    seoSchema?: string | null
     productImages?: ProductCreateproductImagesInput | string[]
     price?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
-    stock?: number
-    height?: Decimal | DecimalJsLike | number | string
-    width?: Decimal | DecimalJsLike | number | string
+    minHeight?: Decimal | DecimalJsLike | number | string
+    maxHeight?: Decimal | DecimalJsLike | number | string
+    minWidth?: Decimal | DecimalJsLike | number | string
+    maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
     composition?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
-    lastEditedBy?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    canonicalTag?: string | null
+    breadcrumb?: string | null
+    seoSchema?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutSubcategoryInput = {
@@ -17010,17 +19494,17 @@ export namespace Prisma {
   export type CategoryUpdateWithoutSubcategoriesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUpdateManyWithoutCategoryNestedInput
@@ -17029,17 +19513,17 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateWithoutSubcategoriesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUncheckedUpdateManyWithoutCategoryNestedInput
@@ -17064,17 +19548,17 @@ export namespace Prisma {
   export type CategoryCreateWithoutProductsInput = {
     id?: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
+    shortDescription?: string | null
+    description?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
     posterImageUrl?: string | null
     seoSchema?: string | null
-    lastEditedBy?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     subcategories?: SubcategoryCreateNestedManyWithoutCategoryInput
@@ -17083,17 +19567,17 @@ export namespace Prisma {
   export type CategoryUncheckedCreateWithoutProductsInput = {
     id?: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
+    shortDescription?: string | null
+    description?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
     posterImageUrl?: string | null
     seoSchema?: string | null
-    lastEditedBy?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     subcategories?: SubcategoryUncheckedCreateNestedManyWithoutCategoryInput
@@ -17107,17 +19591,17 @@ export namespace Prisma {
   export type SubcategoryCreateWithoutProductsInput = {
     id?: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
+    shortDescription?: string | null
+    description?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
     posterImageUrl?: string | null
     seoSchema?: string | null
-    lastEditedBy?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     category: CategoryCreateNestedOneWithoutSubcategoriesInput
@@ -17127,17 +19611,17 @@ export namespace Prisma {
     id?: string
     categoryId: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
+    shortDescription?: string | null
+    description?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
     posterImageUrl?: string | null
     seoSchema?: string | null
-    lastEditedBy?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -17145,6 +19629,54 @@ export namespace Prisma {
   export type SubcategoryCreateOrConnectWithoutProductsInput = {
     where: SubcategoryWhereUniqueInput
     create: XOR<SubcategoryCreateWithoutProductsInput, SubcategoryUncheckedCreateWithoutProductsInput>
+  }
+
+  export type OrderItemCreateWithoutProductInput = {
+    id?: string
+    sku: string
+    name: string
+    slug: string
+    categoryUrl: string
+    subcategoryUrl: string
+    price: Decimal | DecimalJsLike | number | string
+    height?: Decimal | DecimalJsLike | number | string
+    width?: Decimal | DecimalJsLike | number | string
+    isMotorized?: boolean
+    motorPrice?: Decimal | DecimalJsLike | number | string
+    color?: string | null
+    pattern?: string | null
+    composition?: string | null
+    posterImageUrl?: string | null
+    order: OrderCreateNestedOneWithoutOrderItemsInput
+  }
+
+  export type OrderItemUncheckedCreateWithoutProductInput = {
+    id?: string
+    orderId: string
+    sku: string
+    name: string
+    slug: string
+    categoryUrl: string
+    subcategoryUrl: string
+    price: Decimal | DecimalJsLike | number | string
+    height?: Decimal | DecimalJsLike | number | string
+    width?: Decimal | DecimalJsLike | number | string
+    isMotorized?: boolean
+    motorPrice?: Decimal | DecimalJsLike | number | string
+    color?: string | null
+    pattern?: string | null
+    composition?: string | null
+    posterImageUrl?: string | null
+  }
+
+  export type OrderItemCreateOrConnectWithoutProductInput = {
+    where: OrderItemWhereUniqueInput
+    create: XOR<OrderItemCreateWithoutProductInput, OrderItemUncheckedCreateWithoutProductInput>
+  }
+
+  export type OrderItemCreateManyProductInputEnvelope = {
+    data: OrderItemCreateManyProductInput | OrderItemCreateManyProductInput[]
+    skipDuplicates?: boolean
   }
 
   export type CategoryUpsertWithoutProductsInput = {
@@ -17161,17 +19693,17 @@ export namespace Prisma {
   export type CategoryUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     subcategories?: SubcategoryUpdateManyWithoutCategoryNestedInput
@@ -17180,17 +19712,17 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     subcategories?: SubcategoryUncheckedUpdateManyWithoutCategoryNestedInput
@@ -17210,17 +19742,17 @@ export namespace Prisma {
   export type SubcategoryUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutSubcategoriesNestedInput
@@ -17230,19 +19762,58 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderItemUpsertWithWhereUniqueWithoutProductInput = {
+    where: OrderItemWhereUniqueInput
+    update: XOR<OrderItemUpdateWithoutProductInput, OrderItemUncheckedUpdateWithoutProductInput>
+    create: XOR<OrderItemCreateWithoutProductInput, OrderItemUncheckedCreateWithoutProductInput>
+  }
+
+  export type OrderItemUpdateWithWhereUniqueWithoutProductInput = {
+    where: OrderItemWhereUniqueInput
+    data: XOR<OrderItemUpdateWithoutProductInput, OrderItemUncheckedUpdateWithoutProductInput>
+  }
+
+  export type OrderItemUpdateManyWithWhereWithoutProductInput = {
+    where: OrderItemScalarWhereInput
+    data: XOR<OrderItemUpdateManyMutationInput, OrderItemUncheckedUpdateManyWithoutProductInput>
+  }
+
+  export type OrderItemScalarWhereInput = {
+    AND?: OrderItemScalarWhereInput | OrderItemScalarWhereInput[]
+    OR?: OrderItemScalarWhereInput[]
+    NOT?: OrderItemScalarWhereInput | OrderItemScalarWhereInput[]
+    id?: StringFilter<"OrderItem"> | string
+    orderId?: UuidFilter<"OrderItem"> | string
+    productId?: UuidNullableFilter<"OrderItem"> | string | null
+    sku?: StringFilter<"OrderItem"> | string
+    name?: StringFilter<"OrderItem"> | string
+    slug?: StringFilter<"OrderItem"> | string
+    categoryUrl?: StringFilter<"OrderItem"> | string
+    subcategoryUrl?: StringFilter<"OrderItem"> | string
+    price?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    height?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    width?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    isMotorized?: BoolFilter<"OrderItem"> | boolean
+    motorPrice?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    color?: StringNullableFilter<"OrderItem"> | string | null
+    pattern?: StringNullableFilter<"OrderItem"> | string | null
+    composition?: StringNullableFilter<"OrderItem"> | string | null
+    posterImageUrl?: StringNullableFilter<"OrderItem"> | string | null
   }
 
   export type UserCreateWithoutOrdersInput = {
@@ -17251,25 +19822,23 @@ export namespace Prisma {
     lastName: string
     email: string
     password: string
-    role?: $Enums.Role
     isEmailVerified?: boolean
-    defaultShippingAddressId?: string
-    defaultBillingAddressId?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     addresses?: AddressCreateNestedManyWithoutUserInput
+    defaultShippingAddress?: AddressCreateNestedOneWithoutDefaultShippingForInput
+    defaultBillingAddress?: AddressCreateNestedOneWithoutDefaultBillingForInput
   }
 
   export type UserUncheckedCreateWithoutOrdersInput = {
     id?: string
+    defaultShippingAddressId?: string | null
+    defaultBillingAddressId?: string | null
     firstName: string
     lastName: string
     email: string
     password: string
-    role?: $Enums.Role
     isEmailVerified?: boolean
-    defaultShippingAddressId?: string
-    defaultBillingAddressId?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
@@ -17278,6 +19847,54 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutOrdersInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutOrdersInput, UserUncheckedCreateWithoutOrdersInput>
+  }
+
+  export type OrderItemCreateWithoutOrderInput = {
+    id?: string
+    sku: string
+    name: string
+    slug: string
+    categoryUrl: string
+    subcategoryUrl: string
+    price: Decimal | DecimalJsLike | number | string
+    height?: Decimal | DecimalJsLike | number | string
+    width?: Decimal | DecimalJsLike | number | string
+    isMotorized?: boolean
+    motorPrice?: Decimal | DecimalJsLike | number | string
+    color?: string | null
+    pattern?: string | null
+    composition?: string | null
+    posterImageUrl?: string | null
+    product?: ProductCreateNestedOneWithoutOrderItemsInput
+  }
+
+  export type OrderItemUncheckedCreateWithoutOrderInput = {
+    id?: string
+    productId?: string | null
+    sku: string
+    name: string
+    slug: string
+    categoryUrl: string
+    subcategoryUrl: string
+    price: Decimal | DecimalJsLike | number | string
+    height?: Decimal | DecimalJsLike | number | string
+    width?: Decimal | DecimalJsLike | number | string
+    isMotorized?: boolean
+    motorPrice?: Decimal | DecimalJsLike | number | string
+    color?: string | null
+    pattern?: string | null
+    composition?: string | null
+    posterImageUrl?: string | null
+  }
+
+  export type OrderItemCreateOrConnectWithoutOrderInput = {
+    where: OrderItemWhereUniqueInput
+    create: XOR<OrderItemCreateWithoutOrderInput, OrderItemUncheckedCreateWithoutOrderInput>
+  }
+
+  export type OrderItemCreateManyOrderInputEnvelope = {
+    data: OrderItemCreateManyOrderInput | OrderItemCreateManyOrderInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutOrdersInput = {
@@ -17297,28 +19914,294 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
-    defaultShippingAddressId?: StringFieldUpdateOperationsInput | string
-    defaultBillingAddressId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUpdateManyWithoutUserNestedInput
+    defaultShippingAddress?: AddressUpdateOneWithoutDefaultShippingForNestedInput
+    defaultBillingAddress?: AddressUpdateOneWithoutDefaultBillingForNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersInput = {
     id?: StringFieldUpdateOperationsInput | string
+    defaultShippingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
+    defaultBillingAddressId?: NullableStringFieldUpdateOperationsInput | string | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
-    defaultShippingAddressId?: StringFieldUpdateOperationsInput | string
-    defaultBillingAddressId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type OrderItemUpsertWithWhereUniqueWithoutOrderInput = {
+    where: OrderItemWhereUniqueInput
+    update: XOR<OrderItemUpdateWithoutOrderInput, OrderItemUncheckedUpdateWithoutOrderInput>
+    create: XOR<OrderItemCreateWithoutOrderInput, OrderItemUncheckedCreateWithoutOrderInput>
+  }
+
+  export type OrderItemUpdateWithWhereUniqueWithoutOrderInput = {
+    where: OrderItemWhereUniqueInput
+    data: XOR<OrderItemUpdateWithoutOrderInput, OrderItemUncheckedUpdateWithoutOrderInput>
+  }
+
+  export type OrderItemUpdateManyWithWhereWithoutOrderInput = {
+    where: OrderItemScalarWhereInput
+    data: XOR<OrderItemUpdateManyMutationInput, OrderItemUncheckedUpdateManyWithoutOrderInput>
+  }
+
+  export type OrderCreateWithoutOrderItemsInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    address: string
+    city: string
+    state: string
+    country: string
+    totalAmount?: Decimal | DecimalJsLike | number | string
+    shippingCost?: Decimal | DecimalJsLike | number | string
+    notes?: string | null
+    paymentStatus?: $Enums.PaymentStatus
+    orderStatus?: $Enums.OrderStatus
+    lastEditedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutOrdersInput
+  }
+
+  export type OrderUncheckedCreateWithoutOrderItemsInput = {
+    id?: string
+    userId: string
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    address: string
+    city: string
+    state: string
+    country: string
+    totalAmount?: Decimal | DecimalJsLike | number | string
+    shippingCost?: Decimal | DecimalJsLike | number | string
+    notes?: string | null
+    paymentStatus?: $Enums.PaymentStatus
+    orderStatus?: $Enums.OrderStatus
+    lastEditedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OrderCreateOrConnectWithoutOrderItemsInput = {
+    where: OrderWhereUniqueInput
+    create: XOR<OrderCreateWithoutOrderItemsInput, OrderUncheckedCreateWithoutOrderItemsInput>
+  }
+
+  export type ProductCreateWithoutOrderItemsInput = {
+    id?: string
+    sku: string
+    name: string
+    slug: string
+    shortDescription?: string | null
+    description?: string | null
+    posterImageUrl: string
+    productImages?: ProductCreateproductImagesInput | string[]
+    price?: Decimal | DecimalJsLike | number | string
+    motorPrice?: Decimal | DecimalJsLike | number | string
+    minHeight?: Decimal | DecimalJsLike | number | string
+    maxHeight?: Decimal | DecimalJsLike | number | string
+    minWidth?: Decimal | DecimalJsLike | number | string
+    maxWidth?: Decimal | DecimalJsLike | number | string
+    color?: string | null
+    pattern?: string | null
+    composition?: string | null
+    isMotorized?: boolean
+    additionalInfo?: string | null
+    measuringGuide?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    canonicalTag?: string | null
+    breadcrumb?: string | null
+    seoSchema?: string | null
+    status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: CategoryCreateNestedOneWithoutProductsInput
+    subcategory: SubcategoryCreateNestedOneWithoutProductsInput
+  }
+
+  export type ProductUncheckedCreateWithoutOrderItemsInput = {
+    id?: string
+    categoryId: string
+    subcategoryId: string
+    sku: string
+    name: string
+    slug: string
+    shortDescription?: string | null
+    description?: string | null
+    posterImageUrl: string
+    productImages?: ProductCreateproductImagesInput | string[]
+    price?: Decimal | DecimalJsLike | number | string
+    motorPrice?: Decimal | DecimalJsLike | number | string
+    minHeight?: Decimal | DecimalJsLike | number | string
+    maxHeight?: Decimal | DecimalJsLike | number | string
+    minWidth?: Decimal | DecimalJsLike | number | string
+    maxWidth?: Decimal | DecimalJsLike | number | string
+    color?: string | null
+    pattern?: string | null
+    composition?: string | null
+    isMotorized?: boolean
+    additionalInfo?: string | null
+    measuringGuide?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    canonicalTag?: string | null
+    breadcrumb?: string | null
+    seoSchema?: string | null
+    status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProductCreateOrConnectWithoutOrderItemsInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutOrderItemsInput, ProductUncheckedCreateWithoutOrderItemsInput>
+  }
+
+  export type OrderUpsertWithoutOrderItemsInput = {
+    update: XOR<OrderUpdateWithoutOrderItemsInput, OrderUncheckedUpdateWithoutOrderItemsInput>
+    create: XOR<OrderCreateWithoutOrderItemsInput, OrderUncheckedCreateWithoutOrderItemsInput>
+    where?: OrderWhereInput
+  }
+
+  export type OrderUpdateToOneWithWhereWithoutOrderItemsInput = {
+    where?: OrderWhereInput
+    data: XOR<OrderUpdateWithoutOrderItemsInput, OrderUncheckedUpdateWithoutOrderItemsInput>
+  }
+
+  export type OrderUpdateWithoutOrderItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutOrdersNestedInput
+  }
+
+  export type OrderUncheckedUpdateWithoutOrderItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductUpsertWithoutOrderItemsInput = {
+    update: XOR<ProductUpdateWithoutOrderItemsInput, ProductUncheckedUpdateWithoutOrderItemsInput>
+    create: XOR<ProductCreateWithoutOrderItemsInput, ProductUncheckedCreateWithoutOrderItemsInput>
+    where?: ProductWhereInput
+  }
+
+  export type ProductUpdateToOneWithWhereWithoutOrderItemsInput = {
+    where?: ProductWhereInput
+    data: XOR<ProductUpdateWithoutOrderItemsInput, ProductUncheckedUpdateWithoutOrderItemsInput>
+  }
+
+  export type ProductUpdateWithoutOrderItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: StringFieldUpdateOperationsInput | string
+    productImages?: ProductUpdateproductImagesInput | string[]
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    pattern?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    isMotorized?: BoolFieldUpdateOperationsInput | boolean
+    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
+    subcategory?: SubcategoryUpdateOneRequiredWithoutProductsNestedInput
+  }
+
+  export type ProductUncheckedUpdateWithoutOrderItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    subcategoryId?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: StringFieldUpdateOperationsInput | string
+    productImages?: ProductUpdateproductImagesInput | string[]
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    pattern?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    isMotorized?: BoolFieldUpdateOperationsInput | boolean
+    additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AddressCreateManyUserInput = {
@@ -17327,10 +20210,10 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    address: string
+    city: string
     state: string
     country: string
-    city: string
-    address: string
     addressType?: $Enums.AddressType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17342,17 +20225,16 @@ export namespace Prisma {
     lastName: string
     email: string
     phone: string
+    address: string
+    city: string
     state: string
     country: string
-    city: string
-    address: string
     totalAmount?: Decimal | DecimalJsLike | number | string
     shippingCost?: Decimal | DecimalJsLike | number | string
-    items?: OrderCreateitemsInput | InputJsonValue[]
     notes?: string | null
-    lastEditedBy?: string | null
     paymentStatus?: $Enums.PaymentStatus
     orderStatus?: $Enums.OrderStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -17363,13 +20245,15 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
     addressType?: EnumAddressTypeFieldUpdateOperationsInput | $Enums.AddressType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    defaultShippingFor?: UserUpdateOneWithoutDefaultShippingAddressNestedInput
+    defaultBillingFor?: UserUpdateOneWithoutDefaultBillingAddressNestedInput
   }
 
   export type AddressUncheckedUpdateWithoutUserInput = {
@@ -17378,13 +20262,15 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
     addressType?: EnumAddressTypeFieldUpdateOperationsInput | $Enums.AddressType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    defaultShippingFor?: UserUncheckedUpdateOneWithoutDefaultShippingAddressNestedInput
+    defaultBillingFor?: UserUncheckedUpdateOneWithoutDefaultBillingAddressNestedInput
   }
 
   export type AddressUncheckedUpdateManyWithoutUserInput = {
@@ -17393,10 +20279,10 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
     addressType?: EnumAddressTypeFieldUpdateOperationsInput | $Enums.AddressType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17408,19 +20294,19 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     shippingCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    items?: OrderUpdateitemsInput | InputJsonValue[]
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orderItems?: OrderItemUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutUserInput = {
@@ -17429,19 +20315,19 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     shippingCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    items?: OrderUpdateitemsInput | InputJsonValue[]
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orderItems?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateManyWithoutUserInput = {
@@ -17450,17 +20336,16 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     shippingCost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    items?: OrderUpdateitemsInput | InputJsonValue[]
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17468,31 +20353,32 @@ export namespace Prisma {
   export type ProductCreateManyCategoryInput = {
     id?: string
     subcategoryId: string
+    sku: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
-    metaTitle?: string | null
-    metaDescription?: string | null
-    canonicalTag?: string | null
-    breadcrumb?: string | null
+    shortDescription?: string | null
+    description?: string | null
     posterImageUrl: string
-    seoSchema?: string | null
     productImages?: ProductCreateproductImagesInput | string[]
     price?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
-    stock?: number
-    height?: Decimal | DecimalJsLike | number | string
-    width?: Decimal | DecimalJsLike | number | string
+    minHeight?: Decimal | DecimalJsLike | number | string
+    maxHeight?: Decimal | DecimalJsLike | number | string
+    minWidth?: Decimal | DecimalJsLike | number | string
+    maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
     composition?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
-    lastEditedBy?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    canonicalTag?: string | null
+    breadcrumb?: string | null
+    seoSchema?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -17500,113 +20386,118 @@ export namespace Prisma {
   export type SubcategoryCreateManyCategoryInput = {
     id?: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
+    shortDescription?: string | null
+    description?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
     posterImageUrl?: string | null
     seoSchema?: string | null
-    lastEditedBy?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type ProductUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
-    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
-    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     productImages?: ProductUpdateproductImagesInput | string[]
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    stock?: IntFieldUpdateOperationsInput | number
-    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     subcategory?: SubcategoryUpdateOneRequiredWithoutProductsNestedInput
+    orderItems?: OrderItemUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     subcategoryId?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
-    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
-    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     productImages?: ProductUpdateproductImagesInput | string[]
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    stock?: IntFieldUpdateOperationsInput | number
-    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     subcategoryId?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
-    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
-    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     productImages?: ProductUpdateproductImagesInput | string[]
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    stock?: IntFieldUpdateOperationsInput | number
-    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17614,17 +20505,17 @@ export namespace Prisma {
   export type SubcategoryUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUpdateManyWithoutSubcategoryNestedInput
@@ -17633,17 +20524,17 @@ export namespace Prisma {
   export type SubcategoryUncheckedUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUncheckedUpdateManyWithoutSubcategoryNestedInput
@@ -17652,17 +20543,17 @@ export namespace Prisma {
   export type SubcategoryUncheckedUpdateManyWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17670,129 +20561,287 @@ export namespace Prisma {
   export type ProductCreateManySubcategoryInput = {
     id?: string
     categoryId: string
+    sku: string
     name: string
-    description?: string | null
-    shortDescription?: string | null
     slug: string
-    metaTitle?: string | null
-    metaDescription?: string | null
-    canonicalTag?: string | null
-    breadcrumb?: string | null
+    shortDescription?: string | null
+    description?: string | null
     posterImageUrl: string
-    seoSchema?: string | null
     productImages?: ProductCreateproductImagesInput | string[]
     price?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
-    stock?: number
-    height?: Decimal | DecimalJsLike | number | string
-    width?: Decimal | DecimalJsLike | number | string
+    minHeight?: Decimal | DecimalJsLike | number | string
+    maxHeight?: Decimal | DecimalJsLike | number | string
+    minWidth?: Decimal | DecimalJsLike | number | string
+    maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
     composition?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
-    lastEditedBy?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    canonicalTag?: string | null
+    breadcrumb?: string | null
+    seoSchema?: string | null
     status?: $Enums.ContentStatus
+    lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type ProductUpdateWithoutSubcategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
-    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
-    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     productImages?: ProductUpdateproductImagesInput | string[]
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    stock?: IntFieldUpdateOperationsInput | number
-    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
+    orderItems?: OrderItemUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutSubcategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
-    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
-    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     productImages?: ProductUpdateproductImagesInput | string[]
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    stock?: IntFieldUpdateOperationsInput | number
-    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutSubcategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
-    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
-    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    shortDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
-    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     productImages?: ProductUpdateproductImagesInput | string[]
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    stock?: IntFieldUpdateOperationsInput | number
-    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxHeight?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    minWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
     composition?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
-    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
+    lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderItemCreateManyProductInput = {
+    id?: string
+    orderId: string
+    sku: string
+    name: string
+    slug: string
+    categoryUrl: string
+    subcategoryUrl: string
+    price: Decimal | DecimalJsLike | number | string
+    height?: Decimal | DecimalJsLike | number | string
+    width?: Decimal | DecimalJsLike | number | string
+    isMotorized?: boolean
+    motorPrice?: Decimal | DecimalJsLike | number | string
+    color?: string | null
+    pattern?: string | null
+    composition?: string | null
+    posterImageUrl?: string | null
+  }
+
+  export type OrderItemUpdateWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    categoryUrl?: StringFieldUpdateOperationsInput | string
+    subcategoryUrl?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isMotorized?: BoolFieldUpdateOperationsInput | boolean
+    motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    pattern?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: OrderUpdateOneRequiredWithoutOrderItemsNestedInput
+  }
+
+  export type OrderItemUncheckedUpdateWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    orderId?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    categoryUrl?: StringFieldUpdateOperationsInput | string
+    subcategoryUrl?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isMotorized?: BoolFieldUpdateOperationsInput | boolean
+    motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    pattern?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type OrderItemUncheckedUpdateManyWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    orderId?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    categoryUrl?: StringFieldUpdateOperationsInput | string
+    subcategoryUrl?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isMotorized?: BoolFieldUpdateOperationsInput | boolean
+    motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    pattern?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type OrderItemCreateManyOrderInput = {
+    id?: string
+    productId?: string | null
+    sku: string
+    name: string
+    slug: string
+    categoryUrl: string
+    subcategoryUrl: string
+    price: Decimal | DecimalJsLike | number | string
+    height?: Decimal | DecimalJsLike | number | string
+    width?: Decimal | DecimalJsLike | number | string
+    isMotorized?: boolean
+    motorPrice?: Decimal | DecimalJsLike | number | string
+    color?: string | null
+    pattern?: string | null
+    composition?: string | null
+    posterImageUrl?: string | null
+  }
+
+  export type OrderItemUpdateWithoutOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    categoryUrl?: StringFieldUpdateOperationsInput | string
+    subcategoryUrl?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isMotorized?: BoolFieldUpdateOperationsInput | boolean
+    motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    pattern?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    product?: ProductUpdateOneWithoutOrderItemsNestedInput
+  }
+
+  export type OrderItemUncheckedUpdateWithoutOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    categoryUrl?: StringFieldUpdateOperationsInput | string
+    subcategoryUrl?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isMotorized?: BoolFieldUpdateOperationsInput | boolean
+    motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    pattern?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type OrderItemUncheckedUpdateManyWithoutOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    sku?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    categoryUrl?: StringFieldUpdateOperationsInput | string
+    subcategoryUrl?: StringFieldUpdateOperationsInput | string
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    height?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    width?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isMotorized?: BoolFieldUpdateOperationsInput | boolean
+    motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    pattern?: NullableStringFieldUpdateOperationsInput | string | null
+    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 
