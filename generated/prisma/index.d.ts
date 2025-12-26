@@ -8923,6 +8923,7 @@ export namespace Prisma {
   }
 
   export type ProductAvgAggregateOutputType = {
+    stock: number | null
     price: Decimal | null
     discountPrice: Decimal | null
     motorPrice: Decimal | null
@@ -8933,6 +8934,7 @@ export namespace Prisma {
   }
 
   export type ProductSumAggregateOutputType = {
+    stock: number | null
     price: Decimal | null
     discountPrice: Decimal | null
     motorPrice: Decimal | null
@@ -8954,6 +8956,7 @@ export namespace Prisma {
     materialDescription: string | null
     dimensionDescription: string | null
     posterImageUrl: string | null
+    stock: number | null
     price: Decimal | null
     discountPrice: Decimal | null
     motorPrice: Decimal | null
@@ -8963,7 +8966,7 @@ export namespace Prisma {
     maxWidth: Decimal | null
     color: string | null
     pattern: string | null
-    composition: string | null
+    material: string | null
     isMotorized: boolean | null
     additionalInfo: string | null
     measuringGuide: string | null
@@ -8990,6 +8993,7 @@ export namespace Prisma {
     materialDescription: string | null
     dimensionDescription: string | null
     posterImageUrl: string | null
+    stock: number | null
     price: Decimal | null
     discountPrice: Decimal | null
     motorPrice: Decimal | null
@@ -8999,7 +9003,7 @@ export namespace Prisma {
     maxWidth: Decimal | null
     color: string | null
     pattern: string | null
-    composition: string | null
+    material: string | null
     isMotorized: boolean | null
     additionalInfo: string | null
     measuringGuide: string | null
@@ -9027,6 +9031,7 @@ export namespace Prisma {
     dimensionDescription: number
     posterImageUrl: number
     productImages: number
+    stock: number
     price: number
     discountPrice: number
     motorPrice: number
@@ -9036,7 +9041,7 @@ export namespace Prisma {
     maxWidth: number
     color: number
     pattern: number
-    composition: number
+    material: number
     isMotorized: number
     additionalInfo: number
     measuringGuide: number
@@ -9054,6 +9059,7 @@ export namespace Prisma {
 
 
   export type ProductAvgAggregateInputType = {
+    stock?: true
     price?: true
     discountPrice?: true
     motorPrice?: true
@@ -9064,6 +9070,7 @@ export namespace Prisma {
   }
 
   export type ProductSumAggregateInputType = {
+    stock?: true
     price?: true
     discountPrice?: true
     motorPrice?: true
@@ -9085,6 +9092,7 @@ export namespace Prisma {
     materialDescription?: true
     dimensionDescription?: true
     posterImageUrl?: true
+    stock?: true
     price?: true
     discountPrice?: true
     motorPrice?: true
@@ -9094,7 +9102,7 @@ export namespace Prisma {
     maxWidth?: true
     color?: true
     pattern?: true
-    composition?: true
+    material?: true
     isMotorized?: true
     additionalInfo?: true
     measuringGuide?: true
@@ -9121,6 +9129,7 @@ export namespace Prisma {
     materialDescription?: true
     dimensionDescription?: true
     posterImageUrl?: true
+    stock?: true
     price?: true
     discountPrice?: true
     motorPrice?: true
@@ -9130,7 +9139,7 @@ export namespace Prisma {
     maxWidth?: true
     color?: true
     pattern?: true
-    composition?: true
+    material?: true
     isMotorized?: true
     additionalInfo?: true
     measuringGuide?: true
@@ -9158,6 +9167,7 @@ export namespace Prisma {
     dimensionDescription?: true
     posterImageUrl?: true
     productImages?: true
+    stock?: true
     price?: true
     discountPrice?: true
     motorPrice?: true
@@ -9167,7 +9177,7 @@ export namespace Prisma {
     maxWidth?: true
     color?: true
     pattern?: true
-    composition?: true
+    material?: true
     isMotorized?: true
     additionalInfo?: true
     measuringGuide?: true
@@ -9282,6 +9292,7 @@ export namespace Prisma {
     dimensionDescription: string | null
     posterImageUrl: string
     productImages: string[]
+    stock: number
     price: Decimal
     discountPrice: Decimal
     motorPrice: Decimal
@@ -9291,7 +9302,7 @@ export namespace Prisma {
     maxWidth: Decimal
     color: string | null
     pattern: string | null
-    composition: string | null
+    material: string | null
     isMotorized: boolean
     additionalInfo: string | null
     measuringGuide: string | null
@@ -9338,6 +9349,7 @@ export namespace Prisma {
     dimensionDescription?: boolean
     posterImageUrl?: boolean
     productImages?: boolean
+    stock?: boolean
     price?: boolean
     discountPrice?: boolean
     motorPrice?: boolean
@@ -9347,7 +9359,7 @@ export namespace Prisma {
     maxWidth?: boolean
     color?: boolean
     pattern?: boolean
-    composition?: boolean
+    material?: boolean
     isMotorized?: boolean
     additionalInfo?: boolean
     measuringGuide?: boolean
@@ -9379,6 +9391,7 @@ export namespace Prisma {
     dimensionDescription?: boolean
     posterImageUrl?: boolean
     productImages?: boolean
+    stock?: boolean
     price?: boolean
     discountPrice?: boolean
     motorPrice?: boolean
@@ -9388,7 +9401,7 @@ export namespace Prisma {
     maxWidth?: boolean
     color?: boolean
     pattern?: boolean
-    composition?: boolean
+    material?: boolean
     isMotorized?: boolean
     additionalInfo?: boolean
     measuringGuide?: boolean
@@ -9418,6 +9431,7 @@ export namespace Prisma {
     dimensionDescription?: boolean
     posterImageUrl?: boolean
     productImages?: boolean
+    stock?: boolean
     price?: boolean
     discountPrice?: boolean
     motorPrice?: boolean
@@ -9427,7 +9441,7 @@ export namespace Prisma {
     maxWidth?: boolean
     color?: boolean
     pattern?: boolean
-    composition?: boolean
+    material?: boolean
     isMotorized?: boolean
     additionalInfo?: boolean
     measuringGuide?: boolean
@@ -9457,6 +9471,7 @@ export namespace Prisma {
     dimensionDescription?: boolean
     posterImageUrl?: boolean
     productImages?: boolean
+    stock?: boolean
     price?: boolean
     discountPrice?: boolean
     motorPrice?: boolean
@@ -9466,7 +9481,7 @@ export namespace Prisma {
     maxWidth?: boolean
     color?: boolean
     pattern?: boolean
-    composition?: boolean
+    material?: boolean
     isMotorized?: boolean
     additionalInfo?: boolean
     measuringGuide?: boolean
@@ -9481,7 +9496,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "sku" | "name" | "slug" | "shortDescription" | "description" | "materialDescription" | "dimensionDescription" | "posterImageUrl" | "productImages" | "price" | "discountPrice" | "motorPrice" | "minHeight" | "maxHeight" | "minWidth" | "maxWidth" | "color" | "pattern" | "composition" | "isMotorized" | "additionalInfo" | "measuringGuide" | "metaTitle" | "metaDescription" | "canonicalTag" | "breadcrumb" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "sku" | "name" | "slug" | "shortDescription" | "description" | "materialDescription" | "dimensionDescription" | "posterImageUrl" | "productImages" | "stock" | "price" | "discountPrice" | "motorPrice" | "minHeight" | "maxHeight" | "minWidth" | "maxWidth" | "color" | "pattern" | "material" | "isMotorized" | "additionalInfo" | "measuringGuide" | "metaTitle" | "metaDescription" | "canonicalTag" | "breadcrumb" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     subcategory?: boolean | SubcategoryDefaultArgs<ExtArgs>
@@ -9517,6 +9532,7 @@ export namespace Prisma {
       dimensionDescription: string | null
       posterImageUrl: string
       productImages: string[]
+      stock: number
       price: Prisma.Decimal
       discountPrice: Prisma.Decimal
       motorPrice: Prisma.Decimal
@@ -9526,7 +9542,7 @@ export namespace Prisma {
       maxWidth: Prisma.Decimal
       color: string | null
       pattern: string | null
-      composition: string | null
+      material: string | null
       isMotorized: boolean
       additionalInfo: string | null
       measuringGuide: string | null
@@ -9977,6 +9993,7 @@ export namespace Prisma {
     readonly dimensionDescription: FieldRef<"Product", 'String'>
     readonly posterImageUrl: FieldRef<"Product", 'String'>
     readonly productImages: FieldRef<"Product", 'String[]'>
+    readonly stock: FieldRef<"Product", 'Int'>
     readonly price: FieldRef<"Product", 'Decimal'>
     readonly discountPrice: FieldRef<"Product", 'Decimal'>
     readonly motorPrice: FieldRef<"Product", 'Decimal'>
@@ -9986,7 +10003,7 @@ export namespace Prisma {
     readonly maxWidth: FieldRef<"Product", 'Decimal'>
     readonly color: FieldRef<"Product", 'String'>
     readonly pattern: FieldRef<"Product", 'String'>
-    readonly composition: FieldRef<"Product", 'String'>
+    readonly material: FieldRef<"Product", 'String'>
     readonly isMotorized: FieldRef<"Product", 'Boolean'>
     readonly additionalInfo: FieldRef<"Product", 'String'>
     readonly measuringGuide: FieldRef<"Product", 'String'>
@@ -14197,6 +14214,7 @@ export namespace Prisma {
     dimensionDescription: 'dimensionDescription',
     posterImageUrl: 'posterImageUrl',
     productImages: 'productImages',
+    stock: 'stock',
     price: 'price',
     discountPrice: 'discountPrice',
     motorPrice: 'motorPrice',
@@ -14206,7 +14224,7 @@ export namespace Prisma {
     maxWidth: 'maxWidth',
     color: 'color',
     pattern: 'pattern',
-    composition: 'composition',
+    material: 'material',
     isMotorized: 'isMotorized',
     additionalInfo: 'additionalInfo',
     measuringGuide: 'measuringGuide',
@@ -14407,6 +14425,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Decimal'
    */
   export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
@@ -14477,16 +14509,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'Float'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 
   /**
-   * Reference to a field of type 'Int[]'
+   * Reference to a field of type 'Float[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -15045,6 +15077,7 @@ export namespace Prisma {
     dimensionDescription?: StringNullableFilter<"Product"> | string | null
     posterImageUrl?: StringFilter<"Product"> | string
     productImages?: StringNullableListFilter<"Product">
+    stock?: IntFilter<"Product"> | number
     price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
@@ -15054,7 +15087,7 @@ export namespace Prisma {
     maxWidth?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     color?: StringNullableFilter<"Product"> | string | null
     pattern?: StringNullableFilter<"Product"> | string | null
-    composition?: StringNullableFilter<"Product"> | string | null
+    material?: StringNullableFilter<"Product"> | string | null
     isMotorized?: BoolFilter<"Product"> | boolean
     additionalInfo?: StringNullableFilter<"Product"> | string | null
     measuringGuide?: StringNullableFilter<"Product"> | string | null
@@ -15085,6 +15118,7 @@ export namespace Prisma {
     dimensionDescription?: SortOrderInput | SortOrder
     posterImageUrl?: SortOrder
     productImages?: SortOrder
+    stock?: SortOrder
     price?: SortOrder
     discountPrice?: SortOrder
     motorPrice?: SortOrder
@@ -15094,7 +15128,7 @@ export namespace Prisma {
     maxWidth?: SortOrder
     color?: SortOrderInput | SortOrder
     pattern?: SortOrderInput | SortOrder
-    composition?: SortOrderInput | SortOrder
+    material?: SortOrderInput | SortOrder
     isMotorized?: SortOrder
     additionalInfo?: SortOrderInput | SortOrder
     measuringGuide?: SortOrderInput | SortOrder
@@ -15129,6 +15163,7 @@ export namespace Prisma {
     dimensionDescription?: StringNullableFilter<"Product"> | string | null
     posterImageUrl?: StringFilter<"Product"> | string
     productImages?: StringNullableListFilter<"Product">
+    stock?: IntFilter<"Product"> | number
     price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
@@ -15138,7 +15173,7 @@ export namespace Prisma {
     maxWidth?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     color?: StringNullableFilter<"Product"> | string | null
     pattern?: StringNullableFilter<"Product"> | string | null
-    composition?: StringNullableFilter<"Product"> | string | null
+    material?: StringNullableFilter<"Product"> | string | null
     isMotorized?: BoolFilter<"Product"> | boolean
     additionalInfo?: StringNullableFilter<"Product"> | string | null
     measuringGuide?: StringNullableFilter<"Product"> | string | null
@@ -15169,6 +15204,7 @@ export namespace Prisma {
     dimensionDescription?: SortOrderInput | SortOrder
     posterImageUrl?: SortOrder
     productImages?: SortOrder
+    stock?: SortOrder
     price?: SortOrder
     discountPrice?: SortOrder
     motorPrice?: SortOrder
@@ -15178,7 +15214,7 @@ export namespace Prisma {
     maxWidth?: SortOrder
     color?: SortOrderInput | SortOrder
     pattern?: SortOrderInput | SortOrder
-    composition?: SortOrderInput | SortOrder
+    material?: SortOrderInput | SortOrder
     isMotorized?: SortOrder
     additionalInfo?: SortOrderInput | SortOrder
     measuringGuide?: SortOrderInput | SortOrder
@@ -15214,6 +15250,7 @@ export namespace Prisma {
     dimensionDescription?: StringNullableWithAggregatesFilter<"Product"> | string | null
     posterImageUrl?: StringWithAggregatesFilter<"Product"> | string
     productImages?: StringNullableListFilter<"Product">
+    stock?: IntWithAggregatesFilter<"Product"> | number
     price?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
@@ -15223,7 +15260,7 @@ export namespace Prisma {
     maxWidth?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
     color?: StringNullableWithAggregatesFilter<"Product"> | string | null
     pattern?: StringNullableWithAggregatesFilter<"Product"> | string | null
-    composition?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    material?: StringNullableWithAggregatesFilter<"Product"> | string | null
     isMotorized?: BoolWithAggregatesFilter<"Product"> | boolean
     additionalInfo?: StringNullableWithAggregatesFilter<"Product"> | string | null
     measuringGuide?: StringNullableWithAggregatesFilter<"Product"> | string | null
@@ -16192,6 +16229,7 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
+    stock?: number
     price?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
@@ -16201,7 +16239,7 @@ export namespace Prisma {
     maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
-    composition?: string | null
+    material?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
@@ -16232,6 +16270,7 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
+    stock?: number
     price?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
@@ -16241,7 +16280,7 @@ export namespace Prisma {
     maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
-    composition?: string | null
+    material?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
@@ -16268,6 +16307,7 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
+    stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -16277,7 +16317,7 @@ export namespace Prisma {
     maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
-    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16308,6 +16348,7 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
+    stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -16317,7 +16358,7 @@ export namespace Prisma {
     maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
-    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16346,6 +16387,7 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
+    stock?: number
     price?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
@@ -16355,7 +16397,7 @@ export namespace Prisma {
     maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
-    composition?: string | null
+    material?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
@@ -16381,6 +16423,7 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
+    stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -16390,7 +16433,7 @@ export namespace Prisma {
     maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
-    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16418,6 +16461,7 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
+    stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -16427,7 +16471,7 @@ export namespace Prisma {
     maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
-    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17365,6 +17409,17 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type DecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -17409,6 +17464,7 @@ export namespace Prisma {
     dimensionDescription?: SortOrder
     posterImageUrl?: SortOrder
     productImages?: SortOrder
+    stock?: SortOrder
     price?: SortOrder
     discountPrice?: SortOrder
     motorPrice?: SortOrder
@@ -17418,7 +17474,7 @@ export namespace Prisma {
     maxWidth?: SortOrder
     color?: SortOrder
     pattern?: SortOrder
-    composition?: SortOrder
+    material?: SortOrder
     isMotorized?: SortOrder
     additionalInfo?: SortOrder
     measuringGuide?: SortOrder
@@ -17434,6 +17490,7 @@ export namespace Prisma {
   }
 
   export type ProductAvgOrderByAggregateInput = {
+    stock?: SortOrder
     price?: SortOrder
     discountPrice?: SortOrder
     motorPrice?: SortOrder
@@ -17455,6 +17512,7 @@ export namespace Prisma {
     materialDescription?: SortOrder
     dimensionDescription?: SortOrder
     posterImageUrl?: SortOrder
+    stock?: SortOrder
     price?: SortOrder
     discountPrice?: SortOrder
     motorPrice?: SortOrder
@@ -17464,7 +17522,7 @@ export namespace Prisma {
     maxWidth?: SortOrder
     color?: SortOrder
     pattern?: SortOrder
-    composition?: SortOrder
+    material?: SortOrder
     isMotorized?: SortOrder
     additionalInfo?: SortOrder
     measuringGuide?: SortOrder
@@ -17491,6 +17549,7 @@ export namespace Prisma {
     materialDescription?: SortOrder
     dimensionDescription?: SortOrder
     posterImageUrl?: SortOrder
+    stock?: SortOrder
     price?: SortOrder
     discountPrice?: SortOrder
     motorPrice?: SortOrder
@@ -17500,7 +17559,7 @@ export namespace Prisma {
     maxWidth?: SortOrder
     color?: SortOrder
     pattern?: SortOrder
-    composition?: SortOrder
+    material?: SortOrder
     isMotorized?: SortOrder
     additionalInfo?: SortOrder
     measuringGuide?: SortOrder
@@ -17516,6 +17575,7 @@ export namespace Prisma {
   }
 
   export type ProductSumOrderByAggregateInput = {
+    stock?: SortOrder
     price?: SortOrder
     discountPrice?: SortOrder
     motorPrice?: SortOrder
@@ -17523,6 +17583,22 @@ export namespace Prisma {
     maxHeight?: SortOrder
     minWidth?: SortOrder
     maxWidth?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -18208,6 +18284,14 @@ export namespace Prisma {
     push?: string | string[]
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type DecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string
     increment?: Decimal | DecimalJsLike | number | string
@@ -18594,6 +18678,33 @@ export namespace Prisma {
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -19246,6 +19357,7 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
+    stock?: number
     price?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
@@ -19255,7 +19367,7 @@ export namespace Prisma {
     maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
-    composition?: string | null
+    material?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
@@ -19284,6 +19396,7 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
+    stock?: number
     price?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
@@ -19293,7 +19406,7 @@ export namespace Prisma {
     maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
-    composition?: string | null
+    material?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
@@ -19399,6 +19512,7 @@ export namespace Prisma {
     dimensionDescription?: StringNullableFilter<"Product"> | string | null
     posterImageUrl?: StringFilter<"Product"> | string
     productImages?: StringNullableListFilter<"Product">
+    stock?: IntFilter<"Product"> | number
     price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
@@ -19408,7 +19522,7 @@ export namespace Prisma {
     maxWidth?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     color?: StringNullableFilter<"Product"> | string | null
     pattern?: StringNullableFilter<"Product"> | string | null
-    composition?: StringNullableFilter<"Product"> | string | null
+    material?: StringNullableFilter<"Product"> | string | null
     isMotorized?: BoolFilter<"Product"> | boolean
     additionalInfo?: StringNullableFilter<"Product"> | string | null
     measuringGuide?: StringNullableFilter<"Product"> | string | null
@@ -19515,6 +19629,7 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
+    stock?: number
     price?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
@@ -19524,7 +19639,7 @@ export namespace Prisma {
     maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
-    composition?: string | null
+    material?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
@@ -19553,6 +19668,7 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
+    stock?: number
     price?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
@@ -19562,7 +19678,7 @@ export namespace Prisma {
     maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
-    composition?: string | null
+    material?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
@@ -20118,6 +20234,7 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
+    stock?: number
     price?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
@@ -20127,7 +20244,7 @@ export namespace Prisma {
     maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
-    composition?: string | null
+    material?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
@@ -20157,6 +20274,7 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
+    stock?: number
     price?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
@@ -20166,7 +20284,7 @@ export namespace Prisma {
     maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
-    composition?: string | null
+    material?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
@@ -20261,6 +20379,7 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
+    stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -20270,7 +20389,7 @@ export namespace Prisma {
     maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
-    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20300,6 +20419,7 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
+    stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -20309,7 +20429,7 @@ export namespace Prisma {
     maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
-    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20482,6 +20602,7 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
+    stock?: number
     price?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
@@ -20491,7 +20612,7 @@ export namespace Prisma {
     maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
-    composition?: string | null
+    material?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
@@ -20535,6 +20656,7 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
+    stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -20544,7 +20666,7 @@ export namespace Prisma {
     maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
-    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20573,6 +20695,7 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
+    stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -20582,7 +20705,7 @@ export namespace Prisma {
     maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
-    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20610,6 +20733,7 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
+    stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -20619,7 +20743,7 @@ export namespace Prisma {
     maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
-    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20702,6 +20826,7 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
+    stock?: number
     price?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     motorPrice?: Decimal | DecimalJsLike | number | string
@@ -20711,7 +20836,7 @@ export namespace Prisma {
     maxWidth?: Decimal | DecimalJsLike | number | string
     color?: string | null
     pattern?: string | null
-    composition?: string | null
+    material?: string | null
     isMotorized?: boolean
     additionalInfo?: string | null
     measuringGuide?: string | null
@@ -20737,6 +20862,7 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
+    stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -20746,7 +20872,7 @@ export namespace Prisma {
     maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
-    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20775,6 +20901,7 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
+    stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -20784,7 +20911,7 @@ export namespace Prisma {
     maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
-    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20812,6 +20939,7 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
+    stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     motorPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -20821,7 +20949,7 @@ export namespace Prisma {
     maxWidth?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     pattern?: NullableStringFieldUpdateOperationsInput | string | null
-    composition?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     isMotorized?: BoolFieldUpdateOperationsInput | boolean
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     measuringGuide?: NullableStringFieldUpdateOperationsInput | string | null
