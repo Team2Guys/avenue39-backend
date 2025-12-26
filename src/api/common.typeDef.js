@@ -130,33 +130,30 @@ export const commonTypeDefs = gql`
     id: ID!
     categoryId: ID!
     subcategoryId: ID!
+    sku: String!
     name: String!
-    description: String
-    shortDescription: String
-    slug: String
-    metaTitle: String
-    metaDescription: String
-    canonicalTag: String
-    breadcrumb: String
-    posterImageUrl: String
+    slug: String!
+    shortDescription: String!
+    description: String!
+    materialDescription: String!
+    dimensionDescription: String!
+    posterImageUrl: String!
     productImages: [String!]!
-    seoSchema: String
+    stock: Int!
     price: Float!
-    discountPrice: Float
-    motorPrice: Float
-    width: Float
-    height: Float
-    stock: Int
-    color: String
-    pattern: String
-    composition: String
-    isMotorized: Boolean
-    additionalInfo: String
-    measuringGuide: String
-    lastEditedBy: String!
-    category: Category!
-    subcategory: Subcategory!
+    discountPrice: Float!
+    color: String!
+    pattern: String!
+    material: String!
+    metaTitle: String!
+    metaDescription: String!
+    canonicalTag: String!
+    breadcrumb: String!
+    seoSchema: String!
     status: ContentStatus!
+    lastEditedBy: String!
+    category: Category
+    subcategory: Subcategory
     createdAt: DateTime!
     updatedAt: DateTime!
   }
