@@ -81,10 +81,11 @@ export async function seedProducts() {
               sku: row.sku,
               name: row.name,
               slug: slugify(row.name, { lower: true }),
-              // slug: row.slug || slugify(row.name, { lower: true }),
               breadcrumb: row.breadcrumb,
               description: row.description,
               shortDescription: row.shortDescription,
+              materialDescription: row.materialDescription,
+              dimensionsDescription: row.dimensionsDescription,
               categoryId: row.categoryId,
               subcategoryId: row.subcategoryId,
               posterImageUrl: row.posterImageUrl,
@@ -94,6 +95,7 @@ export async function seedProducts() {
                 'productImages'
               ),
               price: Number(row.price),
+              discountPrice: Number(row.discountPrice),
               isMotorized:
                 row.isMotorized === true || row.isMotorized === 'TRUE',
               motorPrice: Number(row.motorPrice || 0),

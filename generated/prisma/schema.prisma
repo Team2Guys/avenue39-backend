@@ -175,37 +175,40 @@ model Subcategory {
 }
 
 model Product {
-  id               String        @id @default(uuid()) @db.Uuid
-  categoryId       String        @db.Uuid
-  subcategoryId    String        @db.Uuid
-  sku              String        @unique
-  name             String
-  slug             String
-  shortDescription String?
-  description      String?       @db.Text()
-  posterImageUrl   String
-  productImages    String[]      @default([])
-  price            Decimal       @default(0)
-  motorPrice       Decimal       @default(0)
-  minHeight        Decimal       @default(0)
-  maxHeight        Decimal       @default(1)
-  minWidth         Decimal       @default(0)
-  maxWidth         Decimal       @default(1)
-  color            String?
-  pattern          String?
-  composition      String?
-  isMotorized      Boolean       @default(false)
-  additionalInfo   String?       @db.Text()
-  measuringGuide   String?       @db.Text()
-  metaTitle        String?
-  metaDescription  String?
-  canonicalTag     String?
-  breadcrumb       String?
-  seoSchema        String?       @db.Text()
-  status           ContentStatus @default(PUBLISHED)
-  lastEditedBy     String?
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @updatedAt
+  id                   String        @id @default(uuid()) @db.Uuid
+  categoryId           String        @db.Uuid
+  subcategoryId        String        @db.Uuid
+  sku                  String        @unique
+  name                 String
+  slug                 String
+  shortDescription     String?       @db.Text()
+  description          String?       @db.Text()
+  materialDescription  String?       @db.Text()
+  dimensionDescription String?       @db.Text()
+  posterImageUrl       String
+  productImages        String[]      @default([])
+  price                Decimal       @default(0)
+  discountPrice        Decimal       @default(0)
+  motorPrice           Decimal       @default(0)
+  minHeight            Decimal       @default(0)
+  maxHeight            Decimal       @default(1)
+  minWidth             Decimal       @default(0)
+  maxWidth             Decimal       @default(1)
+  color                String?
+  pattern              String?
+  composition          String?
+  isMotorized          Boolean       @default(false)
+  additionalInfo       String?       @db.Text()
+  measuringGuide       String?       @db.Text()
+  metaTitle            String?
+  metaDescription      String?
+  canonicalTag         String?
+  breadcrumb           String?
+  seoSchema            String?       @db.Text()
+  status               ContentStatus @default(PUBLISHED)
+  lastEditedBy         String?
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
 
   category    Category    @relation(name: "CategoryProducts", fields: [categoryId], references: [id], onDelete: Cascade)
   subcategory Subcategory @relation(name: "SubcategoryProducts", fields: [subcategoryId], references: [id], onDelete: Cascade)
