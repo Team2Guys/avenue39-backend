@@ -141,6 +141,7 @@ export const commonTypeDefs = gql`
     productImages: [String!]!
     stock: Int!
     price: Float!
+    memberPrice: Float!
     discountPrice: Float!
     color: String!
     material: String!
