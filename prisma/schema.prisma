@@ -186,18 +186,18 @@ model Product {
   description          String?       @db.Text()
   materialDescription  String?       @db.Text()
   dimensionDescription String?       @db.Text()
-  posterImageUrl       String
-  productImages        String[]      @default([])
-  stock                Int           @default(0)
-  price                Decimal       @default(0)
-  memberPrice          Decimal       @default(0)
-  discountPrice        Decimal       @default(0)
-  color                String?
-  material             String?
   metaTitle            String?
   metaDescription      String?
   canonicalTag         String?
   breadcrumb           String?
+  posterImageUrl       String
+  productImages        String[]      @default([])
+  price                Decimal       @default(0)
+  memberPrice          Decimal       @default(0)
+  discountPrice        Decimal       @default(0)
+  stock                Int           @default(0)
+  color                String?
+  material             String?
   seoSchema            String?       @db.Text()
   status               ContentStatus @default(PUBLISHED)
   lastEditedBy         String?
