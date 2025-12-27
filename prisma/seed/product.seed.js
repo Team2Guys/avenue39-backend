@@ -79,6 +79,7 @@ export async function seedProducts() {
       materialDescription: row.materialDescription || '',
       dimensionDescription: row.dimensionDescription || '',
       posterImageUrl: row.posterImageUrl || '',
+      productUrl: row.productUrl || '',
       productImages: parsePgArray(row.productImages, rowNum, 'productImages'),
       stock: Number(row.stock || 0),
       price: Number(row.price || 0),

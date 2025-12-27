@@ -191,6 +191,7 @@ model Product {
   canonicalTag         String?
   breadcrumb           String?
   posterImageUrl       String
+  productUrl           String
   productImages        String[]      @default([])
   price                Decimal       @default(0)
   memberPrice          Decimal       @default(0)

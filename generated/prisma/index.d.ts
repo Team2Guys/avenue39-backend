@@ -8936,17 +8936,17 @@ export namespace Prisma {
   }
 
   export type ProductAvgAggregateOutputType = {
-    stock: number | null
     price: Decimal | null
     memberPrice: Decimal | null
     discountPrice: Decimal | null
+    stock: number | null
   }
 
   export type ProductSumAggregateOutputType = {
-    stock: number | null
     price: Decimal | null
     memberPrice: Decimal | null
     discountPrice: Decimal | null
+    stock: number | null
   }
 
   export type ProductMinAggregateOutputType = {
@@ -8960,17 +8960,18 @@ export namespace Prisma {
     description: string | null
     materialDescription: string | null
     dimensionDescription: string | null
-    posterImageUrl: string | null
-    stock: number | null
-    price: Decimal | null
-    memberPrice: Decimal | null
-    discountPrice: Decimal | null
-    color: string | null
-    material: string | null
     metaTitle: string | null
     metaDescription: string | null
     canonicalTag: string | null
     breadcrumb: string | null
+    posterImageUrl: string | null
+    productUrl: string | null
+    price: Decimal | null
+    memberPrice: Decimal | null
+    discountPrice: Decimal | null
+    stock: number | null
+    color: string | null
+    material: string | null
     seoSchema: string | null
     status: $Enums.ContentStatus | null
     lastEditedBy: string | null
@@ -8989,17 +8990,18 @@ export namespace Prisma {
     description: string | null
     materialDescription: string | null
     dimensionDescription: string | null
-    posterImageUrl: string | null
-    stock: number | null
-    price: Decimal | null
-    memberPrice: Decimal | null
-    discountPrice: Decimal | null
-    color: string | null
-    material: string | null
     metaTitle: string | null
     metaDescription: string | null
     canonicalTag: string | null
     breadcrumb: string | null
+    posterImageUrl: string | null
+    productUrl: string | null
+    price: Decimal | null
+    memberPrice: Decimal | null
+    discountPrice: Decimal | null
+    stock: number | null
+    color: string | null
+    material: string | null
     seoSchema: string | null
     status: $Enums.ContentStatus | null
     lastEditedBy: string | null
@@ -9018,18 +9020,19 @@ export namespace Prisma {
     description: number
     materialDescription: number
     dimensionDescription: number
-    posterImageUrl: number
-    productImages: number
-    stock: number
-    price: number
-    memberPrice: number
-    discountPrice: number
-    color: number
-    material: number
     metaTitle: number
     metaDescription: number
     canonicalTag: number
     breadcrumb: number
+    posterImageUrl: number
+    productUrl: number
+    productImages: number
+    price: number
+    memberPrice: number
+    discountPrice: number
+    stock: number
+    color: number
+    material: number
     seoSchema: number
     status: number
     lastEditedBy: number
@@ -9040,17 +9043,17 @@ export namespace Prisma {
 
 
   export type ProductAvgAggregateInputType = {
-    stock?: true
     price?: true
     memberPrice?: true
     discountPrice?: true
+    stock?: true
   }
 
   export type ProductSumAggregateInputType = {
-    stock?: true
     price?: true
     memberPrice?: true
     discountPrice?: true
+    stock?: true
   }
 
   export type ProductMinAggregateInputType = {
@@ -9064,17 +9067,18 @@ export namespace Prisma {
     description?: true
     materialDescription?: true
     dimensionDescription?: true
-    posterImageUrl?: true
-    stock?: true
-    price?: true
-    memberPrice?: true
-    discountPrice?: true
-    color?: true
-    material?: true
     metaTitle?: true
     metaDescription?: true
     canonicalTag?: true
     breadcrumb?: true
+    posterImageUrl?: true
+    productUrl?: true
+    price?: true
+    memberPrice?: true
+    discountPrice?: true
+    stock?: true
+    color?: true
+    material?: true
     seoSchema?: true
     status?: true
     lastEditedBy?: true
@@ -9093,17 +9097,18 @@ export namespace Prisma {
     description?: true
     materialDescription?: true
     dimensionDescription?: true
-    posterImageUrl?: true
-    stock?: true
-    price?: true
-    memberPrice?: true
-    discountPrice?: true
-    color?: true
-    material?: true
     metaTitle?: true
     metaDescription?: true
     canonicalTag?: true
     breadcrumb?: true
+    posterImageUrl?: true
+    productUrl?: true
+    price?: true
+    memberPrice?: true
+    discountPrice?: true
+    stock?: true
+    color?: true
+    material?: true
     seoSchema?: true
     status?: true
     lastEditedBy?: true
@@ -9122,18 +9127,19 @@ export namespace Prisma {
     description?: true
     materialDescription?: true
     dimensionDescription?: true
-    posterImageUrl?: true
-    productImages?: true
-    stock?: true
-    price?: true
-    memberPrice?: true
-    discountPrice?: true
-    color?: true
-    material?: true
     metaTitle?: true
     metaDescription?: true
     canonicalTag?: true
     breadcrumb?: true
+    posterImageUrl?: true
+    productUrl?: true
+    productImages?: true
+    price?: true
+    memberPrice?: true
+    discountPrice?: true
+    stock?: true
+    color?: true
+    material?: true
     seoSchema?: true
     status?: true
     lastEditedBy?: true
@@ -9239,18 +9245,19 @@ export namespace Prisma {
     description: string | null
     materialDescription: string | null
     dimensionDescription: string | null
-    posterImageUrl: string
-    productImages: string[]
-    stock: number
-    price: Decimal
-    memberPrice: Decimal
-    discountPrice: Decimal
-    color: string | null
-    material: string | null
     metaTitle: string | null
     metaDescription: string | null
     canonicalTag: string | null
     breadcrumb: string | null
+    posterImageUrl: string
+    productUrl: string
+    productImages: string[]
+    price: Decimal
+    memberPrice: Decimal
+    discountPrice: Decimal
+    stock: number
+    color: string | null
+    material: string | null
     seoSchema: string | null
     status: $Enums.ContentStatus
     lastEditedBy: string | null
@@ -9288,18 +9295,19 @@ export namespace Prisma {
     description?: boolean
     materialDescription?: boolean
     dimensionDescription?: boolean
-    posterImageUrl?: boolean
-    productImages?: boolean
-    stock?: boolean
-    price?: boolean
-    memberPrice?: boolean
-    discountPrice?: boolean
-    color?: boolean
-    material?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalTag?: boolean
     breadcrumb?: boolean
+    posterImageUrl?: boolean
+    productUrl?: boolean
+    productImages?: boolean
+    price?: boolean
+    memberPrice?: boolean
+    discountPrice?: boolean
+    stock?: boolean
+    color?: boolean
+    material?: boolean
     seoSchema?: boolean
     status?: boolean
     lastEditedBy?: boolean
@@ -9322,18 +9330,19 @@ export namespace Prisma {
     description?: boolean
     materialDescription?: boolean
     dimensionDescription?: boolean
-    posterImageUrl?: boolean
-    productImages?: boolean
-    stock?: boolean
-    price?: boolean
-    memberPrice?: boolean
-    discountPrice?: boolean
-    color?: boolean
-    material?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalTag?: boolean
     breadcrumb?: boolean
+    posterImageUrl?: boolean
+    productUrl?: boolean
+    productImages?: boolean
+    price?: boolean
+    memberPrice?: boolean
+    discountPrice?: boolean
+    stock?: boolean
+    color?: boolean
+    material?: boolean
     seoSchema?: boolean
     status?: boolean
     lastEditedBy?: boolean
@@ -9354,18 +9363,19 @@ export namespace Prisma {
     description?: boolean
     materialDescription?: boolean
     dimensionDescription?: boolean
-    posterImageUrl?: boolean
-    productImages?: boolean
-    stock?: boolean
-    price?: boolean
-    memberPrice?: boolean
-    discountPrice?: boolean
-    color?: boolean
-    material?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalTag?: boolean
     breadcrumb?: boolean
+    posterImageUrl?: boolean
+    productUrl?: boolean
+    productImages?: boolean
+    price?: boolean
+    memberPrice?: boolean
+    discountPrice?: boolean
+    stock?: boolean
+    color?: boolean
+    material?: boolean
     seoSchema?: boolean
     status?: boolean
     lastEditedBy?: boolean
@@ -9386,18 +9396,19 @@ export namespace Prisma {
     description?: boolean
     materialDescription?: boolean
     dimensionDescription?: boolean
-    posterImageUrl?: boolean
-    productImages?: boolean
-    stock?: boolean
-    price?: boolean
-    memberPrice?: boolean
-    discountPrice?: boolean
-    color?: boolean
-    material?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalTag?: boolean
     breadcrumb?: boolean
+    posterImageUrl?: boolean
+    productUrl?: boolean
+    productImages?: boolean
+    price?: boolean
+    memberPrice?: boolean
+    discountPrice?: boolean
+    stock?: boolean
+    color?: boolean
+    material?: boolean
     seoSchema?: boolean
     status?: boolean
     lastEditedBy?: boolean
@@ -9405,7 +9416,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "sku" | "name" | "slug" | "shortDescription" | "description" | "materialDescription" | "dimensionDescription" | "posterImageUrl" | "productImages" | "stock" | "price" | "memberPrice" | "discountPrice" | "color" | "material" | "metaTitle" | "metaDescription" | "canonicalTag" | "breadcrumb" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "sku" | "name" | "slug" | "shortDescription" | "description" | "materialDescription" | "dimensionDescription" | "metaTitle" | "metaDescription" | "canonicalTag" | "breadcrumb" | "posterImageUrl" | "productUrl" | "productImages" | "price" | "memberPrice" | "discountPrice" | "stock" | "color" | "material" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     subcategory?: boolean | SubcategoryDefaultArgs<ExtArgs>
@@ -9439,18 +9450,19 @@ export namespace Prisma {
       description: string | null
       materialDescription: string | null
       dimensionDescription: string | null
-      posterImageUrl: string
-      productImages: string[]
-      stock: number
-      price: Prisma.Decimal
-      memberPrice: Prisma.Decimal
-      discountPrice: Prisma.Decimal
-      color: string | null
-      material: string | null
       metaTitle: string | null
       metaDescription: string | null
       canonicalTag: string | null
       breadcrumb: string | null
+      posterImageUrl: string
+      productUrl: string
+      productImages: string[]
+      price: Prisma.Decimal
+      memberPrice: Prisma.Decimal
+      discountPrice: Prisma.Decimal
+      stock: number
+      color: string | null
+      material: string | null
       seoSchema: string | null
       status: $Enums.ContentStatus
       lastEditedBy: string | null
@@ -9892,18 +9904,19 @@ export namespace Prisma {
     readonly description: FieldRef<"Product", 'String'>
     readonly materialDescription: FieldRef<"Product", 'String'>
     readonly dimensionDescription: FieldRef<"Product", 'String'>
-    readonly posterImageUrl: FieldRef<"Product", 'String'>
-    readonly productImages: FieldRef<"Product", 'String[]'>
-    readonly stock: FieldRef<"Product", 'Int'>
-    readonly price: FieldRef<"Product", 'Decimal'>
-    readonly memberPrice: FieldRef<"Product", 'Decimal'>
-    readonly discountPrice: FieldRef<"Product", 'Decimal'>
-    readonly color: FieldRef<"Product", 'String'>
-    readonly material: FieldRef<"Product", 'String'>
     readonly metaTitle: FieldRef<"Product", 'String'>
     readonly metaDescription: FieldRef<"Product", 'String'>
     readonly canonicalTag: FieldRef<"Product", 'String'>
     readonly breadcrumb: FieldRef<"Product", 'String'>
+    readonly posterImageUrl: FieldRef<"Product", 'String'>
+    readonly productUrl: FieldRef<"Product", 'String'>
+    readonly productImages: FieldRef<"Product", 'String[]'>
+    readonly price: FieldRef<"Product", 'Decimal'>
+    readonly memberPrice: FieldRef<"Product", 'Decimal'>
+    readonly discountPrice: FieldRef<"Product", 'Decimal'>
+    readonly stock: FieldRef<"Product", 'Int'>
+    readonly color: FieldRef<"Product", 'String'>
+    readonly material: FieldRef<"Product", 'String'>
     readonly seoSchema: FieldRef<"Product", 'String'>
     readonly status: FieldRef<"Product", 'ContentStatus'>
     readonly lastEditedBy: FieldRef<"Product", 'String'>
@@ -14046,18 +14059,19 @@ export namespace Prisma {
     description: 'description',
     materialDescription: 'materialDescription',
     dimensionDescription: 'dimensionDescription',
-    posterImageUrl: 'posterImageUrl',
-    productImages: 'productImages',
-    stock: 'stock',
-    price: 'price',
-    memberPrice: 'memberPrice',
-    discountPrice: 'discountPrice',
-    color: 'color',
-    material: 'material',
     metaTitle: 'metaTitle',
     metaDescription: 'metaDescription',
     canonicalTag: 'canonicalTag',
     breadcrumb: 'breadcrumb',
+    posterImageUrl: 'posterImageUrl',
+    productUrl: 'productUrl',
+    productImages: 'productImages',
+    price: 'price',
+    memberPrice: 'memberPrice',
+    discountPrice: 'discountPrice',
+    stock: 'stock',
+    color: 'color',
+    material: 'material',
     seoSchema: 'seoSchema',
     status: 'status',
     lastEditedBy: 'lastEditedBy',
@@ -14247,20 +14261,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Decimal'
    */
   export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
@@ -14271,6 +14271,20 @@ export namespace Prisma {
    * Reference to a field of type 'Decimal[]'
    */
   export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -14902,18 +14916,19 @@ export namespace Prisma {
     description?: StringNullableFilter<"Product"> | string | null
     materialDescription?: StringNullableFilter<"Product"> | string | null
     dimensionDescription?: StringNullableFilter<"Product"> | string | null
-    posterImageUrl?: StringFilter<"Product"> | string
-    productImages?: StringNullableListFilter<"Product">
-    stock?: IntFilter<"Product"> | number
-    price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    memberPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    color?: StringNullableFilter<"Product"> | string | null
-    material?: StringNullableFilter<"Product"> | string | null
     metaTitle?: StringNullableFilter<"Product"> | string | null
     metaDescription?: StringNullableFilter<"Product"> | string | null
     canonicalTag?: StringNullableFilter<"Product"> | string | null
     breadcrumb?: StringNullableFilter<"Product"> | string | null
+    posterImageUrl?: StringFilter<"Product"> | string
+    productUrl?: StringFilter<"Product"> | string
+    productImages?: StringNullableListFilter<"Product">
+    price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    stock?: IntFilter<"Product"> | number
+    color?: StringNullableFilter<"Product"> | string | null
+    material?: StringNullableFilter<"Product"> | string | null
     seoSchema?: StringNullableFilter<"Product"> | string | null
     status?: EnumContentStatusFilter<"Product"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableFilter<"Product"> | string | null
@@ -14935,18 +14950,19 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     materialDescription?: SortOrderInput | SortOrder
     dimensionDescription?: SortOrderInput | SortOrder
-    posterImageUrl?: SortOrder
-    productImages?: SortOrder
-    stock?: SortOrder
-    price?: SortOrder
-    memberPrice?: SortOrder
-    discountPrice?: SortOrder
-    color?: SortOrderInput | SortOrder
-    material?: SortOrderInput | SortOrder
     metaTitle?: SortOrderInput | SortOrder
     metaDescription?: SortOrderInput | SortOrder
     canonicalTag?: SortOrderInput | SortOrder
     breadcrumb?: SortOrderInput | SortOrder
+    posterImageUrl?: SortOrder
+    productUrl?: SortOrder
+    productImages?: SortOrder
+    price?: SortOrder
+    memberPrice?: SortOrder
+    discountPrice?: SortOrder
+    stock?: SortOrder
+    color?: SortOrderInput | SortOrder
+    material?: SortOrderInput | SortOrder
     seoSchema?: SortOrderInput | SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrderInput | SortOrder
@@ -14972,18 +14988,19 @@ export namespace Prisma {
     description?: StringNullableFilter<"Product"> | string | null
     materialDescription?: StringNullableFilter<"Product"> | string | null
     dimensionDescription?: StringNullableFilter<"Product"> | string | null
-    posterImageUrl?: StringFilter<"Product"> | string
-    productImages?: StringNullableListFilter<"Product">
-    stock?: IntFilter<"Product"> | number
-    price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    memberPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    color?: StringNullableFilter<"Product"> | string | null
-    material?: StringNullableFilter<"Product"> | string | null
     metaTitle?: StringNullableFilter<"Product"> | string | null
     metaDescription?: StringNullableFilter<"Product"> | string | null
     canonicalTag?: StringNullableFilter<"Product"> | string | null
     breadcrumb?: StringNullableFilter<"Product"> | string | null
+    posterImageUrl?: StringFilter<"Product"> | string
+    productUrl?: StringFilter<"Product"> | string
+    productImages?: StringNullableListFilter<"Product">
+    price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    stock?: IntFilter<"Product"> | number
+    color?: StringNullableFilter<"Product"> | string | null
+    material?: StringNullableFilter<"Product"> | string | null
     seoSchema?: StringNullableFilter<"Product"> | string | null
     status?: EnumContentStatusFilter<"Product"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableFilter<"Product"> | string | null
@@ -15005,18 +15022,19 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     materialDescription?: SortOrderInput | SortOrder
     dimensionDescription?: SortOrderInput | SortOrder
-    posterImageUrl?: SortOrder
-    productImages?: SortOrder
-    stock?: SortOrder
-    price?: SortOrder
-    memberPrice?: SortOrder
-    discountPrice?: SortOrder
-    color?: SortOrderInput | SortOrder
-    material?: SortOrderInput | SortOrder
     metaTitle?: SortOrderInput | SortOrder
     metaDescription?: SortOrderInput | SortOrder
     canonicalTag?: SortOrderInput | SortOrder
     breadcrumb?: SortOrderInput | SortOrder
+    posterImageUrl?: SortOrder
+    productUrl?: SortOrder
+    productImages?: SortOrder
+    price?: SortOrder
+    memberPrice?: SortOrder
+    discountPrice?: SortOrder
+    stock?: SortOrder
+    color?: SortOrderInput | SortOrder
+    material?: SortOrderInput | SortOrder
     seoSchema?: SortOrderInput | SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrderInput | SortOrder
@@ -15043,18 +15061,19 @@ export namespace Prisma {
     description?: StringNullableWithAggregatesFilter<"Product"> | string | null
     materialDescription?: StringNullableWithAggregatesFilter<"Product"> | string | null
     dimensionDescription?: StringNullableWithAggregatesFilter<"Product"> | string | null
-    posterImageUrl?: StringWithAggregatesFilter<"Product"> | string
-    productImages?: StringNullableListFilter<"Product">
-    stock?: IntWithAggregatesFilter<"Product"> | number
-    price?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    memberPrice?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    color?: StringNullableWithAggregatesFilter<"Product"> | string | null
-    material?: StringNullableWithAggregatesFilter<"Product"> | string | null
     metaTitle?: StringNullableWithAggregatesFilter<"Product"> | string | null
     metaDescription?: StringNullableWithAggregatesFilter<"Product"> | string | null
     canonicalTag?: StringNullableWithAggregatesFilter<"Product"> | string | null
     breadcrumb?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    posterImageUrl?: StringWithAggregatesFilter<"Product"> | string
+    productUrl?: StringWithAggregatesFilter<"Product"> | string
+    productImages?: StringNullableListFilter<"Product">
+    price?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    discountPrice?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    stock?: IntWithAggregatesFilter<"Product"> | number
+    color?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    material?: StringNullableWithAggregatesFilter<"Product"> | string | null
     seoSchema?: StringNullableWithAggregatesFilter<"Product"> | string | null
     status?: EnumContentStatusWithAggregatesFilter<"Product"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableWithAggregatesFilter<"Product"> | string | null
@@ -16001,18 +16020,19 @@ export namespace Prisma {
     description?: string | null
     materialDescription?: string | null
     dimensionDescription?: string | null
-    posterImageUrl: string
-    productImages?: ProductCreateproductImagesInput | string[]
-    stock?: number
-    price?: Decimal | DecimalJsLike | number | string
-    memberPrice?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
-    color?: string | null
-    material?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
+    posterImageUrl: string
+    productUrl: string
+    productImages?: ProductCreateproductImagesInput | string[]
+    price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
+    discountPrice?: Decimal | DecimalJsLike | number | string
+    stock?: number
+    color?: string | null
+    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -16034,18 +16054,19 @@ export namespace Prisma {
     description?: string | null
     materialDescription?: string | null
     dimensionDescription?: string | null
-    posterImageUrl: string
-    productImages?: ProductCreateproductImagesInput | string[]
-    stock?: number
-    price?: Decimal | DecimalJsLike | number | string
-    memberPrice?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
-    color?: string | null
-    material?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
+    posterImageUrl: string
+    productUrl: string
+    productImages?: ProductCreateproductImagesInput | string[]
+    price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
+    discountPrice?: Decimal | DecimalJsLike | number | string
+    stock?: number
+    color?: string | null
+    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -16063,18 +16084,19 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     materialDescription?: NullableStringFieldUpdateOperationsInput | string | null
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: StringFieldUpdateOperationsInput | string
-    productImages?: ProductUpdateproductImagesInput | string[]
-    stock?: IntFieldUpdateOperationsInput | number
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: StringFieldUpdateOperationsInput | string
+    productUrl?: StringFieldUpdateOperationsInput | string
+    productImages?: ProductUpdateproductImagesInput | string[]
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    stock?: IntFieldUpdateOperationsInput | number
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16096,18 +16118,19 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     materialDescription?: NullableStringFieldUpdateOperationsInput | string | null
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: StringFieldUpdateOperationsInput | string
-    productImages?: ProductUpdateproductImagesInput | string[]
-    stock?: IntFieldUpdateOperationsInput | number
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: StringFieldUpdateOperationsInput | string
+    productUrl?: StringFieldUpdateOperationsInput | string
+    productImages?: ProductUpdateproductImagesInput | string[]
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    stock?: IntFieldUpdateOperationsInput | number
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16127,18 +16150,19 @@ export namespace Prisma {
     description?: string | null
     materialDescription?: string | null
     dimensionDescription?: string | null
-    posterImageUrl: string
-    productImages?: ProductCreateproductImagesInput | string[]
-    stock?: number
-    price?: Decimal | DecimalJsLike | number | string
-    memberPrice?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
-    color?: string | null
-    material?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
+    posterImageUrl: string
+    productUrl: string
+    productImages?: ProductCreateproductImagesInput | string[]
+    price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
+    discountPrice?: Decimal | DecimalJsLike | number | string
+    stock?: number
+    color?: string | null
+    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -16155,18 +16179,19 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     materialDescription?: NullableStringFieldUpdateOperationsInput | string | null
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: StringFieldUpdateOperationsInput | string
-    productImages?: ProductUpdateproductImagesInput | string[]
-    stock?: IntFieldUpdateOperationsInput | number
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: StringFieldUpdateOperationsInput | string
+    productUrl?: StringFieldUpdateOperationsInput | string
+    productImages?: ProductUpdateproductImagesInput | string[]
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    stock?: IntFieldUpdateOperationsInput | number
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16185,18 +16210,19 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     materialDescription?: NullableStringFieldUpdateOperationsInput | string | null
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: StringFieldUpdateOperationsInput | string
-    productImages?: ProductUpdateproductImagesInput | string[]
-    stock?: IntFieldUpdateOperationsInput | number
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: StringFieldUpdateOperationsInput | string
+    productUrl?: StringFieldUpdateOperationsInput | string
+    productImages?: ProductUpdateproductImagesInput | string[]
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    stock?: IntFieldUpdateOperationsInput | number
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17102,17 +17128,6 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type DecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -17122,6 +17137,17 @@ export namespace Prisma {
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type SubcategoryScalarRelationFilter = {
@@ -17155,18 +17181,19 @@ export namespace Prisma {
     description?: SortOrder
     materialDescription?: SortOrder
     dimensionDescription?: SortOrder
-    posterImageUrl?: SortOrder
-    productImages?: SortOrder
-    stock?: SortOrder
-    price?: SortOrder
-    memberPrice?: SortOrder
-    discountPrice?: SortOrder
-    color?: SortOrder
-    material?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     canonicalTag?: SortOrder
     breadcrumb?: SortOrder
+    posterImageUrl?: SortOrder
+    productUrl?: SortOrder
+    productImages?: SortOrder
+    price?: SortOrder
+    memberPrice?: SortOrder
+    discountPrice?: SortOrder
+    stock?: SortOrder
+    color?: SortOrder
+    material?: SortOrder
     seoSchema?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrder
@@ -17175,10 +17202,10 @@ export namespace Prisma {
   }
 
   export type ProductAvgOrderByAggregateInput = {
-    stock?: SortOrder
     price?: SortOrder
     memberPrice?: SortOrder
     discountPrice?: SortOrder
+    stock?: SortOrder
   }
 
   export type ProductMaxOrderByAggregateInput = {
@@ -17192,17 +17219,18 @@ export namespace Prisma {
     description?: SortOrder
     materialDescription?: SortOrder
     dimensionDescription?: SortOrder
-    posterImageUrl?: SortOrder
-    stock?: SortOrder
-    price?: SortOrder
-    memberPrice?: SortOrder
-    discountPrice?: SortOrder
-    color?: SortOrder
-    material?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     canonicalTag?: SortOrder
     breadcrumb?: SortOrder
+    posterImageUrl?: SortOrder
+    productUrl?: SortOrder
+    price?: SortOrder
+    memberPrice?: SortOrder
+    discountPrice?: SortOrder
+    stock?: SortOrder
+    color?: SortOrder
+    material?: SortOrder
     seoSchema?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrder
@@ -17221,17 +17249,18 @@ export namespace Prisma {
     description?: SortOrder
     materialDescription?: SortOrder
     dimensionDescription?: SortOrder
-    posterImageUrl?: SortOrder
-    stock?: SortOrder
-    price?: SortOrder
-    memberPrice?: SortOrder
-    discountPrice?: SortOrder
-    color?: SortOrder
-    material?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     canonicalTag?: SortOrder
     breadcrumb?: SortOrder
+    posterImageUrl?: SortOrder
+    productUrl?: SortOrder
+    price?: SortOrder
+    memberPrice?: SortOrder
+    discountPrice?: SortOrder
+    stock?: SortOrder
+    color?: SortOrder
+    material?: SortOrder
     seoSchema?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrder
@@ -17240,26 +17269,10 @@ export namespace Prisma {
   }
 
   export type ProductSumOrderByAggregateInput = {
-    stock?: SortOrder
     price?: SortOrder
     memberPrice?: SortOrder
     discountPrice?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+    stock?: SortOrder
   }
 
   export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -17276,6 +17289,22 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type EnumPaymentStatusFilter<$PrismaModel = never> = {
@@ -17929,20 +17958,20 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type DecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string
     increment?: Decimal | DecimalJsLike | number | string
     decrement?: Decimal | DecimalJsLike | number | string
     multiply?: Decimal | DecimalJsLike | number | string
     divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type CategoryUpdateOneRequiredWithoutProductsNestedInput = {
@@ -18325,6 +18354,22 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -18350,22 +18395,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedDecimalFilter<$PrismaModel>
-    _sum?: NestedDecimalFilter<$PrismaModel>
-    _min?: NestedDecimalFilter<$PrismaModel>
-    _max?: NestedDecimalFilter<$PrismaModel>
   }
 
   export type NestedEnumPaymentStatusFilter<$PrismaModel = never> = {
@@ -19012,18 +19041,19 @@ export namespace Prisma {
     description?: string | null
     materialDescription?: string | null
     dimensionDescription?: string | null
-    posterImageUrl: string
-    productImages?: ProductCreateproductImagesInput | string[]
-    stock?: number
-    price?: Decimal | DecimalJsLike | number | string
-    memberPrice?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
-    color?: string | null
-    material?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
+    posterImageUrl: string
+    productUrl: string
+    productImages?: ProductCreateproductImagesInput | string[]
+    price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
+    discountPrice?: Decimal | DecimalJsLike | number | string
+    stock?: number
+    color?: string | null
+    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -19043,18 +19073,19 @@ export namespace Prisma {
     description?: string | null
     materialDescription?: string | null
     dimensionDescription?: string | null
-    posterImageUrl: string
-    productImages?: ProductCreateproductImagesInput | string[]
-    stock?: number
-    price?: Decimal | DecimalJsLike | number | string
-    memberPrice?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
-    color?: string | null
-    material?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
+    posterImageUrl: string
+    productUrl: string
+    productImages?: ProductCreateproductImagesInput | string[]
+    price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
+    discountPrice?: Decimal | DecimalJsLike | number | string
+    stock?: number
+    color?: string | null
+    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -19151,18 +19182,19 @@ export namespace Prisma {
     description?: StringNullableFilter<"Product"> | string | null
     materialDescription?: StringNullableFilter<"Product"> | string | null
     dimensionDescription?: StringNullableFilter<"Product"> | string | null
-    posterImageUrl?: StringFilter<"Product"> | string
-    productImages?: StringNullableListFilter<"Product">
-    stock?: IntFilter<"Product"> | number
-    price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    memberPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    color?: StringNullableFilter<"Product"> | string | null
-    material?: StringNullableFilter<"Product"> | string | null
     metaTitle?: StringNullableFilter<"Product"> | string | null
     metaDescription?: StringNullableFilter<"Product"> | string | null
     canonicalTag?: StringNullableFilter<"Product"> | string | null
     breadcrumb?: StringNullableFilter<"Product"> | string | null
+    posterImageUrl?: StringFilter<"Product"> | string
+    productUrl?: StringFilter<"Product"> | string
+    productImages?: StringNullableListFilter<"Product">
+    price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    stock?: IntFilter<"Product"> | number
+    color?: StringNullableFilter<"Product"> | string | null
+    material?: StringNullableFilter<"Product"> | string | null
     seoSchema?: StringNullableFilter<"Product"> | string | null
     status?: EnumContentStatusFilter<"Product"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableFilter<"Product"> | string | null
@@ -19260,18 +19292,19 @@ export namespace Prisma {
     description?: string | null
     materialDescription?: string | null
     dimensionDescription?: string | null
-    posterImageUrl: string
-    productImages?: ProductCreateproductImagesInput | string[]
-    stock?: number
-    price?: Decimal | DecimalJsLike | number | string
-    memberPrice?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
-    color?: string | null
-    material?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
+    posterImageUrl: string
+    productUrl: string
+    productImages?: ProductCreateproductImagesInput | string[]
+    price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
+    discountPrice?: Decimal | DecimalJsLike | number | string
+    stock?: number
+    color?: string | null
+    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -19291,18 +19324,19 @@ export namespace Prisma {
     description?: string | null
     materialDescription?: string | null
     dimensionDescription?: string | null
-    posterImageUrl: string
-    productImages?: ProductCreateproductImagesInput | string[]
-    stock?: number
-    price?: Decimal | DecimalJsLike | number | string
-    memberPrice?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
-    color?: string | null
-    material?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
+    posterImageUrl: string
+    productUrl: string
+    productImages?: ProductCreateproductImagesInput | string[]
+    price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
+    discountPrice?: Decimal | DecimalJsLike | number | string
+    stock?: number
+    color?: string | null
+    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -19833,18 +19867,19 @@ export namespace Prisma {
     description?: string | null
     materialDescription?: string | null
     dimensionDescription?: string | null
-    posterImageUrl: string
-    productImages?: ProductCreateproductImagesInput | string[]
-    stock?: number
-    price?: Decimal | DecimalJsLike | number | string
-    memberPrice?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
-    color?: string | null
-    material?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
+    posterImageUrl: string
+    productUrl: string
+    productImages?: ProductCreateproductImagesInput | string[]
+    price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
+    discountPrice?: Decimal | DecimalJsLike | number | string
+    stock?: number
+    color?: string | null
+    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -19865,18 +19900,19 @@ export namespace Prisma {
     description?: string | null
     materialDescription?: string | null
     dimensionDescription?: string | null
-    posterImageUrl: string
-    productImages?: ProductCreateproductImagesInput | string[]
-    stock?: number
-    price?: Decimal | DecimalJsLike | number | string
-    memberPrice?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
-    color?: string | null
-    material?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
+    posterImageUrl: string
+    productUrl: string
+    productImages?: ProductCreateproductImagesInput | string[]
+    price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
+    discountPrice?: Decimal | DecimalJsLike | number | string
+    stock?: number
+    color?: string | null
+    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -19962,18 +19998,19 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     materialDescription?: NullableStringFieldUpdateOperationsInput | string | null
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: StringFieldUpdateOperationsInput | string
-    productImages?: ProductUpdateproductImagesInput | string[]
-    stock?: IntFieldUpdateOperationsInput | number
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: StringFieldUpdateOperationsInput | string
+    productUrl?: StringFieldUpdateOperationsInput | string
+    productImages?: ProductUpdateproductImagesInput | string[]
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    stock?: IntFieldUpdateOperationsInput | number
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19994,18 +20031,19 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     materialDescription?: NullableStringFieldUpdateOperationsInput | string | null
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: StringFieldUpdateOperationsInput | string
-    productImages?: ProductUpdateproductImagesInput | string[]
-    stock?: IntFieldUpdateOperationsInput | number
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: StringFieldUpdateOperationsInput | string
+    productUrl?: StringFieldUpdateOperationsInput | string
+    productImages?: ProductUpdateproductImagesInput | string[]
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    stock?: IntFieldUpdateOperationsInput | number
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20169,18 +20207,19 @@ export namespace Prisma {
     description?: string | null
     materialDescription?: string | null
     dimensionDescription?: string | null
-    posterImageUrl: string
-    productImages?: ProductCreateproductImagesInput | string[]
-    stock?: number
-    price?: Decimal | DecimalJsLike | number | string
-    memberPrice?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
-    color?: string | null
-    material?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
+    posterImageUrl: string
+    productUrl: string
+    productImages?: ProductCreateproductImagesInput | string[]
+    price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
+    discountPrice?: Decimal | DecimalJsLike | number | string
+    stock?: number
+    color?: string | null
+    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -20215,18 +20254,19 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     materialDescription?: NullableStringFieldUpdateOperationsInput | string | null
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: StringFieldUpdateOperationsInput | string
-    productImages?: ProductUpdateproductImagesInput | string[]
-    stock?: IntFieldUpdateOperationsInput | number
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: StringFieldUpdateOperationsInput | string
+    productUrl?: StringFieldUpdateOperationsInput | string
+    productImages?: ProductUpdateproductImagesInput | string[]
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    stock?: IntFieldUpdateOperationsInput | number
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20246,18 +20286,19 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     materialDescription?: NullableStringFieldUpdateOperationsInput | string | null
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: StringFieldUpdateOperationsInput | string
-    productImages?: ProductUpdateproductImagesInput | string[]
-    stock?: IntFieldUpdateOperationsInput | number
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: StringFieldUpdateOperationsInput | string
+    productUrl?: StringFieldUpdateOperationsInput | string
+    productImages?: ProductUpdateproductImagesInput | string[]
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    stock?: IntFieldUpdateOperationsInput | number
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20276,18 +20317,19 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     materialDescription?: NullableStringFieldUpdateOperationsInput | string | null
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: StringFieldUpdateOperationsInput | string
-    productImages?: ProductUpdateproductImagesInput | string[]
-    stock?: IntFieldUpdateOperationsInput | number
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: StringFieldUpdateOperationsInput | string
+    productUrl?: StringFieldUpdateOperationsInput | string
+    productImages?: ProductUpdateproductImagesInput | string[]
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    stock?: IntFieldUpdateOperationsInput | number
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20361,18 +20403,19 @@ export namespace Prisma {
     description?: string | null
     materialDescription?: string | null
     dimensionDescription?: string | null
-    posterImageUrl: string
-    productImages?: ProductCreateproductImagesInput | string[]
-    stock?: number
-    price?: Decimal | DecimalJsLike | number | string
-    memberPrice?: Decimal | DecimalJsLike | number | string
-    discountPrice?: Decimal | DecimalJsLike | number | string
-    color?: string | null
-    material?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalTag?: string | null
     breadcrumb?: string | null
+    posterImageUrl: string
+    productUrl: string
+    productImages?: ProductCreateproductImagesInput | string[]
+    price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
+    discountPrice?: Decimal | DecimalJsLike | number | string
+    stock?: number
+    color?: string | null
+    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -20389,18 +20432,19 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     materialDescription?: NullableStringFieldUpdateOperationsInput | string | null
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: StringFieldUpdateOperationsInput | string
-    productImages?: ProductUpdateproductImagesInput | string[]
-    stock?: IntFieldUpdateOperationsInput | number
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: StringFieldUpdateOperationsInput | string
+    productUrl?: StringFieldUpdateOperationsInput | string
+    productImages?: ProductUpdateproductImagesInput | string[]
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    stock?: IntFieldUpdateOperationsInput | number
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20420,18 +20464,19 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     materialDescription?: NullableStringFieldUpdateOperationsInput | string | null
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: StringFieldUpdateOperationsInput | string
-    productImages?: ProductUpdateproductImagesInput | string[]
-    stock?: IntFieldUpdateOperationsInput | number
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: StringFieldUpdateOperationsInput | string
+    productUrl?: StringFieldUpdateOperationsInput | string
+    productImages?: ProductUpdateproductImagesInput | string[]
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    stock?: IntFieldUpdateOperationsInput | number
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20450,18 +20495,19 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     materialDescription?: NullableStringFieldUpdateOperationsInput | string | null
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: StringFieldUpdateOperationsInput | string
-    productImages?: ProductUpdateproductImagesInput | string[]
-    stock?: IntFieldUpdateOperationsInput | number
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalTag?: NullableStringFieldUpdateOperationsInput | string | null
     breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: StringFieldUpdateOperationsInput | string
+    productUrl?: StringFieldUpdateOperationsInput | string
+    productImages?: ProductUpdateproductImagesInput | string[]
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    stock?: IntFieldUpdateOperationsInput | number
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
