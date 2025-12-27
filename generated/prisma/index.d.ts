@@ -3040,6 +3040,7 @@ export namespace Prisma {
     email: string | null
     password: string | null
     isEmailVerified: boolean | null
+    isMember: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3053,6 +3054,7 @@ export namespace Prisma {
     email: string | null
     password: string | null
     isEmailVerified: boolean | null
+    isMember: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3066,6 +3068,7 @@ export namespace Prisma {
     email: number
     password: number
     isEmailVerified: number
+    isMember: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -3081,6 +3084,7 @@ export namespace Prisma {
     email?: true
     password?: true
     isEmailVerified?: true
+    isMember?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3094,6 +3098,7 @@ export namespace Prisma {
     email?: true
     password?: true
     isEmailVerified?: true
+    isMember?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3107,6 +3112,7 @@ export namespace Prisma {
     email?: true
     password?: true
     isEmailVerified?: true
+    isMember?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3193,6 +3199,7 @@ export namespace Prisma {
     email: string
     password: string
     isEmailVerified: boolean
+    isMember: boolean
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -3223,6 +3230,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     isEmailVerified?: boolean
+    isMember?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     addresses?: boolean | User$addressesArgs<ExtArgs>
@@ -3241,6 +3249,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     isEmailVerified?: boolean
+    isMember?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     defaultShippingAddress?: boolean | User$defaultShippingAddressArgs<ExtArgs>
@@ -3256,6 +3265,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     isEmailVerified?: boolean
+    isMember?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     defaultShippingAddress?: boolean | User$defaultShippingAddressArgs<ExtArgs>
@@ -3271,11 +3281,12 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     isEmailVerified?: boolean
+    isMember?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "defaultShippingAddressId" | "defaultBillingAddressId" | "firstName" | "lastName" | "email" | "password" | "isEmailVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "defaultShippingAddressId" | "defaultBillingAddressId" | "firstName" | "lastName" | "email" | "password" | "isEmailVerified" | "isMember" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     addresses?: boolean | User$addressesArgs<ExtArgs>
     orders?: boolean | User$ordersArgs<ExtArgs>
@@ -3309,6 +3320,7 @@ export namespace Prisma {
       email: string
       password: string
       isEmailVerified: boolean
+      isMember: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -3746,6 +3758,7 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly isEmailVerified: FieldRef<"User", 'Boolean'>
+    readonly isMember: FieldRef<"User", 'Boolean'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -8925,12 +8938,14 @@ export namespace Prisma {
   export type ProductAvgAggregateOutputType = {
     stock: number | null
     price: Decimal | null
+    memberPrice: Decimal | null
     discountPrice: Decimal | null
   }
 
   export type ProductSumAggregateOutputType = {
     stock: number | null
     price: Decimal | null
+    memberPrice: Decimal | null
     discountPrice: Decimal | null
   }
 
@@ -8948,6 +8963,7 @@ export namespace Prisma {
     posterImageUrl: string | null
     stock: number | null
     price: Decimal | null
+    memberPrice: Decimal | null
     discountPrice: Decimal | null
     color: string | null
     material: string | null
@@ -8976,6 +8992,7 @@ export namespace Prisma {
     posterImageUrl: string | null
     stock: number | null
     price: Decimal | null
+    memberPrice: Decimal | null
     discountPrice: Decimal | null
     color: string | null
     material: string | null
@@ -9005,6 +9022,7 @@ export namespace Prisma {
     productImages: number
     stock: number
     price: number
+    memberPrice: number
     discountPrice: number
     color: number
     material: number
@@ -9024,12 +9042,14 @@ export namespace Prisma {
   export type ProductAvgAggregateInputType = {
     stock?: true
     price?: true
+    memberPrice?: true
     discountPrice?: true
   }
 
   export type ProductSumAggregateInputType = {
     stock?: true
     price?: true
+    memberPrice?: true
     discountPrice?: true
   }
 
@@ -9047,6 +9067,7 @@ export namespace Prisma {
     posterImageUrl?: true
     stock?: true
     price?: true
+    memberPrice?: true
     discountPrice?: true
     color?: true
     material?: true
@@ -9075,6 +9096,7 @@ export namespace Prisma {
     posterImageUrl?: true
     stock?: true
     price?: true
+    memberPrice?: true
     discountPrice?: true
     color?: true
     material?: true
@@ -9104,6 +9126,7 @@ export namespace Prisma {
     productImages?: true
     stock?: true
     price?: true
+    memberPrice?: true
     discountPrice?: true
     color?: true
     material?: true
@@ -9220,6 +9243,7 @@ export namespace Prisma {
     productImages: string[]
     stock: number
     price: Decimal
+    memberPrice: Decimal
     discountPrice: Decimal
     color: string | null
     material: string | null
@@ -9268,6 +9292,7 @@ export namespace Prisma {
     productImages?: boolean
     stock?: boolean
     price?: boolean
+    memberPrice?: boolean
     discountPrice?: boolean
     color?: boolean
     material?: boolean
@@ -9301,6 +9326,7 @@ export namespace Prisma {
     productImages?: boolean
     stock?: boolean
     price?: boolean
+    memberPrice?: boolean
     discountPrice?: boolean
     color?: boolean
     material?: boolean
@@ -9332,6 +9358,7 @@ export namespace Prisma {
     productImages?: boolean
     stock?: boolean
     price?: boolean
+    memberPrice?: boolean
     discountPrice?: boolean
     color?: boolean
     material?: boolean
@@ -9363,6 +9390,7 @@ export namespace Prisma {
     productImages?: boolean
     stock?: boolean
     price?: boolean
+    memberPrice?: boolean
     discountPrice?: boolean
     color?: boolean
     material?: boolean
@@ -9377,7 +9405,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "sku" | "name" | "slug" | "shortDescription" | "description" | "materialDescription" | "dimensionDescription" | "posterImageUrl" | "productImages" | "stock" | "price" | "discountPrice" | "color" | "material" | "metaTitle" | "metaDescription" | "canonicalTag" | "breadcrumb" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "sku" | "name" | "slug" | "shortDescription" | "description" | "materialDescription" | "dimensionDescription" | "posterImageUrl" | "productImages" | "stock" | "price" | "memberPrice" | "discountPrice" | "color" | "material" | "metaTitle" | "metaDescription" | "canonicalTag" | "breadcrumb" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     subcategory?: boolean | SubcategoryDefaultArgs<ExtArgs>
@@ -9415,6 +9443,7 @@ export namespace Prisma {
       productImages: string[]
       stock: number
       price: Prisma.Decimal
+      memberPrice: Prisma.Decimal
       discountPrice: Prisma.Decimal
       color: string | null
       material: string | null
@@ -9867,6 +9896,7 @@ export namespace Prisma {
     readonly productImages: FieldRef<"Product", 'String[]'>
     readonly stock: FieldRef<"Product", 'Int'>
     readonly price: FieldRef<"Product", 'Decimal'>
+    readonly memberPrice: FieldRef<"Product", 'Decimal'>
     readonly discountPrice: FieldRef<"Product", 'Decimal'>
     readonly color: FieldRef<"Product", 'String'>
     readonly material: FieldRef<"Product", 'String'>
@@ -13924,6 +13954,7 @@ export namespace Prisma {
     email: 'email',
     password: 'password',
     isEmailVerified: 'isEmailVerified',
+    isMember: 'isMember',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -14019,6 +14050,7 @@ export namespace Prisma {
     productImages: 'productImages',
     stock: 'stock',
     price: 'price',
+    memberPrice: 'memberPrice',
     discountPrice: 'discountPrice',
     color: 'color',
     material: 'material',
@@ -14399,6 +14431,7 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     isEmailVerified?: BoolFilter<"User"> | boolean
+    isMember?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     addresses?: AddressListRelationFilter
@@ -14416,6 +14449,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     isEmailVerified?: SortOrder
+    isMember?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     addresses?: AddressOrderByRelationAggregateInput
@@ -14436,6 +14470,7 @@ export namespace Prisma {
     lastName?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     isEmailVerified?: BoolFilter<"User"> | boolean
+    isMember?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     addresses?: AddressListRelationFilter
@@ -14453,6 +14488,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     isEmailVerified?: SortOrder
+    isMember?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -14472,6 +14508,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     isEmailVerified?: BoolWithAggregatesFilter<"User"> | boolean
+    isMember?: BoolWithAggregatesFilter<"User"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -14869,6 +14906,7 @@ export namespace Prisma {
     productImages?: StringNullableListFilter<"Product">
     stock?: IntFilter<"Product"> | number
     price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     color?: StringNullableFilter<"Product"> | string | null
     material?: StringNullableFilter<"Product"> | string | null
@@ -14901,6 +14939,7 @@ export namespace Prisma {
     productImages?: SortOrder
     stock?: SortOrder
     price?: SortOrder
+    memberPrice?: SortOrder
     discountPrice?: SortOrder
     color?: SortOrderInput | SortOrder
     material?: SortOrderInput | SortOrder
@@ -14937,6 +14976,7 @@ export namespace Prisma {
     productImages?: StringNullableListFilter<"Product">
     stock?: IntFilter<"Product"> | number
     price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     color?: StringNullableFilter<"Product"> | string | null
     material?: StringNullableFilter<"Product"> | string | null
@@ -14969,6 +15009,7 @@ export namespace Prisma {
     productImages?: SortOrder
     stock?: SortOrder
     price?: SortOrder
+    memberPrice?: SortOrder
     discountPrice?: SortOrder
     color?: SortOrderInput | SortOrder
     material?: SortOrderInput | SortOrder
@@ -15006,6 +15047,7 @@ export namespace Prisma {
     productImages?: StringNullableListFilter<"Product">
     stock?: IntWithAggregatesFilter<"Product"> | number
     price?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
     color?: StringNullableWithAggregatesFilter<"Product"> | string | null
     material?: StringNullableWithAggregatesFilter<"Product"> | string | null
@@ -15408,6 +15450,7 @@ export namespace Prisma {
     email: string
     password: string
     isEmailVerified?: boolean
+    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     addresses?: AddressCreateNestedManyWithoutUserInput
@@ -15425,6 +15468,7 @@ export namespace Prisma {
     email: string
     password: string
     isEmailVerified?: boolean
+    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
@@ -15438,6 +15482,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUpdateManyWithoutUserNestedInput
@@ -15455,6 +15500,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
@@ -15470,6 +15516,7 @@ export namespace Prisma {
     email: string
     password: string
     isEmailVerified?: boolean
+    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15481,6 +15528,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15494,6 +15542,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15956,6 +16005,7 @@ export namespace Prisma {
     productImages?: ProductCreateproductImagesInput | string[]
     stock?: number
     price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     color?: string | null
     material?: string | null
@@ -15988,6 +16038,7 @@ export namespace Prisma {
     productImages?: ProductCreateproductImagesInput | string[]
     stock?: number
     price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     color?: string | null
     material?: string | null
@@ -16016,6 +16067,7 @@ export namespace Prisma {
     productImages?: ProductUpdateproductImagesInput | string[]
     stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16048,6 +16100,7 @@ export namespace Prisma {
     productImages?: ProductUpdateproductImagesInput | string[]
     stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16078,6 +16131,7 @@ export namespace Prisma {
     productImages?: ProductCreateproductImagesInput | string[]
     stock?: number
     price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     color?: string | null
     material?: string | null
@@ -16105,6 +16159,7 @@ export namespace Prisma {
     productImages?: ProductUpdateproductImagesInput | string[]
     stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16134,6 +16189,7 @@ export namespace Prisma {
     productImages?: ProductUpdateproductImagesInput | string[]
     stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16725,6 +16781,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     isEmailVerified?: SortOrder
+    isMember?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -16738,6 +16795,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     isEmailVerified?: SortOrder
+    isMember?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -16751,6 +16809,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     isEmailVerified?: SortOrder
+    isMember?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17100,6 +17159,7 @@ export namespace Prisma {
     productImages?: SortOrder
     stock?: SortOrder
     price?: SortOrder
+    memberPrice?: SortOrder
     discountPrice?: SortOrder
     color?: SortOrder
     material?: SortOrder
@@ -17117,6 +17177,7 @@ export namespace Prisma {
   export type ProductAvgOrderByAggregateInput = {
     stock?: SortOrder
     price?: SortOrder
+    memberPrice?: SortOrder
     discountPrice?: SortOrder
   }
 
@@ -17134,6 +17195,7 @@ export namespace Prisma {
     posterImageUrl?: SortOrder
     stock?: SortOrder
     price?: SortOrder
+    memberPrice?: SortOrder
     discountPrice?: SortOrder
     color?: SortOrder
     material?: SortOrder
@@ -17162,6 +17224,7 @@ export namespace Prisma {
     posterImageUrl?: SortOrder
     stock?: SortOrder
     price?: SortOrder
+    memberPrice?: SortOrder
     discountPrice?: SortOrder
     color?: SortOrder
     material?: SortOrder
@@ -17179,6 +17242,7 @@ export namespace Prisma {
   export type ProductSumOrderByAggregateInput = {
     stock?: SortOrder
     price?: SortOrder
+    memberPrice?: SortOrder
     discountPrice?: SortOrder
   }
 
@@ -18718,6 +18782,7 @@ export namespace Prisma {
     email: string
     password: string
     isEmailVerified?: boolean
+    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     orders?: OrderCreateNestedManyWithoutUserInput
@@ -18734,6 +18799,7 @@ export namespace Prisma {
     email: string
     password: string
     isEmailVerified?: boolean
+    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
@@ -18751,6 +18817,7 @@ export namespace Prisma {
     email: string
     password: string
     isEmailVerified?: boolean
+    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     addresses?: AddressCreateNestedManyWithoutUserInput
@@ -18766,6 +18833,7 @@ export namespace Prisma {
     email: string
     password: string
     isEmailVerified?: boolean
+    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
@@ -18784,6 +18852,7 @@ export namespace Prisma {
     email: string
     password: string
     isEmailVerified?: boolean
+    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     addresses?: AddressCreateNestedManyWithoutUserInput
@@ -18799,6 +18868,7 @@ export namespace Prisma {
     email: string
     password: string
     isEmailVerified?: boolean
+    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
@@ -18828,6 +18898,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUpdateManyWithoutUserNestedInput
@@ -18844,6 +18915,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
@@ -18867,6 +18939,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUpdateManyWithoutUserNestedInput
@@ -18882,6 +18955,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
@@ -18906,6 +18980,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUpdateManyWithoutUserNestedInput
@@ -18921,6 +18996,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
@@ -18940,6 +19016,7 @@ export namespace Prisma {
     productImages?: ProductCreateproductImagesInput | string[]
     stock?: number
     price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     color?: string | null
     material?: string | null
@@ -18970,6 +19047,7 @@ export namespace Prisma {
     productImages?: ProductCreateproductImagesInput | string[]
     stock?: number
     price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     color?: string | null
     material?: string | null
@@ -19077,6 +19155,7 @@ export namespace Prisma {
     productImages?: StringNullableListFilter<"Product">
     stock?: IntFilter<"Product"> | number
     price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     color?: StringNullableFilter<"Product"> | string | null
     material?: StringNullableFilter<"Product"> | string | null
@@ -19185,6 +19264,7 @@ export namespace Prisma {
     productImages?: ProductCreateproductImagesInput | string[]
     stock?: number
     price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     color?: string | null
     material?: string | null
@@ -19215,6 +19295,7 @@ export namespace Prisma {
     productImages?: ProductCreateproductImagesInput | string[]
     stock?: number
     price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     color?: string | null
     material?: string | null
@@ -19571,6 +19652,7 @@ export namespace Prisma {
     email: string
     password: string
     isEmailVerified?: boolean
+    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     addresses?: AddressCreateNestedManyWithoutUserInput
@@ -19587,6 +19669,7 @@ export namespace Prisma {
     email: string
     password: string
     isEmailVerified?: boolean
+    isMember?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
@@ -19655,6 +19738,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUpdateManyWithoutUserNestedInput
@@ -19671,6 +19755,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isMember?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
@@ -19752,6 +19837,7 @@ export namespace Prisma {
     productImages?: ProductCreateproductImagesInput | string[]
     stock?: number
     price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     color?: string | null
     material?: string | null
@@ -19783,6 +19869,7 @@ export namespace Prisma {
     productImages?: ProductCreateproductImagesInput | string[]
     stock?: number
     price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     color?: string | null
     material?: string | null
@@ -19879,6 +19966,7 @@ export namespace Prisma {
     productImages?: ProductUpdateproductImagesInput | string[]
     stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19910,6 +19998,7 @@ export namespace Prisma {
     productImages?: ProductUpdateproductImagesInput | string[]
     stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20084,6 +20173,7 @@ export namespace Prisma {
     productImages?: ProductCreateproductImagesInput | string[]
     stock?: number
     price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     color?: string | null
     material?: string | null
@@ -20129,6 +20219,7 @@ export namespace Prisma {
     productImages?: ProductUpdateproductImagesInput | string[]
     stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20159,6 +20250,7 @@ export namespace Prisma {
     productImages?: ProductUpdateproductImagesInput | string[]
     stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20188,6 +20280,7 @@ export namespace Prisma {
     productImages?: ProductUpdateproductImagesInput | string[]
     stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20272,6 +20365,7 @@ export namespace Prisma {
     productImages?: ProductCreateproductImagesInput | string[]
     stock?: number
     price?: Decimal | DecimalJsLike | number | string
+    memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     color?: string | null
     material?: string | null
@@ -20299,6 +20393,7 @@ export namespace Prisma {
     productImages?: ProductUpdateproductImagesInput | string[]
     stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20329,6 +20424,7 @@ export namespace Prisma {
     productImages?: ProductUpdateproductImagesInput | string[]
     stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20358,6 +20454,7 @@ export namespace Prisma {
     productImages?: ProductUpdateproductImagesInput | string[]
     stock?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     material?: NullableStringFieldUpdateOperationsInput | string | null
