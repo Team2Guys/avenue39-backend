@@ -1,8 +1,6 @@
 import dotenv from 'dotenv';
 import { cleanEnv, str, port, email, url, testOnly } from 'envalid';
 
-import { logger } from '#lib/index.js';
-
 const envFile = process.env.NODE_ENV;
 dotenv.config({ path: envFile });
 
@@ -40,7 +38,9 @@ export const env = cleanEnv(process.env, validators, {
   reporter: ({ errors }) => {
     const invalidVars = Object.keys(errors);
     if (invalidVars.length > 0) {
-      logger.error(`Invalid ENV variables: ${invalidVars}`);
+      console.error(
+        `- ${invalidVars.join('\n- ')} \n\nPlease set the above environment variables correctly.\n\n`
+      );
       process.exit(1);
     }
   }
