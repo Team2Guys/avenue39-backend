@@ -141,6 +141,7 @@ exports.Prisma.UserScalarFieldEnum = {
   email: 'email',
   password: 'password',
   isEmailVerified: 'isEmailVerified',
+  isMember: 'isMember',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -221,6 +222,7 @@ exports.Prisma.ProductScalarFieldEnum = {
   productImages: 'productImages',
   stock: 'stock',
   price: 'price',
+  memberPrice: 'memberPrice',
   discountPrice: 'discountPrice',
   color: 'color',
   material: 'material',
