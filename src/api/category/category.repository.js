@@ -5,7 +5,11 @@ export const categoryRepository = {
     categoryList: () =>
       prisma.category.findMany({
         include: {
-          subcategories: true,
+          subcategories: {
+            include: {
+              products: true
+            }
+          },
           products: true
         }
       }),
@@ -14,7 +18,11 @@ export const categoryRepository = {
       prisma.category.findUnique({
         where: { id },
         include: {
-          subcategories: true,
+          subcategories: {
+            include: {
+              products: true
+            }
+          },
           products: true
         }
       }),
