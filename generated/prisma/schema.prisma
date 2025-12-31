@@ -198,7 +198,6 @@ model Product {
   discountPrice        Decimal       @default(0)
   stock                Int           @default(0)
   color                String?
-  material             String?
   seoSchema            String?       @db.Text()
   status               ContentStatus @default(PUBLISHED)
   lastEditedBy         String?
@@ -248,7 +247,6 @@ model OrderItem {
   price          Decimal
   discountPrice  Decimal
   color          String?
-  material       String?
   posterImageUrl String?
 
   order   Order    @relation(name: "OrderItems", fields: [orderId], references: [id], onDelete: Cascade)

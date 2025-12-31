@@ -8971,7 +8971,6 @@ export namespace Prisma {
     discountPrice: Decimal | null
     stock: number | null
     color: string | null
-    material: string | null
     seoSchema: string | null
     status: $Enums.ContentStatus | null
     lastEditedBy: string | null
@@ -9001,7 +9000,6 @@ export namespace Prisma {
     discountPrice: Decimal | null
     stock: number | null
     color: string | null
-    material: string | null
     seoSchema: string | null
     status: $Enums.ContentStatus | null
     lastEditedBy: string | null
@@ -9032,7 +9030,6 @@ export namespace Prisma {
     discountPrice: number
     stock: number
     color: number
-    material: number
     seoSchema: number
     status: number
     lastEditedBy: number
@@ -9078,7 +9075,6 @@ export namespace Prisma {
     discountPrice?: true
     stock?: true
     color?: true
-    material?: true
     seoSchema?: true
     status?: true
     lastEditedBy?: true
@@ -9108,7 +9104,6 @@ export namespace Prisma {
     discountPrice?: true
     stock?: true
     color?: true
-    material?: true
     seoSchema?: true
     status?: true
     lastEditedBy?: true
@@ -9139,7 +9134,6 @@ export namespace Prisma {
     discountPrice?: true
     stock?: true
     color?: true
-    material?: true
     seoSchema?: true
     status?: true
     lastEditedBy?: true
@@ -9257,7 +9251,6 @@ export namespace Prisma {
     discountPrice: Decimal
     stock: number
     color: string | null
-    material: string | null
     seoSchema: string | null
     status: $Enums.ContentStatus
     lastEditedBy: string | null
@@ -9307,7 +9300,6 @@ export namespace Prisma {
     discountPrice?: boolean
     stock?: boolean
     color?: boolean
-    material?: boolean
     seoSchema?: boolean
     status?: boolean
     lastEditedBy?: boolean
@@ -9342,7 +9334,6 @@ export namespace Prisma {
     discountPrice?: boolean
     stock?: boolean
     color?: boolean
-    material?: boolean
     seoSchema?: boolean
     status?: boolean
     lastEditedBy?: boolean
@@ -9375,7 +9366,6 @@ export namespace Prisma {
     discountPrice?: boolean
     stock?: boolean
     color?: boolean
-    material?: boolean
     seoSchema?: boolean
     status?: boolean
     lastEditedBy?: boolean
@@ -9408,7 +9398,6 @@ export namespace Prisma {
     discountPrice?: boolean
     stock?: boolean
     color?: boolean
-    material?: boolean
     seoSchema?: boolean
     status?: boolean
     lastEditedBy?: boolean
@@ -9416,7 +9405,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "sku" | "name" | "slug" | "shortDescription" | "description" | "materialDescription" | "dimensionDescription" | "metaTitle" | "metaDescription" | "canonicalTag" | "breadcrumb" | "posterImageUrl" | "productUrl" | "productImages" | "price" | "memberPrice" | "discountPrice" | "stock" | "color" | "material" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "sku" | "name" | "slug" | "shortDescription" | "description" | "materialDescription" | "dimensionDescription" | "metaTitle" | "metaDescription" | "canonicalTag" | "breadcrumb" | "posterImageUrl" | "productUrl" | "productImages" | "price" | "memberPrice" | "discountPrice" | "stock" | "color" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     subcategory?: boolean | SubcategoryDefaultArgs<ExtArgs>
@@ -9462,7 +9451,6 @@ export namespace Prisma {
       discountPrice: Prisma.Decimal
       stock: number
       color: string | null
-      material: string | null
       seoSchema: string | null
       status: $Enums.ContentStatus
       lastEditedBy: string | null
@@ -9916,7 +9904,6 @@ export namespace Prisma {
     readonly discountPrice: FieldRef<"Product", 'Decimal'>
     readonly stock: FieldRef<"Product", 'Int'>
     readonly color: FieldRef<"Product", 'String'>
-    readonly material: FieldRef<"Product", 'String'>
     readonly seoSchema: FieldRef<"Product", 'String'>
     readonly status: FieldRef<"Product", 'ContentStatus'>
     readonly lastEditedBy: FieldRef<"Product", 'String'>
@@ -11689,7 +11676,6 @@ export namespace Prisma {
     price: Decimal | null
     discountPrice: Decimal | null
     color: string | null
-    material: string | null
     posterImageUrl: string | null
   }
 
@@ -11705,7 +11691,6 @@ export namespace Prisma {
     price: Decimal | null
     discountPrice: Decimal | null
     color: string | null
-    material: string | null
     posterImageUrl: string | null
   }
 
@@ -11721,7 +11706,6 @@ export namespace Prisma {
     price: number
     discountPrice: number
     color: number
-    material: number
     posterImageUrl: number
     _all: number
   }
@@ -11749,7 +11733,6 @@ export namespace Prisma {
     price?: true
     discountPrice?: true
     color?: true
-    material?: true
     posterImageUrl?: true
   }
 
@@ -11765,7 +11748,6 @@ export namespace Prisma {
     price?: true
     discountPrice?: true
     color?: true
-    material?: true
     posterImageUrl?: true
   }
 
@@ -11781,7 +11763,6 @@ export namespace Prisma {
     price?: true
     discountPrice?: true
     color?: true
-    material?: true
     posterImageUrl?: true
     _all?: true
   }
@@ -11884,7 +11865,6 @@ export namespace Prisma {
     price: Decimal
     discountPrice: Decimal
     color: string | null
-    material: string | null
     posterImageUrl: string | null
     _count: OrderItemCountAggregateOutputType | null
     _avg: OrderItemAvgAggregateOutputType | null
@@ -11919,7 +11899,6 @@ export namespace Prisma {
     price?: boolean
     discountPrice?: boolean
     color?: boolean
-    material?: boolean
     posterImageUrl?: boolean
     order?: boolean | OrderDefaultArgs<ExtArgs>
     product?: boolean | OrderItem$productArgs<ExtArgs>
@@ -11937,7 +11916,6 @@ export namespace Prisma {
     price?: boolean
     discountPrice?: boolean
     color?: boolean
-    material?: boolean
     posterImageUrl?: boolean
     order?: boolean | OrderDefaultArgs<ExtArgs>
     product?: boolean | OrderItem$productArgs<ExtArgs>
@@ -11955,7 +11933,6 @@ export namespace Prisma {
     price?: boolean
     discountPrice?: boolean
     color?: boolean
-    material?: boolean
     posterImageUrl?: boolean
     order?: boolean | OrderDefaultArgs<ExtArgs>
     product?: boolean | OrderItem$productArgs<ExtArgs>
@@ -11973,11 +11950,10 @@ export namespace Prisma {
     price?: boolean
     discountPrice?: boolean
     color?: boolean
-    material?: boolean
     posterImageUrl?: boolean
   }
 
-  export type OrderItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orderId" | "productId" | "sku" | "name" | "slug" | "categoryUrl" | "subcategoryUrl" | "price" | "discountPrice" | "color" | "material" | "posterImageUrl", ExtArgs["result"]["orderItem"]>
+  export type OrderItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orderId" | "productId" | "sku" | "name" | "slug" | "categoryUrl" | "subcategoryUrl" | "price" | "discountPrice" | "color" | "posterImageUrl", ExtArgs["result"]["orderItem"]>
   export type OrderItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     order?: boolean | OrderDefaultArgs<ExtArgs>
     product?: boolean | OrderItem$productArgs<ExtArgs>
@@ -12009,7 +11985,6 @@ export namespace Prisma {
       price: Prisma.Decimal
       discountPrice: Prisma.Decimal
       color: string | null
-      material: string | null
       posterImageUrl: string | null
     }, ExtArgs["result"]["orderItem"]>
     composites: {}
@@ -12447,7 +12422,6 @@ export namespace Prisma {
     readonly price: FieldRef<"OrderItem", 'Decimal'>
     readonly discountPrice: FieldRef<"OrderItem", 'Decimal'>
     readonly color: FieldRef<"OrderItem", 'String'>
-    readonly material: FieldRef<"OrderItem", 'String'>
     readonly posterImageUrl: FieldRef<"OrderItem", 'String'>
   }
     
@@ -14071,7 +14045,6 @@ export namespace Prisma {
     discountPrice: 'discountPrice',
     stock: 'stock',
     color: 'color',
-    material: 'material',
     seoSchema: 'seoSchema',
     status: 'status',
     lastEditedBy: 'lastEditedBy',
@@ -14118,7 +14091,6 @@ export namespace Prisma {
     price: 'price',
     discountPrice: 'discountPrice',
     color: 'color',
-    material: 'material',
     posterImageUrl: 'posterImageUrl'
   };
 
@@ -14928,7 +14900,6 @@ export namespace Prisma {
     discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     stock?: IntFilter<"Product"> | number
     color?: StringNullableFilter<"Product"> | string | null
-    material?: StringNullableFilter<"Product"> | string | null
     seoSchema?: StringNullableFilter<"Product"> | string | null
     status?: EnumContentStatusFilter<"Product"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableFilter<"Product"> | string | null
@@ -14962,7 +14933,6 @@ export namespace Prisma {
     discountPrice?: SortOrder
     stock?: SortOrder
     color?: SortOrderInput | SortOrder
-    material?: SortOrderInput | SortOrder
     seoSchema?: SortOrderInput | SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrderInput | SortOrder
@@ -15000,7 +14970,6 @@ export namespace Prisma {
     discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     stock?: IntFilter<"Product"> | number
     color?: StringNullableFilter<"Product"> | string | null
-    material?: StringNullableFilter<"Product"> | string | null
     seoSchema?: StringNullableFilter<"Product"> | string | null
     status?: EnumContentStatusFilter<"Product"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableFilter<"Product"> | string | null
@@ -15034,7 +15003,6 @@ export namespace Prisma {
     discountPrice?: SortOrder
     stock?: SortOrder
     color?: SortOrderInput | SortOrder
-    material?: SortOrderInput | SortOrder
     seoSchema?: SortOrderInput | SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrderInput | SortOrder
@@ -15073,7 +15041,6 @@ export namespace Prisma {
     discountPrice?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
     stock?: IntWithAggregatesFilter<"Product"> | number
     color?: StringNullableWithAggregatesFilter<"Product"> | string | null
-    material?: StringNullableWithAggregatesFilter<"Product"> | string | null
     seoSchema?: StringNullableWithAggregatesFilter<"Product"> | string | null
     status?: EnumContentStatusWithAggregatesFilter<"Product"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableWithAggregatesFilter<"Product"> | string | null
@@ -15221,7 +15188,6 @@ export namespace Prisma {
     price?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
     color?: StringNullableFilter<"OrderItem"> | string | null
-    material?: StringNullableFilter<"OrderItem"> | string | null
     posterImageUrl?: StringNullableFilter<"OrderItem"> | string | null
     order?: XOR<OrderScalarRelationFilter, OrderWhereInput>
     product?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
@@ -15239,7 +15205,6 @@ export namespace Prisma {
     price?: SortOrder
     discountPrice?: SortOrder
     color?: SortOrderInput | SortOrder
-    material?: SortOrderInput | SortOrder
     posterImageUrl?: SortOrderInput | SortOrder
     order?: OrderOrderByWithRelationInput
     product?: ProductOrderByWithRelationInput
@@ -15260,7 +15225,6 @@ export namespace Prisma {
     price?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
     color?: StringNullableFilter<"OrderItem"> | string | null
-    material?: StringNullableFilter<"OrderItem"> | string | null
     posterImageUrl?: StringNullableFilter<"OrderItem"> | string | null
     order?: XOR<OrderScalarRelationFilter, OrderWhereInput>
     product?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
@@ -15278,7 +15242,6 @@ export namespace Prisma {
     price?: SortOrder
     discountPrice?: SortOrder
     color?: SortOrderInput | SortOrder
-    material?: SortOrderInput | SortOrder
     posterImageUrl?: SortOrderInput | SortOrder
     _count?: OrderItemCountOrderByAggregateInput
     _avg?: OrderItemAvgOrderByAggregateInput
@@ -15302,7 +15265,6 @@ export namespace Prisma {
     price?: DecimalWithAggregatesFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalWithAggregatesFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
     color?: StringNullableWithAggregatesFilter<"OrderItem"> | string | null
-    material?: StringNullableWithAggregatesFilter<"OrderItem"> | string | null
     posterImageUrl?: StringNullableWithAggregatesFilter<"OrderItem"> | string | null
   }
 
@@ -16032,7 +15994,6 @@ export namespace Prisma {
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
     color?: string | null
-    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -16066,7 +16027,6 @@ export namespace Prisma {
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
     color?: string | null
-    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -16096,7 +16056,6 @@ export namespace Prisma {
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16130,7 +16089,6 @@ export namespace Prisma {
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16162,7 +16120,6 @@ export namespace Prisma {
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
     color?: string | null
-    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -16191,7 +16148,6 @@ export namespace Prisma {
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16222,7 +16178,6 @@ export namespace Prisma {
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16390,7 +16345,6 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     discountPrice: Decimal | DecimalJsLike | number | string
     color?: string | null
-    material?: string | null
     posterImageUrl?: string | null
     order: OrderCreateNestedOneWithoutOrderItemsInput
     product?: ProductCreateNestedOneWithoutOrderItemsInput
@@ -16408,7 +16362,6 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     discountPrice: Decimal | DecimalJsLike | number | string
     color?: string | null
-    material?: string | null
     posterImageUrl?: string | null
   }
 
@@ -16422,7 +16375,6 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     order?: OrderUpdateOneRequiredWithoutOrderItemsNestedInput
     product?: ProductUpdateOneWithoutOrderItemsNestedInput
@@ -16440,7 +16392,6 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -16456,7 +16407,6 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     discountPrice: Decimal | DecimalJsLike | number | string
     color?: string | null
-    material?: string | null
     posterImageUrl?: string | null
   }
 
@@ -16470,7 +16420,6 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -16486,7 +16435,6 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -17193,7 +17141,6 @@ export namespace Prisma {
     discountPrice?: SortOrder
     stock?: SortOrder
     color?: SortOrder
-    material?: SortOrder
     seoSchema?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrder
@@ -17230,7 +17177,6 @@ export namespace Prisma {
     discountPrice?: SortOrder
     stock?: SortOrder
     color?: SortOrder
-    material?: SortOrder
     seoSchema?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrder
@@ -17260,7 +17206,6 @@ export namespace Prisma {
     discountPrice?: SortOrder
     stock?: SortOrder
     color?: SortOrder
-    material?: SortOrder
     seoSchema?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrder
@@ -17436,7 +17381,6 @@ export namespace Prisma {
     price?: SortOrder
     discountPrice?: SortOrder
     color?: SortOrder
-    material?: SortOrder
     posterImageUrl?: SortOrder
   }
 
@@ -17457,7 +17401,6 @@ export namespace Prisma {
     price?: SortOrder
     discountPrice?: SortOrder
     color?: SortOrder
-    material?: SortOrder
     posterImageUrl?: SortOrder
   }
 
@@ -17473,7 +17416,6 @@ export namespace Prisma {
     price?: SortOrder
     discountPrice?: SortOrder
     color?: SortOrder
-    material?: SortOrder
     posterImageUrl?: SortOrder
   }
 
@@ -19053,7 +18995,6 @@ export namespace Prisma {
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
     color?: string | null
-    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -19085,7 +19026,6 @@ export namespace Prisma {
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
     color?: string | null
-    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -19194,7 +19134,6 @@ export namespace Prisma {
     discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     stock?: IntFilter<"Product"> | number
     color?: StringNullableFilter<"Product"> | string | null
-    material?: StringNullableFilter<"Product"> | string | null
     seoSchema?: StringNullableFilter<"Product"> | string | null
     status?: EnumContentStatusFilter<"Product"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableFilter<"Product"> | string | null
@@ -19304,7 +19243,6 @@ export namespace Prisma {
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
     color?: string | null
-    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -19336,7 +19274,6 @@ export namespace Prisma {
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
     color?: string | null
-    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -19516,7 +19453,6 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     discountPrice: Decimal | DecimalJsLike | number | string
     color?: string | null
-    material?: string | null
     posterImageUrl?: string | null
     order: OrderCreateNestedOneWithoutOrderItemsInput
   }
@@ -19532,7 +19468,6 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     discountPrice: Decimal | DecimalJsLike | number | string
     color?: string | null
-    material?: string | null
     posterImageUrl?: string | null
   }
 
@@ -19675,7 +19610,6 @@ export namespace Prisma {
     price?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
     color?: StringNullableFilter<"OrderItem"> | string | null
-    material?: StringNullableFilter<"OrderItem"> | string | null
     posterImageUrl?: StringNullableFilter<"OrderItem"> | string | null
   }
 
@@ -19724,7 +19658,6 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     discountPrice: Decimal | DecimalJsLike | number | string
     color?: string | null
-    material?: string | null
     posterImageUrl?: string | null
     product?: ProductCreateNestedOneWithoutOrderItemsInput
   }
@@ -19740,7 +19673,6 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     discountPrice: Decimal | DecimalJsLike | number | string
     color?: string | null
-    material?: string | null
     posterImageUrl?: string | null
   }
 
@@ -19879,7 +19811,6 @@ export namespace Prisma {
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
     color?: string | null
-    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -19912,7 +19843,6 @@ export namespace Prisma {
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
     color?: string | null
-    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -20010,7 +19940,6 @@ export namespace Prisma {
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20043,7 +19972,6 @@ export namespace Prisma {
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20219,7 +20147,6 @@ export namespace Prisma {
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
     color?: string | null
-    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -20266,7 +20193,6 @@ export namespace Prisma {
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20298,7 +20224,6 @@ export namespace Prisma {
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20329,7 +20254,6 @@ export namespace Prisma {
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20415,7 +20339,6 @@ export namespace Prisma {
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
     color?: string | null
-    material?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -20444,7 +20367,6 @@ export namespace Prisma {
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20476,7 +20398,6 @@ export namespace Prisma {
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20507,7 +20428,6 @@ export namespace Prisma {
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20526,7 +20446,6 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     discountPrice: Decimal | DecimalJsLike | number | string
     color?: string | null
-    material?: string | null
     posterImageUrl?: string | null
   }
 
@@ -20540,7 +20459,6 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     order?: OrderUpdateOneRequiredWithoutOrderItemsNestedInput
   }
@@ -20556,7 +20474,6 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -20571,7 +20488,6 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -20586,7 +20502,6 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     discountPrice: Decimal | DecimalJsLike | number | string
     color?: string | null
-    material?: string | null
     posterImageUrl?: string | null
   }
 
@@ -20600,7 +20515,6 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     product?: ProductUpdateOneWithoutOrderItemsNestedInput
   }
@@ -20616,7 +20530,6 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -20631,7 +20544,6 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
-    material?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
