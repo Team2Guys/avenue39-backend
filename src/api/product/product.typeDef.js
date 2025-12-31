@@ -10,7 +10,7 @@ export const productTypeDefs = gql`
     slug: String
     metaTitle: String
     metaDescription: String
-    canonicalTag: String
+    canonicalUrl: String
     breadcrumb: String
     posterImageUrl: String
     productImages: [String!]!
@@ -40,7 +40,7 @@ export const productTypeDefs = gql`
     slug: String
     metaTitle: String
     metaDescription: String
-    canonicalTag: String
+    canonicalUrl: String
     breadcrumb: String
     posterImageUrl: String
     productImages: [String!]!

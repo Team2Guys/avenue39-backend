@@ -83,11 +83,12 @@ export async function seedProducts() {
       productImages: parsePgArray(row.productImages, rowNum, 'productImages'),
       stock: Number(row.stock || 0),
       price: Number(row.price || 0),
+      memberPrice: Number(row.memberPrice || 0),
       discountPrice: Number(row.discountPrice || 0),
       color: row.color || '',
       metaTitle: row.metaTitle || row.name,
       metaDescription: row.metaDescription || '',
-      canonicalTag: row.canonicalTag || '',
+      canonicalUrl: row.canonicalUrl || '',
       seoSchema: row.seoSchema || '',
       status: (row.status || 'PUBLISHED').toUpperCase(),
       lastEditedBy: row.lastEditedBy || 'seed-script'
@@ -121,21 +122,26 @@ export async function seedProducts() {
   console.log('✅ Products seeded successfully');
 }
 
-// Helper to parse Postgres array string
+// Helper to parse Postgres array string or handle empty arrays
 export function parsePgArray(value, rowNum, fieldName) {
   if (Array.isArray(value)) return value;
+  if (!value || value === '{}' || value === '[]') return [];
+
   if (typeof value !== 'string')
     throw new Error(`❌ Row ${rowNum}: ${fieldName} must be a string or array`);
 
   const trimmed = value.trim();
-  if (!trimmed.startsWith('{') || !trimmed.endsWith('}'))
-    throw new Error(
-      `❌ Row ${rowNum}: ${fieldName} is not a valid array format`
-    );
 
-  return trimmed
-    .slice(1, -1)
-    .split(',')
-    .map((v) => v.trim().replace(/^"(.*)"$/, '$1'))
-    .filter(Boolean);
+  if (
+    (trimmed.startsWith('{') && trimmed.endsWith('}')) ||
+    (trimmed.startsWith('[') && trimmed.endsWith(']'))
+  ) {
+    return trimmed
+      .slice(1, -1)
+      .split(',')
+      .map((v) => v.trim().replace(/^"(.*)"$/, '$1'))
+      .filter(Boolean);
+  }
+
+  throw new Error(`❌ Row ${rowNum}: ${fieldName} is not a valid array format`);
 }
