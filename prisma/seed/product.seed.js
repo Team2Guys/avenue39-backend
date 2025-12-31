@@ -84,7 +84,6 @@ export async function seedProducts() {
       stock: Number(row.stock || 0),
       price: Number(row.price || 0),
       discountPrice: Number(row.discountPrice || 0),
-      material: row.material || '',
       color: row.color || '',
       metaTitle: row.metaTitle || row.name,
       metaDescription: row.metaDescription || '',

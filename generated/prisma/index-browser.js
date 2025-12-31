@@ -230,7 +230,6 @@ exports.Prisma.ProductScalarFieldEnum = {
   discountPrice: 'discountPrice',
   stock: 'stock',
   color: 'color',
-  material: 'material',
   seoSchema: 'seoSchema',
   status: 'status',
   lastEditedBy: 'lastEditedBy',
@@ -271,7 +270,6 @@ exports.Prisma.OrderItemScalarFieldEnum = {
   price: 'price',
   discountPrice: 'discountPrice',
   color: 'color',
-  material: 'material',
   posterImageUrl: 'posterImageUrl'
 };
 

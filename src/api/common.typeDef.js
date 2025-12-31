@@ -144,7 +144,6 @@ export const commonTypeDefs = gql`
     memberPrice: Float!
     discountPrice: Float!
     color: String!
-    material: String!
     metaTitle: String!
     metaDescription: String!
     canonicalTag: String!
