@@ -45,10 +45,8 @@ export async function seedProducts() {
   const resolvedRows = rows.map((row, index) => {
     const rowNum = index + 2;
 
-    if (!row.categoryName || !row.subcategoryName) {
-      throw new Error(
-        `❌ Row ${rowNum}: categoryName or subcategoryName missing`
-      );
+    if (!row.categoryName) {
+      throw new Error(`❌ Row ${rowNum}: categoryName missing`);
     }
 
     const categoryId = categoryMap.get(row.categoryName.trim().toLowerCase());
@@ -57,19 +55,24 @@ export async function seedProducts() {
         `❌ Row ${rowNum}: Category "${row.categoryName}" not found`
       );
 
-    const subcategoryKey = `${row.subcategoryName.trim().toLowerCase()}__${categoryId}`;
-    const subcategoryId = subcategoryMap.get(subcategoryKey);
-    if (!subcategoryId)
-      throw new Error(
-        `❌ Row ${rowNum}: Subcategory "${row.subcategoryName}" not found under category "${row.categoryName}"`
-      );
+    let subcategoryId = null;
+    if (row.subcategoryName) {
+      const subcategoryKey = `${row.subcategoryName.trim().toLowerCase()}__${categoryId}`;
+      subcategoryId = subcategoryMap.get(subcategoryKey) || null;
+
+      if (!subcategoryId) {
+        console.warn(
+          `⚠️ Row ${rowNum}: Subcategory "${row.subcategoryName}" not found under category "${row.categoryName}". Product will be created without subcategory.`
+        );
+      }
+    }
 
     const slug = slugify(row.name, { lower: true, strict: true });
 
     return {
       rowNum,
       categoryId,
-      subcategoryId,
+      subcategoryId, // can now be null
       sku: row.sku || '',
       name: row.name,
       slug,
@@ -101,12 +104,7 @@ export async function seedProducts() {
   for (const row of resolvedRows) {
     try {
       await prisma.product.upsert({
-        where: {
-          subcategoryId_slug: {
-            subcategoryId: row.subcategoryId,
-            slug: row.slug
-          }
-        },
+        where: { sku: row.sku },
         update: { ...row, rowNum: undefined },
         create: { ...row, rowNum: undefined }
       });

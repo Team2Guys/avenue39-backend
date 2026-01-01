@@ -9231,7 +9231,7 @@ export namespace Prisma {
   export type ProductGroupByOutputType = {
     id: string
     categoryId: string
-    subcategoryId: string
+    subcategoryId: string | null
     sku: string
     name: string
     slug: string
@@ -9306,7 +9306,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    subcategory?: boolean | SubcategoryDefaultArgs<ExtArgs>
+    subcategory?: boolean | Product$subcategoryArgs<ExtArgs>
     orderItems?: boolean | Product$orderItemsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
@@ -9340,7 +9340,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    subcategory?: boolean | SubcategoryDefaultArgs<ExtArgs>
+    subcategory?: boolean | Product$subcategoryArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
   export type ProductSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9372,7 +9372,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    subcategory?: boolean | SubcategoryDefaultArgs<ExtArgs>
+    subcategory?: boolean | Product$subcategoryArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
   export type ProductSelectScalar = {
@@ -9408,30 +9408,30 @@ export namespace Prisma {
   export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "sku" | "name" | "slug" | "shortDescription" | "description" | "materialDescription" | "dimensionDescription" | "metaTitle" | "metaDescription" | "canonicalUrl" | "breadcrumb" | "posterImageUrl" | "productUrl" | "productImages" | "price" | "memberPrice" | "discountPrice" | "stock" | "color" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    subcategory?: boolean | SubcategoryDefaultArgs<ExtArgs>
+    subcategory?: boolean | Product$subcategoryArgs<ExtArgs>
     orderItems?: boolean | Product$orderItemsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    subcategory?: boolean | SubcategoryDefaultArgs<ExtArgs>
+    subcategory?: boolean | Product$subcategoryArgs<ExtArgs>
   }
   export type ProductIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    subcategory?: boolean | SubcategoryDefaultArgs<ExtArgs>
+    subcategory?: boolean | Product$subcategoryArgs<ExtArgs>
   }
 
   export type $ProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Product"
     objects: {
       category: Prisma.$CategoryPayload<ExtArgs>
-      subcategory: Prisma.$SubcategoryPayload<ExtArgs>
+      subcategory: Prisma.$SubcategoryPayload<ExtArgs> | null
       orderItems: Prisma.$OrderItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       categoryId: string
-      subcategoryId: string
+      subcategoryId: string | null
       sku: string
       name: string
       slug: string
@@ -9851,7 +9851,7 @@ export namespace Prisma {
   export interface Prisma__ProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    subcategory<T extends SubcategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubcategoryDefaultArgs<ExtArgs>>): Prisma__SubcategoryClient<$Result.GetResult<Prisma.$SubcategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    subcategory<T extends Product$subcategoryArgs<ExtArgs> = {}>(args?: Subset<T, Product$subcategoryArgs<ExtArgs>>): Prisma__SubcategoryClient<$Result.GetResult<Prisma.$SubcategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     orderItems<T extends Product$orderItemsArgs<ExtArgs> = {}>(args?: Subset<T, Product$orderItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -10302,6 +10302,25 @@ export namespace Prisma {
      * Limit how many Products to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Product.subcategory
+   */
+  export type Product$subcategoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Subcategory
+     */
+    select?: SubcategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Subcategory
+     */
+    omit?: SubcategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SubcategoryInclude<ExtArgs> | null
+    where?: SubcategoryWhereInput
   }
 
   /**
@@ -14880,7 +14899,7 @@ export namespace Prisma {
     NOT?: ProductWhereInput | ProductWhereInput[]
     id?: UuidFilter<"Product"> | string
     categoryId?: UuidFilter<"Product"> | string
-    subcategoryId?: UuidFilter<"Product"> | string
+    subcategoryId?: UuidNullableFilter<"Product"> | string | null
     sku?: StringFilter<"Product"> | string
     name?: StringFilter<"Product"> | string
     slug?: StringFilter<"Product"> | string
@@ -14906,14 +14925,14 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
-    subcategory?: XOR<SubcategoryScalarRelationFilter, SubcategoryWhereInput>
+    subcategory?: XOR<SubcategoryNullableScalarRelationFilter, SubcategoryWhereInput> | null
     orderItems?: OrderItemListRelationFilter
   }
 
   export type ProductOrderByWithRelationInput = {
     id?: SortOrder
     categoryId?: SortOrder
-    subcategoryId?: SortOrder
+    subcategoryId?: SortOrderInput | SortOrder
     sku?: SortOrder
     name?: SortOrder
     slug?: SortOrder
@@ -14946,12 +14965,12 @@ export namespace Prisma {
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     sku?: string
-    subcategoryId_slug?: ProductSubcategoryIdSlugCompoundUniqueInput
+    categoryId_slug?: ProductCategoryIdSlugCompoundUniqueInput
     AND?: ProductWhereInput | ProductWhereInput[]
     OR?: ProductWhereInput[]
     NOT?: ProductWhereInput | ProductWhereInput[]
     categoryId?: UuidFilter<"Product"> | string
-    subcategoryId?: UuidFilter<"Product"> | string
+    subcategoryId?: UuidNullableFilter<"Product"> | string | null
     name?: StringFilter<"Product"> | string
     slug?: StringFilter<"Product"> | string
     shortDescription?: StringNullableFilter<"Product"> | string | null
@@ -14976,14 +14995,14 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
-    subcategory?: XOR<SubcategoryScalarRelationFilter, SubcategoryWhereInput>
+    subcategory?: XOR<SubcategoryNullableScalarRelationFilter, SubcategoryWhereInput> | null
     orderItems?: OrderItemListRelationFilter
-  }, "id" | "sku" | "subcategoryId_slug">
+  }, "id" | "sku" | "categoryId_slug">
 
   export type ProductOrderByWithAggregationInput = {
     id?: SortOrder
     categoryId?: SortOrder
-    subcategoryId?: SortOrder
+    subcategoryId?: SortOrderInput | SortOrder
     sku?: SortOrder
     name?: SortOrder
     slug?: SortOrder
@@ -15021,7 +15040,7 @@ export namespace Prisma {
     NOT?: ProductScalarWhereWithAggregatesInput | ProductScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"Product"> | string
     categoryId?: UuidWithAggregatesFilter<"Product"> | string
-    subcategoryId?: UuidWithAggregatesFilter<"Product"> | string
+    subcategoryId?: UuidNullableWithAggregatesFilter<"Product"> | string | null
     sku?: StringWithAggregatesFilter<"Product"> | string
     name?: StringWithAggregatesFilter<"Product"> | string
     slug?: StringWithAggregatesFilter<"Product"> | string
@@ -16000,14 +16019,14 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     category: CategoryCreateNestedOneWithoutProductsInput
-    subcategory: SubcategoryCreateNestedOneWithoutProductsInput
+    subcategory?: SubcategoryCreateNestedOneWithoutProductsInput
     orderItems?: OrderItemCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateInput = {
     id?: string
     categoryId: string
-    subcategoryId: string
+    subcategoryId?: string | null
     sku: string
     name: string
     slug: string
@@ -16062,14 +16081,14 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
-    subcategory?: SubcategoryUpdateOneRequiredWithoutProductsNestedInput
+    subcategory?: SubcategoryUpdateOneWithoutProductsNestedInput
     orderItems?: OrderItemUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
-    subcategoryId?: StringFieldUpdateOperationsInput | string
+    subcategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -16100,7 +16119,7 @@ export namespace Prisma {
   export type ProductCreateManyInput = {
     id?: string
     categoryId: string
-    subcategoryId: string
+    subcategoryId?: string | null
     sku: string
     name: string
     slug: string
@@ -16158,7 +16177,7 @@ export namespace Prisma {
   export type ProductUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
-    subcategoryId?: StringFieldUpdateOperationsInput | string
+    subcategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -17098,9 +17117,9 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type SubcategoryScalarRelationFilter = {
-    is?: SubcategoryWhereInput
-    isNot?: SubcategoryWhereInput
+  export type SubcategoryNullableScalarRelationFilter = {
+    is?: SubcategoryWhereInput | null
+    isNot?: SubcategoryWhereInput | null
   }
 
   export type OrderItemListRelationFilter = {
@@ -17113,8 +17132,8 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type ProductSubcategoryIdSlugCompoundUniqueInput = {
-    subcategoryId: string
+  export type ProductCategoryIdSlugCompoundUniqueInput = {
+    categoryId: string
     slug: string
   }
 
@@ -17924,10 +17943,12 @@ export namespace Prisma {
     update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutProductsInput, CategoryUpdateWithoutProductsInput>, CategoryUncheckedUpdateWithoutProductsInput>
   }
 
-  export type SubcategoryUpdateOneRequiredWithoutProductsNestedInput = {
+  export type SubcategoryUpdateOneWithoutProductsNestedInput = {
     create?: XOR<SubcategoryCreateWithoutProductsInput, SubcategoryUncheckedCreateWithoutProductsInput>
     connectOrCreate?: SubcategoryCreateOrConnectWithoutProductsInput
     upsert?: SubcategoryUpsertWithoutProductsInput
+    disconnect?: SubcategoryWhereInput | boolean
+    delete?: SubcategoryWhereInput | boolean
     connect?: SubcategoryWhereUniqueInput
     update?: XOR<XOR<SubcategoryUpdateToOneWithWhereWithoutProductsInput, SubcategoryUpdateWithoutProductsInput>, SubcategoryUncheckedUpdateWithoutProductsInput>
   }
@@ -19000,13 +19021,13 @@ export namespace Prisma {
     lastEditedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    subcategory: SubcategoryCreateNestedOneWithoutProductsInput
+    subcategory?: SubcategoryCreateNestedOneWithoutProductsInput
     orderItems?: OrderItemCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutCategoryInput = {
     id?: string
-    subcategoryId: string
+    subcategoryId?: string | null
     sku: string
     name: string
     slug: string
@@ -19114,7 +19135,7 @@ export namespace Prisma {
     NOT?: ProductScalarWhereInput | ProductScalarWhereInput[]
     id?: UuidFilter<"Product"> | string
     categoryId?: UuidFilter<"Product"> | string
-    subcategoryId?: UuidFilter<"Product"> | string
+    subcategoryId?: UuidNullableFilter<"Product"> | string | null
     sku?: StringFilter<"Product"> | string
     name?: StringFilter<"Product"> | string
     slug?: StringFilter<"Product"> | string
@@ -19817,13 +19838,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     category: CategoryCreateNestedOneWithoutProductsInput
-    subcategory: SubcategoryCreateNestedOneWithoutProductsInput
+    subcategory?: SubcategoryCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutOrderItemsInput = {
     id?: string
     categoryId: string
-    subcategoryId: string
+    subcategoryId?: string | null
     sku: string
     name: string
     slug: string
@@ -19946,13 +19967,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
-    subcategory?: SubcategoryUpdateOneRequiredWithoutProductsNestedInput
+    subcategory?: SubcategoryUpdateOneWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutOrderItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
-    subcategoryId?: StringFieldUpdateOperationsInput | string
+    subcategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -20127,7 +20148,7 @@ export namespace Prisma {
 
   export type ProductCreateManyCategoryInput = {
     id?: string
-    subcategoryId: string
+    subcategoryId?: string | null
     sku: string
     name: string
     slug: string
@@ -20198,13 +20219,13 @@ export namespace Prisma {
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    subcategory?: SubcategoryUpdateOneRequiredWithoutProductsNestedInput
+    subcategory?: SubcategoryUpdateOneWithoutProductsNestedInput
     orderItems?: OrderItemUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subcategoryId?: StringFieldUpdateOperationsInput | string
+    subcategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -20234,7 +20255,7 @@ export namespace Prisma {
 
   export type ProductUncheckedUpdateManyWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
-    subcategoryId?: StringFieldUpdateOperationsInput | string
+    subcategoryId?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string

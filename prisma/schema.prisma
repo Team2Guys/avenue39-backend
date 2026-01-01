@@ -178,7 +178,7 @@ model Subcategory {
 model Product {
   id                   String        @id @default(uuid()) @db.Uuid
   categoryId           String        @db.Uuid
-  subcategoryId        String        @db.Uuid
+  subcategoryId        String?       @db.Uuid
   sku                  String        @unique
   name                 String
   slug                 String
@@ -204,11 +204,11 @@ model Product {
   createdAt            DateTime      @default(now())
   updatedAt            DateTime      @updatedAt
 
-  category    Category    @relation(name: "CategoryProducts", fields: [categoryId], references: [id], onDelete: Cascade)
-  subcategory Subcategory @relation(name: "SubcategoryProducts", fields: [subcategoryId], references: [id], onDelete: Cascade)
-  orderItems  OrderItem[] @relation(name: "ProductOrderItems")
+  category    Category     @relation(name: "CategoryProducts", fields: [categoryId], references: [id], onDelete: Restrict)
+  subcategory Subcategory? @relation(name: "SubcategoryProducts", fields: [subcategoryId], references: [id], onDelete: SetNull)
+  orderItems  OrderItem[]  @relation(name: "ProductOrderItems")
 
-  @@unique([subcategoryId, slug])
+  @@unique([categoryId, slug])
 }
 
 model Order {
