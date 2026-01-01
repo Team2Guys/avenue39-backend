@@ -155,6 +155,15 @@ export const AddressType: {
 
 export type AddressType = (typeof AddressType)[keyof typeof AddressType]
 
+
+export const VariationType: {
+  SIZE: 'SIZE',
+  COLOR: 'COLOR',
+  SEAT: 'SEAT'
+};
+
+export type VariationType = (typeof VariationType)[keyof typeof VariationType]
+
 }
 
 export type AdminRole = $Enums.AdminRole
@@ -188,6 +197,10 @@ export const Permissions: typeof $Enums.Permissions
 export type AddressType = $Enums.AddressType
 
 export const AddressType: typeof $Enums.AddressType
+
+export type VariationType = $Enums.VariationType
+
+export const VariationType: typeof $Enums.VariationType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -8970,8 +8983,9 @@ export namespace Prisma {
     memberPrice: Decimal | null
     discountPrice: Decimal | null
     stock: number | null
-    color: string | null
     seoSchema: string | null
+    variationType: $Enums.VariationType | null
+    variationValue: string | null
     status: $Enums.ContentStatus | null
     lastEditedBy: string | null
     createdAt: Date | null
@@ -8999,8 +9013,9 @@ export namespace Prisma {
     memberPrice: Decimal | null
     discountPrice: Decimal | null
     stock: number | null
-    color: string | null
     seoSchema: string | null
+    variationType: $Enums.VariationType | null
+    variationValue: string | null
     status: $Enums.ContentStatus | null
     lastEditedBy: string | null
     createdAt: Date | null
@@ -9029,8 +9044,9 @@ export namespace Prisma {
     memberPrice: number
     discountPrice: number
     stock: number
-    color: number
     seoSchema: number
+    variationType: number
+    variationValue: number
     status: number
     lastEditedBy: number
     createdAt: number
@@ -9074,8 +9090,9 @@ export namespace Prisma {
     memberPrice?: true
     discountPrice?: true
     stock?: true
-    color?: true
     seoSchema?: true
+    variationType?: true
+    variationValue?: true
     status?: true
     lastEditedBy?: true
     createdAt?: true
@@ -9103,8 +9120,9 @@ export namespace Prisma {
     memberPrice?: true
     discountPrice?: true
     stock?: true
-    color?: true
     seoSchema?: true
+    variationType?: true
+    variationValue?: true
     status?: true
     lastEditedBy?: true
     createdAt?: true
@@ -9133,8 +9151,9 @@ export namespace Prisma {
     memberPrice?: true
     discountPrice?: true
     stock?: true
-    color?: true
     seoSchema?: true
+    variationType?: true
+    variationValue?: true
     status?: true
     lastEditedBy?: true
     createdAt?: true
@@ -9250,8 +9269,9 @@ export namespace Prisma {
     memberPrice: Decimal
     discountPrice: Decimal
     stock: number
-    color: string | null
     seoSchema: string | null
+    variationType: $Enums.VariationType
+    variationValue: string
     status: $Enums.ContentStatus
     lastEditedBy: string | null
     createdAt: Date
@@ -9299,8 +9319,9 @@ export namespace Prisma {
     memberPrice?: boolean
     discountPrice?: boolean
     stock?: boolean
-    color?: boolean
     seoSchema?: boolean
+    variationType?: boolean
+    variationValue?: boolean
     status?: boolean
     lastEditedBy?: boolean
     createdAt?: boolean
@@ -9333,8 +9354,9 @@ export namespace Prisma {
     memberPrice?: boolean
     discountPrice?: boolean
     stock?: boolean
-    color?: boolean
     seoSchema?: boolean
+    variationType?: boolean
+    variationValue?: boolean
     status?: boolean
     lastEditedBy?: boolean
     createdAt?: boolean
@@ -9365,8 +9387,9 @@ export namespace Prisma {
     memberPrice?: boolean
     discountPrice?: boolean
     stock?: boolean
-    color?: boolean
     seoSchema?: boolean
+    variationType?: boolean
+    variationValue?: boolean
     status?: boolean
     lastEditedBy?: boolean
     createdAt?: boolean
@@ -9397,15 +9420,16 @@ export namespace Prisma {
     memberPrice?: boolean
     discountPrice?: boolean
     stock?: boolean
-    color?: boolean
     seoSchema?: boolean
+    variationType?: boolean
+    variationValue?: boolean
     status?: boolean
     lastEditedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "sku" | "name" | "slug" | "shortDescription" | "description" | "materialDescription" | "dimensionDescription" | "metaTitle" | "metaDescription" | "canonicalUrl" | "breadcrumb" | "posterImageUrl" | "productUrl" | "productImages" | "price" | "memberPrice" | "discountPrice" | "stock" | "color" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "sku" | "name" | "slug" | "shortDescription" | "description" | "materialDescription" | "dimensionDescription" | "metaTitle" | "metaDescription" | "canonicalUrl" | "breadcrumb" | "posterImageUrl" | "productUrl" | "productImages" | "price" | "memberPrice" | "discountPrice" | "stock" | "seoSchema" | "variationType" | "variationValue" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     subcategory?: boolean | Product$subcategoryArgs<ExtArgs>
@@ -9450,8 +9474,9 @@ export namespace Prisma {
       memberPrice: Prisma.Decimal
       discountPrice: Prisma.Decimal
       stock: number
-      color: string | null
       seoSchema: string | null
+      variationType: $Enums.VariationType
+      variationValue: string
       status: $Enums.ContentStatus
       lastEditedBy: string | null
       createdAt: Date
@@ -9903,8 +9928,9 @@ export namespace Prisma {
     readonly memberPrice: FieldRef<"Product", 'Decimal'>
     readonly discountPrice: FieldRef<"Product", 'Decimal'>
     readonly stock: FieldRef<"Product", 'Int'>
-    readonly color: FieldRef<"Product", 'String'>
     readonly seoSchema: FieldRef<"Product", 'String'>
+    readonly variationType: FieldRef<"Product", 'VariationType'>
+    readonly variationValue: FieldRef<"Product", 'String'>
     readonly status: FieldRef<"Product", 'ContentStatus'>
     readonly lastEditedBy: FieldRef<"Product", 'String'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
@@ -14063,8 +14089,9 @@ export namespace Prisma {
     memberPrice: 'memberPrice',
     discountPrice: 'discountPrice',
     stock: 'stock',
-    color: 'color',
     seoSchema: 'seoSchema',
+    variationType: 'variationType',
+    variationValue: 'variationValue',
     status: 'status',
     lastEditedBy: 'lastEditedBy',
     createdAt: 'createdAt',
@@ -14276,6 +14303,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'VariationType'
+   */
+  export type EnumVariationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VariationType'>
+    
+
+
+  /**
+   * Reference to a field of type 'VariationType[]'
+   */
+  export type ListEnumVariationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VariationType[]'>
     
 
 
@@ -14918,8 +14959,9 @@ export namespace Prisma {
     memberPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     stock?: IntFilter<"Product"> | number
-    color?: StringNullableFilter<"Product"> | string | null
     seoSchema?: StringNullableFilter<"Product"> | string | null
+    variationType?: EnumVariationTypeFilter<"Product"> | $Enums.VariationType
+    variationValue?: StringFilter<"Product"> | string
     status?: EnumContentStatusFilter<"Product"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
@@ -14951,8 +14993,9 @@ export namespace Prisma {
     memberPrice?: SortOrder
     discountPrice?: SortOrder
     stock?: SortOrder
-    color?: SortOrderInput | SortOrder
     seoSchema?: SortOrderInput | SortOrder
+    variationType?: SortOrder
+    variationValue?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -14988,8 +15031,9 @@ export namespace Prisma {
     memberPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     stock?: IntFilter<"Product"> | number
-    color?: StringNullableFilter<"Product"> | string | null
     seoSchema?: StringNullableFilter<"Product"> | string | null
+    variationType?: EnumVariationTypeFilter<"Product"> | $Enums.VariationType
+    variationValue?: StringFilter<"Product"> | string
     status?: EnumContentStatusFilter<"Product"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
@@ -15021,8 +15065,9 @@ export namespace Prisma {
     memberPrice?: SortOrder
     discountPrice?: SortOrder
     stock?: SortOrder
-    color?: SortOrderInput | SortOrder
     seoSchema?: SortOrderInput | SortOrder
+    variationType?: SortOrder
+    variationValue?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -15059,8 +15104,9 @@ export namespace Prisma {
     memberPrice?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
     stock?: IntWithAggregatesFilter<"Product"> | number
-    color?: StringNullableWithAggregatesFilter<"Product"> | string | null
     seoSchema?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    variationType?: EnumVariationTypeWithAggregatesFilter<"Product"> | $Enums.VariationType
+    variationValue?: StringWithAggregatesFilter<"Product"> | string
     status?: EnumContentStatusWithAggregatesFilter<"Product"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableWithAggregatesFilter<"Product"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
@@ -16012,8 +16058,9 @@ export namespace Prisma {
     memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
-    color?: string | null
     seoSchema?: string | null
+    variationType: $Enums.VariationType
+    variationValue: string
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
     createdAt?: Date | string
@@ -16045,8 +16092,9 @@ export namespace Prisma {
     memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
-    color?: string | null
     seoSchema?: string | null
+    variationType: $Enums.VariationType
+    variationValue: string
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
     createdAt?: Date | string
@@ -16074,8 +16122,9 @@ export namespace Prisma {
     memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
-    color?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
+    variationType?: EnumVariationTypeFieldUpdateOperationsInput | $Enums.VariationType
+    variationValue?: StringFieldUpdateOperationsInput | string
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16107,8 +16156,9 @@ export namespace Prisma {
     memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
-    color?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
+    variationType?: EnumVariationTypeFieldUpdateOperationsInput | $Enums.VariationType
+    variationValue?: StringFieldUpdateOperationsInput | string
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16138,8 +16188,9 @@ export namespace Prisma {
     memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
-    color?: string | null
     seoSchema?: string | null
+    variationType: $Enums.VariationType
+    variationValue: string
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
     createdAt?: Date | string
@@ -16166,8 +16217,9 @@ export namespace Prisma {
     memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
-    color?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
+    variationType?: EnumVariationTypeFieldUpdateOperationsInput | $Enums.VariationType
+    variationValue?: StringFieldUpdateOperationsInput | string
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16196,8 +16248,9 @@ export namespace Prisma {
     memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
-    color?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
+    variationType?: EnumVariationTypeFieldUpdateOperationsInput | $Enums.VariationType
+    variationValue?: StringFieldUpdateOperationsInput | string
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17117,6 +17170,13 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type EnumVariationTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.VariationType | EnumVariationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.VariationType[] | ListEnumVariationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.VariationType[] | ListEnumVariationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumVariationTypeFilter<$PrismaModel> | $Enums.VariationType
+  }
+
   export type SubcategoryNullableScalarRelationFilter = {
     is?: SubcategoryWhereInput | null
     isNot?: SubcategoryWhereInput | null
@@ -17159,8 +17219,9 @@ export namespace Prisma {
     memberPrice?: SortOrder
     discountPrice?: SortOrder
     stock?: SortOrder
-    color?: SortOrder
     seoSchema?: SortOrder
+    variationType?: SortOrder
+    variationValue?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrder
     createdAt?: SortOrder
@@ -17195,8 +17256,9 @@ export namespace Prisma {
     memberPrice?: SortOrder
     discountPrice?: SortOrder
     stock?: SortOrder
-    color?: SortOrder
     seoSchema?: SortOrder
+    variationType?: SortOrder
+    variationValue?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrder
     createdAt?: SortOrder
@@ -17224,8 +17286,9 @@ export namespace Prisma {
     memberPrice?: SortOrder
     discountPrice?: SortOrder
     stock?: SortOrder
-    color?: SortOrder
     seoSchema?: SortOrder
+    variationType?: SortOrder
+    variationValue?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrder
     createdAt?: SortOrder
@@ -17269,6 +17332,16 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type EnumVariationTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.VariationType | EnumVariationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.VariationType[] | ListEnumVariationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.VariationType[] | ListEnumVariationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumVariationTypeWithAggregatesFilter<$PrismaModel> | $Enums.VariationType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumVariationTypeFilter<$PrismaModel>
+    _max?: NestedEnumVariationTypeFilter<$PrismaModel>
   }
 
   export type EnumPaymentStatusFilter<$PrismaModel = never> = {
@@ -17935,6 +18008,10 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type EnumVariationTypeFieldUpdateOperationsInput = {
+    set?: $Enums.VariationType
+  }
+
   export type CategoryUpdateOneRequiredWithoutProductsNestedInput = {
     create?: XOR<CategoryCreateWithoutProductsInput, CategoryUncheckedCreateWithoutProductsInput>
     connectOrCreate?: CategoryCreateOrConnectWithoutProductsInput
@@ -18317,6 +18394,13 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
+  export type NestedEnumVariationTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.VariationType | EnumVariationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.VariationType[] | ListEnumVariationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.VariationType[] | ListEnumVariationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumVariationTypeFilter<$PrismaModel> | $Enums.VariationType
+  }
+
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -18358,6 +18442,16 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumVariationTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.VariationType | EnumVariationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.VariationType[] | ListEnumVariationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.VariationType[] | ListEnumVariationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumVariationTypeWithAggregatesFilter<$PrismaModel> | $Enums.VariationType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumVariationTypeFilter<$PrismaModel>
+    _max?: NestedEnumVariationTypeFilter<$PrismaModel>
   }
 
   export type NestedEnumPaymentStatusFilter<$PrismaModel = never> = {
@@ -19015,8 +19109,9 @@ export namespace Prisma {
     memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
-    color?: string | null
     seoSchema?: string | null
+    variationType: $Enums.VariationType
+    variationValue: string
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
     createdAt?: Date | string
@@ -19046,8 +19141,9 @@ export namespace Prisma {
     memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
-    color?: string | null
     seoSchema?: string | null
+    variationType: $Enums.VariationType
+    variationValue: string
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
     createdAt?: Date | string
@@ -19154,8 +19250,9 @@ export namespace Prisma {
     memberPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     stock?: IntFilter<"Product"> | number
-    color?: StringNullableFilter<"Product"> | string | null
     seoSchema?: StringNullableFilter<"Product"> | string | null
+    variationType?: EnumVariationTypeFilter<"Product"> | $Enums.VariationType
+    variationValue?: StringFilter<"Product"> | string
     status?: EnumContentStatusFilter<"Product"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
@@ -19263,8 +19360,9 @@ export namespace Prisma {
     memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
-    color?: string | null
     seoSchema?: string | null
+    variationType: $Enums.VariationType
+    variationValue: string
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
     createdAt?: Date | string
@@ -19294,8 +19392,9 @@ export namespace Prisma {
     memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
-    color?: string | null
     seoSchema?: string | null
+    variationType: $Enums.VariationType
+    variationValue: string
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
     createdAt?: Date | string
@@ -19831,8 +19930,9 @@ export namespace Prisma {
     memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
-    color?: string | null
     seoSchema?: string | null
+    variationType: $Enums.VariationType
+    variationValue: string
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
     createdAt?: Date | string
@@ -19863,8 +19963,9 @@ export namespace Prisma {
     memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
-    color?: string | null
     seoSchema?: string | null
+    variationType: $Enums.VariationType
+    variationValue: string
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
     createdAt?: Date | string
@@ -19960,8 +20061,9 @@ export namespace Prisma {
     memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
-    color?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
+    variationType?: EnumVariationTypeFieldUpdateOperationsInput | $Enums.VariationType
+    variationValue?: StringFieldUpdateOperationsInput | string
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19992,8 +20094,9 @@ export namespace Prisma {
     memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
-    color?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
+    variationType?: EnumVariationTypeFieldUpdateOperationsInput | $Enums.VariationType
+    variationValue?: StringFieldUpdateOperationsInput | string
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20167,8 +20270,9 @@ export namespace Prisma {
     memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
-    color?: string | null
     seoSchema?: string | null
+    variationType: $Enums.VariationType
+    variationValue: string
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
     createdAt?: Date | string
@@ -20213,8 +20317,9 @@ export namespace Prisma {
     memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
-    color?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
+    variationType?: EnumVariationTypeFieldUpdateOperationsInput | $Enums.VariationType
+    variationValue?: StringFieldUpdateOperationsInput | string
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20244,8 +20349,9 @@ export namespace Prisma {
     memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
-    color?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
+    variationType?: EnumVariationTypeFieldUpdateOperationsInput | $Enums.VariationType
+    variationValue?: StringFieldUpdateOperationsInput | string
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20274,8 +20380,9 @@ export namespace Prisma {
     memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
-    color?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
+    variationType?: EnumVariationTypeFieldUpdateOperationsInput | $Enums.VariationType
+    variationValue?: StringFieldUpdateOperationsInput | string
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20359,8 +20466,9 @@ export namespace Prisma {
     memberPrice?: Decimal | DecimalJsLike | number | string
     discountPrice?: Decimal | DecimalJsLike | number | string
     stock?: number
-    color?: string | null
     seoSchema?: string | null
+    variationType: $Enums.VariationType
+    variationValue: string
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
     createdAt?: Date | string
@@ -20387,8 +20495,9 @@ export namespace Prisma {
     memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
-    color?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
+    variationType?: EnumVariationTypeFieldUpdateOperationsInput | $Enums.VariationType
+    variationValue?: StringFieldUpdateOperationsInput | string
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20418,8 +20527,9 @@ export namespace Prisma {
     memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
-    color?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
+    variationType?: EnumVariationTypeFieldUpdateOperationsInput | $Enums.VariationType
+    variationValue?: StringFieldUpdateOperationsInput | string
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20448,8 +20558,9 @@ export namespace Prisma {
     memberPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     discountPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stock?: IntFieldUpdateOperationsInput | number
-    color?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
+    variationType?: EnumVariationTypeFieldUpdateOperationsInput | $Enums.VariationType
+    variationValue?: StringFieldUpdateOperationsInput | string
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

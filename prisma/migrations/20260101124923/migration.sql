@@ -22,6 +22,9 @@ CREATE TYPE "Permissions" AS ENUM ('ADD_PRODUCTS', 'EDIT_PRODUCTS', 'DELETE_PROD
 -- CreateEnum
 CREATE TYPE "AddressType" AS ENUM ('HOME', 'OFFICE', 'OTHER');
 
+-- CreateEnum
+CREATE TYPE "VariationType" AS ENUM ('SIZE', 'COLOR', 'SEAT');
+
 -- CreateTable
 CREATE TABLE "Admin" (
     "id" UUID NOT NULL,
@@ -131,7 +134,7 @@ CREATE TABLE "Subcategory" (
 CREATE TABLE "Product" (
     "id" UUID NOT NULL,
     "categoryId" UUID NOT NULL,
-    "subcategoryId" UUID NOT NULL,
+    "subcategoryId" UUID,
     "sku" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
@@ -150,8 +153,9 @@ CREATE TABLE "Product" (
     "memberPrice" DECIMAL(65,30) NOT NULL DEFAULT 0,
     "discountPrice" DECIMAL(65,30) NOT NULL DEFAULT 0,
     "stock" INTEGER NOT NULL DEFAULT 0,
-    "color" TEXT,
     "seoSchema" TEXT,
+    "variationType" "VariationType" NOT NULL,
+    "variationValue" TEXT NOT NULL,
     "status" "ContentStatus" NOT NULL DEFAULT 'PUBLISHED',
     "lastEditedBy" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -245,7 +249,7 @@ CREATE UNIQUE INDEX "Subcategory_categoryId_slug_key" ON "Subcategory"("category
 CREATE UNIQUE INDEX "Product_sku_key" ON "Product"("sku");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Product_subcategoryId_slug_key" ON "Product"("subcategoryId", "slug");
+CREATE UNIQUE INDEX "Product_categoryId_slug_key" ON "Product"("categoryId", "slug");
 
 -- AddForeignKey
 ALTER TABLE "User" ADD CONSTRAINT "User_defaultShippingAddressId_fkey" FOREIGN KEY ("defaultShippingAddressId") REFERENCES "Address"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -260,10 +264,10 @@ ALTER TABLE "Address" ADD CONSTRAINT "Address_userId_fkey" FOREIGN KEY ("userId"
 ALTER TABLE "Subcategory" ADD CONSTRAINT "Subcategory_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Product" ADD CONSTRAINT "Product_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Product" ADD CONSTRAINT "Product_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Product" ADD CONSTRAINT "Product_subcategoryId_fkey" FOREIGN KEY ("subcategoryId") REFERENCES "Subcategory"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Product" ADD CONSTRAINT "Product_subcategoryId_fkey" FOREIGN KEY ("subcategoryId") REFERENCES "Subcategory"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Order" ADD CONSTRAINT "Order_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
