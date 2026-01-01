@@ -182,34 +182,34 @@ model Subcategory {
 }
 
 model Product {
-  id                   String        @id @default(uuid()) @db.Uuid
-  categoryId           String        @db.Uuid
-  subcategoryId        String?       @db.Uuid
-  sku                  String        @unique
+  id                   String         @id @default(uuid()) @db.Uuid
+  categoryId           String         @db.Uuid
+  subcategoryId        String?        @db.Uuid
+  sku                  String         @unique
   name                 String
   slug                 String
-  shortDescription     String?       @db.Text()
-  description          String?       @db.Text()
-  materialDescription  String?       @db.Text()
-  dimensionDescription String?       @db.Text()
+  shortDescription     String?        @db.Text()
+  description          String?        @db.Text()
+  materialDescription  String?        @db.Text()
+  dimensionDescription String?        @db.Text()
   metaTitle            String?
   metaDescription      String?
   canonicalUrl         String?
   breadcrumb           String?
   posterImageUrl       String
   productUrl           String
-  productImages        String[]      @default([])
-  price                Decimal       @default(0)
-  memberPrice          Decimal       @default(0)
-  discountPrice        Decimal       @default(0)
-  stock                Int           @default(0)
-  seoSchema            String?       @db.Text()
-  variationType        VariationType
-  variationValue       String
-  status               ContentStatus @default(PUBLISHED)
+  productImages        String[]       @default([])
+  price                Decimal        @default(0)
+  memberPrice          Decimal        @default(0)
+  discountPrice        Decimal        @default(0)
+  stock                Int            @default(0)
+  seoSchema            String?        @db.Text()
+  variationType        VariationType?
+  variationValue       String?
+  status               ContentStatus  @default(PUBLISHED)
   lastEditedBy         String?
-  createdAt            DateTime      @default(now())
-  updatedAt            DateTime      @updatedAt
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
 
   category    Category     @relation(name: "CategoryProducts", fields: [categoryId], references: [id], onDelete: Restrict)
   subcategory Subcategory? @relation(name: "SubcategoryProducts", fields: [subcategoryId], references: [id], onDelete: SetNull)
