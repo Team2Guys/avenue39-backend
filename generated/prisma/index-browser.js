@@ -229,8 +229,9 @@ exports.Prisma.ProductScalarFieldEnum = {
   memberPrice: 'memberPrice',
   discountPrice: 'discountPrice',
   stock: 'stock',
-  color: 'color',
   seoSchema: 'seoSchema',
+  variationType: 'variationType',
+  variationValue: 'variationValue',
   status: 'status',
   lastEditedBy: 'lastEditedBy',
   createdAt: 'createdAt',
@@ -331,6 +332,12 @@ exports.ContentStatus = exports.$Enums.ContentStatus = {
   DRAFT: 'DRAFT',
   PUBLISHED: 'PUBLISHED',
   ARCHIVED: 'ARCHIVED'
+};
+
+exports.VariationType = exports.$Enums.VariationType = {
+  SIZE: 'SIZE',
+  COLOR: 'COLOR',
+  SEAT: 'SEAT'
 };
 
 exports.PaymentStatus = exports.$Enums.PaymentStatus = {

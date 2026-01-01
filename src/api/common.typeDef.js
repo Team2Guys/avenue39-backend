@@ -149,6 +149,8 @@ export const commonTypeDefs = gql`
     canonicalUrl: String!
     breadcrumb: String!
     seoSchema: String!
+    variationType: String!
+    variationValue: String!
     status: ContentStatus!
     lastEditedBy: String!
     category: Category
