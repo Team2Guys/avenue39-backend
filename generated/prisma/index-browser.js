@@ -214,26 +214,26 @@ exports.Prisma.ProductScalarFieldEnum = {
   sku: 'sku',
   name: 'name',
   slug: 'slug',
-  shortDescription: 'shortDescription',
+  breadcrumb: 'breadcrumb',
   description: 'description',
   materialDescription: 'materialDescription',
   dimensionDescription: 'dimensionDescription',
-  metaTitle: 'metaTitle',
-  metaDescription: 'metaDescription',
-  canonicalUrl: 'canonicalUrl',
-  breadcrumb: 'breadcrumb',
   posterImageUrl: 'posterImageUrl',
-  productUrl: 'productUrl',
   productImages: 'productImages',
+  productUrl: 'productUrl',
+  size: 'size',
+  color: 'color',
+  seats: 'seats',
+  stock: 'stock',
   price: 'price',
   memberPrice: 'memberPrice',
   discountPrice: 'discountPrice',
-  stock: 'stock',
+  metaTitle: 'metaTitle',
+  metaDescription: 'metaDescription',
+  canonicalUrl: 'canonicalUrl',
   seoSchema: 'seoSchema',
-  variationType: 'variationType',
-  variationValue: 'variationValue',
-  status: 'status',
   lastEditedBy: 'lastEditedBy',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -332,12 +332,6 @@ exports.ContentStatus = exports.$Enums.ContentStatus = {
   DRAFT: 'DRAFT',
   PUBLISHED: 'PUBLISHED',
   ARCHIVED: 'ARCHIVED'
-};
-
-exports.VariationType = exports.$Enums.VariationType = {
-  SIZE: 'SIZE',
-  COLOR: 'COLOR',
-  SEAT: 'SEAT'
 };
 
 exports.PaymentStatus = exports.$Enums.PaymentStatus = {
