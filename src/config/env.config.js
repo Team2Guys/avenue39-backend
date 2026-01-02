@@ -14,7 +14,6 @@ const validators = {
 
   BACKEND_URL: url({ desc: 'Backend URL' }),
   FRONTEND_URL: url({ desc: 'Frontend URL' }),
-  DASHBOARD_URL: url({ desc: 'Dashboard URL' }),
 
   DATABASE_URL: url({ desc: 'Database Connection String' }),
 
