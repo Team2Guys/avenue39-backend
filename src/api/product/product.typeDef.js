@@ -4,61 +4,58 @@ export const productTypeDefs = gql`
   input CreateProductInput {
     categoryId: ID!
     subcategoryId: ID!
+    sku: String!
     name: String!
-    description: String
-    shortDescription: String
-    slug: String
-    metaTitle: String
-    metaDescription: String
-    canonicalUrl: String
+    slug: String!
     breadcrumb: String
+    description: String
+    materialDescription: String
+    dimensionDescription: String
     posterImageUrl: String
     productImages: [String!]!
-    seoSchema: String
+    productUrl: String
+    size: String
+    color: String
+    seats: Int
+    stock: Int
     price: Float!
     discountPrice: Float
     motorPrice: Float
-    width: Float
-    height: Float
-    stock: Int
-    color: String
-    pattern: String
-    composition: String
-    isMotorized: Boolean
-    additionalInfo: String
-    measuringGuide: String
+    metaTitle: String
+    metaDescription: String
+    canonicalUrl: String
+    seoSchema: String
     lastEditedBy: String!
     status: ContentStatus!
   }
 
   input UpdateProductByIdInput {
-    categoryId: ID!
-    subcategoryId: ID!
-    name: String!
-    description: String
-    shortDescription: String
+    id: ID!
+    categoryId: ID
+    subcategoryId: ID
+    sku: String
+    name: String
     slug: String
+    breadcrumb: String
+    description: String
+    materialDescription: String
+    dimensionDescription: String
+    posterImageUrl: String
+    productImages: [String!]
+    productUrl: String
+    size: String
+    color: String
+    seats: Int
+    stock: Int
+    price: Float
+    discountPrice: Float
+    motorPrice: Float
     metaTitle: String
     metaDescription: String
     canonicalUrl: String
-    breadcrumb: String
-    posterImageUrl: String
-    productImages: [String!]!
     seoSchema: String
-    price: Float!
-    discountPrice: Float
-    motorPrice: Float
-    width: Float
-    height: Float
-    stock: Int
-    color: String
-    pattern: String
-    composition: String
-    isMotorized: Boolean
-    additionalInfo: String
-    measuringGuide: String
-    lastEditedBy: String!
-    status: ContentStatus!
+    lastEditedBy: String
+    status: ContentStatus
   }
 
   input GetProductBySlugsInput {

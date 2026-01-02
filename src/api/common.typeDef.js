@@ -143,14 +143,14 @@ export const commonTypeDefs = gql`
     price: Float!
     memberPrice: Float!
     discountPrice: Float!
+    size: String!
     color: String!
+    seats: Int!
     metaTitle: String!
     metaDescription: String!
     canonicalUrl: String!
     breadcrumb: String!
     seoSchema: String!
-    variationType: String!
-    variationValue: String!
     status: ContentStatus!
     lastEditedBy: String!
     category: Category
