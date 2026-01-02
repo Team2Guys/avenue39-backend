@@ -4,7 +4,6 @@ export const subcategoryTypeDefs = gql`
   input CreateSubcategoryInput {
     name: String!
     description: String!
-    shortDescription: String!
     slug: String!
     metaTitle: String!
     metaDescription: String!
@@ -21,7 +20,6 @@ export const subcategoryTypeDefs = gql`
     id: ID!
     name: String
     description: String
-    shortDescription: String
     slug: String
     metaTitle: String
     metaDescription: String
