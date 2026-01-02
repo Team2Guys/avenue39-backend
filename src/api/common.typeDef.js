@@ -127,7 +127,7 @@ export const commonTypeDefs = gql`
   type Product {
     id: ID!
     categoryId: ID!
-    subcategoryId: ID!
+    subcategoryId: ID
     sku: String!
     name: String!
     slug: String!
