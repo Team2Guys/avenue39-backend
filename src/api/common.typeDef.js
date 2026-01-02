@@ -89,7 +89,6 @@ export const commonTypeDefs = gql`
     id: ID!
     name: String!
     description: String!
-    shortDescription: String!
     slug: String!
     metaTitle: String!
     metaDescription: String!
@@ -110,7 +109,6 @@ export const commonTypeDefs = gql`
     categoryId: ID!
     name: String!
     description: String
-    shortDescription: String
     slug: String
     metaTitle: String
     metaDescription: String
@@ -133,7 +131,6 @@ export const commonTypeDefs = gql`
     sku: String!
     name: String!
     slug: String!
-    shortDescription: String!
     description: String!
     materialDescription: String!
     dimensionDescription: String!

@@ -53,7 +53,6 @@ export async function seedSubcategories() {
       name: row.name,
       slug,
       description: row.description || '',
-      shortDescription: row.shortDescription || '',
       metaTitle: row.metaTitle || row.name,
       metaDescription: row.metaDescription || '',
       canonicalUrl: row.canonicalUrl || '',

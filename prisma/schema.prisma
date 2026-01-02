@@ -137,43 +137,41 @@ model NewsletterSubscriber {
 }
 
 model Category {
-  id               String        @id @default(uuid()) @db.Uuid
-  name             String        @unique
-  slug             String        @unique
-  shortDescription String?
-  description      String?       @db.Text()
-  metaTitle        String?
-  metaDescription  String?
-  canonicalUrl     String?
-  breadcrumb       String?
-  posterImageUrl   String?
-  seoSchema        String?       @db.Text()
-  status           ContentStatus @default(PUBLISHED)
-  lastEditedBy     String?
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @updatedAt
+  id              String        @id @default(uuid()) @db.Uuid
+  name            String        @unique
+  slug            String        @unique
+  description     String?       @db.Text()
+  metaTitle       String?
+  metaDescription String?
+  canonicalUrl    String?
+  breadcrumb      String?
+  posterImageUrl  String?
+  seoSchema       String?       @db.Text()
+  status          ContentStatus @default(PUBLISHED)
+  lastEditedBy    String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
 
   products      Product[]     @relation(name: "CategoryProducts")
   subcategories Subcategory[] @relation(name: "CategorySubcategories")
 }
 
 model Subcategory {
-  id               String        @id @default(uuid()) @db.Uuid
-  categoryId       String        @db.Uuid
-  name             String
-  slug             String
-  shortDescription String?
-  description      String?       @db.Text()
-  metaTitle        String?
-  metaDescription  String?
-  canonicalUrl     String?
-  breadcrumb       String?
-  posterImageUrl   String?
-  seoSchema        String?       @db.Text()
-  status           ContentStatus @default(PUBLISHED)
-  lastEditedBy     String?
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @updatedAt
+  id              String        @id @default(uuid()) @db.Uuid
+  categoryId      String        @db.Uuid
+  name            String
+  slug            String
+  description     String?       @db.Text()
+  metaTitle       String?
+  metaDescription String?
+  canonicalUrl    String?
+  breadcrumb      String?
+  posterImageUrl  String?
+  seoSchema       String?       @db.Text()
+  status          ContentStatus @default(PUBLISHED)
+  lastEditedBy    String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
 
   category Category  @relation(name: "CategorySubcategories", fields: [categoryId], references: [id], onDelete: Cascade)
   products Product[] @relation(name: "SubcategoryProducts")

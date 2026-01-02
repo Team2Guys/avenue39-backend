@@ -34,7 +34,6 @@ export async function seedCategories() {
     const data = {
       name: row.name,
       description: row.description || '',
-      shortDescription: row.shortDescription || '',
       slug,
       metaTitle: row.metaTitle || row.name,
       metaDescription: row.metaDescription || '',
