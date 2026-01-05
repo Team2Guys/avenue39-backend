@@ -193,6 +193,7 @@ model Product {
   posterImageUrl       String
   productImages        String[]      @default([])
   productUrl           String
+  material             String?
   size                 String?
   color                String?
   seats                Int?
