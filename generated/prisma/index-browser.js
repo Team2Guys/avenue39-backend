@@ -219,6 +219,7 @@ exports.Prisma.ProductScalarFieldEnum = {
   posterImageUrl: 'posterImageUrl',
   productImages: 'productImages',
   productUrl: 'productUrl',
+  material: 'material',
   size: 'size',
   color: 'color',
   seats: 'seats',

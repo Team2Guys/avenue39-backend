@@ -131,25 +131,27 @@ export const commonTypeDefs = gql`
     sku: String!
     name: String!
     slug: String!
+    breadcrumb: String!
     description: String!
     materialDescription: String!
     dimensionDescription: String!
     posterImageUrl: String!
     productImages: [String!]!
+    productUrl: String!
+    material: String!
+    size: String!
+    color: String!
+    seats: Int!
     stock: Int!
     price: Float!
     memberPrice: Float!
     discountPrice: Float!
-    size: String!
-    color: String!
-    seats: Int!
     metaTitle: String!
     metaDescription: String!
     canonicalUrl: String!
-    breadcrumb: String!
     seoSchema: String!
-    status: ContentStatus!
     lastEditedBy: String!
+    status: ContentStatus!
     category: Category
     subcategory: Subcategory
     createdAt: DateTime!

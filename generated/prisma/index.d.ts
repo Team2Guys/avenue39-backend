@@ -8951,6 +8951,7 @@ export namespace Prisma {
     dimensionDescription: string | null
     posterImageUrl: string | null
     productUrl: string | null
+    material: string | null
     size: string | null
     color: string | null
     seats: number | null
@@ -8981,6 +8982,7 @@ export namespace Prisma {
     dimensionDescription: string | null
     posterImageUrl: string | null
     productUrl: string | null
+    material: string | null
     size: string | null
     color: string | null
     seats: number | null
@@ -9012,6 +9014,7 @@ export namespace Prisma {
     posterImageUrl: number
     productImages: number
     productUrl: number
+    material: number
     size: number
     color: number
     seats: number
@@ -9060,6 +9063,7 @@ export namespace Prisma {
     dimensionDescription?: true
     posterImageUrl?: true
     productUrl?: true
+    material?: true
     size?: true
     color?: true
     seats?: true
@@ -9090,6 +9094,7 @@ export namespace Prisma {
     dimensionDescription?: true
     posterImageUrl?: true
     productUrl?: true
+    material?: true
     size?: true
     color?: true
     seats?: true
@@ -9121,6 +9126,7 @@ export namespace Prisma {
     posterImageUrl?: true
     productImages?: true
     productUrl?: true
+    material?: true
     size?: true
     color?: true
     seats?: true
@@ -9239,6 +9245,7 @@ export namespace Prisma {
     posterImageUrl: string
     productImages: string[]
     productUrl: string
+    material: string | null
     size: string | null
     color: string | null
     seats: number | null
@@ -9289,6 +9296,7 @@ export namespace Prisma {
     posterImageUrl?: boolean
     productImages?: boolean
     productUrl?: boolean
+    material?: boolean
     size?: boolean
     color?: boolean
     seats?: boolean
@@ -9324,6 +9332,7 @@ export namespace Prisma {
     posterImageUrl?: boolean
     productImages?: boolean
     productUrl?: boolean
+    material?: boolean
     size?: boolean
     color?: boolean
     seats?: boolean
@@ -9357,6 +9366,7 @@ export namespace Prisma {
     posterImageUrl?: boolean
     productImages?: boolean
     productUrl?: boolean
+    material?: boolean
     size?: boolean
     color?: boolean
     seats?: boolean
@@ -9390,6 +9400,7 @@ export namespace Prisma {
     posterImageUrl?: boolean
     productImages?: boolean
     productUrl?: boolean
+    material?: boolean
     size?: boolean
     color?: boolean
     seats?: boolean
@@ -9407,7 +9418,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "sku" | "name" | "slug" | "breadcrumb" | "description" | "materialDescription" | "dimensionDescription" | "posterImageUrl" | "productImages" | "productUrl" | "size" | "color" | "seats" | "stock" | "price" | "memberPrice" | "discountPrice" | "metaTitle" | "metaDescription" | "canonicalUrl" | "seoSchema" | "lastEditedBy" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "sku" | "name" | "slug" | "breadcrumb" | "description" | "materialDescription" | "dimensionDescription" | "posterImageUrl" | "productImages" | "productUrl" | "material" | "size" | "color" | "seats" | "stock" | "price" | "memberPrice" | "discountPrice" | "metaTitle" | "metaDescription" | "canonicalUrl" | "seoSchema" | "lastEditedBy" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     subcategory?: boolean | Product$subcategoryArgs<ExtArgs>
@@ -9444,6 +9455,7 @@ export namespace Prisma {
       posterImageUrl: string
       productImages: string[]
       productUrl: string
+      material: string | null
       size: string | null
       color: string | null
       seats: number | null
@@ -9898,6 +9910,7 @@ export namespace Prisma {
     readonly posterImageUrl: FieldRef<"Product", 'String'>
     readonly productImages: FieldRef<"Product", 'String[]'>
     readonly productUrl: FieldRef<"Product", 'String'>
+    readonly material: FieldRef<"Product", 'String'>
     readonly size: FieldRef<"Product", 'String'>
     readonly color: FieldRef<"Product", 'String'>
     readonly seats: FieldRef<"Product", 'Int'>
@@ -14057,6 +14070,7 @@ export namespace Prisma {
     posterImageUrl: 'posterImageUrl',
     productImages: 'productImages',
     productUrl: 'productUrl',
+    material: 'material',
     size: 'size',
     color: 'color',
     seats: 'seats',
@@ -14903,6 +14917,7 @@ export namespace Prisma {
     posterImageUrl?: StringFilter<"Product"> | string
     productImages?: StringNullableListFilter<"Product">
     productUrl?: StringFilter<"Product"> | string
+    material?: StringNullableFilter<"Product"> | string | null
     size?: StringNullableFilter<"Product"> | string | null
     color?: StringNullableFilter<"Product"> | string | null
     seats?: IntNullableFilter<"Product"> | number | null
@@ -14937,6 +14952,7 @@ export namespace Prisma {
     posterImageUrl?: SortOrder
     productImages?: SortOrder
     productUrl?: SortOrder
+    material?: SortOrderInput | SortOrder
     size?: SortOrderInput | SortOrder
     color?: SortOrderInput | SortOrder
     seats?: SortOrderInput | SortOrder
@@ -14975,6 +14991,7 @@ export namespace Prisma {
     posterImageUrl?: StringFilter<"Product"> | string
     productImages?: StringNullableListFilter<"Product">
     productUrl?: StringFilter<"Product"> | string
+    material?: StringNullableFilter<"Product"> | string | null
     size?: StringNullableFilter<"Product"> | string | null
     color?: StringNullableFilter<"Product"> | string | null
     seats?: IntNullableFilter<"Product"> | number | null
@@ -15009,6 +15026,7 @@ export namespace Prisma {
     posterImageUrl?: SortOrder
     productImages?: SortOrder
     productUrl?: SortOrder
+    material?: SortOrderInput | SortOrder
     size?: SortOrderInput | SortOrder
     color?: SortOrderInput | SortOrder
     seats?: SortOrderInput | SortOrder
@@ -15048,6 +15066,7 @@ export namespace Prisma {
     posterImageUrl?: StringWithAggregatesFilter<"Product"> | string
     productImages?: StringNullableListFilter<"Product">
     productUrl?: StringWithAggregatesFilter<"Product"> | string
+    material?: StringNullableWithAggregatesFilter<"Product"> | string | null
     size?: StringNullableWithAggregatesFilter<"Product"> | string | null
     color?: StringNullableWithAggregatesFilter<"Product"> | string | null
     seats?: IntNullableWithAggregatesFilter<"Product"> | number | null
@@ -15988,6 +16007,7 @@ export namespace Prisma {
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
     productUrl: string
+    material?: string | null
     size?: string | null
     color?: string | null
     seats?: number | null
@@ -16022,6 +16042,7 @@ export namespace Prisma {
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
     productUrl: string
+    material?: string | null
     size?: string | null
     color?: string | null
     seats?: number | null
@@ -16052,6 +16073,7 @@ export namespace Prisma {
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
     productUrl?: StringFieldUpdateOperationsInput | string
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     seats?: NullableIntFieldUpdateOperationsInput | number | null
@@ -16086,6 +16108,7 @@ export namespace Prisma {
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
     productUrl?: StringFieldUpdateOperationsInput | string
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     seats?: NullableIntFieldUpdateOperationsInput | number | null
@@ -16118,6 +16141,7 @@ export namespace Prisma {
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
     productUrl: string
+    material?: string | null
     size?: string | null
     color?: string | null
     seats?: number | null
@@ -16147,6 +16171,7 @@ export namespace Prisma {
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
     productUrl?: StringFieldUpdateOperationsInput | string
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     seats?: NullableIntFieldUpdateOperationsInput | number | null
@@ -16178,6 +16203,7 @@ export namespace Prisma {
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
     productUrl?: StringFieldUpdateOperationsInput | string
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     seats?: NullableIntFieldUpdateOperationsInput | number | null
@@ -17147,6 +17173,7 @@ export namespace Prisma {
     posterImageUrl?: SortOrder
     productImages?: SortOrder
     productUrl?: SortOrder
+    material?: SortOrder
     size?: SortOrder
     color?: SortOrder
     seats?: SortOrder
@@ -17185,6 +17212,7 @@ export namespace Prisma {
     dimensionDescription?: SortOrder
     posterImageUrl?: SortOrder
     productUrl?: SortOrder
+    material?: SortOrder
     size?: SortOrder
     color?: SortOrder
     seats?: SortOrder
@@ -17215,6 +17243,7 @@ export namespace Prisma {
     dimensionDescription?: SortOrder
     posterImageUrl?: SortOrder
     productUrl?: SortOrder
+    material?: SortOrder
     size?: SortOrder
     color?: SortOrder
     seats?: SortOrder
@@ -19059,6 +19088,7 @@ export namespace Prisma {
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
     productUrl: string
+    material?: string | null
     size?: string | null
     color?: string | null
     seats?: number | null
@@ -19091,6 +19121,7 @@ export namespace Prisma {
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
     productUrl: string
+    material?: string | null
     size?: string | null
     color?: string | null
     seats?: number | null
@@ -19198,6 +19229,7 @@ export namespace Prisma {
     posterImageUrl?: StringFilter<"Product"> | string
     productImages?: StringNullableListFilter<"Product">
     productUrl?: StringFilter<"Product"> | string
+    material?: StringNullableFilter<"Product"> | string | null
     size?: StringNullableFilter<"Product"> | string | null
     color?: StringNullableFilter<"Product"> | string | null
     seats?: IntNullableFilter<"Product"> | number | null
@@ -19305,6 +19337,7 @@ export namespace Prisma {
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
     productUrl: string
+    material?: string | null
     size?: string | null
     color?: string | null
     seats?: number | null
@@ -19337,6 +19370,7 @@ export namespace Prisma {
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
     productUrl: string
+    material?: string | null
     size?: string | null
     color?: string | null
     seats?: number | null
@@ -19865,6 +19899,7 @@ export namespace Prisma {
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
     productUrl: string
+    material?: string | null
     size?: string | null
     color?: string | null
     seats?: number | null
@@ -19898,6 +19933,7 @@ export namespace Prisma {
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
     productUrl: string
+    material?: string | null
     size?: string | null
     color?: string | null
     seats?: number | null
@@ -19996,6 +20032,7 @@ export namespace Prisma {
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
     productUrl?: StringFieldUpdateOperationsInput | string
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     seats?: NullableIntFieldUpdateOperationsInput | number | null
@@ -20029,6 +20066,7 @@ export namespace Prisma {
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
     productUrl?: StringFieldUpdateOperationsInput | string
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     seats?: NullableIntFieldUpdateOperationsInput | number | null
@@ -20205,6 +20243,7 @@ export namespace Prisma {
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
     productUrl: string
+    material?: string | null
     size?: string | null
     color?: string | null
     seats?: number | null
@@ -20251,6 +20290,7 @@ export namespace Prisma {
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
     productUrl?: StringFieldUpdateOperationsInput | string
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     seats?: NullableIntFieldUpdateOperationsInput | number | null
@@ -20283,6 +20323,7 @@ export namespace Prisma {
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
     productUrl?: StringFieldUpdateOperationsInput | string
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     seats?: NullableIntFieldUpdateOperationsInput | number | null
@@ -20314,6 +20355,7 @@ export namespace Prisma {
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
     productUrl?: StringFieldUpdateOperationsInput | string
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     seats?: NullableIntFieldUpdateOperationsInput | number | null
@@ -20397,6 +20439,7 @@ export namespace Prisma {
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
     productUrl: string
+    material?: string | null
     size?: string | null
     color?: string | null
     seats?: number | null
@@ -20426,6 +20469,7 @@ export namespace Prisma {
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
     productUrl?: StringFieldUpdateOperationsInput | string
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     seats?: NullableIntFieldUpdateOperationsInput | number | null
@@ -20458,6 +20502,7 @@ export namespace Prisma {
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
     productUrl?: StringFieldUpdateOperationsInput | string
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     seats?: NullableIntFieldUpdateOperationsInput | number | null
@@ -20489,6 +20534,7 @@ export namespace Prisma {
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
     productUrl?: StringFieldUpdateOperationsInput | string
+    material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
     seats?: NullableIntFieldUpdateOperationsInput | number | null
