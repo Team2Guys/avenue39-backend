@@ -3,59 +3,61 @@ import { gql } from 'graphql-tag';
 export const productTypeDefs = gql`
   input CreateProductInput {
     categoryId: ID!
-    subcategoryId: ID!
+    subcategoryId: ID
     sku: String!
     name: String!
     slug: String!
-    breadcrumb: String
-    description: String
-    materialDescription: String
-    dimensionDescription: String
-    posterImageUrl: String
+    breadcrumb: String!
+    description: String!
+    materialDescription: String!
+    dimensionDescription: String!
+    posterImageUrl: String!
     productImages: [String!]!
-    productUrl: String
-    size: String
-    color: String
-    seats: Int
-    stock: Int
+    productUrl: String!
+    material: String!
+    size: String!
+    color: String!
+    seats: Int!
+    stock: Int!
     price: Float!
-    discountPrice: Float
-    motorPrice: Float
-    metaTitle: String
-    metaDescription: String
-    canonicalUrl: String
-    seoSchema: String
+    memberPrice: Float!
+    discountPrice: Float!
+    metaTitle: String!
+    metaDescription: String!
+    canonicalUrl: String!
+    seoSchema: String!
     lastEditedBy: String!
     status: ContentStatus!
   }
 
   input UpdateProductByIdInput {
     id: ID!
-    categoryId: ID
+    categoryId: ID!
     subcategoryId: ID
-    sku: String
-    name: String
-    slug: String
-    breadcrumb: String
-    description: String
-    materialDescription: String
-    dimensionDescription: String
-    posterImageUrl: String
-    productImages: [String!]
-    productUrl: String
-    size: String
-    color: String
-    seats: Int
-    stock: Int
-    price: Float
-    discountPrice: Float
-    motorPrice: Float
-    metaTitle: String
-    metaDescription: String
-    canonicalUrl: String
-    seoSchema: String
-    lastEditedBy: String
-    status: ContentStatus
+    sku: String!
+    name: String!
+    slug: String!
+    breadcrumb: String!
+    description: String!
+    materialDescription: String!
+    dimensionDescription: String!
+    posterImageUrl: String!
+    productImages: [String!]!
+    productUrl: String!
+    material: String!
+    size: String!
+    color: String!
+    seats: Int!
+    stock: Int!
+    price: Float!
+    memberPrice: Float!
+    discountPrice: Float!
+    metaTitle: String!
+    metaDescription: String!
+    canonicalUrl: String!
+    seoSchema: String!
+    lastEditedBy: String!
+    status: ContentStatus!
   }
 
   input GetProductBySlugsInput {
