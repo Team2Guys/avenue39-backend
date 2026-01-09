@@ -240,14 +240,8 @@ exports.Prisma.ProductScalarFieldEnum = {
 exports.Prisma.OrderScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  firstName: 'firstName',
-  lastName: 'lastName',
-  email: 'email',
-  phone: 'phone',
-  address: 'address',
-  city: 'city',
-  state: 'state',
-  country: 'country',
+  shippingAddress: 'shippingAddress',
+  billingAddress: 'billingAddress',
   totalAmount: 'totalAmount',
   shippingCost: 'shippingCost',
   notes: 'notes',
@@ -255,22 +249,8 @@ exports.Prisma.OrderScalarFieldEnum = {
   orderStatus: 'orderStatus',
   lastEditedBy: 'lastEditedBy',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.OrderItemScalarFieldEnum = {
-  id: 'id',
-  orderId: 'orderId',
-  productId: 'productId',
-  sku: 'sku',
-  name: 'name',
-  slug: 'slug',
-  categoryUrl: 'categoryUrl',
-  subcategoryUrl: 'subcategoryUrl',
-  price: 'price',
-  discountPrice: 'discountPrice',
-  color: 'color',
-  posterImageUrl: 'posterImageUrl'
+  updatedAt: 'updatedAt',
+  orderItems: 'orderItems'
 };
 
 exports.Prisma.InquiryScalarFieldEnum = {
@@ -290,6 +270,10 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -298,6 +282,12 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 exports.AdminRole = exports.$Enums.AdminRole = {
   ADMIN: 'ADMIN',
@@ -372,7 +362,6 @@ exports.Prisma.ModelName = {
   Subcategory: 'Subcategory',
   Product: 'Product',
   Order: 'Order',
-  OrderItem: 'OrderItem',
   Inquiry: 'Inquiry'
 };
 
