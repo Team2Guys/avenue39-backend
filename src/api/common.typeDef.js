@@ -39,6 +39,23 @@ export const commonTypeDefs = gql`
     ARCHIVED
   }
 
+  enum OrderStatus {
+    PENDING
+    PAID
+    CANCELED
+    FAILED
+    SHIPPED
+    COMPLETED
+  }
+
+  enum PaymentStatus {
+    FREE
+    PENDING
+    PAID
+    CANCELED
+    FAILED
+  }
+
   type GenericResponse {
     message: String!
   }
