@@ -212,51 +212,26 @@ model Product {
 
   category    Category     @relation(name: "CategoryProducts", fields: [categoryId], references: [id], onDelete: Restrict)
   subcategory Subcategory? @relation(name: "SubcategoryProducts", fields: [subcategoryId], references: [id], onDelete: SetNull)
-  orderItems  OrderItem[]  @relation(name: "ProductOrderItems")
 
   @@unique([categoryId, slug])
 }
 
 model Order {
-  id            String        @id @default(uuid()) @db.Uuid
-  userId        String        @db.Uuid
-  firstName     String
-  lastName      String
-  email         String
-  phone         String
-  address       String        @db.Text()
-  city          String
-  state         String
-  country       String
-  totalAmount   Decimal       @default(0)
-  shippingCost  Decimal       @default(0)
-  notes         String?       @db.Text()
-  paymentStatus PaymentStatus @default(PENDING)
-  orderStatus   OrderStatus   @default(PENDING)
-  lastEditedBy  String?
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  id              String        @id @default(uuid()) @db.Uuid
+  userId          String        @db.Uuid
+  shippingAddress Json
+  billingAddress  Json
+  totalAmount     Decimal       @default(0)
+  shippingCost    Decimal       @default(0)
+  notes           String?       @db.Text()
+  paymentStatus   PaymentStatus @default(PENDING)
+  orderStatus     OrderStatus   @default(PENDING)
+  lastEditedBy    String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  orderItems      Json[]
 
-  user       User        @relation(name: "UserOrders", fields: [userId], references: [id], onDelete: Restrict)
-  orderItems OrderItem[] @relation(name: "OrderItems")
-}
-
-model OrderItem {
-  id             String  @id @default(uuid())
-  orderId        String  @db.Uuid
-  productId      String? @db.Uuid
-  sku            String
-  name           String
-  slug           String
-  categoryUrl    String
-  subcategoryUrl String
-  price          Decimal
-  discountPrice  Decimal
-  color          String?
-  posterImageUrl String?
-
-  order   Order    @relation(name: "OrderItems", fields: [orderId], references: [id], onDelete: Cascade)
-  product Product? @relation(name: "ProductOrderItems", fields: [productId], references: [id], onDelete: SetNull)
+  user User @relation(name: "UserOrders", fields: [userId], references: [id], onDelete: Restrict)
 }
 
 model Inquiry {

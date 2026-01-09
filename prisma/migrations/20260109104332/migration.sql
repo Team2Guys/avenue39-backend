@@ -143,6 +143,7 @@ CREATE TABLE "Product" (
     "posterImageUrl" TEXT NOT NULL,
     "productImages" TEXT[] DEFAULT ARRAY[]::TEXT[],
     "productUrl" TEXT NOT NULL,
+    "material" TEXT,
     "size" TEXT,
     "color" TEXT,
     "seats" INTEGER,
@@ -166,14 +167,8 @@ CREATE TABLE "Product" (
 CREATE TABLE "Order" (
     "id" UUID NOT NULL,
     "userId" UUID NOT NULL,
-    "firstName" TEXT NOT NULL,
-    "lastName" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
-    "phone" TEXT NOT NULL,
-    "address" TEXT NOT NULL,
-    "city" TEXT NOT NULL,
-    "state" TEXT NOT NULL,
-    "country" TEXT NOT NULL,
+    "shippingAddress" JSONB NOT NULL,
+    "billingAddress" JSONB NOT NULL,
     "totalAmount" DECIMAL(65,30) NOT NULL DEFAULT 0,
     "shippingCost" DECIMAL(65,30) NOT NULL DEFAULT 0,
     "notes" TEXT,
@@ -182,26 +177,9 @@ CREATE TABLE "Order" (
     "lastEditedBy" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "orderItems" JSONB[],
 
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "OrderItem" (
-    "id" TEXT NOT NULL,
-    "orderId" UUID NOT NULL,
-    "productId" UUID,
-    "sku" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "slug" TEXT NOT NULL,
-    "categoryUrl" TEXT NOT NULL,
-    "subcategoryUrl" TEXT NOT NULL,
-    "price" DECIMAL(65,30) NOT NULL,
-    "discountPrice" DECIMAL(65,30) NOT NULL,
-    "color" TEXT,
-    "posterImageUrl" TEXT,
-
-    CONSTRAINT "OrderItem_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -269,9 +247,3 @@ ALTER TABLE "Product" ADD CONSTRAINT "Product_subcategoryId_fkey" FOREIGN KEY ("
 
 -- AddForeignKey
 ALTER TABLE "Order" ADD CONSTRAINT "Order_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "OrderItem" ADD CONSTRAINT "OrderItem_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "Order"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "OrderItem" ADD CONSTRAINT "OrderItem_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE SET NULL ON UPDATE CASCADE;
