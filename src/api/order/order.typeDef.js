@@ -3,41 +3,29 @@ import { gql } from 'graphql-tag';
 export const orderTypeDefs = gql`
   input CreateOrderInput {
     userId: ID!
-    firstName: String
-    lastName: String
-    email: String
-    phone: String
-    state: String
-    country: String
-    city: String
-    address: String
+    shippingAddress: JSON!
+    billingAddress: JSON!
     totalAmount: Float!
     shippingCost: Float!
-    notes: String
-    items: [JSON!]
-    lastEditedBy: String
-    paymentStatus: String
-    orderStatus: String
+    notes: String!
+    orderItems: [JSON!]!
+    paymentStatus: PaymentStatus!
+    orderStatus: OrderStatus!
+    lastEditedBy: String!
   }
 
   input UpdateOrderByIdInput {
     id: ID!
     userId: ID
-    firstName: String
-    lastName: String
-    email: String
-    phone: String
-    state: String
-    country: String
-    city: String
-    address: String
-    totalAmount: Float!
-    shippingCost: Float!
+    shippingAddress: JSON
+    billingAddress: JSON
+    totalAmount: Float
+    shippingCost: Float
     notes: String
-    items: [JSON!]
+    orderItems: [JSON!]
+    paymentStatus: PaymentStatus
+    orderStatus: OrderStatus
     lastEditedBy: String
-    paymentStatus: String
-    orderStatus: String
   }
 
   type Query {

@@ -161,21 +161,15 @@ export const commonTypeDefs = gql`
   type Order {
     id: ID!
     userId: ID!
-    firstName: String!
-    lastName: String!
-    email: String!
-    phone: String!
-    state: String!
-    country: String!
-    city: String!
-    address: String!
+    shippingAddress: JSON!
+    billingAddress: JSON!
     totalAmount: Float!
     shippingCost: Float!
     notes: String!
-    items: [JSON!]!
+    orderItems: [JSON!]!
+    paymentStatus: PaymentStatus!
+    orderStatus: OrderStatus!
     lastEditedBy: String!
-    paymentStatus: String!
-    orderStatus: String!
     createdAt: DateTime!
     updatedAt: DateTime!
   }
