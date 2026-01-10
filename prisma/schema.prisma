@@ -192,7 +192,8 @@ model Product {
   dimensionDescription String?       @db.Text()
   posterImageUrl       String
   productImages        String[]      @default([])
-  productUrl           String
+  productOldUrl        String?
+  productNewUrl        String
   material             String?
   size                 String?
   color                String?

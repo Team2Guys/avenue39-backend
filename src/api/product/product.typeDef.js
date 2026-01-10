@@ -13,7 +13,8 @@ export const productTypeDefs = gql`
     dimensionDescription: String!
     posterImageUrl: String!
     productImages: [String!]!
-    productUrl: String!
+    productOldUrl: String
+    productNewUrl: String!
     material: String!
     size: String!
     color: String!
@@ -34,30 +35,31 @@ export const productTypeDefs = gql`
     id: ID!
     categoryId: ID!
     subcategoryId: ID
-    sku: String!
-    name: String!
-    slug: String!
-    breadcrumb: String!
-    description: String!
-    materialDescription: String!
-    dimensionDescription: String!
-    posterImageUrl: String!
-    productImages: [String!]!
-    productUrl: String!
-    material: String!
-    size: String!
-    color: String!
-    seats: Int!
-    stock: Int!
-    price: Float!
-    memberPrice: Float!
-    discountPrice: Float!
-    metaTitle: String!
-    metaDescription: String!
-    canonicalUrl: String!
-    seoSchema: String!
-    lastEditedBy: String!
-    status: ContentStatus!
+    sku: String
+    name: String
+    slug: String
+    breadcrumb: String
+    description: String
+    materialDescription: String
+    dimensionDescription: String
+    posterImageUrl: String
+    productImages: [String!]
+    productOldUrl: String
+    productNewUrl: String
+    material: String
+    size: String
+    color: String
+    seats: Int
+    stock: Int
+    price: Float
+    memberPrice: Float
+    discountPrice: Float
+    metaTitle: String
+    metaDescription: String
+    canonicalUrl: String
+    seoSchema: String
+    lastEditedBy: String
+    status: ContentStatus
   }
 
   input GetProductBySlugsInput {
