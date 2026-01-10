@@ -140,12 +140,12 @@ model Category {
   id              String        @id @default(uuid()) @db.Uuid
   name            String        @unique
   slug            String        @unique
+  breadcrumb      String?
   description     String?       @db.Text()
+  posterImageUrl  String?
   metaTitle       String?
   metaDescription String?
   canonicalUrl    String?
-  breadcrumb      String?
-  posterImageUrl  String?
   seoSchema       String?       @db.Text()
   status          ContentStatus @default(PUBLISHED)
   lastEditedBy    String?
@@ -161,12 +161,12 @@ model Subcategory {
   categoryId      String        @db.Uuid
   name            String
   slug            String
+  breadcrumb      String?
   description     String?       @db.Text()
+  posterImageUrl  String?
   metaTitle       String?
   metaDescription String?
   canonicalUrl    String?
-  breadcrumb      String?
-  posterImageUrl  String?
   seoSchema       String?       @db.Text()
   status          ContentStatus @default(PUBLISHED)
   lastEditedBy    String?
@@ -192,7 +192,8 @@ model Product {
   dimensionDescription String?       @db.Text()
   posterImageUrl       String
   productImages        String[]      @default([])
-  productUrl           String
+  productOldUrl        String?
+  productNewUrl        String
   material             String?
   size                 String?
   color                String?

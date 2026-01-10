@@ -6338,12 +6338,12 @@ export namespace Prisma {
     id: string | null
     name: string | null
     slug: string | null
+    breadcrumb: string | null
     description: string | null
+    posterImageUrl: string | null
     metaTitle: string | null
     metaDescription: string | null
     canonicalUrl: string | null
-    breadcrumb: string | null
-    posterImageUrl: string | null
     seoSchema: string | null
     status: $Enums.ContentStatus | null
     lastEditedBy: string | null
@@ -6355,12 +6355,12 @@ export namespace Prisma {
     id: string | null
     name: string | null
     slug: string | null
+    breadcrumb: string | null
     description: string | null
+    posterImageUrl: string | null
     metaTitle: string | null
     metaDescription: string | null
     canonicalUrl: string | null
-    breadcrumb: string | null
-    posterImageUrl: string | null
     seoSchema: string | null
     status: $Enums.ContentStatus | null
     lastEditedBy: string | null
@@ -6372,12 +6372,12 @@ export namespace Prisma {
     id: number
     name: number
     slug: number
+    breadcrumb: number
     description: number
+    posterImageUrl: number
     metaTitle: number
     metaDescription: number
     canonicalUrl: number
-    breadcrumb: number
-    posterImageUrl: number
     seoSchema: number
     status: number
     lastEditedBy: number
@@ -6391,12 +6391,12 @@ export namespace Prisma {
     id?: true
     name?: true
     slug?: true
+    breadcrumb?: true
     description?: true
+    posterImageUrl?: true
     metaTitle?: true
     metaDescription?: true
     canonicalUrl?: true
-    breadcrumb?: true
-    posterImageUrl?: true
     seoSchema?: true
     status?: true
     lastEditedBy?: true
@@ -6408,12 +6408,12 @@ export namespace Prisma {
     id?: true
     name?: true
     slug?: true
+    breadcrumb?: true
     description?: true
+    posterImageUrl?: true
     metaTitle?: true
     metaDescription?: true
     canonicalUrl?: true
-    breadcrumb?: true
-    posterImageUrl?: true
     seoSchema?: true
     status?: true
     lastEditedBy?: true
@@ -6425,12 +6425,12 @@ export namespace Prisma {
     id?: true
     name?: true
     slug?: true
+    breadcrumb?: true
     description?: true
+    posterImageUrl?: true
     metaTitle?: true
     metaDescription?: true
     canonicalUrl?: true
-    breadcrumb?: true
-    posterImageUrl?: true
     seoSchema?: true
     status?: true
     lastEditedBy?: true
@@ -6515,12 +6515,12 @@ export namespace Prisma {
     id: string
     name: string
     slug: string
+    breadcrumb: string | null
     description: string | null
+    posterImageUrl: string | null
     metaTitle: string | null
     metaDescription: string | null
     canonicalUrl: string | null
-    breadcrumb: string | null
-    posterImageUrl: string | null
     seoSchema: string | null
     status: $Enums.ContentStatus
     lastEditedBy: string | null
@@ -6549,12 +6549,12 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     slug?: boolean
+    breadcrumb?: boolean
     description?: boolean
+    posterImageUrl?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalUrl?: boolean
-    breadcrumb?: boolean
-    posterImageUrl?: boolean
     seoSchema?: boolean
     status?: boolean
     lastEditedBy?: boolean
@@ -6569,12 +6569,12 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     slug?: boolean
+    breadcrumb?: boolean
     description?: boolean
+    posterImageUrl?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalUrl?: boolean
-    breadcrumb?: boolean
-    posterImageUrl?: boolean
     seoSchema?: boolean
     status?: boolean
     lastEditedBy?: boolean
@@ -6586,12 +6586,12 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     slug?: boolean
+    breadcrumb?: boolean
     description?: boolean
+    posterImageUrl?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalUrl?: boolean
-    breadcrumb?: boolean
-    posterImageUrl?: boolean
     seoSchema?: boolean
     status?: boolean
     lastEditedBy?: boolean
@@ -6603,12 +6603,12 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     slug?: boolean
+    breadcrumb?: boolean
     description?: boolean
+    posterImageUrl?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalUrl?: boolean
-    breadcrumb?: boolean
-    posterImageUrl?: boolean
     seoSchema?: boolean
     status?: boolean
     lastEditedBy?: boolean
@@ -6616,7 +6616,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description" | "metaTitle" | "metaDescription" | "canonicalUrl" | "breadcrumb" | "posterImageUrl" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "breadcrumb" | "description" | "posterImageUrl" | "metaTitle" | "metaDescription" | "canonicalUrl" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
   export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     products?: boolean | Category$productsArgs<ExtArgs>
     subcategories?: boolean | Category$subcategoriesArgs<ExtArgs>
@@ -6635,12 +6635,12 @@ export namespace Prisma {
       id: string
       name: string
       slug: string
+      breadcrumb: string | null
       description: string | null
+      posterImageUrl: string | null
       metaTitle: string | null
       metaDescription: string | null
       canonicalUrl: string | null
-      breadcrumb: string | null
-      posterImageUrl: string | null
       seoSchema: string | null
       status: $Enums.ContentStatus
       lastEditedBy: string | null
@@ -7074,12 +7074,12 @@ export namespace Prisma {
     readonly id: FieldRef<"Category", 'String'>
     readonly name: FieldRef<"Category", 'String'>
     readonly slug: FieldRef<"Category", 'String'>
+    readonly breadcrumb: FieldRef<"Category", 'String'>
     readonly description: FieldRef<"Category", 'String'>
+    readonly posterImageUrl: FieldRef<"Category", 'String'>
     readonly metaTitle: FieldRef<"Category", 'String'>
     readonly metaDescription: FieldRef<"Category", 'String'>
     readonly canonicalUrl: FieldRef<"Category", 'String'>
-    readonly breadcrumb: FieldRef<"Category", 'String'>
-    readonly posterImageUrl: FieldRef<"Category", 'String'>
     readonly seoSchema: FieldRef<"Category", 'String'>
     readonly status: FieldRef<"Category", 'ContentStatus'>
     readonly lastEditedBy: FieldRef<"Category", 'String'>
@@ -7554,12 +7554,12 @@ export namespace Prisma {
     categoryId: string | null
     name: string | null
     slug: string | null
+    breadcrumb: string | null
     description: string | null
+    posterImageUrl: string | null
     metaTitle: string | null
     metaDescription: string | null
     canonicalUrl: string | null
-    breadcrumb: string | null
-    posterImageUrl: string | null
     seoSchema: string | null
     status: $Enums.ContentStatus | null
     lastEditedBy: string | null
@@ -7572,12 +7572,12 @@ export namespace Prisma {
     categoryId: string | null
     name: string | null
     slug: string | null
+    breadcrumb: string | null
     description: string | null
+    posterImageUrl: string | null
     metaTitle: string | null
     metaDescription: string | null
     canonicalUrl: string | null
-    breadcrumb: string | null
-    posterImageUrl: string | null
     seoSchema: string | null
     status: $Enums.ContentStatus | null
     lastEditedBy: string | null
@@ -7590,12 +7590,12 @@ export namespace Prisma {
     categoryId: number
     name: number
     slug: number
+    breadcrumb: number
     description: number
+    posterImageUrl: number
     metaTitle: number
     metaDescription: number
     canonicalUrl: number
-    breadcrumb: number
-    posterImageUrl: number
     seoSchema: number
     status: number
     lastEditedBy: number
@@ -7610,12 +7610,12 @@ export namespace Prisma {
     categoryId?: true
     name?: true
     slug?: true
+    breadcrumb?: true
     description?: true
+    posterImageUrl?: true
     metaTitle?: true
     metaDescription?: true
     canonicalUrl?: true
-    breadcrumb?: true
-    posterImageUrl?: true
     seoSchema?: true
     status?: true
     lastEditedBy?: true
@@ -7628,12 +7628,12 @@ export namespace Prisma {
     categoryId?: true
     name?: true
     slug?: true
+    breadcrumb?: true
     description?: true
+    posterImageUrl?: true
     metaTitle?: true
     metaDescription?: true
     canonicalUrl?: true
-    breadcrumb?: true
-    posterImageUrl?: true
     seoSchema?: true
     status?: true
     lastEditedBy?: true
@@ -7646,12 +7646,12 @@ export namespace Prisma {
     categoryId?: true
     name?: true
     slug?: true
+    breadcrumb?: true
     description?: true
+    posterImageUrl?: true
     metaTitle?: true
     metaDescription?: true
     canonicalUrl?: true
-    breadcrumb?: true
-    posterImageUrl?: true
     seoSchema?: true
     status?: true
     lastEditedBy?: true
@@ -7737,12 +7737,12 @@ export namespace Prisma {
     categoryId: string
     name: string
     slug: string
+    breadcrumb: string | null
     description: string | null
+    posterImageUrl: string | null
     metaTitle: string | null
     metaDescription: string | null
     canonicalUrl: string | null
-    breadcrumb: string | null
-    posterImageUrl: string | null
     seoSchema: string | null
     status: $Enums.ContentStatus
     lastEditedBy: string | null
@@ -7772,12 +7772,12 @@ export namespace Prisma {
     categoryId?: boolean
     name?: boolean
     slug?: boolean
+    breadcrumb?: boolean
     description?: boolean
+    posterImageUrl?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalUrl?: boolean
-    breadcrumb?: boolean
-    posterImageUrl?: boolean
     seoSchema?: boolean
     status?: boolean
     lastEditedBy?: boolean
@@ -7793,12 +7793,12 @@ export namespace Prisma {
     categoryId?: boolean
     name?: boolean
     slug?: boolean
+    breadcrumb?: boolean
     description?: boolean
+    posterImageUrl?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalUrl?: boolean
-    breadcrumb?: boolean
-    posterImageUrl?: boolean
     seoSchema?: boolean
     status?: boolean
     lastEditedBy?: boolean
@@ -7812,12 +7812,12 @@ export namespace Prisma {
     categoryId?: boolean
     name?: boolean
     slug?: boolean
+    breadcrumb?: boolean
     description?: boolean
+    posterImageUrl?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalUrl?: boolean
-    breadcrumb?: boolean
-    posterImageUrl?: boolean
     seoSchema?: boolean
     status?: boolean
     lastEditedBy?: boolean
@@ -7831,12 +7831,12 @@ export namespace Prisma {
     categoryId?: boolean
     name?: boolean
     slug?: boolean
+    breadcrumb?: boolean
     description?: boolean
+    posterImageUrl?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     canonicalUrl?: boolean
-    breadcrumb?: boolean
-    posterImageUrl?: boolean
     seoSchema?: boolean
     status?: boolean
     lastEditedBy?: boolean
@@ -7844,7 +7844,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type SubcategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "name" | "slug" | "description" | "metaTitle" | "metaDescription" | "canonicalUrl" | "breadcrumb" | "posterImageUrl" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["subcategory"]>
+  export type SubcategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "name" | "slug" | "breadcrumb" | "description" | "posterImageUrl" | "metaTitle" | "metaDescription" | "canonicalUrl" | "seoSchema" | "status" | "lastEditedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["subcategory"]>
   export type SubcategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     products?: boolean | Subcategory$productsArgs<ExtArgs>
@@ -7868,12 +7868,12 @@ export namespace Prisma {
       categoryId: string
       name: string
       slug: string
+      breadcrumb: string | null
       description: string | null
+      posterImageUrl: string | null
       metaTitle: string | null
       metaDescription: string | null
       canonicalUrl: string | null
-      breadcrumb: string | null
-      posterImageUrl: string | null
       seoSchema: string | null
       status: $Enums.ContentStatus
       lastEditedBy: string | null
@@ -8308,12 +8308,12 @@ export namespace Prisma {
     readonly categoryId: FieldRef<"Subcategory", 'String'>
     readonly name: FieldRef<"Subcategory", 'String'>
     readonly slug: FieldRef<"Subcategory", 'String'>
+    readonly breadcrumb: FieldRef<"Subcategory", 'String'>
     readonly description: FieldRef<"Subcategory", 'String'>
+    readonly posterImageUrl: FieldRef<"Subcategory", 'String'>
     readonly metaTitle: FieldRef<"Subcategory", 'String'>
     readonly metaDescription: FieldRef<"Subcategory", 'String'>
     readonly canonicalUrl: FieldRef<"Subcategory", 'String'>
-    readonly breadcrumb: FieldRef<"Subcategory", 'String'>
-    readonly posterImageUrl: FieldRef<"Subcategory", 'String'>
     readonly seoSchema: FieldRef<"Subcategory", 'String'>
     readonly status: FieldRef<"Subcategory", 'ContentStatus'>
     readonly lastEditedBy: FieldRef<"Subcategory", 'String'>
@@ -8797,7 +8797,8 @@ export namespace Prisma {
     materialDescription: string | null
     dimensionDescription: string | null
     posterImageUrl: string | null
-    productUrl: string | null
+    productOldUrl: string | null
+    productNewUrl: string | null
     material: string | null
     size: string | null
     color: string | null
@@ -8828,7 +8829,8 @@ export namespace Prisma {
     materialDescription: string | null
     dimensionDescription: string | null
     posterImageUrl: string | null
-    productUrl: string | null
+    productOldUrl: string | null
+    productNewUrl: string | null
     material: string | null
     size: string | null
     color: string | null
@@ -8860,7 +8862,8 @@ export namespace Prisma {
     dimensionDescription: number
     posterImageUrl: number
     productImages: number
-    productUrl: number
+    productOldUrl: number
+    productNewUrl: number
     material: number
     size: number
     color: number
@@ -8909,7 +8912,8 @@ export namespace Prisma {
     materialDescription?: true
     dimensionDescription?: true
     posterImageUrl?: true
-    productUrl?: true
+    productOldUrl?: true
+    productNewUrl?: true
     material?: true
     size?: true
     color?: true
@@ -8940,7 +8944,8 @@ export namespace Prisma {
     materialDescription?: true
     dimensionDescription?: true
     posterImageUrl?: true
-    productUrl?: true
+    productOldUrl?: true
+    productNewUrl?: true
     material?: true
     size?: true
     color?: true
@@ -8972,7 +8977,8 @@ export namespace Prisma {
     dimensionDescription?: true
     posterImageUrl?: true
     productImages?: true
-    productUrl?: true
+    productOldUrl?: true
+    productNewUrl?: true
     material?: true
     size?: true
     color?: true
@@ -9091,7 +9097,8 @@ export namespace Prisma {
     dimensionDescription: string | null
     posterImageUrl: string
     productImages: string[]
-    productUrl: string
+    productOldUrl: string | null
+    productNewUrl: string
     material: string | null
     size: string | null
     color: string | null
@@ -9142,7 +9149,8 @@ export namespace Prisma {
     dimensionDescription?: boolean
     posterImageUrl?: boolean
     productImages?: boolean
-    productUrl?: boolean
+    productOldUrl?: boolean
+    productNewUrl?: boolean
     material?: boolean
     size?: boolean
     color?: boolean
@@ -9176,7 +9184,8 @@ export namespace Prisma {
     dimensionDescription?: boolean
     posterImageUrl?: boolean
     productImages?: boolean
-    productUrl?: boolean
+    productOldUrl?: boolean
+    productNewUrl?: boolean
     material?: boolean
     size?: boolean
     color?: boolean
@@ -9210,7 +9219,8 @@ export namespace Prisma {
     dimensionDescription?: boolean
     posterImageUrl?: boolean
     productImages?: boolean
-    productUrl?: boolean
+    productOldUrl?: boolean
+    productNewUrl?: boolean
     material?: boolean
     size?: boolean
     color?: boolean
@@ -9244,7 +9254,8 @@ export namespace Prisma {
     dimensionDescription?: boolean
     posterImageUrl?: boolean
     productImages?: boolean
-    productUrl?: boolean
+    productOldUrl?: boolean
+    productNewUrl?: boolean
     material?: boolean
     size?: boolean
     color?: boolean
@@ -9263,7 +9274,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "sku" | "name" | "slug" | "breadcrumb" | "description" | "materialDescription" | "dimensionDescription" | "posterImageUrl" | "productImages" | "productUrl" | "material" | "size" | "color" | "seats" | "stock" | "price" | "memberPrice" | "discountPrice" | "metaTitle" | "metaDescription" | "canonicalUrl" | "seoSchema" | "lastEditedBy" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subcategoryId" | "sku" | "name" | "slug" | "breadcrumb" | "description" | "materialDescription" | "dimensionDescription" | "posterImageUrl" | "productImages" | "productOldUrl" | "productNewUrl" | "material" | "size" | "color" | "seats" | "stock" | "price" | "memberPrice" | "discountPrice" | "metaTitle" | "metaDescription" | "canonicalUrl" | "seoSchema" | "lastEditedBy" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     subcategory?: boolean | Product$subcategoryArgs<ExtArgs>
@@ -9296,7 +9307,8 @@ export namespace Prisma {
       dimensionDescription: string | null
       posterImageUrl: string
       productImages: string[]
-      productUrl: string
+      productOldUrl: string | null
+      productNewUrl: string
       material: string | null
       size: string | null
       color: string | null
@@ -9750,7 +9762,8 @@ export namespace Prisma {
     readonly dimensionDescription: FieldRef<"Product", 'String'>
     readonly posterImageUrl: FieldRef<"Product", 'String'>
     readonly productImages: FieldRef<"Product", 'String[]'>
-    readonly productUrl: FieldRef<"Product", 'String'>
+    readonly productOldUrl: FieldRef<"Product", 'String'>
+    readonly productNewUrl: FieldRef<"Product", 'String'>
     readonly material: FieldRef<"Product", 'String'>
     readonly size: FieldRef<"Product", 'String'>
     readonly color: FieldRef<"Product", 'String'>
@@ -12515,12 +12528,12 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     slug: 'slug',
+    breadcrumb: 'breadcrumb',
     description: 'description',
+    posterImageUrl: 'posterImageUrl',
     metaTitle: 'metaTitle',
     metaDescription: 'metaDescription',
     canonicalUrl: 'canonicalUrl',
-    breadcrumb: 'breadcrumb',
-    posterImageUrl: 'posterImageUrl',
     seoSchema: 'seoSchema',
     status: 'status',
     lastEditedBy: 'lastEditedBy',
@@ -12536,12 +12549,12 @@ export namespace Prisma {
     categoryId: 'categoryId',
     name: 'name',
     slug: 'slug',
+    breadcrumb: 'breadcrumb',
     description: 'description',
+    posterImageUrl: 'posterImageUrl',
     metaTitle: 'metaTitle',
     metaDescription: 'metaDescription',
     canonicalUrl: 'canonicalUrl',
-    breadcrumb: 'breadcrumb',
-    posterImageUrl: 'posterImageUrl',
     seoSchema: 'seoSchema',
     status: 'status',
     lastEditedBy: 'lastEditedBy',
@@ -12565,7 +12578,8 @@ export namespace Prisma {
     dimensionDescription: 'dimensionDescription',
     posterImageUrl: 'posterImageUrl',
     productImages: 'productImages',
-    productUrl: 'productUrl',
+    productOldUrl: 'productOldUrl',
+    productNewUrl: 'productNewUrl',
     material: 'material',
     size: 'size',
     color: 'color',
@@ -13205,12 +13219,12 @@ export namespace Prisma {
     id?: UuidFilter<"Category"> | string
     name?: StringFilter<"Category"> | string
     slug?: StringFilter<"Category"> | string
+    breadcrumb?: StringNullableFilter<"Category"> | string | null
     description?: StringNullableFilter<"Category"> | string | null
+    posterImageUrl?: StringNullableFilter<"Category"> | string | null
     metaTitle?: StringNullableFilter<"Category"> | string | null
     metaDescription?: StringNullableFilter<"Category"> | string | null
     canonicalUrl?: StringNullableFilter<"Category"> | string | null
-    breadcrumb?: StringNullableFilter<"Category"> | string | null
-    posterImageUrl?: StringNullableFilter<"Category"> | string | null
     seoSchema?: StringNullableFilter<"Category"> | string | null
     status?: EnumContentStatusFilter<"Category"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableFilter<"Category"> | string | null
@@ -13224,12 +13238,12 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    breadcrumb?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
+    posterImageUrl?: SortOrderInput | SortOrder
     metaTitle?: SortOrderInput | SortOrder
     metaDescription?: SortOrderInput | SortOrder
     canonicalUrl?: SortOrderInput | SortOrder
-    breadcrumb?: SortOrderInput | SortOrder
-    posterImageUrl?: SortOrderInput | SortOrder
     seoSchema?: SortOrderInput | SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrderInput | SortOrder
@@ -13246,12 +13260,12 @@ export namespace Prisma {
     AND?: CategoryWhereInput | CategoryWhereInput[]
     OR?: CategoryWhereInput[]
     NOT?: CategoryWhereInput | CategoryWhereInput[]
+    breadcrumb?: StringNullableFilter<"Category"> | string | null
     description?: StringNullableFilter<"Category"> | string | null
+    posterImageUrl?: StringNullableFilter<"Category"> | string | null
     metaTitle?: StringNullableFilter<"Category"> | string | null
     metaDescription?: StringNullableFilter<"Category"> | string | null
     canonicalUrl?: StringNullableFilter<"Category"> | string | null
-    breadcrumb?: StringNullableFilter<"Category"> | string | null
-    posterImageUrl?: StringNullableFilter<"Category"> | string | null
     seoSchema?: StringNullableFilter<"Category"> | string | null
     status?: EnumContentStatusFilter<"Category"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableFilter<"Category"> | string | null
@@ -13265,12 +13279,12 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    breadcrumb?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
+    posterImageUrl?: SortOrderInput | SortOrder
     metaTitle?: SortOrderInput | SortOrder
     metaDescription?: SortOrderInput | SortOrder
     canonicalUrl?: SortOrderInput | SortOrder
-    breadcrumb?: SortOrderInput | SortOrder
-    posterImageUrl?: SortOrderInput | SortOrder
     seoSchema?: SortOrderInput | SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrderInput | SortOrder
@@ -13288,12 +13302,12 @@ export namespace Prisma {
     id?: UuidWithAggregatesFilter<"Category"> | string
     name?: StringWithAggregatesFilter<"Category"> | string
     slug?: StringWithAggregatesFilter<"Category"> | string
+    breadcrumb?: StringNullableWithAggregatesFilter<"Category"> | string | null
     description?: StringNullableWithAggregatesFilter<"Category"> | string | null
+    posterImageUrl?: StringNullableWithAggregatesFilter<"Category"> | string | null
     metaTitle?: StringNullableWithAggregatesFilter<"Category"> | string | null
     metaDescription?: StringNullableWithAggregatesFilter<"Category"> | string | null
     canonicalUrl?: StringNullableWithAggregatesFilter<"Category"> | string | null
-    breadcrumb?: StringNullableWithAggregatesFilter<"Category"> | string | null
-    posterImageUrl?: StringNullableWithAggregatesFilter<"Category"> | string | null
     seoSchema?: StringNullableWithAggregatesFilter<"Category"> | string | null
     status?: EnumContentStatusWithAggregatesFilter<"Category"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableWithAggregatesFilter<"Category"> | string | null
@@ -13309,12 +13323,12 @@ export namespace Prisma {
     categoryId?: UuidFilter<"Subcategory"> | string
     name?: StringFilter<"Subcategory"> | string
     slug?: StringFilter<"Subcategory"> | string
+    breadcrumb?: StringNullableFilter<"Subcategory"> | string | null
     description?: StringNullableFilter<"Subcategory"> | string | null
+    posterImageUrl?: StringNullableFilter<"Subcategory"> | string | null
     metaTitle?: StringNullableFilter<"Subcategory"> | string | null
     metaDescription?: StringNullableFilter<"Subcategory"> | string | null
     canonicalUrl?: StringNullableFilter<"Subcategory"> | string | null
-    breadcrumb?: StringNullableFilter<"Subcategory"> | string | null
-    posterImageUrl?: StringNullableFilter<"Subcategory"> | string | null
     seoSchema?: StringNullableFilter<"Subcategory"> | string | null
     status?: EnumContentStatusFilter<"Subcategory"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableFilter<"Subcategory"> | string | null
@@ -13329,12 +13343,12 @@ export namespace Prisma {
     categoryId?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    breadcrumb?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
+    posterImageUrl?: SortOrderInput | SortOrder
     metaTitle?: SortOrderInput | SortOrder
     metaDescription?: SortOrderInput | SortOrder
     canonicalUrl?: SortOrderInput | SortOrder
-    breadcrumb?: SortOrderInput | SortOrder
-    posterImageUrl?: SortOrderInput | SortOrder
     seoSchema?: SortOrderInput | SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrderInput | SortOrder
@@ -13353,12 +13367,12 @@ export namespace Prisma {
     categoryId?: UuidFilter<"Subcategory"> | string
     name?: StringFilter<"Subcategory"> | string
     slug?: StringFilter<"Subcategory"> | string
+    breadcrumb?: StringNullableFilter<"Subcategory"> | string | null
     description?: StringNullableFilter<"Subcategory"> | string | null
+    posterImageUrl?: StringNullableFilter<"Subcategory"> | string | null
     metaTitle?: StringNullableFilter<"Subcategory"> | string | null
     metaDescription?: StringNullableFilter<"Subcategory"> | string | null
     canonicalUrl?: StringNullableFilter<"Subcategory"> | string | null
-    breadcrumb?: StringNullableFilter<"Subcategory"> | string | null
-    posterImageUrl?: StringNullableFilter<"Subcategory"> | string | null
     seoSchema?: StringNullableFilter<"Subcategory"> | string | null
     status?: EnumContentStatusFilter<"Subcategory"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableFilter<"Subcategory"> | string | null
@@ -13373,12 +13387,12 @@ export namespace Prisma {
     categoryId?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    breadcrumb?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
+    posterImageUrl?: SortOrderInput | SortOrder
     metaTitle?: SortOrderInput | SortOrder
     metaDescription?: SortOrderInput | SortOrder
     canonicalUrl?: SortOrderInput | SortOrder
-    breadcrumb?: SortOrderInput | SortOrder
-    posterImageUrl?: SortOrderInput | SortOrder
     seoSchema?: SortOrderInput | SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrderInput | SortOrder
@@ -13397,12 +13411,12 @@ export namespace Prisma {
     categoryId?: UuidWithAggregatesFilter<"Subcategory"> | string
     name?: StringWithAggregatesFilter<"Subcategory"> | string
     slug?: StringWithAggregatesFilter<"Subcategory"> | string
+    breadcrumb?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
     description?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
+    posterImageUrl?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
     metaTitle?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
     metaDescription?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
     canonicalUrl?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
-    breadcrumb?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
-    posterImageUrl?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
     seoSchema?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
     status?: EnumContentStatusWithAggregatesFilter<"Subcategory"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableWithAggregatesFilter<"Subcategory"> | string | null
@@ -13426,7 +13440,8 @@ export namespace Prisma {
     dimensionDescription?: StringNullableFilter<"Product"> | string | null
     posterImageUrl?: StringFilter<"Product"> | string
     productImages?: StringNullableListFilter<"Product">
-    productUrl?: StringFilter<"Product"> | string
+    productOldUrl?: StringNullableFilter<"Product"> | string | null
+    productNewUrl?: StringFilter<"Product"> | string
     material?: StringNullableFilter<"Product"> | string | null
     size?: StringNullableFilter<"Product"> | string | null
     color?: StringNullableFilter<"Product"> | string | null
@@ -13460,7 +13475,8 @@ export namespace Prisma {
     dimensionDescription?: SortOrderInput | SortOrder
     posterImageUrl?: SortOrder
     productImages?: SortOrder
-    productUrl?: SortOrder
+    productOldUrl?: SortOrderInput | SortOrder
+    productNewUrl?: SortOrder
     material?: SortOrderInput | SortOrder
     size?: SortOrderInput | SortOrder
     color?: SortOrderInput | SortOrder
@@ -13498,7 +13514,8 @@ export namespace Prisma {
     dimensionDescription?: StringNullableFilter<"Product"> | string | null
     posterImageUrl?: StringFilter<"Product"> | string
     productImages?: StringNullableListFilter<"Product">
-    productUrl?: StringFilter<"Product"> | string
+    productOldUrl?: StringNullableFilter<"Product"> | string | null
+    productNewUrl?: StringFilter<"Product"> | string
     material?: StringNullableFilter<"Product"> | string | null
     size?: StringNullableFilter<"Product"> | string | null
     color?: StringNullableFilter<"Product"> | string | null
@@ -13532,7 +13549,8 @@ export namespace Prisma {
     dimensionDescription?: SortOrderInput | SortOrder
     posterImageUrl?: SortOrder
     productImages?: SortOrder
-    productUrl?: SortOrder
+    productOldUrl?: SortOrderInput | SortOrder
+    productNewUrl?: SortOrder
     material?: SortOrderInput | SortOrder
     size?: SortOrderInput | SortOrder
     color?: SortOrderInput | SortOrder
@@ -13572,7 +13590,8 @@ export namespace Prisma {
     dimensionDescription?: StringNullableWithAggregatesFilter<"Product"> | string | null
     posterImageUrl?: StringWithAggregatesFilter<"Product"> | string
     productImages?: StringNullableListFilter<"Product">
-    productUrl?: StringWithAggregatesFilter<"Product"> | string
+    productOldUrl?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    productNewUrl?: StringWithAggregatesFilter<"Product"> | string
     material?: StringNullableWithAggregatesFilter<"Product"> | string | null
     size?: StringNullableWithAggregatesFilter<"Product"> | string | null
     color?: StringNullableWithAggregatesFilter<"Product"> | string | null
@@ -14127,12 +14146,12 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
+    breadcrumb?: string | null
     description?: string | null
+    posterImageUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalUrl?: string | null
-    breadcrumb?: string | null
-    posterImageUrl?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -14146,12 +14165,12 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
+    breadcrumb?: string | null
     description?: string | null
+    posterImageUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalUrl?: string | null
-    breadcrumb?: string | null
-    posterImageUrl?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -14165,12 +14184,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14184,12 +14203,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14203,12 +14222,12 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
+    breadcrumb?: string | null
     description?: string | null
+    posterImageUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalUrl?: string | null
-    breadcrumb?: string | null
-    posterImageUrl?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -14220,12 +14239,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14237,12 +14256,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14254,12 +14273,12 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
+    breadcrumb?: string | null
     description?: string | null
+    posterImageUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalUrl?: string | null
-    breadcrumb?: string | null
-    posterImageUrl?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -14274,12 +14293,12 @@ export namespace Prisma {
     categoryId: string
     name: string
     slug: string
+    breadcrumb?: string | null
     description?: string | null
+    posterImageUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalUrl?: string | null
-    breadcrumb?: string | null
-    posterImageUrl?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -14292,12 +14311,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14312,12 +14331,12 @@ export namespace Prisma {
     categoryId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14331,12 +14350,12 @@ export namespace Prisma {
     categoryId: string
     name: string
     slug: string
+    breadcrumb?: string | null
     description?: string | null
+    posterImageUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalUrl?: string | null
-    breadcrumb?: string | null
-    posterImageUrl?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -14348,12 +14367,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14366,12 +14385,12 @@ export namespace Prisma {
     categoryId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14390,7 +14409,8 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
-    productUrl: string
+    productOldUrl?: string | null
+    productNewUrl: string
     material?: string | null
     size?: string | null
     color?: string | null
@@ -14424,7 +14444,8 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
-    productUrl: string
+    productOldUrl?: string | null
+    productNewUrl: string
     material?: string | null
     size?: string | null
     color?: string | null
@@ -14454,7 +14475,8 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
-    productUrl?: StringFieldUpdateOperationsInput | string
+    productOldUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    productNewUrl?: StringFieldUpdateOperationsInput | string
     material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14488,7 +14510,8 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
-    productUrl?: StringFieldUpdateOperationsInput | string
+    productOldUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    productNewUrl?: StringFieldUpdateOperationsInput | string
     material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14520,7 +14543,8 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
-    productUrl: string
+    productOldUrl?: string | null
+    productNewUrl: string
     material?: string | null
     size?: string | null
     color?: string | null
@@ -14550,7 +14574,8 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
-    productUrl?: StringFieldUpdateOperationsInput | string
+    productOldUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    productNewUrl?: StringFieldUpdateOperationsInput | string
     material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14582,7 +14607,8 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
-    productUrl?: StringFieldUpdateOperationsInput | string
+    productOldUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    productNewUrl?: StringFieldUpdateOperationsInput | string
     material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15215,12 +15241,12 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    breadcrumb?: SortOrder
     description?: SortOrder
+    posterImageUrl?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     canonicalUrl?: SortOrder
-    breadcrumb?: SortOrder
-    posterImageUrl?: SortOrder
     seoSchema?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrder
@@ -15232,12 +15258,12 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    breadcrumb?: SortOrder
     description?: SortOrder
+    posterImageUrl?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     canonicalUrl?: SortOrder
-    breadcrumb?: SortOrder
-    posterImageUrl?: SortOrder
     seoSchema?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrder
@@ -15249,12 +15275,12 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    breadcrumb?: SortOrder
     description?: SortOrder
+    posterImageUrl?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     canonicalUrl?: SortOrder
-    breadcrumb?: SortOrder
-    posterImageUrl?: SortOrder
     seoSchema?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrder
@@ -15287,12 +15313,12 @@ export namespace Prisma {
     categoryId?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    breadcrumb?: SortOrder
     description?: SortOrder
+    posterImageUrl?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     canonicalUrl?: SortOrder
-    breadcrumb?: SortOrder
-    posterImageUrl?: SortOrder
     seoSchema?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrder
@@ -15305,12 +15331,12 @@ export namespace Prisma {
     categoryId?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    breadcrumb?: SortOrder
     description?: SortOrder
+    posterImageUrl?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     canonicalUrl?: SortOrder
-    breadcrumb?: SortOrder
-    posterImageUrl?: SortOrder
     seoSchema?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrder
@@ -15323,12 +15349,12 @@ export namespace Prisma {
     categoryId?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    breadcrumb?: SortOrder
     description?: SortOrder
+    posterImageUrl?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     canonicalUrl?: SortOrder
-    breadcrumb?: SortOrder
-    posterImageUrl?: SortOrder
     seoSchema?: SortOrder
     status?: SortOrder
     lastEditedBy?: SortOrder
@@ -15400,7 +15426,8 @@ export namespace Prisma {
     dimensionDescription?: SortOrder
     posterImageUrl?: SortOrder
     productImages?: SortOrder
-    productUrl?: SortOrder
+    productOldUrl?: SortOrder
+    productNewUrl?: SortOrder
     material?: SortOrder
     size?: SortOrder
     color?: SortOrder
@@ -15439,7 +15466,8 @@ export namespace Prisma {
     materialDescription?: SortOrder
     dimensionDescription?: SortOrder
     posterImageUrl?: SortOrder
-    productUrl?: SortOrder
+    productOldUrl?: SortOrder
+    productNewUrl?: SortOrder
     material?: SortOrder
     size?: SortOrder
     color?: SortOrder
@@ -15470,7 +15498,8 @@ export namespace Prisma {
     materialDescription?: SortOrder
     dimensionDescription?: SortOrder
     posterImageUrl?: SortOrder
-    productUrl?: SortOrder
+    productOldUrl?: SortOrder
+    productNewUrl?: SortOrder
     material?: SortOrder
     size?: SortOrder
     color?: SortOrder
@@ -17193,7 +17222,8 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
-    productUrl: string
+    productOldUrl?: string | null
+    productNewUrl: string
     material?: string | null
     size?: string | null
     color?: string | null
@@ -17225,7 +17255,8 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
-    productUrl: string
+    productOldUrl?: string | null
+    productNewUrl: string
     material?: string | null
     size?: string | null
     color?: string | null
@@ -17258,12 +17289,12 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
+    breadcrumb?: string | null
     description?: string | null
+    posterImageUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalUrl?: string | null
-    breadcrumb?: string | null
-    posterImageUrl?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -17276,12 +17307,12 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
+    breadcrumb?: string | null
     description?: string | null
+    posterImageUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalUrl?: string | null
-    breadcrumb?: string | null
-    posterImageUrl?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -17332,7 +17363,8 @@ export namespace Prisma {
     dimensionDescription?: StringNullableFilter<"Product"> | string | null
     posterImageUrl?: StringFilter<"Product"> | string
     productImages?: StringNullableListFilter<"Product">
-    productUrl?: StringFilter<"Product"> | string
+    productOldUrl?: StringNullableFilter<"Product"> | string | null
+    productNewUrl?: StringFilter<"Product"> | string
     material?: StringNullableFilter<"Product"> | string | null
     size?: StringNullableFilter<"Product"> | string | null
     color?: StringNullableFilter<"Product"> | string | null
@@ -17375,12 +17407,12 @@ export namespace Prisma {
     categoryId?: UuidFilter<"Subcategory"> | string
     name?: StringFilter<"Subcategory"> | string
     slug?: StringFilter<"Subcategory"> | string
+    breadcrumb?: StringNullableFilter<"Subcategory"> | string | null
     description?: StringNullableFilter<"Subcategory"> | string | null
+    posterImageUrl?: StringNullableFilter<"Subcategory"> | string | null
     metaTitle?: StringNullableFilter<"Subcategory"> | string | null
     metaDescription?: StringNullableFilter<"Subcategory"> | string | null
     canonicalUrl?: StringNullableFilter<"Subcategory"> | string | null
-    breadcrumb?: StringNullableFilter<"Subcategory"> | string | null
-    posterImageUrl?: StringNullableFilter<"Subcategory"> | string | null
     seoSchema?: StringNullableFilter<"Subcategory"> | string | null
     status?: EnumContentStatusFilter<"Subcategory"> | $Enums.ContentStatus
     lastEditedBy?: StringNullableFilter<"Subcategory"> | string | null
@@ -17392,12 +17424,12 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
+    breadcrumb?: string | null
     description?: string | null
+    posterImageUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalUrl?: string | null
-    breadcrumb?: string | null
-    posterImageUrl?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -17410,12 +17442,12 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
+    breadcrumb?: string | null
     description?: string | null
+    posterImageUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalUrl?: string | null
-    breadcrumb?: string | null
-    posterImageUrl?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -17440,7 +17472,8 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
-    productUrl: string
+    productOldUrl?: string | null
+    productNewUrl: string
     material?: string | null
     size?: string | null
     color?: string | null
@@ -17472,7 +17505,8 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
-    productUrl: string
+    productOldUrl?: string | null
+    productNewUrl: string
     material?: string | null
     size?: string | null
     color?: string | null
@@ -17516,12 +17550,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17534,12 +17568,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17568,12 +17602,12 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
+    breadcrumb?: string | null
     description?: string | null
+    posterImageUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalUrl?: string | null
-    breadcrumb?: string | null
-    posterImageUrl?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -17586,12 +17620,12 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
+    breadcrumb?: string | null
     description?: string | null
+    posterImageUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalUrl?: string | null
-    breadcrumb?: string | null
-    posterImageUrl?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -17609,12 +17643,12 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
+    breadcrumb?: string | null
     description?: string | null
+    posterImageUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalUrl?: string | null
-    breadcrumb?: string | null
-    posterImageUrl?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -17628,12 +17662,12 @@ export namespace Prisma {
     categoryId: string
     name: string
     slug: string
+    breadcrumb?: string | null
     description?: string | null
+    posterImageUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalUrl?: string | null
-    breadcrumb?: string | null
-    posterImageUrl?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -17661,12 +17695,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17679,12 +17713,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17708,12 +17742,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17727,12 +17761,12 @@ export namespace Prisma {
     categoryId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17952,7 +17986,8 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
-    productUrl: string
+    productOldUrl?: string | null
+    productNewUrl: string
     material?: string | null
     size?: string | null
     color?: string | null
@@ -17975,12 +18010,12 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
+    breadcrumb?: string | null
     description?: string | null
+    posterImageUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     canonicalUrl?: string | null
-    breadcrumb?: string | null
-    posterImageUrl?: string | null
     seoSchema?: string | null
     status?: $Enums.ContentStatus
     lastEditedBy?: string | null
@@ -17999,7 +18034,8 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
-    productUrl?: StringFieldUpdateOperationsInput | string
+    productOldUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    productNewUrl?: StringFieldUpdateOperationsInput | string
     material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18031,7 +18067,8 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
-    productUrl?: StringFieldUpdateOperationsInput | string
+    productOldUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    productNewUrl?: StringFieldUpdateOperationsInput | string
     material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18062,7 +18099,8 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
-    productUrl?: StringFieldUpdateOperationsInput | string
+    productOldUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    productNewUrl?: StringFieldUpdateOperationsInput | string
     material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18085,12 +18123,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18103,12 +18141,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18121,12 +18159,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     canonicalUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    breadcrumb?: NullableStringFieldUpdateOperationsInput | string | null
-    posterImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     seoSchema?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumContentStatusFieldUpdateOperationsInput | $Enums.ContentStatus
     lastEditedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18146,7 +18184,8 @@ export namespace Prisma {
     dimensionDescription?: string | null
     posterImageUrl: string
     productImages?: ProductCreateproductImagesInput | string[]
-    productUrl: string
+    productOldUrl?: string | null
+    productNewUrl: string
     material?: string | null
     size?: string | null
     color?: string | null
@@ -18176,7 +18215,8 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
-    productUrl?: StringFieldUpdateOperationsInput | string
+    productOldUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    productNewUrl?: StringFieldUpdateOperationsInput | string
     material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18208,7 +18248,8 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
-    productUrl?: StringFieldUpdateOperationsInput | string
+    productOldUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    productNewUrl?: StringFieldUpdateOperationsInput | string
     material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18239,7 +18280,8 @@ export namespace Prisma {
     dimensionDescription?: NullableStringFieldUpdateOperationsInput | string | null
     posterImageUrl?: StringFieldUpdateOperationsInput | string
     productImages?: ProductUpdateproductImagesInput | string[]
-    productUrl?: StringFieldUpdateOperationsInput | string
+    productOldUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    productNewUrl?: StringFieldUpdateOperationsInput | string
     material?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     color?: NullableStringFieldUpdateOperationsInput | string | null

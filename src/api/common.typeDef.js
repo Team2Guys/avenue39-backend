@@ -156,7 +156,8 @@ export const commonTypeDefs = gql`
     dimensionDescription: String!
     posterImageUrl: String!
     productImages: [String!]!
-    productUrl: String!
+    productOldUrl: String!
+    productNewUrl: String!
     material: String!
     size: String!
     color: String!
