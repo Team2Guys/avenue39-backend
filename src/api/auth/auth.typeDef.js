@@ -22,6 +22,7 @@ export const authTypeDefs = gql`
     name: String!
     email: String!
     role: AdminRole
+    isMember: Boolean
   }
 
   input SigninInput {

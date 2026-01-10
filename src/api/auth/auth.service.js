@@ -129,6 +129,7 @@ export const authServices = {
             : `${user.firstName} ${user.lastName}`,
       email,
       role,
+      isMember: user.isMember,
       accessToken
     };
   },
