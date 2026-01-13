@@ -14,8 +14,8 @@ export const subcategoryResolvers = {
       subcategoryServices.getSubcategoryById(id)
     ),
 
-    subcategoryBySlugs: handlePromise((_parent, { input }) =>
-      subcategoryServices.getSubcategoryBySlugs(input)
+    subcategoryByPath: handlePromise((_parent, { input }) =>
+      subcategoryServices.getSubcategoryByPath(input)
     )
   },
 

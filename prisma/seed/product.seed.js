@@ -2,7 +2,6 @@
 import xlsx from 'xlsx';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import slugify from 'slugify';
 import { prisma } from '#lib/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -66,24 +65,20 @@ export async function seedProducts() {
         );
       }
     }
-
-    const slug = slugify(row.name, { lower: true, strict: true });
-
     return {
       rowNum,
       categoryId,
       subcategoryId, // can now be null
       sku: row.sku || '',
       name: row.name,
-      slug,
-      breadcrumb: row.breadcrumb || '',
       description: row.description || '',
       materialDescription: row.materialDescription || '',
       dimensionDescription: row.dimensionDescription || '',
+      breadcrumb: row.breadcrumb || '',
+      oldPath: row.oldPath || '',
+      newPath: row.newPath || '',
       posterImageUrl: row.posterImageUrl || '',
       productImages: parsePgArray(row.productImages, rowNum, 'productImages'),
-      productOldUrl: row.productOldUrl || '',
-      productNewUrl: row.productNewUrl || '',
       material: row.material || '',
       size: row.size || '',
       color: row.color || '',
@@ -96,8 +91,8 @@ export async function seedProducts() {
       metaDescription: row.metaDescription || '',
       canonicalUrl: row.canonicalUrl || '',
       seoSchema: row.seoSchema || '',
-      status: (row.status || 'PUBLISHED').toUpperCase(),
-      lastEditedBy: row.lastEditedBy || 'seed-script'
+      lastEditedBy: row.lastEditedBy || 'seed-script',
+      status: (row.status || 'PUBLISHED').toUpperCase()
     };
   });
 
@@ -123,7 +118,7 @@ export async function seedProducts() {
   console.log('✅ Products seeded successfully');
 }
 
-// Helper to parse Postgres array string or handle empty arrays
+// Helper to parse Postgres array string
 export function parsePgArray(value, rowNum, fieldName) {
   if (Array.isArray(value)) return value;
   if (!value || value === '{}' || value === '[]') return [];

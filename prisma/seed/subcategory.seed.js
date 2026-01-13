@@ -2,7 +2,6 @@
 import xlsx from 'xlsx';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import slugify from 'slugify';
 import { prisma } from '#lib/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -46,21 +45,20 @@ export async function seedSubcategories() {
         `❌ Row ${rowNum}: Category "${row.categoryName}" not found in DB`
       );
 
-    const slug = slugify(row.name, { lower: true, strict: true });
-
     return {
       categoryId,
       name: row.name,
-      slug,
       description: row.description || '',
+      breadcrumb: row.breadcrumb || '',
+      oldPath: row.oldPath || '',
+      newPath: row.newPath || '',
+      posterImageUrl: row.posterImageUrl || '',
       metaTitle: row.metaTitle || row.name,
       metaDescription: row.metaDescription || '',
       canonicalUrl: row.canonicalUrl || '',
-      breadcrumb: row.breadcrumb || '',
-      posterImageUrl: row.posterImageUrl || '',
       seoSchema: row.seoSchema || '',
-      status: (row.status || 'PUBLISHED').toUpperCase(),
-      lastEditedBy: row.lastEditedBy || 'seed-script'
+      lastEditedBy: row.lastEditedBy || 'seed-script',
+      status: (row.status || 'PUBLISHED').toUpperCase()
     };
   });
 
@@ -72,8 +70,8 @@ export async function seedSubcategories() {
 
     await prisma.subcategory.upsert({
       where: {
-        categoryId_slug: {
-          slug: row.slug,
+        categoryId_newPath: {
+          newPath: row.newPath,
           categoryId: row.categoryId
         }
       },

@@ -1,17 +1,30 @@
+import { categoryCache } from './category.cache.js';
 import { categoryRepository } from './category.repository.js';
 
-const { write, read, update, remove } = categoryRepository;
+const { write, update, remove } = categoryRepository;
 
 export const categoryServices = {
-  createCategory: (input) => write.category(input),
+  getCategoryList: () => categoryCache.getCategoryList(),
 
-  getCategoryList: () => read.categoryList(),
+  getCategoryById: (id) => categoryCache.getCategoryById(id),
 
-  getCategoryById: (id) => read.categoryById(id),
+  getCategoryByPath: ({ path }) => categoryCache.getCategoryByPath(path),
 
-  getCategoryBySlug: (input) => read.categoryBySlug(input),
+  createCategory: async (input) => {
+    const category = await write.category(input);
+    await categoryCache.invalidateCategory(category.id);
+    return category;
+  },
 
-  updateCategoryById: (id, input) => update.categoryById(id, input),
+  updateCategoryById: async (id, input) => {
+    const category = await update.categoryById(id, input);
+    await categoryCache.invalidateCategory(id);
+    return category;
+  },
 
-  removeCategoryById: (id) => remove.categoryById(id)
+  removeCategoryById: async (id) => {
+    const category = await remove.categoryById(id);
+    await categoryCache.invalidateCategory(id);
+    return category;
+  }
 };

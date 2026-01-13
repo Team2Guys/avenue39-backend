@@ -19,17 +19,24 @@ export const subcategoryRepository = {
         }
       }),
 
-    subcategoryBySlugs: ({ categorySlug, subcategorySlug }) =>
+    subcategoryByNewUrls: ({ categoryNewUrl, subcategoryNewUrl }) =>
       prisma.subcategory.findFirst({
         where: {
-          slug: subcategorySlug,
-          category: {
-            slug: categorySlug
-          }
+          subcategoryNewUrl,
+          category: { categoryNewUrl }
         },
         include: {
           category: true,
           products: true
+        }
+      }),
+
+    subcategoryByOldUrl: (subcategoryOldUrl) =>
+      prisma.subcategory.findFirst({
+        where: { subcategoryOldUrl },
+        select: {
+          subcategoryNewUrl: true,
+          category: { select: { categoryNewUrl: true } }
         }
       })
   },

@@ -1,20 +1,29 @@
+import { userCache } from './user.cache.js';
 import { userRepository } from './user.repository.js';
 import { bcryptUtils } from '#lib/index.js';
 
-const { read, update, remove } = userRepository;
+const { update, remove } = userRepository;
 
 export const userServices = {
-  getUserList: () => read.userList(),
+  getUserList: () => userCache.getUserList(),
 
-  getUserById: (id) => read.userById(id),
+  getUserById: (id) => userCache.getUserById(id),
 
   updateUserById: async (id, input) => {
     if (input.password) {
       input.password = await bcryptUtils.hash(input.password);
     }
 
-    return update.userById(id, input);
+    const user = await update.userById(id, input);
+
+    await userCache.invalidateUser(id);
+    return user;
   },
 
-  removeUserById: (id) => remove.userById(id)
+  removeUserById: async (id) => {
+    const user = await remove.userById(id);
+
+    await userCache.invalidateUser(id);
+    return user;
+  }
 };

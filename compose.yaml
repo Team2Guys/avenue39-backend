@@ -1,0 +1,45 @@
+services:
+  api:
+    build:
+      context: .
+      args:
+        NODE_ENV: ${NODE_ENV}
+    container_name: avenue39-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ${ENV_FILE:-.env}
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      DATABASE_URL: postgres://postgres:postgres@db:5432/avenue39
+      REDIS_URL: redis://redis:6379/0
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: avenue39
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+    restart: always
+
+volumes:
+  postgres_data:
+  redis_data:
