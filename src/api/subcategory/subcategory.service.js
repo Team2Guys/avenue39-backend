@@ -1,17 +1,31 @@
+import { subcategoryCache } from './subcategory.cache.js';
 import { subcategoryRepository } from './subcategory.repository.js';
 
-const { write, read, update, remove } = subcategoryRepository;
+const { write, update, remove } = subcategoryRepository;
 
 export const subcategoryServices = {
-  createSubcategory: (input) => write.subcategory(input),
+  createSubcategory: async (input) => {
+    const subcategory = await write.subcategory(input);
+    await subcategoryCache.invalidateSubcategory(subcategory.id);
+    return subcategory;
+  },
 
-  getSubcategoryList: () => read.subcategoryList(),
+  getSubcategoryList: () => subcategoryCache.getSubcategoryList(),
 
-  getSubcategoryById: (id) => read.subcategoryById(id),
+  getSubcategoryById: (id) => subcategoryCache.getSubcategoryById(id),
 
-  getSubcategoryBySlugs: (input) => read.subcategoryBySlugs(input),
+  getSubcategoryByPath: ({ path }) =>
+    subcategoryCache.getSubcategoryByPath(path),
 
-  updateSubcategoryById: (id, input) => update.subcategoryById(id, input),
+  updateSubcategoryById: async (id, input) => {
+    const subcategory = await update.subcategoryById(id, input);
+    await subcategoryCache.invalidateSubcategory(id);
+    return subcategory;
+  },
 
-  removeSubcategoryById: (id) => remove.subcategoryById(id)
+  removeSubcategoryById: async (id) => {
+    const subcategory = await remove.subcategoryById(id);
+    await subcategoryCache.invalidateSubcategory(id);
+    return subcategory;
+  }
 };

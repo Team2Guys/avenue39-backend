@@ -19,43 +19,45 @@ export const productRepository = {
         }
       }),
 
-    productBySlugs: ({ categorySlug, subcategorySlug, productSlug }) =>
+    productByNewUrls: ({ categoryNewUrl, subcategoryNewUrl, productNewUrl }) =>
       prisma.product.findFirst({
         where: {
-          slug: productSlug,
+          productNewUrl,
           subcategory: {
-            slug: subcategorySlug,
-            category: {
-              slug: categorySlug
-            }
+            subcategoryNewUrl,
+            category: { categoryNewUrl }
           }
         },
         include: {
           category: true,
           subcategory: true
         }
+      }),
+
+    productByOldUrl: (productOldUrl) =>
+      prisma.product.findFirst({
+        where: { productOldUrl },
+        select: {
+          productNewUrl: true,
+          subcategory: {
+            select: {
+              subcategoryNewUrl: true,
+              category: { select: { categoryNewUrl: true } }
+            }
+          }
+        }
       })
   },
 
   write: {
-    product: (data) =>
-      prisma.product.create({
-        data
-      })
+    product: (data) => prisma.product.create({ data })
   },
 
   update: {
-    productById: (id, data) =>
-      prisma.product.update({
-        where: { id },
-        data
-      })
+    productById: (id, data) => prisma.product.update({ where: { id }, data })
   },
 
   remove: {
-    productById: (id) =>
-      prisma.product.delete({
-        where: { id }
-      })
+    productById: (id) => prisma.product.delete({ where: { id } })
   }
 };

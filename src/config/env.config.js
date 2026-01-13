@@ -30,7 +30,9 @@ const validators = {
   SUPER_ADMIN_ID: str({ desc: 'Super admin id' }),
   SUPER_ADMIN_EMAIL: email({ desc: 'Super admin email' }),
   SUPER_ADMIN_NAME: str({ desc: 'Super admin name' }),
-  SUPER_ADMIN_PASSWORD: str({ desc: 'Super admin password' })
+  SUPER_ADMIN_PASSWORD: str({ desc: 'Super admin password' }),
+
+  REDIS_URL: url({ desc: 'Redis URL' })
 };
 
 export const env = cleanEnv(process.env, validators, {

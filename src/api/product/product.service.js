@@ -1,17 +1,30 @@
+import { productCache } from './product.cache.js';
 import { productRepository } from './product.repository.js';
 
-const { write, read, update, remove } = productRepository;
+const { write, update, remove } = productRepository;
 
 export const productServices = {
-  createProduct: (input) => write.product(input),
+  getProductList: () => productCache.getProductList(),
 
-  getProductList: () => read.productList(),
+  getProductById: (id) => productCache.getProductById(id),
 
-  getProductById: (id) => read.productById(id),
+  getProductByPath: ({ path }) => productCache.getProductByPath(path),
 
-  getProductBySlugs: (input) => read.productBySlugs(input),
+  createProduct: async (input) => {
+    const product = await write.product(input);
+    await productCache.invalidateProduct(product.id);
+    return product;
+  },
 
-  updateProductById: (id, input) => update.productById(id, input),
+  updateProductById: async (id, input) => {
+    const product = await update.productById(id, input);
+    await productCache.invalidateProduct(id);
+    return product;
+  },
 
-  removeProductById: (id) => remove.productById(id)
+  removeProductById: async (id) => {
+    const product = await remove.productById(id);
+    await productCache.invalidateProduct(id);
+    return product;
+  }
 };

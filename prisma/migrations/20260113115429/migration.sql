@@ -22,9 +22,6 @@ CREATE TYPE "Permissions" AS ENUM ('ADD_PRODUCTS', 'EDIT_PRODUCTS', 'DELETE_PROD
 -- CreateEnum
 CREATE TYPE "AddressType" AS ENUM ('HOME', 'OFFICE', 'OTHER');
 
--- CreateEnum
-CREATE TYPE "VariationType" AS ENUM ('SIZE', 'COLOR', 'SEAT');
-
 -- CreateTable
 CREATE TABLE "Admin" (
     "id" UUID NOT NULL,
@@ -33,7 +30,7 @@ CREATE TABLE "Admin" (
     "password" TEXT NOT NULL,
     "role" "AdminRole" NOT NULL DEFAULT 'ADMIN',
     "permissions" "Permissions"[] DEFAULT ARRAY[]::"Permissions"[],
-    "lastEditedBy" TEXT,
+    "lastEditedBy" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -65,10 +62,10 @@ CREATE TABLE "Address" (
     "lastName" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
-    "address" TEXT NOT NULL,
-    "city" TEXT NOT NULL,
     "state" TEXT NOT NULL,
     "country" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
+    "address" TEXT NOT NULL,
     "addressType" "AddressType" NOT NULL DEFAULT 'HOME',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -91,16 +88,17 @@ CREATE TABLE "NewsletterSubscriber" (
 CREATE TABLE "Category" (
     "id" UUID NOT NULL,
     "name" TEXT NOT NULL,
-    "slug" TEXT NOT NULL,
-    "breadcrumb" TEXT,
-    "description" TEXT,
-    "posterImageUrl" TEXT,
-    "metaTitle" TEXT,
-    "metaDescription" TEXT,
-    "canonicalUrl" TEXT,
+    "description" TEXT NOT NULL,
+    "breadcrumb" TEXT NOT NULL,
+    "oldPath" TEXT,
+    "newPath" TEXT NOT NULL,
+    "posterImageUrl" TEXT NOT NULL DEFAULT 'https://placehold.co/600x600?text=Product+Image',
+    "metaTitle" TEXT NOT NULL,
+    "metaDescription" TEXT NOT NULL,
+    "canonicalUrl" TEXT NOT NULL,
     "seoSchema" TEXT,
+    "lastEditedBy" TEXT NOT NULL,
     "status" "ContentStatus" NOT NULL DEFAULT 'PUBLISHED',
-    "lastEditedBy" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -112,16 +110,17 @@ CREATE TABLE "Subcategory" (
     "id" UUID NOT NULL,
     "categoryId" UUID NOT NULL,
     "name" TEXT NOT NULL,
-    "slug" TEXT NOT NULL,
-    "breadcrumb" TEXT,
-    "description" TEXT,
-    "posterImageUrl" TEXT,
-    "metaTitle" TEXT,
-    "metaDescription" TEXT,
-    "canonicalUrl" TEXT,
+    "description" TEXT NOT NULL,
+    "breadcrumb" TEXT NOT NULL,
+    "oldPath" TEXT,
+    "newPath" TEXT NOT NULL,
+    "posterImageUrl" TEXT NOT NULL DEFAULT 'https://placehold.co/600x600?text=Product+Image',
+    "metaTitle" TEXT NOT NULL,
+    "metaDescription" TEXT NOT NULL,
+    "canonicalUrl" TEXT NOT NULL,
     "seoSchema" TEXT,
+    "lastEditedBy" TEXT NOT NULL,
     "status" "ContentStatus" NOT NULL DEFAULT 'PUBLISHED',
-    "lastEditedBy" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -135,15 +134,14 @@ CREATE TABLE "Product" (
     "subcategoryId" UUID,
     "sku" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "slug" TEXT NOT NULL,
-    "breadcrumb" TEXT,
-    "description" TEXT,
+    "description" TEXT NOT NULL,
     "materialDescription" TEXT,
     "dimensionDescription" TEXT,
-    "posterImageUrl" TEXT NOT NULL,
+    "breadcrumb" TEXT,
+    "oldPath" TEXT,
+    "newPath" TEXT NOT NULL,
+    "posterImageUrl" TEXT NOT NULL DEFAULT 'https://placehold.co/600x600?text=Product+Image',
     "productImages" TEXT[] DEFAULT ARRAY[]::TEXT[],
-    "productOldUrl" TEXT,
-    "productNewUrl" TEXT NOT NULL,
     "material" TEXT,
     "size" TEXT,
     "color" TEXT,
@@ -173,12 +171,12 @@ CREATE TABLE "Order" (
     "totalAmount" DECIMAL(65,30) NOT NULL DEFAULT 0,
     "shippingCost" DECIMAL(65,30) NOT NULL DEFAULT 0,
     "notes" TEXT,
+    "orderItems" JSONB[],
+    "lastEditedBy" TEXT NOT NULL,
     "paymentStatus" "PaymentStatus" NOT NULL DEFAULT 'PENDING',
     "orderStatus" "OrderStatus" NOT NULL DEFAULT 'PENDING',
-    "lastEditedBy" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "orderItems" JSONB[],
 
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
 );
@@ -217,16 +215,22 @@ CREATE UNIQUE INDEX "NewsletterSubscriber_email_key" ON "NewsletterSubscriber"("
 CREATE UNIQUE INDEX "Category_name_key" ON "Category"("name");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Category_slug_key" ON "Category"("slug");
+CREATE UNIQUE INDEX "Category_newPath_key" ON "Category"("newPath");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Subcategory_categoryId_slug_key" ON "Subcategory"("categoryId", "slug");
+CREATE UNIQUE INDEX "Subcategory_newPath_key" ON "Subcategory"("newPath");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Subcategory_categoryId_newPath_key" ON "Subcategory"("categoryId", "newPath");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Product_sku_key" ON "Product"("sku");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Product_categoryId_slug_key" ON "Product"("categoryId", "slug");
+CREATE UNIQUE INDEX "Product_newPath_key" ON "Product"("newPath");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Product_categoryId_newPath_key" ON "Product"("categoryId", "newPath");
 
 -- AddForeignKey
 ALTER TABLE "User" ADD CONSTRAINT "User_defaultShippingAddressId_fkey" FOREIGN KEY ("defaultShippingAddressId") REFERENCES "Address"("id") ON DELETE SET NULL ON UPDATE CASCADE;

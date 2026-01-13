@@ -6,15 +6,14 @@ export const productTypeDefs = gql`
     subcategoryId: ID
     sku: String!
     name: String!
-    slug: String!
-    breadcrumb: String!
     description: String!
     materialDescription: String!
     dimensionDescription: String!
+    breadcrumb: String!
+    oldPath: String
+    newPath: String!
     posterImageUrl: String!
     productImages: [String!]!
-    productOldUrl: String
-    productNewUrl: String!
     material: String!
     size: String!
     color: String!
@@ -33,19 +32,18 @@ export const productTypeDefs = gql`
 
   input UpdateProductByIdInput {
     id: ID!
-    categoryId: ID!
+    categoryId: ID
     subcategoryId: ID
     sku: String
     name: String
-    slug: String
-    breadcrumb: String
     description: String
     materialDescription: String
     dimensionDescription: String
+    breadcrumb: String
+    oldPath: String
+    newPath: String
     posterImageUrl: String
     productImages: [String!]
-    productOldUrl: String
-    productNewUrl: String
     material: String
     size: String
     color: String
@@ -62,16 +60,16 @@ export const productTypeDefs = gql`
     status: ContentStatus
   }
 
-  input GetProductBySlugsInput {
-    categorySlug: String!
-    subcategorySlug: String!
-    productSlug: String!
+  input GetProductByUrlsInput {
+    categoryNewUrl: String!
+    subcategoryNewUrl: String!
+    productNewUrl: String!
   }
 
   type Query {
     productList: [Product!]!
     productById(id: ID!): Product
-    productBySlugs(input: GetProductBySlugsInput!): Product
+    productByUrls(input: GetProductByUrlsInput!): Product
   }
 
   type Mutation {

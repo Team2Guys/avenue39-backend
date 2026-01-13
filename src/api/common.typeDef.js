@@ -9,30 +9,6 @@ export const commonTypeDefs = gql`
     SUPER_ADMIN
   }
 
-  enum InquiryType {
-    EMAIL
-    PHONE
-    WHATSAPP
-    OTHER
-  }
-
-  enum Permissions {
-    ADD_PRODUCTS
-    EDIT_PRODUCTS
-    DELETE_PRODUCTS
-    ADD_CATEGORY
-    DELETE_CATEGORY
-    EDIT_CATEGORY
-    CHECK_PROFIT
-    CHECK_REVENUE
-    CHECK_VISITORS
-    VIEW_USERS
-    VIEW_SALES
-    VIEW_ADMINS
-    VIEW_TOTAL_PRODUCTS
-    VIEW_TOTAL_CATEGORIES
-  }
-
   enum ContentStatus {
     DRAFT
     PUBLISHED
@@ -56,23 +32,62 @@ export const commonTypeDefs = gql`
     FAILED
   }
 
+  enum InquiryType {
+    EMAIL
+    PHONE
+    WHATSAPP
+    OTHER
+  }
+
+  enum InquiryStatus {
+    NEW
+    READ
+    RESOLVED
+  }
+
+  enum Permissions {
+    ADD_PRODUCTS
+    EDIT_PRODUCTS
+    DELETE_PRODUCTS
+    ADD_CATEGORY
+    DELETE_CATEGORY
+    EDIT_CATEGORY
+    CHECK_PROFIT
+    CHECK_REVENUE
+    CHECK_VISITORS
+    VIEW_USERS
+    VIEW_SALES
+    VIEW_ADMINS
+    VIEW_TOTAL_PRODUCTS
+    VIEW_TOTAL_CATEGORIES
+  }
+
+  enum AddressType {
+    HOME
+    OFFICE
+    OTHER
+  }
+
   type GenericResponse {
     message: String!
   }
 
   type Admin {
     id: ID!
+
     name: String!
     email: String!
     permissions: [Permissions!]!
     role: AdminRole!
     lastEditedBy: String!
+
     createdAt: DateTime!
     updatedAt: DateTime!
   }
 
   type User {
     id: ID!
+
     defaultShippingAddressId: ID
     defaultBillingAddressId: ID
     firstName: String!
@@ -80,16 +95,19 @@ export const commonTypeDefs = gql`
     email: String!
     isEmailVerified: Boolean!
     isMember: Boolean!
-    addresses: [JSON!]!
-    orders: [Order!]!
-    defaultShippingAddress: Address
-    defaultBillingAddress: Address
+
     createdAt: DateTime!
     updatedAt: DateTime!
+
+    addresses: [JSON!]!
+    orders: [JSON!]!
+    defaultShippingAddress: Address
+    defaultBillingAddress: Address
   }
 
   type Address {
     id: ID!
+
     userId: ID!
     firstName: String!
     lastName: String!
@@ -99,65 +117,88 @@ export const commonTypeDefs = gql`
     country: String!
     city: String!
     address: String!
-    addressType: String!
+    addressType: AddressType!
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+
+    user: User!
+    defaultShippingFor: User
+    defaultBillingFor: User
+  }
+
+  type NewsletterSubscriber {
+    id: ID!
+
+    email: String!
+    isActive: Boolean!
+
     createdAt: DateTime!
     updatedAt: DateTime!
   }
 
   type Category {
     id: ID!
+
     name: String!
-    description: String!
-    slug: String!
-    metaTitle: String!
-    metaDescription: String!
-    canonicalUrl: String!
-    breadcrumb: String!
-    posterImageUrl: String!
-    seoSchema: String!
+    description: String
+    breadcrumb: String
+    oldPath: String
+    newPath: String!
+    posterImageUrl: String
+    metaTitle: String
+    metaDescription: String
+    canonicalUrl: String
+    seoSchema: String
     lastEditedBy: String!
     status: ContentStatus!
-    products: [Product!]!
-    subcategories: [Subcategory!]!
+
     createdAt: DateTime!
     updatedAt: DateTime!
+
+    subcategories: [Subcategory!]
+    products: [Product!]
   }
 
   type Subcategory {
     id: ID!
+
     categoryId: ID!
     name: String!
     description: String
-    slug: String
+    breadcrumb: String
+    oldPath: String
+    newPath: String
+    posterImageUrl: String
     metaTitle: String
     metaDescription: String
     canonicalUrl: String
-    breadcrumb: String
-    posterImageUrl: String
     seoSchema: String
     lastEditedBy: String!
     status: ContentStatus!
-    category: Category
-    products: [Product!]
+
     createdAt: DateTime!
     updatedAt: DateTime!
+
+    category: Category!
+    products: [Product!]!
   }
 
   type Product {
     id: ID!
+
     categoryId: ID!
     subcategoryId: ID
     sku: String!
     name: String!
-    slug: String!
-    breadcrumb: String!
     description: String!
     materialDescription: String!
     dimensionDescription: String!
+    breadcrumb: String!
+    oldPath: String
+    newPath: String!
     posterImageUrl: String!
     productImages: [String!]!
-    productOldUrl: String!
-    productNewUrl: String!
     material: String!
     size: String!
     color: String!
@@ -172,44 +213,44 @@ export const commonTypeDefs = gql`
     seoSchema: String!
     lastEditedBy: String!
     status: ContentStatus!
-    category: Category
-    subcategory: Subcategory
+
     createdAt: DateTime!
     updatedAt: DateTime!
+
+    category: Category
+    subcategory: Subcategory
   }
 
   type Order {
     id: ID!
+
     userId: ID!
     shippingAddress: JSON!
     billingAddress: JSON!
     totalAmount: Float!
     shippingCost: Float!
-    notes: String!
+    notes: String
     orderItems: [JSON!]!
+    lastEditedBy: String!
     paymentStatus: PaymentStatus!
     orderStatus: OrderStatus!
-    lastEditedBy: String!
+
     createdAt: DateTime!
     updatedAt: DateTime!
+
+    user: User!
   }
 
   type Inquiry {
     id: ID!
+
     name: String!
     email: String!
     phone: String!
     message: String!
     inquiryType: String!
     inquiryStatus: String!
-    createdAt: DateTime!
-    updatedAt: DateTime!
-  }
 
-  type NewsletterSubscriber {
-    id: ID!
-    email: String!
-    isActive: Boolean!
     createdAt: DateTime!
     updatedAt: DateTime!
   }
