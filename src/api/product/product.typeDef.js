@@ -60,16 +60,14 @@ export const productTypeDefs = gql`
     status: ContentStatus
   }
 
-  input GetProductByUrlsInput {
-    categoryNewUrl: String!
-    subcategoryNewUrl: String!
-    productNewUrl: String!
+  input GetProductByPathInput {
+    path: String!
   }
 
   type Query {
     productList: [Product!]!
     productById(id: ID!): Product
-    productByUrls(input: GetProductByUrlsInput!): Product
+    productByPath(input: GetProductByPathInput!): Product
   }
 
   type Mutation {
