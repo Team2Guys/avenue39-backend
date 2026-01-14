@@ -181,7 +181,7 @@ export const commonTypeDefs = gql`
     updatedAt: DateTime!
 
     category: Category!
-    products: [Product!]!
+    products: [Product!]
   }
 
   type Product {
@@ -199,10 +199,10 @@ export const commonTypeDefs = gql`
     newPath: String!
     posterImageUrl: String!
     productImages: [String!]!
-    material: String!
-    size: String!
-    color: String!
-    seats: Int!
+    material: String
+    size: String
+    color: String
+    seats: Int
     stock: Int!
     price: Float!
     memberPrice: Float!
