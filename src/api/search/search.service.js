@@ -1,8 +1,13 @@
-import { searchRepository } from './search.repository.js';
+import { searchCache } from './search.cache.js';
 
 export const searchService = {
   search: async (input) => {
-    const { query, categoryLimit, subcategoryLimit, productLimit } = input;
+    const {
+      query,
+      categoryLimit = 5,
+      subcategoryLimit = 5,
+      productLimit = 10
+    } = input;
     if (!query || query.trim().length < 2) {
       return {
         categories: [],
@@ -13,16 +18,6 @@ export const searchService = {
 
     const q = query.trim();
 
-    const [categories, subcategories, products] = await Promise.all([
-      searchRepository.searchCategories(q, categoryLimit),
-      searchRepository.searchSubcategories(q, subcategoryLimit),
-      searchRepository.searchProducts(q, productLimit)
-    ]);
-
-    return {
-      categories,
-      subcategories,
-      products
-    };
+    return searchCache.search(q, categoryLimit, subcategoryLimit, productLimit);
   }
 };
