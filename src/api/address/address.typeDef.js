@@ -1,6 +1,28 @@
 import { gql } from 'graphql-tag';
 
 export const addressTypeDefs = gql`
+  type Address {
+    id: ID!
+
+    userId: ID!
+    firstName: String!
+    lastName: String!
+    email: String!
+    phone: String!
+    state: String!
+    country: String!
+    city: String!
+    address: String!
+    addressType: AddressType!
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+
+    user: User!
+    defaultShippingFor: User
+    defaultBillingFor: User
+  }
+
   input CreateAddressInput {
     userId: ID!
     firstName: String!
