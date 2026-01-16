@@ -1,6 +1,12 @@
 import { gql } from 'graphql-tag';
 
 export const addressTypeDefs = gql`
+  enum AddressType {
+    HOME
+    OFFICE
+    OTHER
+  }
+
   type Address {
     id: ID!
 

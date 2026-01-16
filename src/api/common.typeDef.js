@@ -15,12 +15,6 @@ export const commonTypeDefs = gql`
     ARCHIVED
   }
 
-  enum AddressType {
-    HOME
-    OFFICE
-    OTHER
-  }
-
   type GenericResponse {
     message: String!
   }
@@ -64,8 +58,8 @@ export const commonTypeDefs = gql`
     createdAt: DateTime!
     updatedAt: DateTime!
 
-    subcategories: [Subcategory!]
     products: [Product!]
+    subcategories: [Subcategory!]
   }
 
   type Subcategory {
