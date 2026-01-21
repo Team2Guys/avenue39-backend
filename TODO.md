@@ -1,0 +1,6 @@
+- [ ] ~~GraphQL Props Refactorization~~, cancelled as the current approach is more maintainable and scalable.
+- [ ] Transactions
+- [ ] Pagination
+- [ ] HTTP Caching
+- [ ] Payment Integration
+- [ ] ... 🤔
