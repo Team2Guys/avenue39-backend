@@ -1,6 +1,8 @@
 - [ ] ~~GraphQL Props Refactorization~~, cancelled as the current approach is more maintainable and scalable.
+- [ ] URL Redirection
 - [ ] Transactions
 - [ ] Pagination
 - [ ] HTTP Caching
 - [ ] Payment Integration
+- [ ] API Tests
 - [ ] ... 🤔
